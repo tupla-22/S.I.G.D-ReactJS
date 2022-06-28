@@ -1,0 +1,18 @@
+.formLogin{
+    display: flex;
+    flex-direction: column;
+    height: 250px;
+    width: 400px;
+    padding: 40px;
+    justify-content: space-evenly;
+    border: 1px solid #0005;
+    border-radius: 15px;
+    box-shadow: 1px 1px 5px #0003;
+}
+
+@media screen and (max-width:900px){
+
+    .formLogin{
+        width: 250px;
+    }
+}
