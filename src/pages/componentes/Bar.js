@@ -26,6 +26,8 @@ export default function Bar() {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             S.I.G.D.
           </Typography>
+          <Button color="inherit"><NavLink to="ayuda">AYUDA</NavLink></Button>
+          <Button color="inherit"><NavLink to="">LOGIN</NavLink></Button>
         </Toolbar>
       </AppBar>
     </Box>

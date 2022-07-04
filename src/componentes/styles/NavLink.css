@@ -1,0 +1,16 @@
+.noActive{
+    color: #fff;
+    text-decoration: none;
+}
+.isActive{
+    color: #ef6c00;
+    text-decoration: none;
+}
+
+
+.btnBlack{
+    color: #000;
+}
+.btnWhite{
+    color: #fff;
+}
