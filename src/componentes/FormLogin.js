@@ -1,6 +1,7 @@
 import { Button } from '@mui/material';
 import TextField from '@mui/material/TextField'
-import { Navigate, useNavigate } from 'react-router-dom';
+import { Box } from '@mui/system';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import "./styles/FormLogin.css"
 
 const FormLogin = () => {
@@ -8,7 +9,7 @@ const FormLogin = () => {
   const navigate = useNavigate();
 
 
-  const handleClick = (e) =>{
+  const handleSubmit = (e) =>{
     navigate("/StudentHome");
   }
 
@@ -26,7 +27,8 @@ const FormLogin = () => {
           variant='outlined'
           type="password"
         />
-        <Button onClick={handleClick} variant='text'>Entrar</Button>
+        <Box><Link to="ayuda">¿Problemas para iniciar sesión?</Link></Box>
+        <Button onClick={handleSubmit} variant='text'>Entrar</Button>
         </div>
      );
 }

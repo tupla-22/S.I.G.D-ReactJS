@@ -13,8 +13,11 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import NavLink from '../../../componentes/NavLink';
 
+import "./styles/StudentBar.css"
+import Link from '../../../componentes/Link';
+
 const pages = [<NavLink to="StudentHome">HOME</NavLink>,<NavLink to="myTeams">MIS EQUIPOS</NavLink>];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const settings = [<Link to="profile">Perfil</Link>, <Link to="acount">Cuenta</Link>, <Link to="config">Configuración</Link>, <Link to="/">Salir</Link>];
 
 const StudentBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -86,8 +89,8 @@ const StudentBar = () => {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
+              {pages.map((page, i) => (
+                <MenuItem key={"page"+i} onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
@@ -112,9 +115,9 @@ const StudentBar = () => {
             S.I.G.D.
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
+            {pages.map((page, i) => (
               <Button
-                key={page}
+                key={"page"+i}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
@@ -145,8 +148,8 @@ const StudentBar = () => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
+              {settings.map((setting, i) => (
+                <MenuItem key={"setting"+i} onClick={handleCloseUserMenu}>
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
               ))}

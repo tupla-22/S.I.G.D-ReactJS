@@ -6,9 +6,6 @@ const Home = () => {
     return ( 
         <div className="home">
             <Bar/>
-            <Main>
-                <FormLogin/>
-            </Main>
         </div>
      );
 }
