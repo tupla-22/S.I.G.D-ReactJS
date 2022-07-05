@@ -18,17 +18,19 @@ const FormLogin = () => {
     return ( 
         <div className="formLogin">
         <TextField
+          className="formLogin__input"
           id=""
           label="Cedula"
           variant='outlined'
         />
         <TextField
+          className="formLogin__input"
           id=""
           label="Contraseña"
           variant='outlined'
           type="password"
         />
-        <Box><Link to="ayuda">¿Problemas para iniciar sesión?</Link></Box>
+        <Box><Link to="help">¿Problemas para iniciar sesión?</Link></Box>
         <Button onClick={handleSubmit} variant='text'>Entrar</Button>
         </div>
      );

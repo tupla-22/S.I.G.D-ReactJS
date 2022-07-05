@@ -1,7 +1,7 @@
 import { Route, Routes,Params } from "react-router-dom";
 import "./App.css";
 import useUser from "./hooks/useUser";
-import Help from "./pages/Ayuda";
+import Help from "./pages/Help";
 import Fixture from "./pages/componentes/Fixture";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
