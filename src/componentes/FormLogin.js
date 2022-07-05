@@ -1,7 +1,8 @@
 import { Button } from '@mui/material';
 import TextField from '@mui/material/TextField'
 import { Box } from '@mui/system';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import {useNavigate } from 'react-router-dom';
+import Link from './Link';
 import "./styles/FormLogin.css"
 
 const FormLogin = () => {
@@ -10,7 +11,7 @@ const FormLogin = () => {
 
 
   const handleSubmit = (e) =>{
-    navigate("/StudentHome");
+    navigate(`/student/${Math.round(Math.random()*1000)}`);
   }
 
 

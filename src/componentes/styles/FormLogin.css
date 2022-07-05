@@ -4,7 +4,7 @@
     height: 250px;
     width: 400px;
     padding: 70px 50px;
-    justify-content: space-evenly;
+    justify-content: space-between;
     border: 1px solid #0005;
     border-radius: 15px;
     box-shadow: 1px 1px 5px #0003;

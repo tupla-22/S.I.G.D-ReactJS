@@ -27,7 +27,7 @@ export default function Bar() {
             S.I.G.D.
           </Typography>
           <Button color="inherit"><NavLink to="help">AYUDA</NavLink></Button>
-          <Button color="inherit"><NavLink to="login">LOGIN</NavLink></Button>
+          <Button color="inherit"><NavLink to="">LOGIN</NavLink></Button>
         </Toolbar>
       </AppBar>
     </Box>

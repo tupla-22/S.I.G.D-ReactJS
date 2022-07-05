@@ -1,3 +1,4 @@
+import { Outlet } from "react-router-dom";
 import FormLogin from "../componentes/FormLogin";
 import Bar from "./componentes/Bar";
 import Main from "./componentes/Main";
@@ -6,6 +7,7 @@ const Home = () => {
     return ( 
         <div className="home">
             <Bar/>
+            <Outlet/>
         </div>
      );
 }

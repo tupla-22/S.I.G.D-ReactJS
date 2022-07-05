@@ -16,7 +16,7 @@ import NavLink from '../../../componentes/NavLink';
 import "./styles/StudentBar.css"
 import Link from '../../../componentes/Link';
 
-const pages = [<NavLink to="StudentHome">HOME</NavLink>,<NavLink to="myTeams">MIS EQUIPOS</NavLink>];
+const pages = [<NavLink to="homeStudent" classAdd="responsive">HOME</NavLink>,<NavLink classAdd="responsive" to="myTeams" >MIS EQUIPOS</NavLink>];
 const settings = [<Link to="profile">Perfil</Link>, <Link to="acount">Cuenta</Link>, <Link to="config">Configuración</Link>, <Link to="/">Salir</Link>];
 
 const StudentBar = () => {

@@ -4,7 +4,7 @@ import Main from "../componentes/Main";
 const Config = () => {
     return ( 
         <Main>
-            <h2>Main</h2>
+            <h2>configuracion</h2>
         </Main>
      );
 }

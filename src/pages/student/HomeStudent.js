@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import StudentBar from "./componentes/StudentBar";
 
-const StudentHome = () => {
+const HomeStudent = () => {
     return ( 
         <div className="studentHome">
             <StudentBar/>
@@ -10,4 +10,4 @@ const StudentHome = () => {
      );
 }
  
-export default StudentHome;
+export default HomeStudent;
