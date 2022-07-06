@@ -3,7 +3,7 @@ import Main from "../componentes/Main";
 const Acount = () => {
     return ( 
         <Main>
-            <h2>Acount</h2>
+            <h2>Cuenta</h2>
         </Main>
      );
 }

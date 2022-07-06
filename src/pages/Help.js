@@ -8,7 +8,7 @@ const Help = () => {
                 
                 <h2>Sistema informático de gestión deportiva</h2>
                 <p>Esta aplicación fue creada para poder llevar a cabo la gestión de los deportes realizados en la institucion UTU. <br/>
-                y así realizar estadísticas de los jugadores y equipos que pertenezcan a esta.
+                y así realizar estadísticas de los jugadores y equipos que pertenezcan a esta.web
                 </p>
             </article>
         </div>

@@ -1,11 +1,19 @@
-import Main from "../componentes/Main";
 
 
 const Config = () => {
     return ( 
-        <Main>
-            <h2>configuracion</h2>
-        </Main>
+        <div className="config">
+            <table>
+                <thead>
+                <th></th>
+                <th></th>
+                <th></th>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
      );
 }
  
