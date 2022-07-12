@@ -12,6 +12,7 @@ import MyTeam from "./pages/student/MyTeam";
 import Profile from "./pages/student/Profile";
 import HomeStudent from "./pages/student/HomeStudent";
 import Error404 from "./componentes/Error404";
+import HomeAdmin from "./pages/admin/HomeAdmin";
 
 
 
@@ -30,6 +31,7 @@ function App() {
           <Route path="acount" element={<Acount/>}/>
           <Route path="config" element={<Config/>}/>
         </Route>
+        <Route path="/admin/:userId" element={<HomeAdmin/>}></Route>
         <Route path="/*" element={<Error404/>}></Route>
 
       </Routes>

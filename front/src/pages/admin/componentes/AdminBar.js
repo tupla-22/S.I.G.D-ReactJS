@@ -13,13 +13,13 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import NavLink from '../../../componentes/NavLink';
 
-import "./styles/StudentBar.css"
+import "./styles/AdminBar.css"
 import Link from '../../../componentes/Link';
 
-const pages = [<NavLink to="homeStudent" classAdd="responsive">HOME</NavLink>,<NavLink classAdd="responsive" to="myTeams" >MIS EQUIPOS</NavLink>];
-const settings = [<Link to="profile">Perfil</Link>, <Link to="acount">Cuenta</Link>, <Link to="config">Configuración</Link>, <Link to="/">Salir</Link>];
+const pages = [<NavLink to="homeStudent" classAdd="responsive">HOME</NavLink>,<NavLink to="homeStudent" classAdd="responsive">AGREGAR JUGADOR</NavLink>,<NavLink classAdd="responsive" to="myTeams" >AGREGAR EQUIPO</NavLink>];
+const settings = [<Link to="profile">Tu perfil</Link>, <Link to="/">Salir</Link>];
 
-const StudentBar = () => {
+const AdminBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -160,4 +160,4 @@ const StudentBar = () => {
     </AppBar>
   );
 };
-export default StudentBar;
+export default AdminBar;

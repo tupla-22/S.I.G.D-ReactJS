@@ -1,0 +1,22 @@
+.profile__avatar{
+    height: 100%;
+    width: 100%;
+    border-radius: 100%;
+
+
+}
+.profile{
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 30% 70% ;
+    grid-template-rows: 30% 70% ;
+}
+.section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+}
+.profile .--second{
+    grid-row: 1/3;
+}
