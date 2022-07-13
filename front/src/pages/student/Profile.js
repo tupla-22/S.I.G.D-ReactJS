@@ -14,33 +14,20 @@ const Profile = () => {
     },
     margin: "10px",
   };
+  const stIcon = { height: "100%", width: "100%", color: "#0005" };
 
   return (
     <div className="profile">
       <div className="section">
         <div className="profile__avatar">
           <Button sx={stAvatar}>
-            <AccountCircleIcon
-              sx={{ height: "100%", width: "100%", color: "#0005" }}
-            />
+            <AccountCircleIcon sx={stIcon} />
           </Button>
         </div>
-      </div>
-      <div className="section ">1</div>
-      <div className="section ">
+
         <div>
-          <Button
-            sx={{
-              backgroundColor: "secondary.main",
-              "&:hover": {
-                backgroundColor: "secondary.main",
-                opacity: [0.9, 0.8, 0.7],
-              },
-              margin: "10px",
-            }}
-            variant="contained"
-          >
-            Configuración
+          <Button sx={stButton} variant="contained">
+            Cambiar contraseña
           </Button>
         </div>
         <div>
@@ -54,7 +41,7 @@ const Profile = () => {
           </Button>
         </div>
       </div>
-      <div className="section ">3</div>
+      <div className="section "></div>
     </div>
   );
 };

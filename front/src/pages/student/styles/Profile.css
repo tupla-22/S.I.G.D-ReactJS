@@ -1,22 +1,31 @@
 .profile__avatar{
-    height: 100%;
-    width: 100%;
     border-radius: 100%;
 
 
 }
 .profile{
     height: 100vh;
-    display: grid;
-    grid-template-columns: 30% 70% ;
-    grid-template-rows: 30% 70% ;
+    display: flex;
+    width: 100%;
+
 }
 .section{
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: start;
     padding-top: 20px;
+    width: 50%;
+    height: 100vh;
+    min-width: 300px;
+    border: 1px solid #000;
 }
-.profile .--second{
-    grid-row: 1/3;
+
+@media only screen and (max-width:600px){
+    .profile{
+        flex-direction: column;
+    }
+    .section{
+        width: 100%;
+    }
 }
