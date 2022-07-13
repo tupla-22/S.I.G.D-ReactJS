@@ -11,17 +11,20 @@ const FormLogin = () => {
   const [usuario, setUsuario] = useState("");
   const navigate = useNavigate();
 
-  const regexUsuario =/^([0-9]){0,12}$/;
+  const regexUsuario =/^([0-9]){1,12}$/;
 
   const handleSubmit = (e) =>{
-    navigate(`/student/${Math.round(Math.random()*1000)}`);
+    if(!errors.usuario!=""){
+      
+      navigate(`/student/${Math.round(Math.random()*1000)}`);
+    }
   }
 
 
   const handleBlur = (e) =>{
     if(!regexUsuario.test(usuario.trim())){
       setErrors({...errors,
-        usuario:"El campo cédula solo acepta números y hasta 12 caracteres"
+        usuario:"El campo cédula solo acepta números y hasta 8 caracteres"
       });
     }else{setErrors({...errors,
       usuario:""
