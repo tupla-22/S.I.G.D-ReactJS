@@ -1,4 +1,4 @@
-import Main from "../componentes/Main";
+import Main from "../../componentes/Main";
 
 const Acount = () => {
     return ( 

@@ -1,0 +1,9 @@
+.fixture{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 700px;
+    width: 90%;
+    margin-left: 20%;
+    min-width: 300px;
+}

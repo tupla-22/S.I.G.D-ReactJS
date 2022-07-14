@@ -1,9 +1,11 @@
-import Main from "../componentes/Main";
+import Main from "../../componentes/Main";
+import TablePlayers from "../../componentes/TablePlayers";
 
 const MyTeam = () => {
     return ( 
         <Main>
-            <h2>myTeam</h2>
+            <h3 style={{padding:20}}>Equipo: (nombre)</h3>
+            <TablePlayers/>
         </Main>
      );
 }

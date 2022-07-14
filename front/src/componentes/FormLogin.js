@@ -7,15 +7,14 @@ import "./styles/FormLogin.css"
 import { useState } from 'react';
 
 const FormLogin = () => {
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState({vacio:true});
   const [usuario, setUsuario] = useState("");
   const navigate = useNavigate();
 
   const regexUsuario =/^([0-9]){1,12}$/;
 
   const handleSubmit = (e) =>{
-    if(!errors.usuario!=""){
-      
+    if(!errors.usuario!="" && errors.vacio!=true){
       navigate(`/student/${Math.round(Math.random()*1000)}`);
     }
   }
@@ -24,10 +23,12 @@ const FormLogin = () => {
   const handleBlur = (e) =>{
     if(!regexUsuario.test(usuario.trim())){
       setErrors({...errors,
-        usuario:"El campo cédula solo acepta números y hasta 8 caracteres"
+        usuario:"El campo cédula solo acepta números y hasta 8 caracteres",
+        vacio:true
       });
     }else{setErrors({...errors,
-      usuario:""
+      usuario:"",
+      vacio:false
     });}
   }
   const handleChange = (e) =>{ 

@@ -16,7 +16,7 @@ import NavLink from '../../../componentes/NavLink';
 import "./styles/AdminBar.css"
 import Link from '../../../componentes/Link';
 
-const pages = [<NavLink to="homeStudent" classAdd="responsive">HOME</NavLink>,<NavLink to="homeStudent" classAdd="responsive">AGREGAR JUGADOR</NavLink>,<NavLink classAdd="responsive" to="myTeams" >AGREGAR EQUIPO</NavLink>];
+const pages = [<NavLink to="homeAdmin" classAdd="responsive">HOME</NavLink>,<NavLink to="userAdd" classAdd="responsive">AGREGAR USUARIO</NavLink>,<NavLink classAdd="responsive" to="myTeams" >AGREGAR EQUIPO</NavLink>];
 const settings = [<Link to="profile">Tu perfil</Link>, <Link to="/">Salir</Link>];
 
 const AdminBar = () => {

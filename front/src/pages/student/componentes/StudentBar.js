@@ -12,12 +12,12 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import NavLink from '../../../componentes/NavLink';
-
+import logoUTU from "../../../media/icons/logo.png"
 import "./styles/StudentBar.css"
 import Link from '../../../componentes/Link';
 
 const pages = [<NavLink to="homeStudent" classAdd="responsive">HOME</NavLink>,<NavLink classAdd="responsive" to="myTeams" >MIS EQUIPOS</NavLink>];
-const settings = [<Link to="profile">Tu perfil</Link>, <Link to="/">Salir</Link>];
+const settings = [<Link to="profile" >Tu perfil</Link>, <Link to="/">Salir</Link>];
 
 const StudentBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -42,6 +42,7 @@ const StudentBar = () => {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
+          <img className='logo' src={logoUTU}></img>
           <Typography
             variant="h6"
             noWrap
@@ -49,7 +50,7 @@ const StudentBar = () => {
             href="/"
             sx={{
               mr: 2,
-              display: { xs: 'none', md: 'flex' },
+              display: { xs: 'none', md: 'flex', margin:"0 20px" },
               fontFamily: 'monospace',
               fontWeight: 700,
               letterSpacing: '.3rem',

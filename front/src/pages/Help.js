@@ -1,4 +1,4 @@
-import Main from "./componentes/Main";
+import Main from "../componentes/Main";
 import "./Help.css"
 const Help = () => {
     return ( 

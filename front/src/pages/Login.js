@@ -1,5 +1,5 @@
 import FormLogin from "../componentes/FormLogin";
-import Main from "./componentes/Main";
+import Main from "../componentes/Main";
 
 const Login = () => {
     return ( 
