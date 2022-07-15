@@ -1,4 +1,3 @@
-import { Box } from "@mui/system";
 import FixtureHead from "./FixtureHead";
 import FixtureRow from "./FixtureRow";
 import Main from "./Main";
@@ -10,29 +9,28 @@ const cuadros = {
 };
 
 const Fixture = () => {
-    const sxFixt = {
-        width:"70%"
-    }
+    const sx = {
+        padding:10,
+        border:"1px solid #0005",
+        borderRadius:"5px"
+        
+      }
+
+
+
   return (
     <Main>
-      <div className="fixture">
-        <Box>
-          <FixtureHead />
-          <FixtureRow />
-          <FixtureRow />
-          <FixtureRow />
-          <FixtureRow />
-          <FixtureRow />
-          <FixtureRow />
-          <FixtureRow />
-          <FixtureRow />
-          <FixtureRow />
-          <FixtureRow />
-          <FixtureRow />
-          <FixtureRow />
-          <FixtureRow />
-        </Box>
-      </div>
+      <table>
+        <FixtureHead sx={sx}/>
+        <tbody>
+          <FixtureRow data={cuadros.nombre} sx={sx}/>
+          <FixtureRow data={cuadros.nombre} sx={sx}/>
+          <FixtureRow data={cuadros.nombre} sx={sx}/>
+          <FixtureRow data={cuadros.nombre} sx={sx}/>
+          <FixtureRow data={cuadros.nombre} sx={sx}/>
+          <FixtureRow data={cuadros.nombre} sx={sx}/>
+        </tbody>
+      </table>
     </Main>
   );
 };
