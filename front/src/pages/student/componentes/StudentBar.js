@@ -16,7 +16,7 @@ import logoUTU from "../../../media/icons/logo.png"
 import "./styles/StudentBar.css"
 import Link from '../../../componentes/Link';
 
-const pages = [<NavLink to="homeStudent" classAdd="responsive">HOME</NavLink>,<NavLink classAdd="responsive" to="myTeams" >MIS EQUIPOS</NavLink>];
+const pages = [<NavLink to="homeStudent" classAdd="responsive">Fixture</NavLink>,<NavLink classAdd="responsive" to="myTeams" >MIS EQUIPOS</NavLink>];
 const settings = [<Link to="profile" >Tu perfil</Link>, <Link to="/">Salir</Link>];
 
 const StudentBar = () => {

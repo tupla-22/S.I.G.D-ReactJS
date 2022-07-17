@@ -8,7 +8,7 @@ const FixtureHead = ({sx}) => {
       <tr >
         <th style={sx}>Equipo</th>
         <th style={sx}>vs</th>
-        <th style={sx}>Equpo</th>
+        <th style={sx}>Equipo</th>
         <th style={sx}>Fecha</th>
       </tr>
     </thead>

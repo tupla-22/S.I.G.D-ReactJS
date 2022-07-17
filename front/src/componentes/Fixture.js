@@ -20,6 +20,7 @@ const Fixture = () => {
 
   return (
     <Main>
+      <h3 style={{padding:"20px"}}>Fixture</h3>
       <table>
         <FixtureHead sx={sx}/>
         <tbody>

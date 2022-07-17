@@ -1,7 +1,8 @@
 const TablePlayersRow = () => {
     const sx = {
         padding:"10px",
-        border:"1px solid #0005"
+        border:"1px solid #0005",
+        borderRadius:"5px"
     }
 
 
