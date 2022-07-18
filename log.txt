@@ -1,0 +1,204 @@
+commit 8f5e88d41cfdc80aab43e04cbb0df48da49fd8b4
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Sun Jul 17 11:58:39 2022 -0300
+
+    Cambios notorios de bugs varios
+
+commit 573f1fbe0ae48fac6285a52a03ee27ca5b710c75
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Thu Jul 14 21:21:02 2022 -0300
+
+    insersión de tablas en pestañas correspondientes
+
+commit 3e6e221db6fc3783b4be07f022a38890bba9df96
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Thu Jul 14 17:29:44 2022 -0300
+
+    Modificacion en pestañas 'mi equipo', 'home', 'mi perfil'
+
+commit 7e2f94919e950f3f397036a74872e251bb59df2b
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Thu Jul 14 17:23:50 2022 -0300
+
+    Create JugadorEs.php
+
+commit dc2b59a73b07806ea68f90f08cef2c85b9c17bb5
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Thu Jul 14 17:17:18 2022 -0300
+
+    Create Verifica.php
+
+commit c026bbc73784aabc4e7440b6f7d6da6bad7f1734
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Thu Jul 14 17:14:32 2022 -0300
+
+    Create Anota.php
+
+commit e3621545d91427fe08937fd9d1399ac0ab8e0e28
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Thu Jul 14 17:11:19 2022 -0300
+
+    Create Participa.php
+
+commit 288fa5bf55deadf58d5deda019a1ec524f3ce7ee
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Thu Jul 14 17:04:02 2022 -0300
+
+    create compite & corresponde
+
+commit 5a614bc0f359a4ae1b887160ee725ec5115f6314
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Thu Jul 14 16:52:38 2022 -0300
+
+    Create Mira.php
+
+commit 72d3bad6493e77d5dea8a52074cd216264acb63c
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Thu Jul 14 16:50:10 2022 -0300
+
+    Create Explora.php
+
+commit f2012e51d701b8159b4e9cc17319dfa8123b2acc
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Thu Jul 14 16:46:16 2022 -0300
+
+    Create DeporteJugadoJugador.php
+
+commit 9949e652cb540dc9bd7027c1e875f14f50e59f1b
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Thu Jul 14 16:39:42 2022 -0300
+
+    Create Posicion.php
+
+commit e9ee9bb36464191db3a6751ca13b4fe482b9da02
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Thu Jul 14 16:35:23 2022 -0300
+
+    Create Grupo.php
+
+commit 112b2c845eb5450ab92bf4fe90b14e9809b4cfc4
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Thu Jul 14 14:25:25 2022 -0300
+
+    Create Log.php
+
+commit d60191d4b1483c2a03d2fabf7d41d285786d87e2
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Thu Jul 14 02:04:17 2022 -0300
+
+    creacion de las clases "estadisticas"
+
+commit 8ab38fac1455e6b4aa645e4bca43beae9e3559d6
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Wed Jul 13 18:53:15 2022 -0300
+
+    .
+
+commit 4f0870dd019a69c41afcde0a4a879028bdf4c7fe
+Merge: 9be18f8 55f2ec0
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Wed Jul 13 18:32:36 2022 -0300
+
+    Merge branch 'main' of https://github.com/tupla-22/S.I.G.D-ReactJS
+
+commit 9be18f857db2018c5b1e2ec26fcde16678f7eec8
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Wed Jul 13 18:31:59 2022 -0300
+
+    Configurando pensaña 'tu perfil'
+
+commit 55f2ec0add8ddfe019943fb7a1f0c8f172fe0fc8
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Wed Jul 13 18:31:50 2022 -0300
+
+    creacion de clase estadisticas
+
+commit c4cd3718ba7fce01b80b047332fd5fb0bb211c55
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Wed Jul 13 15:00:42 2022 -0300
+
+    creacion de clases relacionadas con deportes
+
+commit 38c0dfb9077c727499e2b6948ebfa8a20fbdfa99
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Wed Jul 13 14:34:18 2022 -0300
+
+    creacion de clases de usuarios
+
+commit 6b0bcbe6e5fe5e74443322e178cf3102b2e783e2
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Tue Jul 12 18:42:53 2022 -0300
+
+    añado iniciador para el servidor npm
+
+commit 81aa4978906c10ec87d2d69e96663e03b41595ff
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Tue Jul 12 13:32:07 2022 -0300
+
+    .
+
+commit 9d7b50d43601988ef86de0bf6accf4cd6f4c4245
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Tue Jul 12 13:18:48 2022 -0300
+
+    Se agregaron logos a pestaña 'mi perfil'
+
+commit 780b5dcb632df7b798d383c7e1b1745cbcbb265e
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Mon Jul 11 08:27:36 2022 -0300
+
+    Se agregaron validaciones al login
+
+commit a7970d3e40ad2e7cbb506f949268603f7af87e4f
+Author: Lucas Perez <lperez@sistemas08.ADMINISTRATIVO>
+Date:   Wed Jul 6 13:10:34 2022 -0300
+
+    Modelando pestaña 'Perfil'
+
+commit 507f1b2220554cc8fb650b42cf80145461826422
+Author: Lucas Perez <lperez@sistemas08.ADMINISTRATIVO>
+Date:   Tue Jul 5 12:27:40 2022 -0300
+
+    Agregando descripción de proyecto en pestaña 'ayuda'
+
+commit cd640b8cc3985f13d022b75bc8a91e81d7f2d3ae
+Author: Lucas Perez <lperez@sistemas08.ADMINISTRATIVO>
+Date:   Tue Jul 5 11:43:22 2022 -0300
+
+    generacion de paginas de usuario estudiante
+
+commit c28fd220d2b3e1a4023e8dc792529947259150b1
+Author: Lucas Perez <lperez@sistemas08.ADMINISTRATIVO>
+Date:   Mon Jul 4 12:53:40 2022 -0300
+
+    Creando contexto de usuarios
+
+commit f23401e7f7bfd1f106ed792a657d2edcfea16efa
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Sun Jul 3 22:11:21 2022 -0300
+
+    complementos sobre la pagina del estudiante
+
+commit 34cefcbc445f9aafe7894eb1f4b3ad626bc59185
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Mon Jun 27 22:13:17 2022 -0300
+
+    Integracion de bar en home
+
+commit f7b5078f6af6d810aa8670422cc47fbebffd21de
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Mon Jun 27 20:40:28 2022 -0300
+
+    a
+
+commit 8cbc61c2a0600420d33ed69e620d28466696489c
+Author: Lucas Perez <lperez@sistemas08.ADMINISTRATIVO>
+Date:   Mon Jun 27 11:37:37 2022 -0300
+
+    Iniciación de proyecto
+
+commit 3a80c38321dfe3929b964760e4d6226aa04bd183
+Author: tupla-22 <105562522+tupla-22@users.noreply.github.com>
+Date:   Sun Jun 19 11:55:45 2022 -0300
+
+    Initial commit
