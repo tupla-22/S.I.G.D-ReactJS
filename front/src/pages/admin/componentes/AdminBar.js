@@ -12,12 +12,12 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import NavLink from '../../../componentes/NavLink';
-
 import "./styles/AdminBar.css"
 import Link from '../../../componentes/Link';
+import logoUTU from "../../../media/icons/logo.png";
 
-const pages = [<NavLink to="homeAdmin" classAdd="responsive">HOME</NavLink>,<NavLink to="userAdd" classAdd="responsive">AGREGAR USUARIO</NavLink>,<NavLink classAdd="responsive" to="myTeams" >AGREGAR EQUIPO</NavLink>];
-const settings = [<Link to="profile">Tu perfil</Link>, <Link to="/">Salir</Link>];
+const pages = [<NavLink to="homeAdmin" classAdd="responsive">Home</NavLink>,<NavLink to="adminUsers" classAdd="responsive">Usuarios</NavLink>,<NavLink to="adminTeams" classAdd="responsive">Equipos</NavLink>];
+const settings = [<Link to="profile">Tu perfil</Link>,<Link to="/">Salir</Link>];
 
 const AdminBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -42,6 +42,7 @@ const AdminBar = () => {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
+        <img className="logo" src={logoUTU}></img>
           <Typography
             variant="h6"
             noWrap

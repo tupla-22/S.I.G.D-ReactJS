@@ -1,45 +1,57 @@
-import { Route, Routes,Params } from "react-router-dom";
+import { Route, Routes, Params } from "react-router-dom";
 import "./App.css";
 import useUser from "./hooks/useUser";
 import Help from "./pages/Help";
 import Fixture from "./componentes/Fixture";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
-import Acount from "./pages/student/Acount";
-import StudentBar from "./pages/student/componentes/StudentBar";
 import ChangePassword from "./componentes/ChangePassword";
-import MyTeam from "./pages/student/MyTeam";
-import Profile from "./pages/student/Profile";
+import Profile from "./componentes/Profile";
 import HomeStudent from "./pages/student/HomeStudent";
 import Error404 from "./componentes/Error404";
 import HomeAdmin from "./pages/admin/HomeAdmin";
 import UserAdd from "./pages/admin/componentes/UserAdd";
-
-
+import TeamsAll from "./componentes/TeamsAll";
+import Teams from "./componentes/Teams";
+import MyTeam from "./pages/student/MyTeam";
+import Stats from "./pages/student/componentes/Stats";
+import History from "./pages/student/componentes/History";
+import AdminUsers from "./pages/admin/AdminUsers";
+import AdminTeams from "./pages/admin/AdminTeams";
+import changePassword from "./componentes/ChangePassword";
 
 function App() {
   return (
     <div className="App">
       <Routes>
         <Route path="/" element={<Home />}>
-          <Route path="" element={<Login/>}></Route>
-          <Route path="help" element={<Help/>}></Route>
+          <Route path="" element={<Login />}></Route>
+          <Route path="help" element={<Help />}></Route>
         </Route>
-        <Route path="/student/:userId" element={<HomeStudent/>}>
-          <Route path="HomeStudent" element={<Fixture/>}/>
-          <Route path="myTeams" element={<MyTeam/>}/>
-          <Route path="profile" element={<Profile/>}>
-            <Route path="changePassword" element={<ChangePassword/>}></Route>
+        <Route path="/student/:userId" element={<HomeStudent />}>
+          <Route path="history" element={<History />}></Route>
+          <Route path="HomeStudent" element={<Fixture />} />
+          <Route path="teams" element={<Teams />}>
+            <Route path="teamsAll" element={<TeamsAll />}></Route>
+            <Route path="myTeam" element={<MyTeam />}></Route>
+          </Route>
+          <Route path="myStats" element={<Stats />}></Route>
+          <Route path="profile" element={<Profile />}>
+            <Route path="changePassword" element={<ChangePassword />}></Route>
           </Route>
         </Route>
-        <Route path="/admin/:userId" element={<HomeAdmin/>}>
-          <Route path="userAdd" element={<UserAdd/>}/>
-          <Route></Route>
-        </Route>
-        <Route path="/*" element={<Error404/>}></Route>
+        <Route path="/admin/:userId" element={<HomeAdmin />}>
+          <Route path="userAdd" element={<UserAdd />} />
+          <Route path="adminUsers" element={<AdminUsers />}></Route>
+          <Route path="adminTeams" element={<AdminTeams />}></Route>
+          <Route path="profile" element={<Profile />}>
+            <Route path="changePassword" element={<ChangePassword />}></Route>
+          </Route>
+          <Route path="homeAdmin"></Route>
 
+        </Route>
+        <Route path="/*" element={<Error404 />}></Route>
       </Routes>
-      
     </div>
   );
 }
