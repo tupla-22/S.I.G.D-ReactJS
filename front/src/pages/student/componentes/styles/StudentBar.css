@@ -1,5 +1,7 @@
 @media screen and (max-width: 900px){
-
+    .logo{
+        display: none;
+    }
     .responsive{
         color: black;
     }

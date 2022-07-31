@@ -7,9 +7,9 @@ const Profile = () => {
     borderRadius: "100%",
   };
   const stButton = {
-    backgroundColor: "secondary.second",
+    backgroundColor: "secondary.main",
     "&:hover": {
-      backgroundColor: "secondary.second",
+      backgroundColor: "secondary.main",
       opacity: [0.9, 0.8, 0.7],
     },
     margin: "10px",

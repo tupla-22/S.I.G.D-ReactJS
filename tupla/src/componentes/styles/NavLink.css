@@ -17,3 +17,12 @@
 .btnWhite{
     color: #fff;
 }
+@media screen and (max-width:900px){
+    .noActive{
+        color: #000;
+    }
+    .isActive{
+        color: #000;
+    }
+    
+}

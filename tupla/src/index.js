@@ -3,15 +3,15 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import {HashRouter} from "react-router-dom"
-
-
+import { HashRouter } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
 
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#007e80",
+      main: "#99173c",
       second:"#004853",
       third:"#00b9bd"
     },
@@ -23,13 +23,12 @@ const theme = createTheme({
   },
 });
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <ThemeProvider theme={theme}>
-    <HashRouter>
+  <HashRouter>
+    <ThemeProvider theme={theme}>
       <App />
-    </HashRouter>
-  </ThemeProvider>
+    </ThemeProvider>
+  </HashRouter>
 );
 
 // If you want to start measuring performance in your app, pass a function

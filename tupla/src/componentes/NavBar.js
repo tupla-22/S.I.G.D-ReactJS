@@ -7,35 +7,20 @@ import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
-import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import NavLink from "../../../componentes/NavLink";
-import logo from "../../../media/icons/logo_small.png";
-import "./styles/StudentBar.css";
-import Link from "../../../componentes/Link";
-import DropButton from "../../../componentes/DropButton";
+import AdbIcon from "@mui/icons-material/Adb";
+import NavLink from "./NavLink";
+import EngOrSpan from "./EngOrSpan";
+import Logo from "../media/logo.png"
 
 const pages = [
-  <NavLink to="homeStudent" classAdd="responsive">
-    Fixture
-  </NavLink>,
-  <NavLink classAdd="responsive" to="myStats">
-    Mis estadisticas
-  </NavLink>,
-  <NavLink classAdd="responsive" to="history">
-    Historial
-  </NavLink>,
-  <DropButton>Equipos</DropButton>
-];
-const settings = [
-  <Link to="profile">Tu perfil</Link>,
-  <Link to="/">Salir</Link>,
-  
+  <NavLink to="/about">Sobre nosotros</NavLink>,
+  <NavLink to="/contact">Contactanos</NavLink>,
+  <NavLink to="/proyects">Proyectos</NavLink>,
 ];
 
-const StudentBar = () => {
+const NavBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -54,12 +39,14 @@ const StudentBar = () => {
     setAnchorElUser(null);
   };
 
+
+  const sx = {height:"60px"}
+
   return (
-    <AppBar position="static">
+    <AppBar sx={{backgroundColor:"primary.second"}} position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <img className="logo" src={logo}></img>
-
+          <a href="/"><img style={sx} src={Logo}></img></a>
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
@@ -89,13 +76,14 @@ const StudentBar = () => {
                 display: { xs: "block", md: "none" },
               }}
             >
-              {pages.map((page, i) => (
-                <MenuItem key={"page" + i} onClick={handleCloseNavMenu}>
+              {pages.map((page,i) => (
+                <MenuItem key={"page"+i} onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
             </Menu>
           </Box>
+          <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
           <Typography
             variant="h5"
             noWrap
@@ -112,56 +100,25 @@ const StudentBar = () => {
               textDecoration: "none",
             }}
           >
-            S.I.G.D.
+            LOGO
           </Typography>
-
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            
-            {pages.map((page, i) => (
+            {pages.map((page,i) => (
               <Button
-                key={"page" + i}
+                key={"page"+i}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: "white", display: "block" }}
               >
                 {page}
               </Button>
             ))}
-            
           </Box>
-          
-
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: "45px" }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting, i) => (
-                <MenuItem key={"setting" + i} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
+          <Box>
+            <EngOrSpan/>
           </Box>
         </Toolbar>
       </Container>
     </AppBar>
   );
 };
-export default StudentBar;
+export default NavBar;
