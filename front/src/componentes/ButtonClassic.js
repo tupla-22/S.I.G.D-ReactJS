@@ -6,9 +6,9 @@ import { height, width } from "@mui/system";
 const ButtonClassic = ({ children }) => {
   const sx1 = {
     color:"#fff",
-    backgroundColor: "primary.second",
+    backgroundColor: "secondary.main",
     "&:hover": {
-      backgroundColor: "primary.second",
+      backgroundColor: "secondary.main",
       opacity: [0.9, 0.8, 0.7],
       
     },

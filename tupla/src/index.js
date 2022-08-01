@@ -12,12 +12,12 @@ const theme = createTheme({
   palette: {
     primary: {
       main: "#99173c",
-      second:"#004853",
-      third:"#00b9bd"
+      second:"#2e2633",
+      third:"#555152"
     },
     secondary: {
-      main:"#fb6900" ,
-      second:"#f63700"
+      main:"#dce9be" ,
+      second:"#efffcd"
     },
     
   },

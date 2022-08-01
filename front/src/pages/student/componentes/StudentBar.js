@@ -58,7 +58,7 @@ const StudentBar = () => {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <img className="logo" src={logo}></img>
+          <Link to={""}><img className="logo" src={logo}></img></Link>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton

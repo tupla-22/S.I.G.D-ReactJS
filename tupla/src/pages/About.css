@@ -1,0 +1,7 @@
+.about{
+    height: 100vh;
+    padding: 10%;
+}
+.about__title, .about__p{
+    padding: 20px;
+}

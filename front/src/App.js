@@ -19,6 +19,8 @@ import History from "./pages/student/componentes/History";
 import AdminUsers from "./pages/admin/AdminUsers";
 import AdminTeams from "./pages/admin/AdminTeams";
 import changePassword from "./componentes/ChangePassword";
+import UserUpdate from "./pages/admin/componentes/UserUpdate";
+import UserDelete from "./pages/admin/componentes/UserDelete";
 
 function App() {
   return (
@@ -42,7 +44,11 @@ function App() {
         </Route>
         <Route path="/admin/:userId" element={<HomeAdmin />}>
           <Route path="userAdd" element={<UserAdd />} />
-          <Route path="adminUsers" element={<AdminUsers />}></Route>
+          <Route path="adminUsers" element={<AdminUsers />}>
+          <Route path="userAdd" element={<UserAdd/>}> </Route>
+          <Route path="userUpdate" element={<UserUpdate/>}> </Route>
+          <Route path="userDelete" element={<UserDelete/>}> </Route>
+          </Route>
           <Route path="adminTeams" element={<AdminTeams />}></Route>
           <Route path="profile" element={<Profile />}>
             <Route path="changePassword" element={<ChangePassword />}></Route>

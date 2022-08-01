@@ -1,10 +1,6 @@
-import { Button, TextareaAutosize, TextField } from "@mui/material";
-import { useForm } from "../hooks/useForm";
-import ButtonClassic from "./ButtonClassic";
+import { useForm } from "../../hooks/useForm";
 import Loader from "./Loader";
 import Message from "./Message";
-import "./styles/ContactForm.css"
-
 
 const initialForm = {
   name: "",
@@ -45,9 +41,6 @@ const validationsForm = (form) => {
   return errors;
 };
 
-
-let sxTextField={margin:"10px"}
-
 let styles = {
   fontWeight: "bold",
   color: "#dc3545",
@@ -65,61 +58,51 @@ const ContactForm = () => {
   } = useForm(initialForm, validationsForm);
 
   return (
-    <div className="contenedorContactForm">
-      <h2 style={{margin:"40px"}}>Formulario de Contacto</h2>
-      <form className="contactForm" onSubmit={handleSubmit}>
-        <TextField
+    <div>
+      <h2>Formulario de Contacto</h2>
+      <form onSubmit={handleSubmit}>
+        <input
           type="text"
-          variant="standard"
           name="name"
-          label="Escribe tu nombre"
+          placeholder="Escribe tu nombre"
           onBlur={handleBlur}
           onChange={handleChange}
           value={form.name}
           required
-          sx={sxTextField}
-
         />
         {errors.name && <p style={styles}>{errors.name}</p>}
-        <TextField
+        <input
           type="email"
           name="email"
-          variant="standard"
-          label="Escribe tu email"
+          placeholder="Escribe tu email"
           onBlur={handleBlur}
           onChange={handleChange}
           value={form.email}
           required
-          sx={sxTextField}
         />
         {errors.email && <p style={styles}>{errors.email}</p>}
-        <TextField
+        <input
           type="text"
           name="subject"
-          variant="standard"
-          label="Asunto a tratar"
+          placeholder="Asunto a tratar"
           onBlur={handleBlur}
           onChange={handleChange}
           value={form.subject}
           required
-          sx={sxTextField}
         />
         {errors.subject && <p style={styles}>{errors.subject}</p>}
-        <TextField
-          id="outlined-multiline-flexible"
+        <textarea
           name="comments"
-          maxRows={4}
-          variant="standard"
-          label="Escribe tus comentarios"
+          cols="50"
+          rows="5"
+          placeholder="Escribe tus comentarios"
           onBlur={handleBlur}
           onChange={handleChange}
           value={form.comments}
-          multiline
           required
-          style={sxTextField}
-        />
+        ></textarea>
         {errors.comments && <p style={styles}>{errors.comments}</p>}
-        <ButtonClassic type="submit" value="Enviar">Enviar</ButtonClassic>
+        <input type="submit" value="Enviar" />
       </form>
       {loading && <Loader />}
       {response && (

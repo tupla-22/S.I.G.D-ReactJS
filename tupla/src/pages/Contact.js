@@ -1,5 +1,5 @@
 import ContactForm from "../componentes/ContactForm";
-import Main from "../componentes/Main";
+import Main from "../componentes/MainCenter";
 
 const Contact = () => {
     return ( 

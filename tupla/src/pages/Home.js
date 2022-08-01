@@ -1,5 +1,5 @@
 import { Button } from "@mui/material";
-import Main from "../componentes/Main";
+import Main from "../componentes/MainCenter";
 import logo from "../media/logo.svg";
 const Home = () => {
   let sx = {};

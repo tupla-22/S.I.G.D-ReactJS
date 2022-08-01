@@ -1,13 +1,17 @@
 import { Button } from "@mui/material";
-import Main from "../componentes/Main";
+import Article from "../componentes/Article";
+import Main from "../componentes/MainCenter";
+import Parraf from "../componentes/Parraf";
+import Title from "../componentes/Title";
 
 const Proyects = () => {
     return ( 
-        <Main>
-            <Button>
-                
-            </Button>
-        </Main>
+            <Article>
+                <Title>Algunos de nuestros proyectos</Title>
+                <Parraf>
+                    En este 
+                </Parraf>
+            </Article>
      );
 }
  
