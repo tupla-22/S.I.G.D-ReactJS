@@ -27,7 +27,10 @@ const pages = [
   <NavLink classAdd="responsive" to="history">
     Historial
   </NavLink>,
-  <DropButton>Equipos</DropButton>
+  <NavLink classAdd="responsive" to="teams/myTeam">
+  Equipos
+</NavLink>,
+  // <DropButton className="responsive">Equipos</DropButton>
 ];
 const settings = [
   <Link to="profile">Tu perfil</Link>,
@@ -58,7 +61,7 @@ const StudentBar = () => {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Link to={""}><img className="logo" src={logo}></img></Link>
+          <Link to={""}><img className="logo logoUno" src={logo}></img></Link>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
@@ -112,7 +115,8 @@ const StudentBar = () => {
               textDecoration: "none",
             }}
           >
-            S.I.G.D.
+          <Link to={""}><img className="logo logoDos" src={logo}></img></Link>
+
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>

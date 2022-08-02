@@ -1,7 +1,6 @@
 .noActive{
     color: #fff;
     text-decoration: none;
-    
     padding: 7px;
 }
 .isActive{
@@ -18,11 +17,9 @@
     color: #fff;
 }
 @media screen and (max-width:900px){
-    .noActive{
-        color: #000;
-    }
-    .isActive{
+    .responsive{
         color: #000;
     }
     
 }
+

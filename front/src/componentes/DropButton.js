@@ -7,7 +7,7 @@ import Link from './Link';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import "./styles/DropButton.css"
 
-export default function DropButton({children}) {
+export default function DropButton({children,className}) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -20,7 +20,7 @@ export default function DropButton({children}) {
   return (
     <div>
       <Button
-        className='responsive'
+        className={className}
         id="fade-button"
         aria-controls={open ? 'fade-menu' : undefined}
         aria-haspopup="true"
