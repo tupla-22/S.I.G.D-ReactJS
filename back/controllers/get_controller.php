@@ -1,6 +1,6 @@
 <?php
 
-require_once "models/get_model.php";
+require_once "models/get.model.php";
 
 class GetController{
 
