@@ -1,7 +1,8 @@
 import Main from "../../../componentes/Main";
+import TeamAddForm from "./TeamAddForm";
 import UserAddForm from "./UserAddForm";
 
-const UserAdd = () => {
+const TeamAdd = () => {
 
   const sx = {
 
@@ -9,9 +10,9 @@ const UserAdd = () => {
 
   return (
     <Main>
-        <UserAddForm/>
+        <TeamAddForm/>
     </Main>
   );
 };
 
-export default UserAdd;
+export default TeamAdd;

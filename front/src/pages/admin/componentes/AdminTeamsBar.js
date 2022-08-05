@@ -18,9 +18,9 @@ export default function AdminTeamsBar() {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" sx={sx}>
         <Toolbar sx={sx}>
-        <Button color="inherit"><Link className="white" to="userAdd">Agregar</Link></Button>
-        <Button color="inherit"><Link className="white" to="userUpdate">Actualizar</Link></Button>
-        <Button color="inherit"><Link className="white" to="userDelete">Eliminar</Link></Button>
+        <Button color="inherit"><Link className="white" to="teamAdd">Agregar</Link></Button>
+        <Button color="inherit"><Link className="white" to="teamUpdate">Actualizar</Link></Button>
+        <Button color="inherit"><Link className="white" to="teamDelete">Eliminar</Link></Button>
         </Toolbar>
       </AppBar>
     </Box>

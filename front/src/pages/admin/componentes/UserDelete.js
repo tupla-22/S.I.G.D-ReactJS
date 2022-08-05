@@ -1,7 +1,14 @@
+import UserDelForm from "./UserDelForm";
+import { useState } from "react";
+import UserSearch from "./UserSearch";
 const UserDelete = () => {
+    const [idDel, setIdDel] = useState("");
+
     return ( 
         <>
-        delete
+
+           <UserDelForm></UserDelForm>
+           <UserSearch></UserSearch>
         </>
      );
 }

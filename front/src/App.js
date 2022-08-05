@@ -21,6 +21,7 @@ import AdminTeams from "./pages/admin/AdminTeams";
 import changePassword from "./componentes/ChangePassword";
 import UserUpdate from "./pages/admin/componentes/UserUpdate";
 import UserDelete from "./pages/admin/componentes/UserDelete";
+import TeamAdd from "./pages/admin/componentes/TeamAdd";
 
 function App() {
   return (
@@ -45,16 +46,23 @@ function App() {
         <Route path="/admin/:userId" element={<HomeAdmin />}>
           <Route path="userAdd" element={<UserAdd />} />
           <Route path="adminUsers" element={<AdminUsers />}>
-          <Route path="userAdd" element={<UserAdd/>}> </Route>
-          <Route path="userUpdate" element={<UserUpdate/>}> </Route>
-          <Route path="userDelete" element={<UserDelete/>}> </Route>
+            <Route path="userAdd" element={<UserAdd />}>
+              {" "}
+            </Route>
+            <Route path="userUpdate" element={<UserUpdate />}>
+              {" "}
+            </Route>
+            <Route path="userDelete" element={<UserDelete />}>
+              {" "}
+            </Route>
           </Route>
-          <Route path="adminTeams" element={<AdminTeams />}></Route>
+          <Route path="adminTeams" element={<AdminTeams />}>
+            <Route path="teamAdd" element={<TeamAdd></TeamAdd>}></Route>
+          </Route>
           <Route path="profile" element={<Profile />}>
             <Route path="changePassword" element={<ChangePassword />}></Route>
           </Route>
           <Route path="homeAdmin"></Route>
-
         </Route>
         <Route path="/*" element={<Error404 />}></Route>
       </Routes>
