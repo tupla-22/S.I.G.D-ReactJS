@@ -10,6 +10,8 @@ $orderBy=$_GET["orderBy"] ?? null;
 $orderMode=$_GET["orderMode"] ?? null;
 $startAt=$_GET["startAt"] ?? null;
 $endAt=$_GET["endAt"] ?? null;
+$rel=$_GET["rel"];
+$type=$_GET["type"];
 
 $response=new GetController();
 
@@ -28,6 +30,13 @@ if(isset($linkTo)&&isset($equalTo)){
         $endAt
         
         );
+
+/**======================pticion get sin filtro entre tablas relacionadas============================== */
+
+}else if(isset($rel) && isset($type) && $table=="relations" && !isset($linkTo) && !isset($equalTo)){
+
+    $response->getRelData($rel, $type, $select, $orderBy, $orderMode,$startAt, $endAt); 
+
 }else{
 
     /**======================pticion get sin filtro============================== */

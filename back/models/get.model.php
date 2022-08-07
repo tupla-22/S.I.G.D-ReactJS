@@ -113,7 +113,62 @@ class GetModel{
 
     }
 
+    /**==================peticiones get sin filtro entre tablas relacionadas======================= */
+
+    static public function getRelData($rel, $type, $select, $orderBy, $orderMode, $startAt, $endAt){
+
+        $relArray= explode(",",$rel);
+        $typeArray= explode(",",$type);
+        $innerJoinText="";
+
+        if(count($relArray)>1){
+
+            foreach($relArray as $key => $value){
+                if($key>0){
+
+                    $innerJoinText .= "INNER JOIN ".$value." ON ".$relArray[0].".id_".$typeArray[$key]."_".$typeArray[0] ." = ".$value.".id_".$typeArray[$key]." ";
+
+                }
+            }
+        
+
+            
+
+            //-------sin ordenar ni limitar datos-----------
+
+            $sql="SELECT $select FROM $relArray[0] $innerJoinText";
+
+            //-------ordenar datos sin limites-----------
+
+            if($orderBy != null && $orderMode != null && $startAt == null && $endAt == null){
+                $sql="select $select from $relArray[0] $innerJoinText ORDER BY $orderBy $orderMode";
+            }
+
+            //------- ordenar y limitar datos-----------
+
+            if($orderBy != null && $orderMode != null && $startAt != null && $endAt != null){
+                $sql="select $select from $relArray[0] $innerJoinText ORDER BY $orderBy $orderMode LIMIT $startAt, $endAt";
+            }
+
+            //-------limitar datos, sin ordenar-----------
+
+            if($orderBy == null && $orderMode == null && $startAt != null && $endAt != null){
+                $sql="select $select from $relArray[0] $innerJoinText LIMIT $startAt, $endAt";
+            }
+
+            $stmt=Connection::connect()->prepare($sql);
+
+            $stmt->execute();
+
+            return $stmt->fetchAll(PDO::FETCH_CLASS);
+
+        }else{
+
+            return null;
+
+        }
 
 
+    }
     
 }

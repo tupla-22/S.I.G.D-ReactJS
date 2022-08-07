@@ -5,7 +5,7 @@ require_once "models/get.model.php";
 class GetController{
 
 
-    /**======================pticion get sin filtro============================== */
+    /**======================peticion get sin filtro============================== */
 
     static function getData($table, $select, $orderBy, $orderMode, $startAt, $endAt){
         $response = GetModel::getData($table, $select, $orderBy, $orderMode, $startAt, $endAt);
@@ -13,7 +13,7 @@ class GetController{
         $return -> fncResponse($response);
     }
 
-    /**======================pticion get con filtro============================== */
+    /**======================peticion get con filtro============================== */
 
     static function getDataFilter($table, $select, $linkTo, $equalTo, $orderBy, $orderMode, $startAt, $endAt){
         $response = GetModel::getDataFilter($table, $select, $linkTo, $equalTo, $orderBy, $orderMode, $startAt, $endAt);
@@ -21,6 +21,13 @@ class GetController{
         $return -> fncResponse($response);
     }
 
+    /**======================peticion get sin filtro entre tablas relacionadas============================== */
+
+    static function getRelData($rel, $type, $select, $orderBy, $orderMode, $startAt, $endAt){
+        $response = GetModel::getRelData($rel, $type, $select, $orderBy, $orderMode, $startAt, $endAt);
+        $return=new GetController();
+        $return -> fncResponse($response);
+    }
 
     /**==============================respuestas del controlador====================================*/
 
