@@ -15,7 +15,7 @@ const FormLogin = () => {
 
   const handleSubmit = (e) =>{
     if(!errors.usuario!="" && errors.vacio!=true){
-      navigate(`/student/${Math.round(Math.random()*1000)}`);
+      navigate(`/student/${Math.round(Math.random()*1000)}/homeStudent`);
     }
   }
 

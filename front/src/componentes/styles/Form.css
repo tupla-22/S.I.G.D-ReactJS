@@ -1,0 +1,22 @@
+.Form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 40px;
+    box-shadow: 0 0 10px #0003;
+    width: 40%;
+    border-radius: 15px;
+    margin: 50px 0;
+}
+.Form button,h3{
+    margin: 10px 0;
+}
+.Form__input{
+    margin: 10px 0 !important;
+}
+
+@media screen and (max-width:900px){
+    .Form{
+        width: 90% ;
+    }
+}

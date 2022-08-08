@@ -1,11 +1,10 @@
 .noActive{
     color: #fff;
     text-decoration: none;
-    
     padding: 7px;
 }
 .isActive{
-    color: #ef6c00;
+    color: #fb6900;
     text-decoration: none;
     padding: 7px;
 }
@@ -17,3 +16,10 @@
 .btnWhite{
     color: #fff;
 }
+@media screen and (max-width:900px){
+    .responsive{
+        color: #000;
+    }
+    
+}
+

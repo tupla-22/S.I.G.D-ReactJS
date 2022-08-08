@@ -1,5 +1,20 @@
-@media screen and (max-width: 900px){
 
+.logoDos{
+    display: none;
+  }
+
+.LogoUno{
+    display: block;
+}
+  
+
+@media screen and (max-width: 900px){
+    .logo{
+        display: none;
+    }
+    .logoDos{
+        display: block;
+    }
     .responsive{
         color: black;
     }

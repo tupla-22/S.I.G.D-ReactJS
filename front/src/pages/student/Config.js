@@ -1,20 +1,16 @@
-
-
 const Config = () => {
-    return ( 
-        <div className="config">
-            <table>
-                <thead>
-                <th></th>
-                <th></th>
-                <th></th>
-                </thead>
-                <tbody>
+  return (
+    <div className="config">
+      <table>
+        <thead>
+          <th></th>
+          <th></th>
+          <th></th>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  );
+};
 
-                </tbody>
-            </table>
-        </div>
-     );
-}
- 
 export default Config;

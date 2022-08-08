@@ -1,0 +1,28 @@
+.noActive{
+    color: #fff;
+    text-decoration: none;
+    
+    padding: 7px;
+}
+.isActive{
+    color: #dce9be;
+    text-decoration: none;
+    padding: 7px;
+}
+
+
+.btnBlack{
+    color: #000;
+}
+.btnWhite{
+    color: #fff;
+}
+@media screen and (max-width:900px){
+    .noActive{
+        color: #000;
+    }
+    .isActive{
+        color: #000;
+    }
+    
+}
