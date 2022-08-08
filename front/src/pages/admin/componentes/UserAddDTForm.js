@@ -1,6 +1,8 @@
+import CarnetSalud from "../../../componentes/CarnetSalud"
+
 const UserAddDTForm = () => {
     return ( 
-        <h2>DT form</h2>
+        <CarnetSalud></CarnetSalud>
      );
 }
  

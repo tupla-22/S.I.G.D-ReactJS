@@ -6,33 +6,33 @@ import UserAddJuzgeForm from "./UserAddJuzgeForm";
 import UserAddScoutForm from "./UserAddScoutForm";
 import UserAddStudentForm from "./UserAddStudentForm";
 
-const UserAddTipeController = ({tipeUser}) => {
+const UserAddTipeController = ({tipeUser,className, userForm,setUserForm}) => {
     
     
     
     
     
     switch(tipeUser){
-        case "admin":
-        return <UserAddAdminForm/>
-        break
+        // case "admin":
+        // return <UserAddAdminForm className={className}/>
+        // break
         case "student":
-        return <UserAddStudentForm/>
+        return <UserAddStudentForm userForm={userForm} setUserForm={setUserForm} className={className}/>
         break
-        case "scout":
-        return <UserAddScoutForm/>
-        break
+        // case "scout":
+        // return <UserAddScoutForm className={className}/>
+        // break
         case "dt":
-        return <UserAddDTForm/>
+        return <UserAddDTForm userForm={userForm} setUserForm={setUserForm} className={className} />
         break
-        case "analist":
-        return <UserAddAnalistForm/>
-        break
-        case "administrative":
-        return <UserAddAdministrativeForm/>
-        break
+        // case "analist":
+        // return <UserAddAnalistForm className={className}/>
+        // break
+        // case "administrative":
+        // return <UserAddAdministrativeForm className={className}/>
+        // break
         case "juzge":
-        return <UserAddJuzgeForm/>
+        return <UserAddJuzgeForm userForm={userForm} setUserForm={setUserForm} className={className}/>
         break
     }
     

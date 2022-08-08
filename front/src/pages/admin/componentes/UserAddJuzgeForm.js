@@ -1,6 +1,8 @@
+import CarnetSalud from "../../../componentes/CarnetSalud"
+
 const UserAddJuzgeForm = () => {
     return ( 
-        <h2>Juzge Form</h2>
+        <CarnetSalud></CarnetSalud>
      );
 }
  
