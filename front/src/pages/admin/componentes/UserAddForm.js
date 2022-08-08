@@ -14,14 +14,12 @@ import UserAddTipeController from "./UserAddTipeController";
 import React, { useState, useEffect } from 'react';
 
 const UserAddForm = () => {
-  const [tipoUsuario, setTipoUsuario] = useState("");
   const [userForm, setUserForm] = useState({});
 
   const handleClick = () =>{
   }
 
   const handleChange = (event) => {
-    setTipoUsuario(event.target.value);
     setUserForm(
       {
         ...userForm,
@@ -54,7 +52,7 @@ const UserAddForm = () => {
         <Select
           name="tipoUsuario"
           label="Tipo de usuario"
-          value={tipoUsuario}
+          value={userForm.tipoUsuario}
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           onChange={handleChange}
@@ -68,7 +66,7 @@ const UserAddForm = () => {
           <MenuItem value="dt">Director Técnico</MenuItem>
         </Select>
       </FormControl>
-      <UserAddTipeController setUserForm={setUserForm} userForm={userForm} className="Form__input" tipeUser={tipoUsuario}/>
+      <UserAddTipeController setUserForm={setUserForm} userForm={userForm} className="Form__input" tipeUser={userForm.tipoUsuario}/>
       <ButtonClassic handleClick={handleClick}>Agregar</ButtonClassic>
     </Form>
   );
