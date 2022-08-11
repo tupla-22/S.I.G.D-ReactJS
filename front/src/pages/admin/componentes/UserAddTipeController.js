@@ -1,9 +1,5 @@
-import UserAddAdminForm from "./UserAddAdminForm";
-import UserAddAdministrativeForm from "./UserAddAdministrativeForm";
-import UserAddAnalistForm from "./UserAddAnalistForm";
 import UserAddDTForm from "./UserAddDTForm";
 import UserAddJuzgeForm from "./UserAddJuzgeForm";
-import UserAddScoutForm from "./UserAddScoutForm";
 import UserAddStudentForm from "./UserAddStudentForm";
 
 const UserAddTipeController = ({tipeUser,className, userForm,setUserForm}) => {

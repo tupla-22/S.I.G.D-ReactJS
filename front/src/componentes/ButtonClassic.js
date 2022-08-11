@@ -3,7 +3,7 @@ import { height, width } from "@mui/system";
 
 
 
-const ButtonClassic = ({ children, handleClick }) => {
+const ButtonClassic = ({ children, handleClick, className }) => {
   const sx1 = {
     color:"#fff",
     backgroundColor: "secondary.main",
@@ -15,7 +15,7 @@ const ButtonClassic = ({ children, handleClick }) => {
     margin: "10px",
   };
 
-  return <Button onClick={handleClick} sx={sx1}>{children}</Button>;
+  return <Button onClick={handleClick} className={className} sx={sx1}>{children}</Button>;
 };
 
 export default ButtonClassic;

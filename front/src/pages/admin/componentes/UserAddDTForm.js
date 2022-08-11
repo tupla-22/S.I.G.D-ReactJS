@@ -1,8 +1,8 @@
 import CarnetSalud from "../../../componentes/CarnetSalud"
 
-const UserAddDTForm = () => {
+const UserAddDTForm = ({setUserForm,userForm}) => {
     return ( 
-        <CarnetSalud></CarnetSalud>
+        <CarnetSalud setUserForm={setUserForm} userForm={userForm}></CarnetSalud>
      );
 }
  

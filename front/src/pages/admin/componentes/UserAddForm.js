@@ -1,5 +1,4 @@
 import {
-  Button,
   FormControl,
   InputLabel,
   MenuItem,
@@ -26,7 +25,6 @@ const UserAddForm = () => {
         [event.target.name]:event.target.value
       }
     );
-    console.log(userForm)
   };
 
 

@@ -1,12 +1,8 @@
 import {
   Checkbox,
-  FormControl,
   FormControlLabel,
   FormGroup,
   InputAdornment,
-  InputLabel,
-  MenuItem,
-  Select,
   TextField,
 } from "@mui/material";
 import CarnetSalud from "../../../componentes/CarnetSalud";
@@ -21,7 +17,6 @@ const UserAddStudentForm = ({
   const handleDeporteJugado = (e) => {};
   const handleChange = (e) => {
     setUserForm({ ...userForm, [e.target.name]: e.target.value });
-    console.log(userForm);
   };
 
   const handleSports1 = (e) => {
@@ -32,8 +27,6 @@ const UserAddStudentForm = ({
       });
       
     }else delete userForm.sports1;
-
-    console.log(userForm);
   };
   const handleSports2 = (e) => {
     if (!userForm.sports2) {
@@ -42,8 +35,6 @@ const UserAddStudentForm = ({
         "sports2": e.target.name,
       })
     }else delete userForm.sports2;
-
-    console.log(userForm);
   };
   const handleSports3 = (e) => {
     if (!userForm.sports3) {
@@ -53,8 +44,6 @@ const UserAddStudentForm = ({
       });
       
     }else delete userForm.sports3;
-
-    console.log(userForm);
   };
 
   return (
