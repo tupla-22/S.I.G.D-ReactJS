@@ -1,8 +1,8 @@
+import UserUpdateForm from "./UserUpdateForm";
+
 const UserUpdate = () => {
     return (  
-        <>
-        update
-        </>
+        <UserUpdateForm/>
     );
 }
  

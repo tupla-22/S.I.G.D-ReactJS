@@ -1,16 +1,32 @@
 import { Button, TextField } from "@mui/material";
 import ButtonClassic from "./ButtonClassic";
-import "./styles/ChangePasswordForm.css"
+import FormCien from "./FormCien";
+import "./styles/ChangePasswordForm.css";
 const FormPasswordChange = () => {
-  const sxTextField = {margin:"20px"}
-    return ( 
-        <form className="FormPasswordChange">
-          <TextField type="password" sx={sxTextField} label="Contraseña actual"></TextField>
-          <TextField type="password" sx={sxTextField} label="Nueva contraseña"></TextField>
-          <TextField type="password" sx={sxTextField} label="Repita nueva contraseña"></TextField>
-          <ButtonClassic>Cambiar</ButtonClassic>
-        </form>
-     );
-}
- 
+  return (
+    <FormCien>
+      
+    <h3>Cambiar contraseña</h3>
+      <TextField
+        type="password"
+        className="FormCien__input"
+
+        label="Contraseña actual"
+      ></TextField>
+      <TextField
+        type="password"
+        className="FormCien__input"
+        label="Nueva contraseña"
+      ></TextField>
+      <TextField
+        type="password"
+        label="Repita nueva contraseña"
+        className="FormCien__input"
+
+      ></TextField>
+      <ButtonClassic className="FormCien__input">Cambiar</ButtonClassic>
+    </FormCien>
+  );
+};
+
 export default FormPasswordChange;

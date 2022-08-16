@@ -24,6 +24,7 @@ import UserDelete from "./pages/admin/componentes/UserDelete";
 import TeamAdd from "./pages/admin/componentes/TeamAdd";
 import TeamDelete from "./pages/admin/componentes/TeamDelete";
 import TeamUpdate from "./pages/admin/componentes/TeamUpdate";
+import HomeAdm from "./pages/admin/HomeAdm";
 
 function App() {
   return (
@@ -66,7 +67,7 @@ function App() {
           <Route path="profile" element={<Profile />}>
             <Route path="changePassword" element={<ChangePassword />}></Route>
           </Route>
-          <Route path="homeAdmin"></Route>
+          <Route path="homeAdmin" element={<HomeAdm></HomeAdm>}></Route>
         </Route>
         <Route path="/*" element={<Error404 />}></Route>
       </Routes>

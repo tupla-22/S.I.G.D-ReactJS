@@ -38,11 +38,12 @@ const UserAddForm = () => {
       className="userAddForm"
     >
       <h3>Agregar un usuario</h3>
+      <TextField onChange={handleChange} name="ci" type="number" className="Form__input" label="Cédula de identidad"></TextField>
       <TextField onChange={handleChange} name="name"  className="Form__input" label="Nombres"></TextField>
       <TextField onChange={handleChange} name="lastName" className="Form__input" label="Apellidos"></TextField>
       <InputFechaNacimiento userForm={userForm} setUserForm={setUserForm}/>
       <TextField onChange={handleChange} name="email" className="Form__input" label="Email"></TextField>
-      <TextField onChange={handleChange} name="tel" className="Form__input" label="Telefono"></TextField>
+      <TextField onChange={handleChange} name="tel" type="number" className="Form__input" label="Telefono"></TextField>
       <TextField onChange={handleChange} name="age" className="Form__input" type="number" label="Edad"></TextField>
       
       <FormControl className="Form__input">

@@ -1,4 +1,4 @@
-import "./styles/Form.css"
+import "./styles/FormCien.css"
 
 const Form = ({
     children,
@@ -7,7 +7,7 @@ const Form = ({
 
     return ( 
         <form
-        className = "Form" >
+        className = "FormCien" >
         {children} 
         </form>
     );

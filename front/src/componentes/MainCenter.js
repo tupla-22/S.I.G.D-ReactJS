@@ -1,8 +1,19 @@
-import "./styles/Main.css"
+import { display, width } from "@mui/system";
 
 const MainCenter = ({children}) => {
+    const sx = {
+        height:"100vh",
+        width:"100%",
+        display:"flex",
+        alignItems:"center",
+        justifyContent:"center",
+        flexDirection:"column"
+    }
+
     return ( 
-        <div className="main">{children}</div>
+        <div style={sx}>
+            {children}
+        </div>
      );
 }
  
