@@ -17,7 +17,7 @@ $response=new GetController();
 
 /**======================pticion get con filtro============================== */
 
-if(isset($linkTo)&&isset($equalTo)){
+if(isset($linkTo)&&isset($equalTo) && !isset($rel) && !isset($type)){
     $response ->getDataFilter(
 
         $table, 
@@ -36,6 +36,12 @@ if(isset($linkTo)&&isset($equalTo)){
 }else if(isset($rel) && isset($type) && $table=="relations" && !isset($linkTo) && !isset($equalTo)){
 
     $response->getRelData($rel, $type, $select, $orderBy, $orderMode,$startAt, $endAt); 
+
+/**======================pticion get con filtro entre tablas relacionadas============================== */
+
+}else if(isset($rel) && isset($type) && $table=="relations" && isset($linkTo) && isset($equalTo)){
+
+    $response->getRelDataFilter($rel, $type, $select, $linkTo, $equalTo, $orderBy, $orderMode,$startAt, $endAt); 
 
 }else{
 
