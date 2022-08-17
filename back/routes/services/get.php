@@ -36,19 +36,39 @@ if(isset($linkTo)&&isset($equalTo) && !isset($rel) && !isset($type)){
 
 }else if(isset($rel) && isset($type) && $table=="relations" && !isset($linkTo) && !isset($equalTo)){
 
-    $response->getRelData($rel, $type, $select, $orderBy, $orderMode,$startAt, $endAt); 
+    $response->getRelData(
+        
+        $rel, 
+        $type, 
+        $select, 
+        $orderBy, 
+        $orderMode,
+        $startAt, 
+        $endAt
+
+    ); 
 
 /**======================pticion get con filtro entre tablas relacionadas============================== */
 
 }else if(isset($rel) && isset($type) && $table=="relations" && isset($linkTo) && isset($equalTo)){
 
-    $response->getRelDataFilter($rel, $type, $select, $linkTo, $equalTo, $orderBy, $orderMode,$startAt, $endAt); 
+    $response->getRelDataFilter(
+        $rel, 
+        $type, 
+        $select, 
+        $linkTo, 
+        $equalTo, 
+        $orderBy, 
+        $orderMode,
+        $startAt, 
+        $endAt
+    ); 
 
 
 /**======================pticion get para el buscador sin relaciones============================== */
 
 
-}else if (isset($linkTo) && isset($search)) {
+}else if (!isset($rel) && !isset($type) && isset($linkTo) && isset($search)) {
     
     $response->getDataSearch(
 
@@ -63,6 +83,23 @@ if(isset($linkTo)&&isset($equalTo) && !isset($rel) && !isset($type)){
         
         
 ); 
+
+/**======================pticion get para el buscador con relaciones============================== */
+
+
+}else if (isset($rel) && isset($type) && $table=="relations" && isset($linkTo) && isset($search)) {
+    
+    $response->getRelDataSearch(
+        $rel, 
+        $type, 
+        $select, 
+        $linkTo, 
+        $search, 
+        $orderBy, 
+        $orderMode,
+        $startAt, 
+        $endAt
+    );  
     
 }else{
 

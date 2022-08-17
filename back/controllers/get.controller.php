@@ -45,6 +45,14 @@ class GetController{
         $return -> fncResponse($response);
     }
 
+    /**======================peticion get para el buscador entre tablas relacionadas============================== */
+
+    static function getRelDataSearch($rel, $type, $select, $linkTo, $search, $orderBy, $orderMode, $startAt, $endAt){
+        $response = GetModel::getRelDataSearch($rel, $type, $select, $linkTo, $search, $orderBy, $orderMode, $startAt, $endAt);
+        $return=new GetController();
+        $return -> fncResponse($response);
+    }
+
 
     /**==============================respuestas del controlador====================================*/
 
