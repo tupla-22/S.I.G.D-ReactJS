@@ -12,6 +12,7 @@ $startAt=$_GET["startAt"] ?? null;
 $endAt=$_GET["endAt"] ?? null;
 $rel=$_GET["rel"];
 $type=$_GET["type"];
+$search=$_GET["search"];
 
 $response=new GetController();
 
@@ -43,6 +44,26 @@ if(isset($linkTo)&&isset($equalTo) && !isset($rel) && !isset($type)){
 
     $response->getRelDataFilter($rel, $type, $select, $linkTo, $equalTo, $orderBy, $orderMode,$startAt, $endAt); 
 
+
+/**======================pticion get para el buscador sin relaciones============================== */
+
+
+}else if (isset($linkTo) && isset($search)) {
+    
+    $response->getDataSearch(
+
+        $table, 
+        $select, 
+        $linkTo, 
+        $search, 
+        $orderBy, 
+        $orderMode, 
+        $startAt, 
+        $endAt
+        
+        
+); 
+    
 }else{
 
     /**======================pticion get sin filtro============================== */
