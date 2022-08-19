@@ -1,6 +1,6 @@
 import "./styles/FormCien.css"
 
-const Form = ({
+const FormCien = ({
     children,
     sx
 }) => {
@@ -13,4 +13,4 @@ const Form = ({
     );
 }
 
-export default Form;
+export default FormCien;

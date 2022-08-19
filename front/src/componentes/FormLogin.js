@@ -5,6 +5,7 @@ import {useNavigate } from 'react-router-dom';
 import Link from './Link';
 import "./styles/FormLogin.css"
 import { useState } from 'react';
+import RecoverPassword from './RecoverPassword';
 
 const FormLogin = () => {
   const [errors, setErrors] = useState({vacio:true});
@@ -51,8 +52,8 @@ const FormLogin = () => {
           variant='outlined'
           type="password"
         />
-        <Box><Link to="help">¿Problemas para iniciar sesión?</Link></Box>
-        <Button onClick={handleSubmit} variant='text'>Entrar</Button>
+        <Box><RecoverPassword>¿Problemas para iniciar sesión?</RecoverPassword></Box>
+        <Button onClick={handleSubmit} variant='contained'>Entrar</Button>
         </div>
      );
 }

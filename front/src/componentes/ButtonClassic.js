@@ -1,9 +1,8 @@
 import { Button } from "@mui/material";
-import { height, width } from "@mui/system";
 
 
 
-const ButtonClassic = ({ children, handleClick, className }) => {
+const ButtonClassic = ({ children, handleClick, className, variant,sx,onClick}) => {
   const sx1 = {
     color:"#fff",
     backgroundColor: "secondary.main",
@@ -12,10 +11,9 @@ const ButtonClassic = ({ children, handleClick, className }) => {
       opacity: [0.9, 0.8, 0.7],
       
     },
-    margin: "10px",
   };
 
-  return <Button onClick={handleClick} className={className} sx={sx1}>{children}</Button>;
+  return <Button onClick={onClick}  variant={variant} onClick={handleClick} className={className} sx={{...sx,...sx1}}>{children}</Button>;
 };
 
 export default ButtonClassic;

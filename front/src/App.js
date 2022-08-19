@@ -30,6 +30,7 @@ function App() {
   return (
     <div className="App">
       <Routes>
+        
         <Route path="/" element={<Home />}>
           <Route path="" element={<Login />}></Route>
           <Route path="help" element={<Help />}></Route>
@@ -60,9 +61,32 @@ function App() {
             </Route>
           </Route>
           <Route path="adminTeams" element={<AdminTeams />}>
-          <Route path="teamAdd" element={<TeamAdd></TeamAdd>}></Route>
-          <Route path="teamDelete" element={<TeamDelete/>}></Route>
-          <Route path="teamUpdate" element={<TeamUpdate/>}></Route>
+            <Route path="teamAdd" element={<TeamAdd></TeamAdd>}></Route>
+            <Route path="teamDelete" element={<TeamDelete />}></Route>
+            <Route path="teamUpdate" element={<TeamUpdate />}></Route>
+          </Route>
+          <Route path="profile" element={<Profile />}>
+            <Route path="changePassword" element={<ChangePassword />}></Route>
+          </Route>
+          <Route path="homeAdmin" element={<HomeAdm></HomeAdm>}></Route>
+        </Route>
+        <Route path="/administrative/:userId" element={<HomeAdmin />}>
+          <Route path="userAdd" element={<UserAdd />} />
+          <Route path="adminUsers" element={<AdminUsers />}>
+            <Route path="userAdd" element={<UserAdd />}>
+              {" "}
+            </Route>
+            <Route path="userUpdate" element={<UserUpdate />}>
+              {" "}
+            </Route>
+            <Route path="userDelete" element={<UserDelete />}>
+              {" "}
+            </Route>
+          </Route>
+          <Route path="adminTeams" element={<AdminTeams />}>
+            <Route path="teamAdd" element={<TeamAdd></TeamAdd>}></Route>
+            <Route path="teamDelete" element={<TeamDelete />}></Route>
+            <Route path="teamUpdate" element={<TeamUpdate />}></Route>
           </Route>
           <Route path="profile" element={<Profile />}>
             <Route path="changePassword" element={<ChangePassword />}></Route>
