@@ -8,7 +8,7 @@ class Connection{
         
         $infoDB=array(
 
-            "database" => "api_dinamica",
+            "database" => "gestionDeportiva",
             "user" => "root",
             "pass" =>""
 
