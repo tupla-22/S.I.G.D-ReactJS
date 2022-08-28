@@ -4,15 +4,15 @@ require_once "controllers/get.controller.php";
 
 $table=explode("?",$routesArray[1])[0];
 $select=$_GET["select"] ?? "*";//si no vienen nada en la variable select por defecto es "*"
-$linkTo=$_GET["linkTo"];
-$equalTo=$_GET["equalTo"];
+$linkTo=$_GET["linkTo"] ?? null; 
+$equalTo=$_GET["equalTo"] ?? null;
 $orderBy=$_GET["orderBy"] ?? null;
 $orderMode=$_GET["orderMode"] ?? null;
 $startAt=$_GET["startAt"] ?? null;
 $endAt=$_GET["endAt"] ?? null;
-$rel=$_GET["rel"];
-$type=$_GET["type"];
-$search=$_GET["search"];
+$rel=$_GET["rel"] ?? null;
+$type=$_GET["type"] ?? null;
+$search=$_GET["search"] ?? null;
 
 $response=new GetController();
 
