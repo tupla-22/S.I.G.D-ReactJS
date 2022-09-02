@@ -25,7 +25,7 @@ if(count($routesArray)==0){
  * cuando se hacen peticiones a la api
  */
 
- if(count($routesArray) ==1 && isset($_SERVER["REQUEST_METHOD"])){
+ if(count($routesArray) >0 && isset($_SERVER["REQUEST_METHOD"])){
 
 
     /**----------------get------------------ */

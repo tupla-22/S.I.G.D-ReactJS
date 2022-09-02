@@ -3,6 +3,6 @@ Options -MultiViews
 
 RewriteEngine On
 
-#RewriteBase /apirest-dinamica
+#RewriteBase S.I.G.D-ReactJS
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^(.+)$ index.php [QSA,L]
