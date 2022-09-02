@@ -2,7 +2,7 @@
 
 require_once "controllers/get.controller.php";
 
-$table=explode("?",$routesArray[2])[0];
+$table=explode("?",$routesArray[1])[0];
 $select=$_GET["select"] ?? "*";//si no vienen nada en la variable select por defecto es "*"
 $linkTo=$_GET["linkTo"] ?? null; 
 $equalTo=$_GET["equalTo"] ?? null;
