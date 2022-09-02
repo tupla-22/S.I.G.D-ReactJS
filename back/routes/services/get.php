@@ -15,6 +15,8 @@ $type=$_GET["type"] ?? null;
 $search=$_GET["search"] ?? null;
 $between1=$_GET["between1"] ?? null;
 $between2=$_GET["between2"] ?? null;
+$filterTo=$_GET["filterTo"] ?? null;
+$inTo=$_GET["inTo"] ?? null;
 
 $response=new GetController();
 
@@ -105,7 +107,7 @@ if(isset($linkTo)&&isset($equalTo) && !isset($rel) && !isset($type)){
 
     /**======================pticion get para seleccion de rangos(between)============================== */
 
-}else if (isset($linkTo) && isset($between1) && isset($between2)) {
+}else if (!isset($rel) && !isset($type) && isset($linkTo) && isset($between1) && isset($between2)) {
 
     $response->getDataRange(
         $table, 
@@ -116,7 +118,28 @@ if(isset($linkTo)&&isset($equalTo) && !isset($rel) && !isset($type)){
         $orderBy, 
         $orderMode,
         $startAt, 
-        $endAt
+        $endAt,
+        $filterTo,
+        $inTo
+    );  
+
+    /**======================pticion get para seleccion de rangos(between) con relaciones============================== */
+    
+}else if (isset($rel) && isset($type) && $table=="relations" && isset($linkTo) && isset($between1) && isset($between2)) {
+
+    $response->getRelDataRange(
+        $rel, 
+        $type,
+        $select, 
+        $linkTo, 
+        $between1, 
+        $between2, 
+        $orderBy, 
+        $orderMode,
+        $startAt, 
+        $endAt,
+        $filterTo,
+        $inTo
     );  
     
 }else{

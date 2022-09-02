@@ -64,7 +64,9 @@ class GetController{
     $orderBy, 
     $orderMode,
     $startAt, 
-    $endAt
+    $endAt,
+    $filterTo,
+    $inTo
     ){
         $response = GetModel::getDataRange(
             $table, 
@@ -75,7 +77,42 @@ class GetController{
             $orderBy, 
             $orderMode,
             $startAt, 
-            $endAt
+            $endAt,
+            $filterTo,
+            $inTo
+        );
+        $return=new GetController();
+        $return -> fncResponse($response);
+    }
+/**======================peticion get para seleccionar rangos con relaciones============================== */
+
+static function getRelDataRange(
+    $rel, 
+    $type,
+    $select, 
+    $linkTo, 
+    $between1, 
+    $between2, 
+    $orderBy, 
+    $orderMode,
+    $startAt, 
+    $endAt,
+    $filterTo,
+    $inTo
+    ){
+        $response = GetModel::getRelDataRange(
+            $rel, 
+            $type,
+            $select, 
+            $linkTo, 
+            $between1, 
+            $between2, 
+            $orderBy, 
+            $orderMode,
+            $startAt, 
+            $endAt,
+            $filterTo,
+            $inTo
         );
         $return=new GetController();
         $return -> fncResponse($response);

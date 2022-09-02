@@ -8,6 +8,11 @@ class GetModel{
 
     static public function getData($table, $select, $orderBy, $orderMode, $startAt, $endAt){
 
+        //--------------validar existencia de la tabla-----------------
+        if(empty(Connection::getColumnData($table))){
+            return null;
+        }
+
         //-------sin ordenar ni limitar datos-----------
 
         $sql="select $select from $table";
@@ -42,6 +47,11 @@ class GetModel{
 
     static public function getDataFilter($table, $select, $linkTo, $equalTo, $orderBy, $orderMode, $startAt, $endAt){
 
+        //--------------validar existencia de la tabla-----------------
+        if(empty(Connection::getColumnData($table))){
+            return null;
+        }
+        //------------------------
         $linkToArray= explode(",",$linkTo);
         $equalToArray= explode("¨¨",$equalTo);
         $linkToText="";
@@ -124,6 +134,12 @@ class GetModel{
         if(count($relArray)>1){
 
             foreach($relArray as $key => $value){
+
+                //--------------validar existencia de la tabla-----------------
+                if(empty(Connection::getColumnData($value))){
+                    return null;
+                }
+                //--------------------
                 if($key>0){
 
                     $innerJoinText .= "INNER JOIN ".$value." ON ".$relArray[0].".id_".$typeArray[$key]."_".$typeArray[0] ." = ".$value.".id_".$typeArray[$key]." ";
@@ -183,6 +199,12 @@ class GetModel{
         if(count($linkToArray)>1){
 
             foreach($linkToArray as $key => $value){
+
+                //--------------validar existencia de la tabla-----------------
+                if(empty(Connection::getColumnData($value))){
+                    return null;
+                }
+                //--------------------
                 if($key>0){
 
                     $linkToText .= "AND ".$value." = :".$value." ";
@@ -265,6 +287,12 @@ class GetModel{
     /**==============================peticiones get para el buscador sin relaciones====================================*/
 
     static function getDataSearch($table, $select, $linkTo, $search, $orderBy, $orderMode, $startAt, $endAt){
+
+        //--------------validar existencia de la tabla-----------------
+        if(empty(Connection::getColumnData($table))){
+            return null;
+        }
+        //--------------------
 
         /**=====================organizamos filtros ============================ */
         $linkToArray= explode(",",$linkTo);
@@ -359,6 +387,12 @@ class GetModel{
         if(count($linkToArray)>1){
 
             foreach($linkToArray as $key => $value){
+
+                //--------------validar existencia de la tabla-----------------
+                if(empty(Connection::getColumnData($value))){
+                    return null;
+                }
+                //--------------------
                 if($key>0){
 
                     $linkToText .= "AND ".$value." = :".$value." ";//añade esto en cada iteracion
@@ -460,28 +494,42 @@ class GetModel{
                                 $orderBy, 
                                 $orderMode,
                                 $startAt, 
-                                $endAt){
+                                $endAt,
+                                $filterTo,
+                                $inTo){
+
+
+        //--------------validar existencia de la tabla-----------------
+        if(empty(Connection::getColumnData($table))){
+            return null;
+        }
+        //--------------------
+        $filter="";
+        
+        if ($filterTo!=null && $inTo!=null) {
+            $filter='AND '.$filterTo.' IN ('.$inTo.')';
+        }
 
         //-------sin ordenar ni limitar datos-----------
 
-        $sql="SELECT $select from $table where $linkTo between '$between1' and '$between2'";
+        $sql="SELECT $select from $table where $linkTo between '$between1' and '$between2' $filter";
 
         //-------ordenar datos sin limites-----------
 
         if($orderBy != null && $orderMode != null && $startAt == null && $endAt == null){
-            $sql="SELECT $select from $table where $linkTo between '$between1' and '$between2' ORDER BY $orderBy $orderMode";
+            $sql="SELECT $select from $table where $linkTo between '$between1' and '$between2' $filter ORDER BY $orderBy $orderMode";
         }
 
         //------- ordenar y limitar datos-----------
 
         if($orderBy != null && $orderMode != null && $startAt != null && $endAt != null){
-            $sql="SELECT $select from $table where $linkTo between '$between1' and '$between2' ORDER BY $orderBy $orderMode LIMIT $startAt, $endAt";
+            $sql="SELECT $select from $table where $linkTo between '$between1' and '$between2' $filter ORDER BY $orderBy $orderMode LIMIT $startAt, $endAt";
         }
 
         //-------limitar datos, sin ordenar-----------
 
         if($orderBy == null && $orderMode == null && $startAt != null && $endAt != null){
-            $sql="SELECT $select from $table where $linkTo between '$between1' and '$between2' LIMIT $startAt, $endAt";
+            $sql="SELECT $select from $table where $linkTo between '$between1' and '$between2' $filter LIMIT $startAt, $endAt";
         }
 
         $stmt=Connection::connect()->prepare($sql);
@@ -490,6 +538,85 @@ class GetModel{
 
         return $stmt->fetchAll(PDO::FETCH_CLASS);
         }
+
+    
+    /**======================peticion get para seleccionar rangos con relaciones============================== */
+
+    static function getRelDataRange($rel, 
+                                $type,
+                                $select, 
+                                $linkTo, 
+                                $between1, 
+                                $between2, 
+                                $orderBy, 
+                                $orderMode,
+                                $startAt, 
+                                $endAt,
+                                $filterTo,
+                                $inTo){
+    
+        $filter="";
+        
+        if ($filterTo!=null && $inTo!=null) {
+            $filter='AND '.$filterTo.' IN ('.$inTo.')';
+        }
+
+        $relArray= explode(",",$rel);
+        $typeArray= explode(",",$type);
+        $innerJoinText="";
+
+        if(count($relArray)>1){
+
+            foreach($relArray as $key => $value){
+
+                //--------------validar existencia de la tabla-----------------
+                if(empty(Connection::getColumnData($value))){
+                    return null;
+                }
+                //--------------------
+                if($key>0){
+
+                    $innerJoinText .= "INNER JOIN ".$value." ON ".$relArray[0].".id_".$typeArray[$key]."_".$typeArray[0] ." = ".$value.".id_".$typeArray[$key]." ";
+
+                }
+            }
+
+            //-------sin ordenar ni limitar datos-----------
+
+            $sql="SELECT $select from $relArray[0] $innerJoinText where $linkTo between '$between1' and '$between2' $filter";
+
+            //-------ordenar datos sin limites-----------
+
+            if($orderBy != null && $orderMode != null && $startAt == null && $endAt == null){
+                $sql="SELECT $select from $relArray[0] $innerJoinText where $linkTo between '$between1' and '$between2' $filter ORDER BY $orderBy $orderMode";
+            }
+
+            //------- ordenar y limitar datos-----------
+
+            if($orderBy != null && $orderMode != null && $startAt != null && $endAt != null){
+                $sql="SELECT $select from $relArray[0] $innerJoinText where $linkTo between '$between1' and '$between2' $filter ORDER BY $orderBy $orderMode LIMIT $startAt, $endAt";
+            }
+
+            //-------limitar datos, sin ordenar-----------
+
+            if($orderBy == null && $orderMode == null && $startAt != null && $endAt != null){
+                $sql="SELECT $select from $relArray[0] $innerJoinText where $linkTo between '$between1' and '$between2' $filter LIMIT $startAt, $endAt";
+            }
+
+            $stmt=Connection::connect()->prepare($sql);
+
+            $stmt->execute();
+
+            return $stmt->fetchAll(PDO::FETCH_CLASS);
+
+        }else{
+                return null;
+                }
+
+
+    }
+        
+      
 
     
 }
