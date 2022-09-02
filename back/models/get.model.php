@@ -8,8 +8,12 @@ class GetModel{
 
     static public function getData($table, $select, $orderBy, $orderMode, $startAt, $endAt){
 
-        //--------------validar existencia de la tabla-----------------
-        if(empty(Connection::getColumnData($table))){
+        //--------------validar existencia de la tabla y las columnas-----------------
+        $selectArray=explode(",",$select);
+        
+        
+        if(empty(Connection::getColumnData($table,$selectArray))){
+            
             return null;
         }
 
@@ -37,7 +41,13 @@ class GetModel{
 
         $stmt=Connection::connect()->prepare($sql);
 
-        $stmt->execute();
+        try {
+
+            $stmt->execute();
+
+        } catch (PDOException $Exeption) {
+            return null;
+        }
 
         return $stmt->fetchAll(PDO::FETCH_CLASS);
 
@@ -48,11 +58,23 @@ class GetModel{
     static public function getDataFilter($table, $select, $linkTo, $equalTo, $orderBy, $orderMode, $startAt, $endAt){
 
         //--------------validar existencia de la tabla-----------------
-        if(empty(Connection::getColumnData($table))){
+        $linkToArray= explode(",",$linkTo);
+        $selectArray=explode(",",$select);
+
+        foreach ($linkToArray as $key => $value) {
+
+            array_push($selectArray,$value);
+
+        }
+
+        $selectArray=array_unique($selectArray);
+
+        if(empty(Connection::getColumnData($table, $selectArray))){
+            
             return null;
         }
         //------------------------
-        $linkToArray= explode(",",$linkTo);
+        
         $equalToArray= explode("¨¨",$equalTo);
         $linkToText="";
 
@@ -117,7 +139,13 @@ class GetModel{
         }
 
 
-        $stmt->execute();
+        try {
+
+            $stmt->execute();
+
+        } catch (PDOException $Exeption) {
+            return null;
+        }
 
         return $stmt->fetchAll(PDO::FETCH_CLASS);
 
@@ -126,6 +154,8 @@ class GetModel{
     /**==================peticiones get sin filtro entre tablas relacionadas======================= */
 
     static public function getRelData($rel, $type, $select, $orderBy, $orderMode, $startAt, $endAt){
+        
+        
 
         $relArray= explode(",",$rel);
         $typeArray= explode(",",$type);
@@ -136,7 +166,7 @@ class GetModel{
             foreach($relArray as $key => $value){
 
                 //--------------validar existencia de la tabla-----------------
-                if(empty(Connection::getColumnData($value))){
+                if(empty(Connection::getColumnData($value, ["*"]))){
                     return null;
                 }
                 //--------------------
@@ -174,7 +204,15 @@ class GetModel{
 
             $stmt=Connection::connect()->prepare($sql);
 
-            $stmt->execute();
+            try {
+
+                $stmt->execute();
+
+            } catch (PDOException $Exeption) {
+                return null;
+            }
+
+            
 
             return $stmt->fetchAll(PDO::FETCH_CLASS);
 
@@ -193,6 +231,7 @@ class GetModel{
 
         /**=====================organizamos filtros ============================ */
         $linkToArray= explode(",",$linkTo);
+        
         $equalToArray= explode("¨¨",$equalTo);
         $linkToText="";
 
@@ -200,11 +239,7 @@ class GetModel{
 
             foreach($linkToArray as $key => $value){
 
-                //--------------validar existencia de la tabla-----------------
-                if(empty(Connection::getColumnData($value))){
-                    return null;
-                }
-                //--------------------
+                
                 if($key>0){
 
                     $linkToText .= "AND ".$value." = :".$value." ";
@@ -220,6 +255,11 @@ class GetModel{
         if(count($relArray)>1){
 
             foreach($relArray as $key => $value){
+                //--------------validar existencia de la tabla-----------------
+                if(empty(Connection::getColumnData($value, ["*"]))){
+                    return null;
+                }
+                //--------------------
                 if($key>0){
 
                     $innerJoinText .= "INNER JOIN ".$value." ON ".$relArray[0].".id_".$typeArray[$key]."_".$typeArray[0] ." = ".$value.".id_".$typeArray[$key]." ";
@@ -271,7 +311,13 @@ class GetModel{
     
             }
 
-            $stmt->execute();
+            try {
+
+                $stmt->execute();
+
+            } catch (PDOException $Exeption) {
+                return null;
+            }
 
             return $stmt->fetchAll(PDO::FETCH_CLASS);
 
@@ -289,7 +335,16 @@ class GetModel{
     static function getDataSearch($table, $select, $linkTo, $search, $orderBy, $orderMode, $startAt, $endAt){
 
         //--------------validar existencia de la tabla-----------------
-        if(empty(Connection::getColumnData($table))){
+        $linkToArray=explode(",",$linkTo);
+        $selectArray=explode(",",$select);
+
+        foreach ($linkToArray as $key => $value) {
+            array_push($selectArray, $value);
+        }
+
+        $selectArray=array_unique($selectArray);
+
+        if(empty(Connection::getColumnData($table,$selectArray))){
             return null;
         }
         //--------------------
@@ -369,7 +424,13 @@ class GetModel{
         }
 
 
-        $stmt->execute();
+        try {
+
+            $stmt->execute();
+
+        } catch (PDOException $Exeption) {
+            return null;
+        }
 
         return $stmt->fetchAll(PDO::FETCH_CLASS);
 
@@ -379,20 +440,18 @@ class GetModel{
 
     static public function getRelDataSearch($rel, $type, $select, $linkTo, $search, $orderBy, $orderMode, $startAt, $endAt){
 
+        
+        
         /**=====================organizamos filtros ============================ */
-        $linkToArray= explode(",",$linkTo);
         $searchArray= explode("¨¨",$search);
         $linkToText="";
-
+        $linkToArray= explode(",",$linkTo);
+        
         if(count($linkToArray)>1){
 
             foreach($linkToArray as $key => $value){
 
-                //--------------validar existencia de la tabla-----------------
-                if(empty(Connection::getColumnData($value))){
-                    return null;
-                }
-                //--------------------
+                
                 if($key>0){
 
                     $linkToText .= "AND ".$value." = :".$value." ";//añade esto en cada iteracion
@@ -408,6 +467,13 @@ class GetModel{
         if(count($relArray)>1){
 
             foreach($relArray as $key => $value){
+
+                //--------------validar existencia de la tabla-----------------
+                if(empty(Connection::getColumnData($value,["*"]))){
+                    return null;
+                }
+                //--------------------
+
                 if($key>0){
 
                     $innerJoinText .= "INNER JOIN ".$value." ON ".$relArray[0].".id_".$typeArray[$key]."_".$typeArray[0] ." = ".$value.".id_".$typeArray[$key]." ";
@@ -471,7 +537,13 @@ class GetModel{
     
             }
 
-            $stmt->execute();
+            try {
+
+                $stmt->execute();
+
+            } catch (PDOException $Exeption) {
+                return null;
+            }
 
             return $stmt->fetchAll(PDO::FETCH_CLASS);
 
@@ -500,7 +572,29 @@ class GetModel{
 
 
         //--------------validar existencia de la tabla-----------------
-        if(empty(Connection::getColumnData($table))){
+        $linkToArray=explode(",",$linkTo);
+
+        if ($filterTo!=null) {
+            $filterToArray=explode(",",$filterTo);
+        }else {
+            $filterToArray= array();
+        }
+        
+        $selectArray=explode(",",$select);
+
+        foreach ($linkToArray as $key => $value) {
+
+            array_push($selectArray,$value);
+
+        }
+
+        foreach ($filterToArray as $key => $value) {
+            array_push($selectArray,$value);
+        }
+
+        $selectArray=array_unique($selectArray);
+
+        if(empty(Connection::getColumnData($table, $selectArray))){
             return null;
         }
         //--------------------
@@ -534,8 +628,13 @@ class GetModel{
 
         $stmt=Connection::connect()->prepare($sql);
 
-        $stmt->execute();
+        try {
 
+            $stmt->execute();
+
+        } catch (PDOException $Exeption) {
+            return null;
+        }
         return $stmt->fetchAll(PDO::FETCH_CLASS);
         }
 
@@ -554,13 +653,17 @@ class GetModel{
                                 $endAt,
                                 $filterTo,
                                 $inTo){
+
+        
+        $linkToArray=explode(",",$linkTo);
+        
     
         $filter="";
         
         if ($filterTo!=null && $inTo!=null) {
             $filter='AND '.$filterTo.' IN ('.$inTo.')';
         }
-
+        
         $relArray= explode(",",$rel);
         $typeArray= explode(",",$type);
         $innerJoinText="";
@@ -570,7 +673,7 @@ class GetModel{
             foreach($relArray as $key => $value){
 
                 //--------------validar existencia de la tabla-----------------
-                if(empty(Connection::getColumnData($value))){
+                if(empty(Connection::getColumnData($value,["*"]))){
                     return null;
                 }
                 //--------------------

@@ -45,13 +45,41 @@ class Connection{
 
     
     /**=====================validar existencia de una tabla en la bd========================= */  
-    static public function getColumnData($table){
+    static public function getColumnData($table, $columns){
 
+        //-----------traer nombre de la bd-----------
         $database=Connection::infoDatabase()["database"];
 
-        return Connection::connect()->query("SELECT COLUMN_NAME AS item 
+        //-----------traer las columnas de una tabla-----------
+        $validate= Connection::connect()->query("SELECT COLUMN_NAME AS item 
             FROM information_schema.columns 
-            WHERE table_schema = '$database' AND table_name='$table'")->fetchAll(PDO::FETCH_OBJ);
+            WHERE table_schema = '$database' AND table_name='$table'
+            ")->fetchAll(PDO::FETCH_OBJ);
+
+
+        //-----------validamos existencia de la tabla-----------
+        if (empty($validate)) {
+            return null;
+        }else{
+
+            //-----------ajuste a solicitud de columnas globales-----------
+
+            if ($columns[0]=="*") {
+                array_shift($columns);//elimino el primer indice del arreglo
+            }
+
+            //-----------validamos existencia de columnas-----------
+            $sum= 0;
+
+            foreach ($validate as $key => $value) {
+
+                //in_array($value->item, $columns);
+                $sum += in_array($value->item, $columns);
+                
+            }
+          
+            return $sum==count($columns) ? $validate : null;
+        }
 
     }
 }
