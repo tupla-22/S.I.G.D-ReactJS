@@ -450,5 +450,46 @@ class GetModel{
 
     }
 
+    /**======================peticion get para seleccionar rangos============================== */
+
+    static function getDataRange($table, 
+                                $select, 
+                                $linkTo, 
+                                $between1, 
+                                $between2, 
+                                $orderBy, 
+                                $orderMode,
+                                $startAt, 
+                                $endAt){
+
+        //-------sin ordenar ni limitar datos-----------
+
+        $sql="SELECT $select from $table where $linkTo between '$between1' and '$between2'";
+
+        //-------ordenar datos sin limites-----------
+
+        if($orderBy != null && $orderMode != null && $startAt == null && $endAt == null){
+            $sql="SELECT $select from $table where $linkTo between '$between1' and '$between2' ORDER BY $orderBy $orderMode";
+        }
+
+        //------- ordenar y limitar datos-----------
+
+        if($orderBy != null && $orderMode != null && $startAt != null && $endAt != null){
+            $sql="SELECT $select from $table where $linkTo between '$between1' and '$between2' ORDER BY $orderBy $orderMode LIMIT $startAt, $endAt";
+        }
+
+        //-------limitar datos, sin ordenar-----------
+
+        if($orderBy == null && $orderMode == null && $startAt != null && $endAt != null){
+            $sql="SELECT $select from $table where $linkTo between '$between1' and '$between2' LIMIT $startAt, $endAt";
+        }
+
+        $stmt=Connection::connect()->prepare($sql);
+
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_CLASS);
+        }
+
     
 }

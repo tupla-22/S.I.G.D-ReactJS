@@ -13,6 +13,8 @@ $endAt=$_GET["endAt"] ?? null;
 $rel=$_GET["rel"] ?? null;
 $type=$_GET["type"] ?? null;
 $search=$_GET["search"] ?? null;
+$between1=$_GET["between1"] ?? null;
+$between2=$_GET["between2"] ?? null;
 
 $response=new GetController();
 
@@ -95,6 +97,22 @@ if(isset($linkTo)&&isset($equalTo) && !isset($rel) && !isset($type)){
         $select, 
         $linkTo, 
         $search, 
+        $orderBy, 
+        $orderMode,
+        $startAt, 
+        $endAt
+    );  
+
+    /**======================pticion get para seleccion de rangos(between)============================== */
+
+}else if (isset($linkTo) && isset($between1) && isset($between2)) {
+
+    $response->getDataRange(
+        $table, 
+        $select, 
+        $linkTo, 
+        $between1, 
+        $between2, 
         $orderBy, 
         $orderMode,
         $startAt, 

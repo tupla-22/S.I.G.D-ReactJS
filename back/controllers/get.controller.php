@@ -53,6 +53,33 @@ class GetController{
         $return -> fncResponse($response);
     }
 
+    /**======================peticion get para seleccionar rangos============================== */
+
+    static function getDataRange(
+    $table, 
+    $select, 
+    $linkTo, 
+    $between1, 
+    $between2, 
+    $orderBy, 
+    $orderMode,
+    $startAt, 
+    $endAt
+    ){
+        $response = GetModel::getDataRange(
+            $table, 
+            $select, 
+            $linkTo, 
+            $between1, 
+            $between2, 
+            $orderBy, 
+            $orderMode,
+            $startAt, 
+            $endAt
+        );
+        $return=new GetController();
+        $return -> fncResponse($response);
+    }
 
     /**==============================respuestas del controlador====================================*/
 
