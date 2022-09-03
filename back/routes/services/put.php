@@ -1,20 +1,29 @@
 <?php
 
 require_once "models/connection.php";
-require_once "controllers/postController.php";
+require_once "controllers/putController.php";
 
-if (isset($_POST)) {
+$id= $_GET["id"] ?? null;
+$nameID= $_GET["nameID"] ?? null;
 
+if (isset($id) && isset($nameID)) {
+
+    /**=================capturamos datos del formulario==================== */
+
+    $data= array();
+    
+    parse_str(file_get_contents("php://input"), $data);
+    
     /**================separar las propiedades en un arreglo===================== */
 
     $columns= array();
-
-    foreach (array_keys($_POST) as $key => $value) {
-
+    
+    foreach (array_keys($data) as $key => $value) {
+        
         array_push($columns, $value);
         
     }
-
+    
     //-----------validar la tabla y las columnas existan--------------
     if(empty(Connection::getColumnData($table, $columns))){
 
@@ -32,11 +41,11 @@ if (isset($_POST)) {
 
     }
 
-    /**=======================
+     /**=======================
      * solicitamos respuesta del controlador para crear datos en cualquier tabla
      * ========================= */
 
-     $response= new PostController();
-     $response-> postData($table, $_POST);
+    $response= new PutController();
+    $response-> putData($table, $data, $id, $nameID);
 
 }

@@ -48,15 +48,9 @@ if(count($routesArray)==0){
     /**----------------put------------------ */
 
     if($_SERVER["REQUEST_METHOD"]=="PUT"){
-        $json= array(
-    
-            "status" => 200,
-            "result" =>"Solicitud PUT"
         
+        include "services/put.php";
         
-        );
-
-        echo json_encode($json, http_response_code($json["status"]));
     }
     /**----------------delete------------------ */
 
