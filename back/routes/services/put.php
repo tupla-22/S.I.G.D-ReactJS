@@ -46,7 +46,7 @@ if (isset($id) && isset($nameID)) {
     }
 
      /**=======================
-     * solicitamos respuesta del controlador para crear datos en cualquier tabla
+     * solicitamos respuesta del controlador para modificar datos en cualquier tabla
      * ========================= */
 
     $response= new PutController();
