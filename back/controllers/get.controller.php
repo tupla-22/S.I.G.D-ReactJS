@@ -140,8 +140,8 @@ static function getRelDataRange(
             $json= array(
         
                 "status" => 404,
-                "result" => "not found"
-            
+                "result" => "not found",
+                "method" => "get"
             
             );
 
