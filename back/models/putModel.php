@@ -1,10 +1,27 @@
 <?php
 
+require_once "connection.php";
+require_once "get.model.php";
+
 class PutModel{
 
     /** ==================peticion put para editar datos de forma dinamica=====================*/
 
     static public function putData($table, $data, $id, $nameID){
+
+        /**=====================validar que el id exisita=========================== */
+
+        $response= GetModel::getDataFilter($table, $nameID, $nameID, $id, null, null, null, null);
+        
+        if (empty($response)) {
+            
+            
+
+            return null;
+
+        }
+
+        /**======================actualizamos registros====================== */
 
         $set="";
         

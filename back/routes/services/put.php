@@ -23,6 +23,10 @@ if (isset($id) && isset($nameID)) {
         array_push($columns, $value);
         
     }
+
+    array_push($columns, $nameID);
+
+    $columns = array_unique($columns);
     
     //-----------validar la tabla y las columnas existan--------------
     if(empty(Connection::getColumnData($table, $columns))){
