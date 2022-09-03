@@ -8,8 +8,7 @@ class PutController{
     static public function putData($table, $data, $id, $nameID){
 
         $response= PutModel::putData($table, $data, $id, $nameID);
-        echo '<pre>'; print_r($response); echo '</pre>';
-        return;
+        
         $return= new PutController();
         $return -> fncResponse($response);
 
