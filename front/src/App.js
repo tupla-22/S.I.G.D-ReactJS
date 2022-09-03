@@ -25,21 +25,35 @@ import TeamAdd from "./pages/admin/componentes/TeamAdd";
 import TeamDelete from "./pages/admin/componentes/TeamDelete";
 import TeamUpdate from "./pages/admin/componentes/TeamUpdate";
 import HomeAdm from "./pages/admin/HomeAdm";
+import HomeHome from "./pages/HomeHome";
+import HomeDT from "./pages/DT/HomeDT";
+import DTBar from "./pages/DT/componentes/DTBar";
+import HomePageDT from "./pages/DT/HomePageDT";
+import MyTeams from "./pages/DT/MyTeams";
+import ChampionshipsLoadBar from "./componentes/ChampionshipsLoadBar";
+import ChampionshipsLoad from "./componentes/ChampionshipsLoad";
+import AllTeams from "./componentes/AllTeams";
+import MatchesHistory from "./componentes/MatchesHistory";
+
+
+
+
+
 
 function App() {
   return (
     <div className="App">
       <Routes>
-        
         <Route path="/" element={<Home />}>
-          <Route path="" element={<Login />}></Route>
+          <Route path="" element={<HomeHome />}></Route>
+          <Route path="login" element={<Login />}></Route>
           <Route path="help" element={<Help />}></Route>
         </Route>
         <Route path="/student/:userId" element={<HomeStudent />}>
-          <Route path="history" element={<History />}></Route>
+          <Route path="history" element={<MatchesHistory />}></Route>
           <Route path="HomeStudent" element={<Fixture />} />
           <Route path="teams" element={<Teams />}>
-            <Route path="teamsAll" element={<TeamsAll />}></Route>
+            <Route path="teamsAll" element={<AllTeams />}></Route>
             <Route path="myTeam" element={<MyTeam />}></Route>
           </Route>
           <Route path="myStats" element={<Stats />}></Route>
@@ -92,6 +106,18 @@ function App() {
             <Route path="changePassword" element={<ChangePassword />}></Route>
           </Route>
           <Route path="homeAdmin" element={<HomeAdm></HomeAdm>}></Route>
+        </Route>
+        <Route path="/dt/:userId" element={<HomeDT />}>
+          <Route path="home" element={<HomePageDT />}></Route>
+          <Route path="adminTeams" element={<AdminTeams />}>
+            <Route path="teamAdd" element={<TeamAdd></TeamAdd>}></Route>
+            <Route path="teamDelete" element={<TeamDelete />}></Route>
+            <Route path="teamUpdate" element={<TeamUpdate />}></Route>
+          </Route>
+          <Route path="championshipsLoad">
+            <Route path="" element={<ChampionshipsLoad />}></Route>
+          </Route>
+          <Route path="myteams" element={<MyTeams></MyTeams>}></Route>
         </Route>
         <Route path="/*" element={<Error404 />}></Route>
       </Routes>

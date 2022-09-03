@@ -6,7 +6,8 @@ const Main = ({children}) => {
         width:"100%",
         display:"flex",
         alignItems:"center",
-        flexDirection:"column"
+        flexDirection:"column",
+        paddingTop:"100px"
     }
 
     return ( 

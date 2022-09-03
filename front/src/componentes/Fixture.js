@@ -1,37 +1,34 @@
-import FixtureHead from "./FixtureHead";
-import FixtureRow from "./FixtureRow";
+import DateRangeIcon from "@mui/icons-material/DateRange";
+import ShieldIcon from "@mui/icons-material/Shield";
+import AccessTimeFilledIcon from "@mui/icons-material/AccessTimeFilled";
+import { Table } from "./Table";
+import { TH } from "./TH";
 import Main from "./Main";
-import "./styles/Fixture.css";
-
-const cuadros = {
-  nombre: "Fenix",
-  fecha: "12/05/2022",
-};
+import FixtureRow from "./FixtureRow";
 
 const Fixture = () => {
-    const sx = {
-        padding:10,
-        border:"1px solid #0005",
-        borderRadius:"5px"
-        
-      }
-
-
-
   return (
     <Main>
-      <h3 style={{padding:"20px"}}>Fixture</h3>
-      <table>
-        <FixtureHead sx={sx}/>
+      <Table>
+        <thead>
+          <TH>
+            <DateRangeIcon color="secondary" />
+          </TH>
+          <TH>
+            <AccessTimeFilledIcon  color="secondary" />
+          </TH>
+          <TH>
+            <ShieldIcon  color="secondary"></ShieldIcon>
+          </TH>
+          <TH>VS</TH>
+          <TH>
+            <ShieldIcon  color="secondary"></ShieldIcon>
+          </TH>
+        </thead>
         <tbody>
-          <FixtureRow data={cuadros.nombre} sx={sx}/>
-          <FixtureRow data={cuadros.nombre} sx={sx}/>
-          <FixtureRow data={cuadros.nombre} sx={sx}/>
-          <FixtureRow data={cuadros.nombre} sx={sx}/>
-          <FixtureRow data={cuadros.nombre} sx={sx}/>
-          <FixtureRow data={cuadros.nombre} sx={sx}/>
+          <FixtureRow></FixtureRow>
         </tbody>
-      </table>
+      </Table>
     </Main>
   );
 };

@@ -2,7 +2,7 @@ import { display, width } from "@mui/system";
 
 const MainCenter = ({children}) => {
     const sx = {
-        height:"100vh",
+        minHeight:"100vh",
         width:"100%",
         display:"flex",
         alignItems:"center",

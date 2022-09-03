@@ -7,7 +7,7 @@ import {
   TextField,
 } from "@mui/material";
 import { useState } from "react";
-import ButtonClassic from "../../../componentes/ButtonClassic";
+import {ButtonClassic} from "../../../componentes/ButtonClassic";
 import Form from "../../../componentes/Form";
 import "./styles/TeamAddForm.css";
 

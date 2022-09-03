@@ -4,6 +4,8 @@ const History = () => {
     return ( 
         <Main>
             <h2>Historial</h2>
+            
+            
         </Main>
      );
 }

@@ -5,13 +5,13 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { ButtonBase, TextField } from '@mui/material';
 import Form from './Form';
-import ButtonClassic from './ButtonClassic';
+import {ButtonClassic} from './ButtonClassic';
 const style = {
   position: 'absolute',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 400,
+  width: "90vw",
   bgcolor: 'background.paper',
   border: '1px solid #000',
   boxShadow: 24,

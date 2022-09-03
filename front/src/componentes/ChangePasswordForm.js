@@ -1,5 +1,5 @@
 import { Button, TextField } from "@mui/material";
-import ButtonClassic from "./ButtonClassic";
+import {ButtonClassic} from "./ButtonClassic";
 import FormCien from "./FormCien";
 import "./styles/ChangePasswordForm.css";
 const FormPasswordChange = () => {
@@ -24,7 +24,7 @@ const FormPasswordChange = () => {
         className="FormCien__input"
 
       ></TextField>
-      <ButtonClassic className="FormCien__input">Cambiar</ButtonClassic>
+      <ButtonClassic>Cambiar</ButtonClassic>
     </FormCien>
   );
 };

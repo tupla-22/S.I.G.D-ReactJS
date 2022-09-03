@@ -1,7 +1,7 @@
 import Form from "../../../componentes/Form"
 import React, { useState, useEffect } from 'react';
 import { Button, TextField } from "@mui/material";
-import ButtonClassic from "../../../componentes/ButtonClassic"
+import {ButtonClassic} from "../../../componentes/ButtonClassic"
 
 const  TeamDelForm = () => {
     const [idUser, setIdUser] = useState("");

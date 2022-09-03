@@ -5,9 +5,7 @@ import UserSearch from "./UserSearch";
 
 const UserUpdateForm = () => {
     return ( 
-        <Main>
             <UserSearch/>
-        </Main>
      );
 }
  

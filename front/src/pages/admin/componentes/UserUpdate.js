@@ -1,9 +1,15 @@
+import Main from "../../../componentes/Main";
+import UserList from "./UserList";
 import UserUpdateForm from "./UserUpdateForm";
 
 const UserUpdate = () => {
-    return (  
-        <UserUpdateForm/>
-    );
-}
- 
+  return (
+    <>
+      <Main>
+        <UserUpdateForm />
+      </Main>
+    </>
+  );
+};
+
 export default UserUpdate;

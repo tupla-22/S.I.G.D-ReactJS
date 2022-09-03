@@ -1,5 +1,5 @@
 import { TextField } from "@mui/material";
-import ButtonClassic from "../../../componentes/ButtonClassic";
+import {ButtonClassic} from "../../../componentes/ButtonClassic";
 import Form from "../../../componentes/Form";
 
 const TeamSearch = () => {

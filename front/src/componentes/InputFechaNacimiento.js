@@ -12,7 +12,7 @@ const InputFechaNacimiento = ({ className, userForm,setUserForm }) => {
     setUserForm(
       {
         ...userForm,
-        "birthDate":e
+        "fechaNac_usuario":`${e.getFullYear()}-${e.getMonth()}-${e.getDay()+1}`
       }
     );
   }
@@ -24,7 +24,7 @@ const InputFechaNacimiento = ({ className, userForm,setUserForm }) => {
           className="Form__input"
           label="Fecha de nacimiento"
           value={value}
-          name="birthDate"
+          name="fechaNac_usuario"
           onChange={handleChange}
           renderInput={(params) => <TextField {...params} />}
         />
