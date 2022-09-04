@@ -1,6 +1,7 @@
 import {
   Button,
   FormControl,
+  IconButton,
   InputLabel,
   MenuItem,
   Select,
@@ -13,48 +14,68 @@ import "./styles/UserAddForm.css";
 import UserAddTipeController from "./UserAddTipeController";
 import React, { useState, useEffect } from "react";
 import { helpHttp } from "../../../helpers/helpHttp";
+import PhotoCamera from "@mui/icons-material/PhotoCamera";
+import { PAlert } from "../../../componentes/PAlert";
 
 const UserAddForm = () => {
   const [userForm, setUserForm] = useState({});
-  
+  const [typeUser, setTypeUser] = useState("");
+  const [passwordVerified, setPasswordVerified] = useState(false);
+  const [password, setPassword] = useState("");
+  const [errors, setErrors] = useState(false);
 
   const handleClick = () => {
-    const userAdd = async () => {
+    if (!errors) {
+      const userAdd = async () => {
+        const ciuser = parseInt(userForm.ci_usuario);
+        setUserForm({ ...userForm, ci_usuario: ciuser });
+        console.log(JSON.stringify(userForm));
+        const datos = new URLSearchParams(userForm);
 
-      const datos = {
-        ci_usuario:12333893,
-        primerNombre_usuario: "lombardo",
-        primerApellido_usuario:"POrta",
-        email_usuario:"luasdfasdfasdfa@gmail.com",
-        fechaNac_usuario:"1999-9-5",
-        contrasenna_usuario:"Luiausdfaf"
-
-      }
-
-      const ciuser = parseInt(userForm.ci_usuario);
-      setUserForm({...userForm,ci_usuario:ciuser}); 
-      
         const data = {
-        method: "POST",
-        headers: { "Content-type": "application/json"},
-        body: JSON.stringify(datos),
-      };
+          method: "POST",
+          headers: {
+            "Content-type": "application/x-www-form-urlencoded;charset-UTF-8",
+          },
+          body: datos,
+        };
 
-     let response = await fetch("http://apirest.com/usuarios", data).then(e=>e).then(e=>console.log(e)).catch(e=>console.error(e.body));
-      console.log(response)
-    };
-    userAdd();
+        let response = await fetch("http://apirest.com/usuarios", data)
+          .then((e) => e)
+          .then((e) => console.log(e))
+          .catch((e) => console.error(e.body));
+        console.log(response);
+      };
+      userAdd();
+    }
+  };
+
+  const handleUser = (e) => {
+    setTypeUser(e.target.value);
   };
 
   const handleChange = (event) => {
-    setUserForm({
-      ...userForm,
-      [event.target.name]: event.target.value,
-    });
-    console.log(userForm);
+    if (event.target.name != "password_usuario") {
+      setUserForm({
+        ...userForm,
+        [event.target.name]: event.target.value,
+      });
+    }
+    if (event.target.name == "password_usuario") {
+      setUserForm({ ...userForm, [event.target.name]: event.target.value });
+    }
   };
 
-  const sxForm = {};
+  const handlePassword = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const handleVerifiedPassword = () => {
+    if (userForm.password_usuario == password) {
+      setPasswordVerified(true);
+      setErrors(true);
+    } else setPasswordVerified(false);
+  };
 
   return (
     <Form
@@ -73,7 +94,13 @@ const UserAddForm = () => {
         onChange={handleChange}
         name="primerNombre_usuario"
         className="Form__input"
-        label="Nombre"
+        label="nombre"
+      ></TextField>
+      <TextField
+        onChange={handleChange}
+        name="segundoNombre_usuario"
+        className="Form__input"
+        label="Segundo nombre"
       ></TextField>
       <TextField
         onChange={handleChange}
@@ -81,24 +108,34 @@ const UserAddForm = () => {
         className="Form__input"
         label="Apellido"
       ></TextField>
-      <InputFechaNacimiento userForm={userForm} setUserForm={setUserForm} />
+      <TextField
+        onChange={handleChange}
+        name="segundoApellido_usuario"
+        className="Form__input"
+        label="Segundo apellido"
+      ></TextField>
       <TextField
         onChange={handleChange}
         name="email_usuario"
         className="Form__input"
         label="Email"
       ></TextField>
+      <InputFechaNacimiento userForm={userForm} setUserForm={setUserForm} />
+
       {/* <TextField onChange={handleChange} name="tel" type="number" className="Form__input" label="Telefono"></TextField> */}
       <TextField
+        onBlur={handleVerifiedPassword}
         onChange={handleChange}
-        name="contrasenna_usuario"
+        name="password_usuario"
         className="Form__input"
         type="password"
         label="Contraseña"
       ></TextField>
+      {!passwordVerified && <PAlert>Los campos contraseña no coinciden</PAlert>}
       <TextField
-        onChange={handleChange}
-        name="contrasenna_usuario_ferified"
+        onChange={handlePassword}
+        onBlur={handleVerifiedPassword}
+        name="password_usuario_verified"
         className="Form__input"
         type="password"
         label="Repita contraseña"
@@ -112,7 +149,7 @@ const UserAddForm = () => {
           value={userForm.tipoUsuario}
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          onChange={handleChange}
+          onChange={handleUser}
         >
           <MenuItem value="admin">Administrador</MenuItem>
           <MenuItem value="student">Estudiante</MenuItem>
@@ -128,7 +165,21 @@ const UserAddForm = () => {
         className="Form__input"
         tipeUser={userForm.tipoUsuario}
       />
-      <Button variant="contained" onClick={handleClick}>Agregar</Button>
+      <Button variant="contained" component="label">
+        Foto de perfil
+        <input hidden accept="image/*" type="file" />
+        <PhotoCamera />
+      </Button>
+      <IconButton
+        label=""
+        color="primary"
+        aria-label="upload picture"
+        component="label"
+      ></IconButton>
+
+      <Button variant="contained" onClick={handleClick}>
+        Agregar
+      </Button>
     </Form>
   );
 };

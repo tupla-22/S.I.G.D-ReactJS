@@ -11,19 +11,21 @@ const Fixture = () => {
     <Main>
       <Table>
         <thead>
-          <TH>
-            <DateRangeIcon color="secondary" />
-          </TH>
-          <TH>
-            <AccessTimeFilledIcon  color="secondary" />
-          </TH>
-          <TH>
-            <ShieldIcon  color="secondary"></ShieldIcon>
-          </TH>
-          <TH>VS</TH>
-          <TH>
-            <ShieldIcon  color="secondary"></ShieldIcon>
-          </TH>
+          <tr>
+            <TH>
+              <DateRangeIcon color="secondary" />
+            </TH>
+            <TH>
+              <AccessTimeFilledIcon color="secondary" />
+            </TH>
+            <TH>
+              <ShieldIcon color="secondary"></ShieldIcon>
+            </TH>
+            <TH>VS</TH>
+            <TH>
+              <ShieldIcon color="secondary"></ShieldIcon>
+            </TH>
+          </tr>
         </thead>
         <tbody>
           <FixtureRow></FixtureRow>

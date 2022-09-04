@@ -12,7 +12,7 @@ const MyStatsTable = () => {
   useEffect(() => {
     fetch("http://apirest.com/usuarios?select=*")
     .then(dat=>dat.json())
-    .then((dat)=>{ setData({...data,...dat.result[0]}); console.log(dat.result)});
+    .then((dat)=>{ setData({...data,...dat.result[0]}); });
     setData({...data,is:true})
   }, []);
   return (
