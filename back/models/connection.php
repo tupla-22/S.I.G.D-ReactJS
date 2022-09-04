@@ -1,5 +1,6 @@
 <?php
 
+
 class Connection{
 
     /**=====================info BD========================= */    
@@ -82,4 +83,26 @@ class Connection{
         }
 
     }
+
+    /**===================generar token de autenticacion====================== */
+
+    static public function jwt($id,$ci){
+
+        $time= time();
+
+        $token= array(
+            
+            "iat" => $time, //tiempo presente al que inicia el token
+            "exp" => $time + (60*60*01), //toempo de expiracion del token
+            "data" =>[
+                "id" => $id,
+                "ci" => $ci
+                ]
+            );
+
+            
+            return $token;
+            
+    }
+
 }
