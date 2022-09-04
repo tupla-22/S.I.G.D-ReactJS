@@ -34,10 +34,47 @@ class PostController{
             $return= new PostController();
             $return -> fncResponse($response, null, $suffix);
             
-        }/*else {
-            //registro de usuarios por parte de redes sociales
-        }*/
+        }else {
+        /**================peticion post para registrar usuarios de aplicaciones externas================== */
+            
+            $response= PostModel::postData($table, $data);
+            if (isset($response["comment"]) && $response["comment"] =="The process whas succesful") {
 
+                /**=====================validar que el usuario exisita=========================== */
+
+                
+                $response= GetModel::getDataFilter($table, "*", "ci_".$suffix, $data["ci_".$suffix], null, null, null, null);
+
+                if (!empty($response)) {
+                    $token= Connection::jwt($response[0]->{"id_".$suffix},$response[0]->{"ci_".$suffix}, );
+                    $jwt = JWT::encode($token,"qxewcr",'HS512');
+                
+
+                    //------actualizar bd con el token del usuario-------
+
+                    $data = array(
+                        "token_".$suffix =>$jwt,
+                        "token_exp_".$suffix => $token["exp"]
+
+                    );
+
+                    $update= PutModel::putData($table,$data, $response[0]->{"id_".$suffix},"id_".$suffix);
+                    
+                    if (isset($update["comment"]) && $update["comment"] =="The process whas succesful") {
+                        $response[0]->{"token_".$suffix}= $jwt;
+                        $response[0]->{"token_exp_".$suffix}= $token["exp"];
+
+                        $return= new PostController();
+                        $return -> fncResponse($response, null, $suffix);
+
+                    }
+
+                }
+
+               
+            
+            }
+        }
        
     }
 
@@ -50,19 +87,53 @@ class PostController{
         $response= GetModel::getDataFilter($table, "*", "ci_".$suffix, $data["ci_".$suffix], null, null, null, null);
 
         if (!empty($response)) {
+
+            if ($response[0]->{"id_".$suffix}!=null) {
+                
             
-            //------encriptamos contraseña-------
-            
-            $crypt = crypt($data["password_".$suffix], 'sha512'); 
-            
-            if($response[0]->{"password_".$suffix}== $crypt){
+                //------encriptamos contraseña-------
+                
+                $crypt = crypt($data["password_".$suffix], 'sha512'); 
+                
+                if($response[0]->{"password_".$suffix}== $crypt){
+
+                    $token= Connection::jwt($response[0]->{"id_".$suffix},$response[0]->{"ci_".$suffix}, );
+                    $jwt = JWT::encode($token,"qxewcr",'HS512');
+                
+
+                    //------actualizar bd con el token del usuario-------
+
+                    $data = array(
+                        "token_".$suffix =>$jwt,
+                        "token_exp_".$suffix => $token["exp"]
+
+                    );
+
+                    $update= PutModel::putData($table,$data, $response[0]->{"id_".$suffix},"id_".$suffix);
+                    
+                    if (isset($update["comment"]) && $update["comment"] =="The process whas succesful") {
+                        $response[0]->{"token_".$suffix}= $jwt;
+                        $response[0]->{"token_exp_".$suffix}= $token["exp"];
+
+                        $return= new PostController();
+                        $return -> fncResponse($response, null, $suffix);
+                    }
+                    
+                    
+                }else {
+                    $response=null;
+                    $return= new PostController();
+                    $return -> fncResponse($response, "Wrong password", $suffix);
+                }
+            }else{
+
+                //------actualizar el token para usuarios logueados por las redes-------
 
                 $token= Connection::jwt($response[0]->{"id_".$suffix},$response[0]->{"ci_".$suffix}, );
                 $jwt = JWT::encode($token,"qxewcr",'HS512');
             
 
-                //------actualizar bd con el token del usuario-------
-
+                
                 $data = array(
                     "token_".$suffix =>$jwt,
                     "token_exp_".$suffix => $token["exp"]
@@ -78,14 +149,7 @@ class PostController{
                     $return= new PostController();
                     $return -> fncResponse($response, null, $suffix);
                 }
-                
-                
-            }else {
-                $response=null;
-                $return= new PostController();
-                $return -> fncResponse($response, "Wrong password", $suffix);
             }
-
 
         }else {
             $response=null;
