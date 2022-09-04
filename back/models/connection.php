@@ -96,7 +96,8 @@ class Connection{
             "exp" => $time + (60*60*01), //toempo de expiracion del token
             "data" =>[
                 "id" => $id,
-                "ci" => $ci
+                "ci" => $ci,
+                "id_rol" => "0"
                 ]
             );
 

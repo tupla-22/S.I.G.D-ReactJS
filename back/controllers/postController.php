@@ -97,7 +97,9 @@ class PostController{
                 
                 if($response[0]->{"password_".$suffix}== $crypt){
 
-                    $token= Connection::jwt($response[0]->{"id_".$suffix},$response[0]->{"ci_".$suffix}, );
+                    //$rol= ;
+
+                    $token= Connection::jwt($response[0]->{"id_".$suffix},$response[0]->{"ci_".$suffix} );
                     $jwt = JWT::encode($token,"qxewcr",'HS512');
                 
 
