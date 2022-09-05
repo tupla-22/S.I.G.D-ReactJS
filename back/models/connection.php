@@ -90,7 +90,7 @@ class Connection{
     
 
     static public function jwt($id,$ci){
-        
+        //pido el rol del usuario
         $rol= GetModel::getRelDataFilter($rel="roles,usuarios", $type="rol,usuario", $select="id_rol", $linkTo="id_usuario_rol", $equalTo=$id, $orderBy=null, $orderMode=null, $startAt=null, $endAt=null);
        
         $time= time();
@@ -102,7 +102,7 @@ class Connection{
             "data" =>[
                 "id" => $id,
                 "ci" => $ci,
-                "id_rol" => $rol[0]->{"id_rol"}
+                "id_rol" => $rol[0]->{"id_rol"}//le pongo el rol al token
                 ]
             );
 
