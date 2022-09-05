@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/static/css/main.a9e99eba.css",
+    "main.js": "/static/js/main.6f261c1b.js",
+    "static/js/787.a40a19f2.chunk.js": "/static/js/787.a40a19f2.chunk.js",
+    "static/media/FondoLogin.jpg": "/static/media/FondoLogin.ce5ef30dbd383808d01e.jpg",
+    "static/media/logo_small.png": "/static/media/logo_small.4a6f0e1df52c776b5e77.png",
+    "index.html": "/index.html",
+    "main.a9e99eba.css.map": "/static/css/main.a9e99eba.css.map",
+    "main.6f261c1b.js.map": "/static/js/main.6f261c1b.js.map",
+    "787.a40a19f2.chunk.js.map": "/static/js/787.a40a19f2.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a9e99eba.css",
+    "static/js/main.6f261c1b.js"
+  ]
+}
