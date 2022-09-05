@@ -6,7 +6,7 @@ class Connection{
 
     /**=====================info BD========================= */    
 
-    static public function infoDatabase(){//static cuando retorna algo y solo public cuando necesitamos que se imprima algo
+    static public function infoDatabase(){            //static cuando retorna algo y solo public cuando necesitamos que se imprima algo
         
         $infoDB=array(
 
