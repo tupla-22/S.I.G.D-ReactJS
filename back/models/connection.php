@@ -110,7 +110,7 @@ class Connection{
             "data" =>[
                 "id" => $id,
                 "ci" => $ci,
-                "id_rol" => $rol[0]->{"id_rol"}//le pongo el rol al token
+                //"id_rol" => $rol[0]->{"id_rol"}//le pongo el rol al token
                 ]
             );
 
