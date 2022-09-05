@@ -7,59 +7,81 @@ import {
   TextField,
 } from "@mui/material";
 import { useState } from "react";
-import {ButtonClassic} from "../../../componentes/ButtonClassic";
+import { ButtonClassic } from "../../../componentes/ButtonClassic";
 import Form from "../../../componentes/Form";
 import "./styles/TeamAddForm.css";
-
-
+import { converterBase64 } from "../../../helpers/converterBase64";
+import { helpHttp } from "../../../helpers/helpHttp";
 
 const formTeamInit = {
-      nombreEquipo:"",
-      deporte:"",
-      logoEquipo:""
-}
-
+  nombre_equipo: "",
+  id_deporte_equipo:null,
+  escudo_equipo: "",
+};
 
 const TeamAddForm = () => {
   const [teamForm, setTeamForm] = useState(formTeamInit);
+  const [errors, setErrors] = useState(null);
 
   const handleChange = (event) => {
-    setTeamForm(
-      {
-        ...teamForm,
-        [event.target.name]:event.target.value
-      }
-    );
+    setTeamForm({
+      ...teamForm,
+      [event.target.name]: event.target.value,
+    });
     console.log(teamForm);
   };
 
-  const sxForm = {};
+  const handleEscudo = (e) => {
+    converterBase64(e.target.name, e.target.files, setTeamForm, teamForm);
+    console.log(teamForm);
+  };
+
+  const handleClick = () => {
+    console.log(teamForm)
+    const confi = {
+      method:"POST",
+      body:new URLSearchParams(teamForm)
+    }
+    fetch("http://apirest.com/equipos",confi).then(e=>e.json()).then(e=>console.log(e)).catch(e=>console.log(e));
+
+  };
 
   return (
     <Form>
       <h3>Agregar un equipo</h3>
-      <TextField onChange={handleChange} name="nombreEquipo" className="Form__input" label="Nombre del equipo"></TextField>
+      <TextField
+        onChange={handleChange}
+        name="nombre_equipo"
+        className="Form__input"
+        label="Nombre del equipo"
+      ></TextField>
       <FormControl className="Form__input" fullWidth>
-        <InputLabel  id="demo-simple-select-label">Deporte</InputLabel>
+        <InputLabel id="demo-simple-select-label">Deporte</InputLabel>
         <Select
           label="Deporte"
-          name="deporte"
-          value={teamForm.deporte}
+          name="id_deporte_equipo"
+          value={teamForm.id_deporte}
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           onChange={handleChange}
         >
-          <MenuItem value="handball">Handball</MenuItem>
-          <MenuItem value="football">football</MenuItem>
-          <MenuItem value="basketball">basketball</MenuItem>
+          <MenuItem value={1}>Handball</MenuItem>
+          <MenuItem value={2}>football</MenuItem>
+          <MenuItem value={3}>basketball</MenuItem>
         </Select>
       </FormControl>
 
       <Button className="Form__input" variant="contained" component="label">
         Escudo del equipo
-        <input onChange={handleChange} name="logoEquipo" hidden accept="image/*" type="file" />
+        <input
+          name="escudo_equipo"
+          onChange={handleEscudo}
+          hidden
+          accept="image/*"
+          type="file"
+        />
       </Button>
-      <ButtonClassic className="Form__input" >Agregar</ButtonClassic>
+      <ButtonClassic onClick={handleClick} className="Form__input">Agregar</ButtonClassic>
     </Form>
   );
 };

@@ -25,7 +25,7 @@ const UserAddForm = () => {
   const [errors, setErrors] = useState(false);
 
   const handleClick = () => {
-    if (!errors) {
+    if (passwordVerified) {
       const userAdd = async () => {
         const ciuser = parseInt(userForm.ci_usuario);
         setUserForm({ ...userForm, ci_usuario: ciuser });

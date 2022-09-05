@@ -30,25 +30,14 @@ const FormLogin = () => {
 
       const getUser = async ()=>{
         const resp = await fetch("http://apirest.com/usuarios?login=true&suffix=usuario",options).then(e=>e.json()).then(e=>{
-
-          
         if(e.status==200){
           setErrors({...errors,correct:false});
-          navigate(`/student/${e.result[0].ci_usuario}/homeStudent`);
+          navigate(`/admin/${e.result[0].ci_usuario}/homeAdmin`);
 
           
         }else setErrors({...errors,correct:true});
 
         })
-        
-        
-        
-        
-
-        
-
-        
-        // console.log(user)
       }
       getUser();
 

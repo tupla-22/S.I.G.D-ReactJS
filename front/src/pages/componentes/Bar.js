@@ -23,7 +23,7 @@ export default function Bar() {
           >
           </IconButton>
           
-          <img className="logoBar" src={logo}></img>
+          <img alt="LOGO" className="logoBar" src={logo}></img>
 
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
           </Typography>

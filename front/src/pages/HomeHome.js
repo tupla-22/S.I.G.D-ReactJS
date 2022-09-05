@@ -1,19 +1,20 @@
 import CardSport from "../componentes/CardSport";
 import MainCenter from "../componentes/MainCenter";
+import { DivFondo } from "../componentes/DivFondo";
 
 const HomeHome = () => {
   const dataBasket = "El segundo deporte más jugado";
-  const dataFootball = "El deporte más jugado"
+  const dataFootball = "El deporte más jugado";
   const sx = {
-    heigth:"70%",   
-    width:"100%",
-    display:"flex",
-    justifyContent:"space-around",
-    flexWrap:"wrap"  }
+    heigth: "70%",
+    width: "100%",
+    display: "flex",
+    justifyContent: "space-around",
+    flexWrap: "wrap",
+  };
   return (
-    <>
       <MainCenter>
-        <h1 style={{margin:"30px"}}>Deportes que tú podrías probar</h1>
+        <h1 style={{ margin: "30px" }}>Deportes que tú podrías probar</h1>
         <div style={sx}>
           <CardSport
             name="Football"
@@ -32,7 +33,6 @@ const HomeHome = () => {
           ></CardSport>
         </div>
       </MainCenter>
-    </>
   );
 };
 

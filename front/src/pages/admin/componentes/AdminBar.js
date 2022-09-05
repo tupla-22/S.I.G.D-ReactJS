@@ -43,7 +43,7 @@ const AdminBar = () => {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Link to={"homeAdmin"}><img className="logo logoUno" src={logo}></img></Link>
+          <Link to={"homeAdmin"}><img alt="LOGO" className="logo logoUno" src={logo}></img></Link>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
@@ -84,8 +84,6 @@ const AdminBar = () => {
           <Typography
             variant="h5"
             noWrap
-            component="a"
-            href=""
             sx={{
               mr: 2,
               display: { xs: "flex", md: "none" },
@@ -97,7 +95,7 @@ const AdminBar = () => {
               textDecoration: "none",
             }}
           >
-          <Link to={"homeAdmin"}><img className="logo logoDos" src={logo}></img></Link>
+          <Link to={"homeAdmin"}><img alt="LOGO" className="logo logoDos" src={logo}></img></Link>
 
           </Typography>
 

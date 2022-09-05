@@ -61,7 +61,7 @@ const StudentBar = () => {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Link to={""}><img className="logo logoUno" src={logo}></img></Link>
+          <Link to={""}><img alt="LOGO" className="logo logoUno" src={logo}></img></Link>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
@@ -112,8 +112,8 @@ const StudentBar = () => {
               color: "inherit",
               textDecoration: "none",
             }}
-          >
-          <Link to={"homeStudent"}><img className="logo logoDos" src={logo}></img></Link>
+          > 
+          <Link to={"homeStudent"}><img alt="LOGO" className="logo logoDos" src={logo}></img></Link>
 
           </Typography>
 
