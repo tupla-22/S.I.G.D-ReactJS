@@ -91,7 +91,7 @@ class Connection{
 
     static public function jwt($id,$ci){
         //pido el rol del usuario
-        $rol= GetModel::getRelDataFilter(
+        /*$rol= GetModel::getRelDataFilter(
             $rel="roles,usuarios", 
             $type="rol,usuario", 
             $select="id_rol", 
@@ -99,7 +99,7 @@ class Connection{
             $equalTo=$id, $orderBy=null, 
             $orderMode=null, 
             $startAt=null, 
-            $endAt=null);
+            $endAt=null);*/
        
         $time= time();
 
