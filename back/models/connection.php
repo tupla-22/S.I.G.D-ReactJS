@@ -1,5 +1,6 @@
 <?php
 
+require_once "get.model.php";
 
 class Connection{
 
@@ -86,8 +87,12 @@ class Connection{
 
     /**===================generar token de autenticacion====================== */
 
-    static public function jwt($id,$ci){
+    
 
+    static public function jwt($id,$ci){
+        
+        $rol= GetModel::getRelDataFilter($rel="roles,usuarios", $type="rol,usuario", $select="id_rol", $linkTo="id_usuario_rol", $equalTo=$id, $orderBy=null, $orderMode=null, $startAt=null, $endAt=null);
+       
         $time= time();
 
         $token= array(
@@ -97,7 +102,7 @@ class Connection{
             "data" =>[
                 "id" => $id,
                 "ci" => $ci,
-                "id_rol" => "0"
+                "id_rol" => $rol[0]->{"id_rol"}
                 ]
             );
 
