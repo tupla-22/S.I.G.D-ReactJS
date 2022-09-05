@@ -102,8 +102,6 @@ const StudentBar = () => {
           <Typography
             variant="h5"
             noWrap
-            component="a"
-            href=""
             sx={{
               mr: 2,
               display: { xs: "flex", md: "none" },
@@ -115,7 +113,7 @@ const StudentBar = () => {
               textDecoration: "none",
             }}
           >
-          <Link to={""}><img className="logo logoDos" src={logo}></img></Link>
+          <Link to={"homeStudent"}><img className="logo logoDos" src={logo}></img></Link>
 
           </Typography>
 

@@ -40,7 +40,7 @@ const UserAddForm = () => {
           body: datos,
         };
 
-        let response = await fetch("http://apirest.com/usuarios", data)
+        let response = await fetch("http://apirest.com/usuarios?register=true&suffix=usuario", data)
           .then((e) => e)
           .then((e) => console.log(e))
           .catch((e) => console.error(e.body));
