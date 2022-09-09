@@ -12,13 +12,13 @@ const UserAddTipeController = ({tipeUser,className, userForm,setUserForm}) => {
         // case "admin":
         // return <UserAddAdminForm className={className}/>
         // break
-        case "student":
+        case 3:
         return <UserAddStudentForm userForm={userForm} setUserForm={setUserForm} className={className}/>
         break
         // case "scout":
         // return <UserAddScoutForm className={className}/>
         // break
-        case "dt":
+        case 8:
         return <UserAddDTForm userForm={userForm} setUserForm={setUserForm} className={className} />
         break
         // case "analist":
@@ -27,7 +27,7 @@ const UserAddTipeController = ({tipeUser,className, userForm,setUserForm}) => {
         // case "administrative":
         // return <UserAddAdministrativeForm className={className}/>
         // break
-        case "juzge":
+        case 6:
         return <UserAddJuzgeForm userForm={userForm} setUserForm={setUserForm} className={className}/>
         break
     }

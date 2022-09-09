@@ -1,8 +1,17 @@
 import { Button, TextField } from "@mui/material";
+import { useContext } from "react";
+import UserContext from "../contexts/UserContext";
 import {ButtonClassic} from "./ButtonClassic";
 import FormCien from "./FormCien";
 import "./styles/ChangePasswordForm.css";
 const FormPasswordChange = () => {
+  const {user} = useContext(UserContext);
+
+  const handleSubmit = () =>{
+    console.log(user)
+  }
+
+
   return (
     <FormCien>
       
@@ -24,7 +33,7 @@ const FormPasswordChange = () => {
         className="FormCien__input"
 
       ></TextField>
-      <ButtonClassic>Cambiar</ButtonClassic>
+      <ButtonClassic onClick={handleSubmit}>Cambiar</ButtonClassic>
     </FormCien>
   );
 };

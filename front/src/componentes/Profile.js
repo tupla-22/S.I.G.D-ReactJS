@@ -22,6 +22,8 @@ const Profile = () => {
     navigate("changePassword");
   }
 
+  const user = JSON.parse(localStorage.getItem("user"))
+  console.log(user)
 
 
   return (
@@ -32,7 +34,7 @@ const Profile = () => {
             <AccountCircleIcon sx={stIcon} />
           </Button>
         </div>
-        <h3>Lucas Pérez</h3>
+        <h3>{user.primerNombre_usuario}</h3>
         <div>
           <Button  onClick={handlePassword} sx={stButton} variant="contained">
             Cambiar contraseña

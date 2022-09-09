@@ -1,16 +1,14 @@
-const Article = ({children}) => {
-    const sx={
-        padding:"2%",
-        borderRadius:"15px",
-        boxShadow:"0px 0px 10px #0004",
-        backgroundColor:"white"
-    }
-    
-    return ( 
-        <article style={sx}>
-            {children}
-        </article>
-     );
-}
- 
+import styled from "styled-components";
+
+const Article = styled.article`
+    background-color:#fff7;
+    margin:30px;
+    border-radius: 15px;
+
+
+`
+
+
+
+
 export default Article;

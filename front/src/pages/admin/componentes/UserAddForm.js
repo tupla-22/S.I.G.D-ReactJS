@@ -16,11 +16,12 @@ import React, { useState, useEffect } from "react";
 import { helpHttp } from "../../../helpers/helpHttp";
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
 import { PAlert } from "../../../componentes/PAlert";
+import { converterBase64 } from "../../../helpers/converterBase64";
 
 const UserAddForm = () => {
   const [userForm, setUserForm] = useState({});
   const [typeUser, setTypeUser] = useState("");
-  const [passwordVerified, setPasswordVerified] = useState(false);
+  const [passwordVerified, setPasswordVerified] = useState(true);
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState(false);
 
@@ -52,6 +53,7 @@ const UserAddForm = () => {
 
   const handleUser = (e) => {
     setTypeUser(e.target.value);
+    setUserForm({...userForm,"id_rol_usuario":e.target.value});
   };
 
   const handleChange = (event) => {
@@ -64,6 +66,7 @@ const UserAddForm = () => {
     if (event.target.name == "password_usuario") {
       setUserForm({ ...userForm, [event.target.name]: event.target.value });
     }
+    console.log(userForm)
   };
 
   const handlePassword = (e) => {
@@ -76,6 +79,10 @@ const UserAddForm = () => {
       setErrors(true);
     } else setPasswordVerified(false);
   };
+
+  const handlePhoto = (e)=>{
+    converterBase64(e.target.name,e.target.files,setUserForm,userForm);
+  }
 
   return (
     <Form
@@ -151,12 +158,13 @@ const UserAddForm = () => {
           id="demo-simple-select"
           onChange={handleUser}
         >
-          <MenuItem value="admin">Administrador</MenuItem>
-          <MenuItem value="student">Estudiante</MenuItem>
-          <MenuItem value="juzge">Juez</MenuItem>
-          <MenuItem value="analist">Analista</MenuItem>
-          <MenuItem value="scout">Ojeador</MenuItem>
-          <MenuItem value="dt">Director Técnico</MenuItem>
+          <MenuItem value={2}>Administrador</MenuItem>
+          <MenuItem value={3}>Estudiante</MenuItem>
+          <MenuItem value={4}>Reclutador</MenuItem>
+          <MenuItem value={5}>Analista</MenuItem>
+          <MenuItem value={6}>Juez</MenuItem>
+          <MenuItem value={7}>Ojeador</MenuItem>
+          <MenuItem value={8}>Director Técnico</MenuItem>
         </Select>
       </FormControl>
       <UserAddTipeController
@@ -167,7 +175,7 @@ const UserAddForm = () => {
       />
       <Button variant="contained" component="label">
         Foto de perfil
-        <input hidden accept="image/*" type="file" />
+        <input name="" onChange={handlePhoto} hidden accept="image/*" type="file" />
         <PhotoCamera />
       </Button>
       <IconButton

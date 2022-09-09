@@ -1,6 +1,5 @@
 import { Route, Routes, Params } from "react-router-dom";
 import "./App.css";
-import useUser from "./hooks/useUser";
 import Help from "./pages/Help";
 import Fixture from "./componentes/Fixture";
 import Home from "./pages/Home";
@@ -34,93 +33,91 @@ import ChampionshipsLoadBar from "./componentes/ChampionshipsLoadBar";
 import ChampionshipsLoad from "./componentes/ChampionshipsLoad";
 import AllTeams from "./componentes/AllTeams";
 import MatchesHistory from "./componentes/MatchesHistory";
-
-
-
-
-
+import { UserProvider } from "./contexts/UserContext";
 
 function App() {
   return (
     <div className="App">
-      <Routes>
-        <Route path="/" element={<Home />}>
-          <Route path="" element={<HomeHome />}></Route>
-          <Route path="login" element={<Login />}></Route>
-          <Route path="help" element={<Help />}></Route>
-        </Route>
-        <Route path="/student/:userId" element={<HomeStudent />}>
-          <Route path="history" element={<MatchesHistory />}></Route>
-          <Route path="HomeStudent" element={<Fixture />} />
-          <Route path="teams" element={<Teams />}>
-            <Route path="teamsAll" element={<AllTeams />}></Route>
-            <Route path="myTeam" element={<MyTeam />}></Route>
+      <UserProvider>
+        <Routes>
+          <Route path="/" element={<Home />}>
+            <Route path="" element={<HomeHome />}></Route>
+            <Route path="login" element={<Login />}></Route>
+            <Route path="help" element={<Help />}></Route>
           </Route>
-          <Route path="myStats" element={<Stats />}></Route>
-          <Route path="profile" element={<Profile />}>
-            <Route path="changePassword" element={<ChangePassword />}></Route>
-          </Route>
-        </Route>
-        <Route path="/admin/:userId" element={<HomeAdmin />}>
-          <Route path="userAdd" element={<UserAdd />} />
-          <Route path="adminUsers" element={<AdminUsers />}>
-            <Route path="userAdd" element={<UserAdd />}>
-              {" "}
+          <Route path="/student/:userId" element={<HomeStudent />}>
+            <Route path="history" element={<MatchesHistory />}></Route>
+            <Route path="HomeStudent" element={<Fixture />} />
+            <Route path="teams" element={<Teams />}>
+              <Route path="teamsAll" element={<AllTeams />}></Route>
+              <Route path="myTeam" element={<MyTeam />}></Route>
             </Route>
-            <Route path="userUpdate" element={<UserUpdate />}>
-              {" "}
-            </Route>
-            <Route path="userDelete" element={<UserDelete />}>
-              {" "}
+            <Route path="myStats" element={<Stats />}></Route>
+            <Route path="profile" element={<Profile />}>
+              <Route path="changePassword" element={<ChangePassword />}></Route>
             </Route>
           </Route>
-          <Route path="adminTeams" element={<AdminTeams />}>
-            <Route path="teamAdd" element={<TeamAdd></TeamAdd>}></Route>
-            <Route path="teamDelete" element={<TeamDelete />}></Route>
-            <Route path="teamUpdate" element={<TeamUpdate />}></Route>
-          </Route>
-          <Route path="profile" element={<Profile />}>
-            <Route path="changePassword" element={<ChangePassword />}></Route>
-          </Route>
-          <Route path="homeAdmin" element={<HomeAdm></HomeAdm>}></Route>
-        </Route>
-        <Route path="/administrative/:userId" element={<HomeAdmin />}>
-          <Route path="userAdd" element={<UserAdd />} />
-          <Route path="adminUsers" element={<AdminUsers />}>
-            <Route path="userAdd" element={<UserAdd />}>
-              {" "}
+          <Route path="/admin/:userId" element={<HomeAdmin />}>
+            <Route path="userAdd" element={<UserAdd />} />
+            <Route path="adminUsers" element={<AdminUsers />}>
+              <Route path="userAdd" element={<UserAdd />}>
+                {" "}
+              </Route>
+              <Route path="userUpdate" element={<UserUpdate />}>
+                {" "}
+              </Route>
+              <Route path="userDelete" element={<UserDelete />}>
+                {" "}
+              </Route>
             </Route>
-            <Route path="userUpdate" element={<UserUpdate />}>
-              {" "}
+            <Route path="adminTeams" element={<AdminTeams />}>
+              <Route path="teamAdd" element={<TeamAdd></TeamAdd>}></Route>
+              <Route path="teamDelete" element={<TeamDelete />}></Route>
+              <Route path="teamUpdate" element={<TeamUpdate />}></Route>
             </Route>
-            <Route path="userDelete" element={<UserDelete />}>
-              {" "}
+            <Route path="profile" element={<Profile />}>
+              <Route path="changePassword" element={<ChangePassword />}></Route>
             </Route>
+            <Route path="homeAdmin" element={<HomeAdm></HomeAdm>}></Route>
           </Route>
-          <Route path="adminTeams" element={<AdminTeams />}>
-            <Route path="teamAdd" element={<TeamAdd></TeamAdd>}></Route>
-            <Route path="teamDelete" element={<TeamDelete />}></Route>
-            <Route path="teamUpdate" element={<TeamUpdate />}></Route>
+          <Route path="/administrative/:userId" element={<HomeAdmin />}>
+            <Route path="userAdd" element={<UserAdd />} />
+            <Route path="adminUsers" element={<AdminUsers />}>
+              <Route path="userAdd" element={<UserAdd />}>
+                {" "}
+              </Route>
+              <Route path="userUpdate" element={<UserUpdate />}>
+                {" "}
+              </Route>
+              <Route path="userDelete" element={<UserDelete />}>
+                {" "}
+              </Route>
+            </Route>
+            <Route path="adminTeams" element={<AdminTeams />}>
+              <Route path="teamAdd" element={<TeamAdd></TeamAdd>}></Route>
+              <Route path="teamDelete" element={<TeamDelete />}></Route>
+              <Route path="teamUpdate" element={<TeamUpdate />}></Route>
+            </Route>
+            <Route path="profile" element={<Profile />}>
+              <Route path="changePassword" element={<ChangePassword />}></Route>
+            </Route>
+            <Route path="homeAdmin" element={<HomeAdm></HomeAdm>}></Route>
           </Route>
-          <Route path="profile" element={<Profile />}>
-            <Route path="changePassword" element={<ChangePassword />}></Route>
+          <Route path="/dt/:userId" element={<HomeDT />}>
+            <Route path="home" element={<HomePageDT />}></Route>
+            <Route path="adminTeams" element={<AdminTeams />}>
+              <Route path="teamAdd" element={<TeamAdd></TeamAdd>}></Route>
+              <Route path="teamDelete" element={<TeamDelete />}></Route>
+              <Route path="teamUpdate" element={<TeamUpdate />}></Route>
+            </Route>
+            <Route path="championshipsLoad">
+              <Route path="" element={<ChampionshipsLoad />}></Route>
+            </Route>
+            <Route path="myteams" element={<MyTeams></MyTeams>}></Route>
           </Route>
-          <Route path="homeAdmin" element={<HomeAdm></HomeAdm>}></Route>
-        </Route>
-        <Route path="/dt/:userId" element={<HomeDT />}>
-          <Route path="home" element={<HomePageDT />}></Route>
-          <Route path="adminTeams" element={<AdminTeams />}>
-            <Route path="teamAdd" element={<TeamAdd></TeamAdd>}></Route>
-            <Route path="teamDelete" element={<TeamDelete />}></Route>
-            <Route path="teamUpdate" element={<TeamUpdate />}></Route>
-          </Route>
-          <Route path="championshipsLoad">
-            <Route path="" element={<ChampionshipsLoad />}></Route>
-          </Route>
-          <Route path="myteams" element={<MyTeams></MyTeams>}></Route>
-        </Route>
-        <Route path="/*" element={<Error404 />}></Route>
-      </Routes>
+          <Route path="/*" element={<Error404 />}></Route>
+        </Routes>
+      </UserProvider>
     </div>
   );
 }

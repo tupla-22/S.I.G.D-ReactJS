@@ -8,12 +8,14 @@ const InputFechaNacimiento = ({ className, userForm,setUserForm }) => {
   const [value, setValue] = React.useState(null);
 
   const handleChange = (e)=>{
-    setValue(userForm.birthDate);
+    setValue(e);
     setUserForm(
       {
         ...userForm,
-        "fechaNac_usuario":`${e.getFullYear()}-${e.getMonth()}-${e.getDay()+1}`
+        "fechaNac_usuario":`${e.getFullYear()}-${e.getMonth()+1}-${e.getDate()}`
       }
+
+      
     );
   }
   return (
