@@ -42,17 +42,17 @@ const FormLogin = () => {
           switch(resultUser.id_rol_usuario){
             case 1:  navigate(`/admin/${resultUser.id_user}/homeAdmin`);
             break;
-            case 2:  navigate(`/administrative/${resultUser.id_user}/homeAdmin`);
+            case 2:  navigate(`/administrative/${resultUser.id_usuario}/homeAdmin`);
             break;
-            case 3:  navigate(`/student/${resultUser.id_user}/homeAdmin`);
+            case 3:  navigate(`/student/${resultUser.id_usuario}/homeAdmin`);
             break;
-            case 4:  navigate(`/scout/${resultUser.id_user}/homeAdmin`);
+            case 4:  navigate(`/scout/${resultUser.id_usuario}/homeAdmin`);
             break;
-            case 5:  navigate(`/analist/${resultUser.id_user}/homeAdmin`);
+            case 5:  navigate(`/analist/${resultUser.id_usuario}/homeAdmin`);
             break;
-            case 6:  navigate(`/juzge/${resultUser.id_user}/homeAdmin`);
+            case 6:  navigate(`/juzge/${resultUser.id_usuario}/homeAdmin`);
             break;
-            case 7:  navigate(`/dt/${resultUser.id_user}/homeAdmin`);
+            case 7:  navigate(`/dt/${resultUser.id_usuario}/homeAdmin`);
             break;
 
           }
