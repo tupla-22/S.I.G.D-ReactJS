@@ -9,6 +9,7 @@ import RecoverPassword from './RecoverPassword';
 import { helpHttp } from '../helpers/helpHttp';
 import { PAlert } from './PAlert';
 import UserContext, { UserProvider } from '../contexts/UserContext';
+import Form from './Form';
 
 const FormLogin = () => {
   const [errors, setErrors] = useState({errors:false,correct:false});
@@ -42,9 +43,9 @@ const FormLogin = () => {
           switch(resultUser.id_rol_usuario){
             case 1:  navigate(`/admin/${resultUser.id_user}/homeAdmin`);
             break;
-            case 2:  navigate(`/administrative/${resultUser.id_usuario}/homeAdmin`);
+            case 2:  navigate(`/administrative/${resultUser.id_usuario}/homeStudent`);
             break;
-            case 3:  navigate(`/student/${resultUser.id_usuario}/homeAdmin`);
+            case 3:  navigate(`/student/${resultUser.id_usuario}/homeStudent`);
             break;
             case 4:  navigate(`/scout/${resultUser.id_usuario}/homeAdmin`);
             break;
@@ -86,11 +87,11 @@ const FormLogin = () => {
   } 
 
     return ( 
-        <div className="formLogin">
-          {errors.correct && <PAlert>Cédula o contraseña incorrecta</PAlert>}
+      <Form>
+        {errors.correct && <PAlert>Cédula o contraseña incorrecta</PAlert>}
         <TextField
           name='ci_usuario'
-          className="formLogin__input"
+          className="Form__input"
           label="Cédula"
           variant='outlined'
           onChange={handleChange}
@@ -101,14 +102,17 @@ const FormLogin = () => {
         
           onChange={handleChange}
           name='password_usuario'
-          className="formLogin__input"
+          className="Form__input"
           label="Contraseña"
           variant='outlined'
           type="password"
         />
         <Box><RecoverPassword>¿Problemas para iniciar sesión?</RecoverPassword></Box>
-        <Button onClick={handleSubmit} variant='contained'>Entrar</Button>
-        </div>
+        <Button onClick={handleSubmit} className="Form__input" variant='contained'>Entrar</Button>
+
+
+
+      </Form>
      );
 }
  

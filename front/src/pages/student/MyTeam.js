@@ -8,7 +8,6 @@ const MyTeam = () => {
     <Main>
         <h3 style={{padding:20}}>Equipo: (nombre)</h3>
         <TablePlayers/>
-        <DropButton>ghola</DropButton>
     </Main>
      );
 }

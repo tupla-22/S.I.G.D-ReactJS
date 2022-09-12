@@ -2,6 +2,15 @@ import styled from "styled-components";
 
 export const DivFondo = styled.div`
 position:absolute;
+
+
+
+
+
+
+
+
+
 background: hsla(18, 76%, 85%, 1);
 
 background: linear-gradient(90deg, hsla(18, 76%, 85%, 1) 0%, hsla(203, 69%, 84%, 1) 100%);

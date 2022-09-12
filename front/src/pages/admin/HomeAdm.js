@@ -7,6 +7,8 @@ import CardAdm from "./componentes/CardAdm";
 const HomeAdm = () => {
   return (
     <DivFondo>
+      <BoxFlex>
+
       <Article>
         <h1 style={{ padding: 20 }}>
           Bienvenido al "Sistema informatico de gestion deportiva"
@@ -34,6 +36,11 @@ const HomeAdm = () => {
           name="Campeonatos"
           url="https://library.sportingnews.com/styles/twitter_card_120x120/s3/2022-02/Liga%20de%20Campeones%20Concacaf%20trofeo%20Champions%20League%20trophy%20%281%29.jpg?itok=1SSOHjvc"
         ></CardAdm>
+      </BoxFlex>
+
+
+
+
       </BoxFlex>
     </DivFondo>
   );

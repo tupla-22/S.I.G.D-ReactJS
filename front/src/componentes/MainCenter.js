@@ -1,20 +1,17 @@
-import { display, width } from "@mui/system";
+import styled from "@emotion/styled";
 
-const MainCenter = ({children}) => {
-    const sx = {
-        minHeight:"100vh",
-        width:"100%",
-        display:"flex",
-        alignItems:"center",
-        justifyContent:"center",
-        flexDirection:"column"
-    }
+const MainCenter = styled.main`
 
-    return ( 
-        <div style={sx}>
-            {children}
-        </div>
-     );
-}
- 
+        min-height:100vh;
+        width:100%;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        flex-direction:column;
+
+
+
+`
+
+
 export default MainCenter;

@@ -1,12 +1,20 @@
+import { Button } from "@mui/material";
 import { Outlet } from "react-router-dom";
-import FormLogin from "../componentes/FormLogin";
+import Link from "../componentes/Link";
+import NavAfterLogin from "../componentes/NavAfterLogin";
+import NavLink from "../componentes/NavLink";
 import Bar from "./componentes/Bar";
-import Main from "../componentes/Main";
 import "./Home.css"
 const Home = () => {
+
+    const pages= [<NavLink classAdd="responsive" to="/">Luasdf</NavLink>,"asdfasdf"]
+    const settings =[<NavLink classAdd="responsive" to="/">Luasdf</NavLink>,"asdfasdf"]
+
+
     return ( 
         <div className="home">
             <Bar/>
+            <NavAfterLogin pages={pages} settings={settings}/>
             <Outlet/>
         </div>
      );

@@ -10,8 +10,8 @@ import { useState } from "react";
 import { ButtonClassic } from "../../../componentes/ButtonClassic";
 import Form from "../../../componentes/Form";
 import "./styles/TeamAddForm.css";
-import { converterBase64 } from "../../../helpers/converterBase64";
 import { helpHttp } from "../../../helpers/helpHttp";
+import { blobToBase64 } from "../../../helpers/blobManager";
 
 const formTeamInit = {
   nombre_equipo: "",
@@ -32,7 +32,7 @@ const TeamAddForm = () => {
   };
 
   const handleEscudo = (e) => {
-    converterBase64(e.target.name, e.target.files, setTeamForm, teamForm);
+    blobToBase64(e.target.name, e.target.files, setTeamForm, teamForm);
     console.log(teamForm);
   };
 
@@ -40,9 +40,12 @@ const TeamAddForm = () => {
     console.log(teamForm)
     const confi = {
       method:"POST",
+      headers: {
+        "Content-type": "application/x-www-form-urlencoded;charset-UTF-8",
+      },
       body:new URLSearchParams(teamForm)
     }
-    fetch("http://apirest.com/equipos",confi).then(e=>e.json()).then(e=>console.log(e)).catch(e=>console.log(e));
+    fetch("http://apirest.com/equipos",confi).then(e=>e.json()).then(e=>e).catch(e=>console.log(e));
 
   };
 

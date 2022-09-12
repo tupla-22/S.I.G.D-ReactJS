@@ -11,19 +11,25 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import NavLink from "../../../componentes/NavLink";
-import logo from "../../../media/icons/logo_small.png";
-import "./styles/AdminBar.css";
-import Link from "../../../componentes/Link";
-import DropButton from "../../../componentes/DropButton";
-import BtnLogOut from "../../../componentes/BtnLogOut";
+import NavLink from "./NavLink";
+import logo from "../media/icons/logo_small.png";
+import "./styles/NavAfterLogin.css";
+import Link from "./Link";
+import DropButton from "./DropButton";
 
-const pages = [];
-const settings = [<Link to="profile">Tu perfil</Link>,<BtnLogOut></BtnLogOut>];
+const settings = [
+  <Link to="profile">Tu perfil</Link>,
+  <Link to="/">Salir</Link>,
+  
+];
 
-const AdminBar = () => {
+const NavAfterLogin = ({pages=[]}) => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+
+
+  const usuario = JSON.parse(localStorage.getItem("user"))
+
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -44,7 +50,7 @@ const AdminBar = () => {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Link to={"homeAdmin"}><img alt="LOGO" className="logo logoUno" src={logo}></img></Link>
+          <Link to={""}><img alt="LOGO" className="logo logoUno" src={logo}></img></Link>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
@@ -95,21 +101,21 @@ const AdminBar = () => {
               color: "inherit",
               textDecoration: "none",
             }}
-          >
-          <Link to={"homeAdmin"}><img alt="LOGO" className="logo logoDos" src={logo}></img></Link>
+          > 
+          <Link to={"homeStudent"}><img alt="LOGO" className="logo logoDos" src={logo}></img></Link>
 
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             
             {pages.map((page, i) => (
-              <Button
+              <Box
                 key={"page" + i}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: "white", display: "block" }}
               >
                 {page}
-              </Button>
+              </Box>
             ))}
             
           </Box>
@@ -118,7 +124,7 @@ const AdminBar = () => {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar alt="Remy Sharp" src={usuario.fotoPerfil_usuario} />
               </IconButton>
             </Tooltip>
             <Menu
@@ -149,4 +155,8 @@ const AdminBar = () => {
     </AppBar>
   );
 };
-export default AdminBar;
+export default NavAfterLogin;
+
+
+
+

@@ -5,33 +5,17 @@ import { Table } from "./Table";
 import { TH } from "./TH";
 import Main from "./Main";
 import FixtureRow from "./FixtureRow";
+import FixtureBar from "./FixtureBar";
+import { Outlet } from "react-router-dom";
 
 const Fixture = () => {
   return (
-    <Main>
-      <Table>
-        <thead>
-          <tr>
-            <TH>
-              <DateRangeIcon color="secondary" />
-            </TH>
-            <TH>
-              <AccessTimeFilledIcon color="secondary" />
-            </TH>
-            <TH>
-              <ShieldIcon color="secondary"></ShieldIcon>
-            </TH>
-            <TH>VS</TH>
-            <TH>
-              <ShieldIcon color="secondary"></ShieldIcon>
-            </TH>
-          </tr>
-        </thead>
-        <tbody>
-          <FixtureRow></FixtureRow>
-        </tbody>
-      </Table>
-    </Main>
+    <>
+      <FixtureBar />
+      <Main>
+        <Outlet />
+      </Main>
+    </>
   );
 };
 

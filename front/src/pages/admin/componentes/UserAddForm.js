@@ -13,10 +13,9 @@ import InputFechaNacimiento from "../../../componentes/InputFechaNacimiento";
 import "./styles/UserAddForm.css";
 import UserAddTipeController from "./UserAddTipeController";
 import React, { useState, useEffect } from "react";
-import { helpHttp } from "../../../helpers/helpHttp";
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
 import { PAlert } from "../../../componentes/PAlert";
-import { converterBase64 } from "../../../helpers/converterBase64";
+import { blobToBase64 } from "../../../helpers/blobManager";
 
 const UserAddForm = () => {
   const [userForm, setUserForm] = useState({});
@@ -38,14 +37,13 @@ const UserAddForm = () => {
           headers: {
             "Content-type": "application/x-www-form-urlencoded;charset-UTF-8",
           },
-          body: datos,
+          body: new URLSearchParams(userForm)
         };
-
+        console.log(userForm)
         let response = await fetch("http://apirest.com/usuarios?register=true&suffix=usuario", data)
-          .then((e) => e)
+          .then((e) => e.json())
           .then((e) => console.log(e))
-          .catch((e) => console.error(e.body));
-        console.log(response);
+          .catch((e) => console.error(e));
       };
       userAdd();
     }
@@ -81,7 +79,7 @@ const UserAddForm = () => {
   };
 
   const handlePhoto = (e)=>{
-    converterBase64(e.target.name,e.target.files,setUserForm,userForm);
+    blobToBase64(e.target.name,e.target.files,setUserForm,userForm);
   }
 
   return (
@@ -175,7 +173,7 @@ const UserAddForm = () => {
       />
       <Button variant="contained" component="label">
         Foto de perfil
-        <input name="" onChange={handlePhoto} hidden accept="image/*" type="file" />
+        <input name="fotoPerfil_usuario" onChange={handlePhoto} hidden accept="image/*" type="file" />
         <PhotoCamera />
       </Button>
       <IconButton

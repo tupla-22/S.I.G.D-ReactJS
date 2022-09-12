@@ -13,7 +13,7 @@ const UserList = () => {
       .then((res) => res.json())
       .then((dat) => {
         setData(dat.result);
-        setStatus(true)
+        setStatus(true);
       })
       .catch((e) => {
         console.log(e);
@@ -22,25 +22,20 @@ const UserList = () => {
 
   return (
     <>
-    <h3>Usuarios</h3>
-    <DivOver>
+      <h3>Usuarios</h3>
+      <DivOver>
+        <Table>
+          <thead>
+            <TH>Nombre</TH>
+            <TH>Apellido</TH>
+            <TH>Cedula de identidad</TH>
+            <TH>Email</TH>
+            <TH>Fecha de nacimiento</TH>
+          </thead>
 
-    <Table>
-        <thead>
-          <TH>Nombre</TH>
-          <TH>Apellido</TH>
-          <TH>Cedula de identidad</TH>
-          <TH>Email</TH>
-          <TH>Fecha de nacimiento</TH>
-        </thead>
-
-        <tbody>
-            {status &&  data.map(e=>(<UserListRow data={e}/>))
-            }
-
-        </tbody>
-      </Table>
-    </DivOver>
+          <tbody>{status && data.map((e) => <UserListRow data={e} />)}</tbody>
+        </Table>
+      </DivOver>
     </>
   );
 };

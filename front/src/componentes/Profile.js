@@ -5,6 +5,8 @@ import { Outlet, useNavigate } from "react-router-dom";
 const Profile = () => {
   const stAvatar = {
     borderRadius: "100%",
+    height:"350px",
+    width:"350px"
   };
   const stButton = {
     backgroundColor: "secondary.main",
@@ -31,7 +33,7 @@ const Profile = () => {
       <div className="section">
         <div className="profile__avatar">
           <Button sx={stAvatar}>
-            <AccountCircleIcon sx={stIcon} />
+            <img style={stAvatar} src={user.fotoPerfil_usuario}></img> 
           </Button>
         </div>
         <h3>{user.primerNombre_usuario}</h3>
