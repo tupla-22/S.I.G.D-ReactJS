@@ -10,7 +10,7 @@ const BtnLogOut = () => {
     }
 
     return ( 
-        <Link classAdd="responsive" to="/" onClick={handleOut}>Salir</Link>
+        <Link to="/" onClick={handleOut}>Salir</Link>
      );
 }
  

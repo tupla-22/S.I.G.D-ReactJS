@@ -183,9 +183,9 @@ const UserAddForm = () => {
         component="label"
       ></IconButton>
 
-      <Button variant="contained" onClick={handleClick}>
+      <ButtonClassic variant="contained" onClick={handleClick}>
         Agregar
-      </Button>
+      </ButtonClassic>
     </Form>
   );
 };

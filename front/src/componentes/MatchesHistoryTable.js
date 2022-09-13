@@ -1,7 +1,7 @@
 import { DivOver } from "./DivOver";
 import MatchesHistoryTableRow from "./MatchesHistoryTableRow";
-import { Table } from "./Table";
-import { TH } from "./TH";
+import { Table } from "./styledComponents/Table";
+import { TH } from "./styledComponents/TH";
 
 const MatchesHistoryTable = () => {
 

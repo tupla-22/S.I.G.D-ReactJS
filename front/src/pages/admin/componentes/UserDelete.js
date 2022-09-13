@@ -1,7 +1,7 @@
 import UserDelForm from "./UserDelForm";
 import { useState } from "react";
 import UserSearch from "./UserSearch";
-import Main from "../../../componentes/Main";
+import Main from "../../../componentes/styledComponents/Main";
 import UserList from "./UserList";
 const UserDelete = () => {
     const [idDel, setIdDel] = useState("");

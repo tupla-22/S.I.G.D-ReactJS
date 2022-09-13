@@ -1,6 +1,6 @@
-import Main from "./Main";
+import Main from "./styledComponents/Main";
 import MatchesHistoryTable from "./MatchesHistoryTable";
-import { P } from "./P";
+import { P } from "./styledComponents/P";
 
 const MatchesHistory = () => {
     return ( 

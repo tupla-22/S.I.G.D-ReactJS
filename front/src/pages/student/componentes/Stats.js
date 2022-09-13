@@ -1,5 +1,5 @@
-import Main from "../../../componentes/Main";
-import { P } from "../../../componentes/P";
+import Main from "../../../componentes/styledComponents/Main";
+import { P } from "../../../componentes/styledComponents/P";
 import MyStatsTable from "./MyStatsTable";
 
 const Stats = () => {

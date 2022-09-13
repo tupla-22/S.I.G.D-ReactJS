@@ -1,9 +1,9 @@
 
 import { DivOver } from "../../../componentes/DivOver";
-import { TH } from "../../../componentes/TH";
+import { TH } from "../../../componentes/styledComponents/TH";
 import TeamsListRow from "./TeamsListRow";
 import React, { useState, useEffect } from 'react';
-import { Table } from "../../../componentes/Table";
+import { Table } from "../../../componentes/styledComponents/Table";
 
 const TeamsList = () => {
     const [data, setData] = useState([]);

@@ -16,10 +16,11 @@ import logo from "../media/icons/logo_small.png";
 import "./styles/NavAfterLogin.css";
 import Link from "./Link";
 import DropButton from "./DropButton";
+import BtnLogOut from "./BtnLogOut";
 
 const settings = [
   <Link to="profile">Tu perfil</Link>,
-  <Link to="/">Salir</Link>,
+  <BtnLogOut/>
   
 ];
 

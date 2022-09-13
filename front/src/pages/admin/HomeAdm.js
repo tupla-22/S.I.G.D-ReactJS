@@ -1,7 +1,7 @@
-import Article from "../../componentes/Article";
+import Article from "../../componentes/styledComponents/Article";
 import { BoxFlex } from "../../componentes/BoxFlex";
 import { DivFondo } from "../../componentes/DivFondo";
-import Main from "../../componentes/Main";
+import Main from "../../componentes/styledComponents/Main";
 import CardAdm from "./componentes/CardAdm";
 
 const HomeAdm = () => {
@@ -10,10 +10,10 @@ const HomeAdm = () => {
       <BoxFlex>
 
       <Article>
-        <h1 style={{ padding: 20 }}>
+        <h1 style={{ padding: 20,color:"#fff" }}>
           Bienvenido al "Sistema informatico de gestion deportiva"
         </h1>
-        <p style={{ padding: 20 }}>
+        <p style={{ padding: 20,color:"#fff"}}>
           En este programa, tu como administrador puedes hacer muichas cosas,
           como agregar, modificar y elminiar usuarios, equipos, deportes y mucho
           mas

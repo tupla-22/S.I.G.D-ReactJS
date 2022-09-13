@@ -1,4 +1,4 @@
-import { TD } from "../../../componentes/TD";
+import { TD } from "../../../componentes/styledComponents/TD";
 
 const UserListRow = ({ data }) => {
   return(

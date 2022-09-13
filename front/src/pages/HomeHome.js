@@ -1,8 +1,9 @@
 import CardSport from "../componentes/CardSport";
 import MainCenter from "../componentes/MainCenter";
 import { DivFondo } from "../componentes/DivFondo";
-import Article from "../componentes/Article";
+import Article from "../componentes/styledComponents/Article";
 import { BoxCenter } from "../componentes/BoxCenter";
+import { H2 } from "../componentes/styledComponents/H2";
 
 const HomeHome = () => {
   const dataBasket = "El segundo deporte más jugado";
@@ -18,7 +19,7 @@ const HomeHome = () => {
     <MainCenter>
       <Article>
         <BoxCenter>
-          <h1 style={{ margin: "30px" }}>Deportes que tú podrías probar</h1>
+          <H2 style={{ margin: "30px" }}>Deportes que tú podrías probar</H2>
           <div style={sx}>
             <CardSport
               name="Football"

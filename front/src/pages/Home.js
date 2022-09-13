@@ -14,7 +14,6 @@ const Home = () => {
     return ( 
         <div className="home">
             <Bar/>
-            <NavAfterLogin pages={pages} settings={settings}/>
             <Outlet/>
         </div>
      );

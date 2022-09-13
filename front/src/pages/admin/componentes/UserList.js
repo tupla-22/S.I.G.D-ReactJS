@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { DivOver } from "../../../componentes/DivOver";
-import { Table } from "../../../componentes/Table";
-import { TH } from "../../../componentes/TH";
+import { Table } from "../../../componentes/styledComponents/Table";
+import { TH } from "../../../componentes/styledComponents/TH";
 import UserListRow from "./UserListRow";
 
 const UserList = () => {
