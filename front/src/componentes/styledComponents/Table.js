@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import MatchesHistoryTableRow from "./MatchesHistoryTableRow";
+import MatchesHistoryTableRow from "../MatchesHistoryTableRow";
 
 export const Table = styled.table`
   width: fit-content;

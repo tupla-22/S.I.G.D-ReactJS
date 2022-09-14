@@ -1,4 +1,4 @@
-import Main from "../../../componentes/Main";
+import Main from "../../../componentes/styledComponents/Main";
 
 const History = () => {
     return ( 

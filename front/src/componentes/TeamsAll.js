@@ -1,4 +1,4 @@
-import Main from "./Main";
+import Main from "./styledComponents/Main";
 
 const TeamsAll = () => {
     return ( 

@@ -5,9 +5,14 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-
+import {useNavigate} from "react-router-dom";
 
 const CardSport = ({url,name,data}) => {
+  const navigate = useNavigate();
+  const handleClick= ()=>{
+    navigate("login");
+  }
+
     return ( 
         <Card sx={{ maxWidth: 345,margin:"20px",width:"300px" }}>
       <CardMedia
@@ -25,7 +30,7 @@ const CardSport = ({url,name,data}) => {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Unirme</Button>
+        <Button onClick={handleClick} size="small">Unirme</Button>
       </CardActions>
     </Card>
 

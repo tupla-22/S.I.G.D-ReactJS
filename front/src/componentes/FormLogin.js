@@ -4,15 +4,19 @@ import { Box } from '@mui/system';
 import {useNavigate } from 'react-router-dom';
 import Link from './Link';
 import "./styles/FormLogin.css"
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import RecoverPassword from './RecoverPassword';
 import { helpHttp } from '../helpers/helpHttp';
 import { PAlert } from './PAlert';
+import UserContext, { UserProvider } from '../contexts/UserContext';
+import Form from './Form';
 
 const FormLogin = () => {
   const [errors, setErrors] = useState({errors:false,correct:false});
   const [usuario, setUsuario] = useState({password_usuario:null,ci_usuario:null});
   const navigate = useNavigate();
+
+  const {user,setUser} = useContext(UserContext);
 
   const regexUsuario =/^([0-9]){1,12}$/;
 
@@ -31,9 +35,29 @@ const FormLogin = () => {
       const getUser = async ()=>{
         const resp = await fetch("http://apirest.com/usuarios?login=true&suffix=usuario",options).then(e=>e.json()).then(e=>{
         if(e.status==200){
-          setErrors({...errors,correct:false});
-          navigate(`/admin/${e.result[0].ci_usuario}/homeAdmin`);
+          let resultUser = e.result[0];
 
+          setErrors({...errors,correct:false});
+          localStorage.setItem("user",JSON.stringify(resultUser));
+          setUser(resultUser);
+          switch(resultUser.id_rol_usuario){
+            case 1:  navigate(`/admin/${resultUser.id_user}/homeAdmin`);
+            break;
+            case 2:  navigate(`/administrative/${resultUser.id_usuario}/homeStudent`);
+            break;
+            case 3:  navigate(`/student/${resultUser.id_usuario}/homeStudent`);
+            break;
+            case 4:  navigate(`/scout/${resultUser.id_usuario}/homeAdmin`);
+            break;
+            case 5:  navigate(`/analist/${resultUser.id_usuario}/homeAdmin`);
+            break;
+            case 6:  navigate(`/juzge/${resultUser.id_usuario}/homeAdmin`);
+            break;
+            case 7:  navigate(`/dt/${resultUser.id_usuario}/homeAdmin`);
+            break;
+
+          }
+          console.log(user)
           
         }else setErrors({...errors,correct:true});
 
@@ -63,11 +87,11 @@ const FormLogin = () => {
   } 
 
     return ( 
-        <div className="formLogin">
-          {errors.correct && <PAlert>Cédula o contraseña incorrecta</PAlert>}
+      <Form>
+        {errors.correct && <PAlert>Cédula o contraseña incorrecta</PAlert>}
         <TextField
           name='ci_usuario'
-          className="formLogin__input"
+          className="Form__input"
           label="Cédula"
           variant='outlined'
           onChange={handleChange}
@@ -78,14 +102,17 @@ const FormLogin = () => {
         
           onChange={handleChange}
           name='password_usuario'
-          className="formLogin__input"
+          className="Form__input"
           label="Contraseña"
           variant='outlined'
           type="password"
         />
         <Box><RecoverPassword>¿Problemas para iniciar sesión?</RecoverPassword></Box>
-        <Button onClick={handleSubmit} variant='contained'>Entrar</Button>
-        </div>
+        <Button onClick={handleSubmit} className="Form__input" variant='contained'>Entrar</Button>
+
+
+
+      </Form>
      );
 }
  

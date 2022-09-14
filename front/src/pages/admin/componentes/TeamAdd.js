@@ -1,12 +1,7 @@
-import Main from "../../../componentes/Main";
+import Main from "../../../componentes/styledComponents/Main";
 import TeamAddForm from "./TeamAddForm";
-import UserAddForm from "./UserAddForm";
 
 const TeamAdd = () => {
-
-  const sx = {
-
-  }
 
   return (
     <Main>

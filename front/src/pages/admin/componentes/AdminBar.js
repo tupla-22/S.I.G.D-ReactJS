@@ -16,9 +16,10 @@ import logo from "../../../media/icons/logo_small.png";
 import "./styles/AdminBar.css";
 import Link from "../../../componentes/Link";
 import DropButton from "../../../componentes/DropButton";
+import BtnLogOut from "../../../componentes/BtnLogOut";
 
-const pages = [<NavLink to="homeAdmin" classAdd="responsive">Home</NavLink>,<NavLink to="adminUsers" classAdd="responsive">Usuarios</NavLink>,<NavLink to="adminTeams" classAdd="responsive">Equipos</NavLink>];
-const settings = [<Link to="profile">Tu perfil</Link>,<Link to="/">Salir</Link>];
+const pages = [];
+const settings = [<Link to="profile">Tu perfil</Link>,<BtnLogOut></BtnLogOut>];
 
 const AdminBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);

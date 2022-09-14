@@ -1,5 +1,5 @@
 import DropButton from "../../componentes/DropButton";
-import Main from "../../componentes/Main";
+import Main from "../../componentes/styledComponents/Main";
 import TablePlayers from "../../componentes/TablePlayers";
 
 const MyTeam = () => {
@@ -8,7 +8,6 @@ const MyTeam = () => {
     <Main>
         <h3 style={{padding:20}}>Equipo: (nombre)</h3>
         <TablePlayers/>
-        <DropButton>ghola</DropButton>
     </Main>
      );
 }

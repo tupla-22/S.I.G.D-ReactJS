@@ -1,6 +1,6 @@
 import { DivOver } from "../../../componentes/DivOver";
-import { Table } from "../../../componentes/Table";
-import { TH } from "../../../componentes/TH";
+import { Table } from "../../../componentes/styledComponents/Table";
+import { TH } from "../../../componentes/styledComponents/TH";
 import MyStatsTableRow from "./MyStatsTableRow";
 import React, { useState, useEffect } from 'react';
 

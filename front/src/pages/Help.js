@@ -1,24 +1,30 @@
-import Main from "../componentes/Main";
+import styled from "styled-components";
+import Article from "../componentes/styledComponents/Article";
+import Main from "../componentes/styledComponents/Main";
+import { PW } from "../componentes/styledComponents/PW";
+import { H3 } from "../componentes/styledComponents/H3";
 import "./Help.css"
+import { H2 } from "../componentes/styledComponents/H2";
 const Help = () => {
+
     return ( 
 
-        <div className="help">
-            <article className="help__about">
+        <Main>
+            <Article>
                 
-                <h2>Sistema informático de gestión deportiva</h2>
-                <p>Esta aplicación fue creada para poder llevar a cabo la gestión de los deportes realizados en la institución UTU. <br/>
+                <H2>Sistema informático de gestión deportiva</H2>
+                <PW>Esta aplicación fue creada para poder llevar a cabo la gestión de los deportes realizados en la institución UTU. <br/>
                 y así realizar estadísticas de los jugadores y equipos que pertenezcan a esta web
-                </p>
-            </article>
+                </PW>
+            </Article>
             
-            <article className="help__about">
+            <Article>
                 
-                <h2>¿Problemas para iniciar sesión?</h2>
-                <p>En dicho caso deberá comunicarse con su director tércnico e informarle de esa situación para poder solucionarlo.
-                </p>
-            </article>
-        </div>
+                <H2>¿Problemas para iniciar sesión?</H2>
+                <PW>En dicho caso deberá comunicarse con su director tércnico e informarle de esa situación para poder solucionarlo.
+                </PW>
+            </Article>
+        </Main>
 
      );
 }

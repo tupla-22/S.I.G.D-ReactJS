@@ -1,5 +1,5 @@
 import AllTeamsTable from "./AllTeamsTable";
-import Main from "./Main";
+import Main from "./styledComponents/Main";
 
 const AllTeams = () => {
     const sx = {

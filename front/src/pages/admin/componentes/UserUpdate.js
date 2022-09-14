@@ -1,4 +1,4 @@
-import Main from "../../../componentes/Main";
+import Main from "../../../componentes/styledComponents/Main";
 import UserList from "./UserList";
 import UserUpdateForm from "./UserUpdateForm";
 

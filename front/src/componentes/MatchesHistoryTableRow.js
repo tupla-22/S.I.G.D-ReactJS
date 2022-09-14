@@ -1,4 +1,4 @@
-import { TD } from "./TD";
+import { TD } from "./styledComponents/TD";
 
 const MatchesHistoryTableRow = () => {
 

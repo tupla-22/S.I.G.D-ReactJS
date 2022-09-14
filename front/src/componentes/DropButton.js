@@ -7,7 +7,7 @@ import Link from './Link';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import "./styles/DropButton.css"
 
-export default function DropButton({children,className}) {
+export default function DropButton({pages,children,className}) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -40,8 +40,7 @@ export default function DropButton({children,className}) {
         onClose={handleClose}
         TransitionComponent={Fade}
       >
-        <MenuItem onClick={handleClose}><Link to="teams/myTeam">Mi equipo</Link></MenuItem>
-        <MenuItem onClick={handleClose}><Link to="teams/teamsAll">Todos los equipos</Link></MenuItem>
+        {pages.map((e)=><MenuItem onClick={handleClose}><Link to={e.to}>{e.name}</Link></MenuItem>)}
       </Menu>
     </div>
   );
