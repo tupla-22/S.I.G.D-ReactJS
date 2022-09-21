@@ -8,12 +8,18 @@ const HomeAdmin = () => {
     <NavLink to="homeAdmin" classAdd="responsive">
       Home
     </NavLink>,
-    <NavLink to="adminUsers/userAdd" classAdd="responsive">
+    <NavLink to="adminUsers/add" classAdd="responsive">
       Usuarios
     </NavLink>,
-    <NavLink to="adminTeams/teamAdd" classAdd="responsive">
+    <NavLink to="adminTeams/add" classAdd="responsive">
       Equipos
     </NavLink>,
+    <NavLink to="championship/add" classAdd="responsive">
+      Campeonatos
+    </NavLink>,
+    <NavLink to="match/add" classAdd="responsive">
+      Partidos
+    </NavLink>
   ];
   return (
     <div className="homeAdmin">

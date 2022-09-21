@@ -29,7 +29,6 @@ const UserAddForm = () => {
       const userAdd = async () => {
         const ciuser = parseInt(userForm.ci_usuario);
         setUserForm({ ...userForm, ci_usuario: ciuser });
-        console.log(JSON.stringify(userForm));
         const datos = new URLSearchParams(userForm);
 
         const data = {
@@ -39,10 +38,9 @@ const UserAddForm = () => {
           },
           body: new URLSearchParams(userForm)
         };
-        console.log(userForm)
         let response = await fetch("http://apirest.com/usuarios?register=true&suffix=usuario", data)
           .then((e) => e.json())
-          .then((e) => console.log(e))
+          .then((e) => e)
           .catch((e) => console.error(e));
       };
       userAdd();
@@ -64,7 +62,6 @@ const UserAddForm = () => {
     if (event.target.name == "password_usuario") {
       setUserForm({ ...userForm, [event.target.name]: event.target.value });
     }
-    console.log(userForm)
   };
 
   const handlePassword = (e) => {
@@ -124,6 +121,7 @@ const UserAddForm = () => {
         name="email_usuario"
         className="Form__input"
         label="Email"
+        type="email"
       ></TextField>
       <InputFechaNacimiento userForm={userForm} setUserForm={setUserForm} />
 
@@ -159,10 +157,9 @@ const UserAddForm = () => {
           <MenuItem value={2}>Administrador</MenuItem>
           <MenuItem value={3}>Estudiante</MenuItem>
           <MenuItem value={4}>Reclutador</MenuItem>
-          <MenuItem value={5}>Analista</MenuItem>
-          <MenuItem value={6}>Juez</MenuItem>
-          <MenuItem value={7}>Ojeador</MenuItem>
-          <MenuItem value={8}>Director Técnico</MenuItem>
+          <MenuItem value={5}>Juez</MenuItem>
+          <MenuItem value={6}>Director Técnico</MenuItem>
+          <MenuItem value={7}>Analista</MenuItem>
         </Select>
       </FormControl>
       <UserAddTipeController

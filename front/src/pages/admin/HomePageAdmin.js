@@ -1,6 +1,6 @@
 import Article from "../../componentes/styledComponents/Article";
 import { BoxFlex } from "../../componentes/BoxFlex";
-import { DivFondo } from "../../componentes/DivFondo";
+import { DivFondo } from "../../componentes/styledComponents/DivFondo";
 import Main from "../../componentes/styledComponents/Main";
 import CardAdm from "./componentes/CardAdm";
 

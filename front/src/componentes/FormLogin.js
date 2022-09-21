@@ -43,21 +43,20 @@ const FormLogin = () => {
           switch(resultUser.id_rol_usuario){
             case 1:  navigate(`/admin/${resultUser.id_user}/homeAdmin`);
             break;
-            case 2:  navigate(`/administrative/${resultUser.id_usuario}/homeStudent`);
+            case 2:  navigate(`/administrative/${resultUser.id_usuario}/homeAdministrative`);
             break;
             case 3:  navigate(`/student/${resultUser.id_usuario}/homeStudent`);
             break;
-            case 4:  navigate(`/scout/${resultUser.id_usuario}/homeAdmin`);
+            case 4:  navigate(`/scout/${resultUser.id_usuario}/homeScout`);
             break;
-            case 5:  navigate(`/analist/${resultUser.id_usuario}/homeAdmin`);
+            case 5:  navigate(`/judge/${resultUser.id_usuario}/homeJudge`);
             break;
-            case 6:  navigate(`/juzge/${resultUser.id_usuario}/homeAdmin`);
+            case 6:  navigate(`/dt/${resultUser.id_usuario}/homeDt`);
             break;
-            case 7:  navigate(`/dt/${resultUser.id_usuario}/homeAdmin`);
+            case 7:  navigate(`/analist/${resultUser.id_usuario}/homeAnalist`);
             break;
 
           }
-          console.log(user)
           
         }else setErrors({...errors,correct:true});
 
@@ -83,7 +82,6 @@ const FormLogin = () => {
   }
   const handleChange = (e) =>{ 
     setUsuario({...usuario,[e.target.name]:e.target.value});
-    console.log(usuario)
   } 
 
     return ( 

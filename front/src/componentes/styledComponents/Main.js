@@ -1,20 +1,16 @@
-import { display, width } from "@mui/system";
+import styled from "styled-components";
 
-const Main = ({children}) => {
-    const sx = {
-        height:"100vh",
-        width:"100%",
-        display:"flex",
-        alignItems:"center",
-        flexDirection:"column",
-        paddingTop:"100px"
-    }
 
-    return ( 
-        <div style={sx}>
-            {children}
-        </div>
-     );
-}
- 
+
+
+const Main = styled.main`
+        height:100vh;
+        width:100%;
+        display:flex;
+        align-items:center;
+        flex-direction:column;
+        padding-top:100px
+`
+
+
 export default Main;

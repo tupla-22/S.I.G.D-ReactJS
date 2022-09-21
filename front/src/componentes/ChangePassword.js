@@ -1,6 +1,6 @@
 
 import ChangePasswordForm from "./ChangePasswordForm";
-const changePassword = () => {
+const ChangePassword = () => {
 
   return (
 
@@ -8,4 +8,4 @@ const changePassword = () => {
   );
 };
 
-export default changePassword;
+export default ChangePassword;
