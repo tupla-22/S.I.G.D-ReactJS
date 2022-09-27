@@ -39,6 +39,17 @@ class GetController{
         $return -> fncResponse($response);
     }
 
+    /**======================peticion personalizada partidos pendientes============================== */
+
+    static function getMatcheck($sport, $disputed,  $orderBy, $orderMode, $startAt, $endAt ){
+        
+        $response = GetModel::getMatcheck($sport, $disputed,  $orderBy, $orderMode, $startAt, $endAt );
+        
+        $return=new GetController();
+        
+        $return -> fncResponse($response);
+    }
+
     /**==============================peticiones get para el buscador sin relaciones====================================*/
 
     static function getDataSearch($table, $select, $linkTo, $search, $orderBy, $orderMode, $startAt, $endAt){

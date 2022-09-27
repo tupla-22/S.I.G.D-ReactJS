@@ -34,7 +34,7 @@ if(count($routesArray)==0){
     /**----------------get------------------ */
 
     if($_SERVER["REQUEST_METHOD"]=="GET"){
-
+        
         include "services/get.php";
     }
         /**----------------post------------------ */

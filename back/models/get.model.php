@@ -330,6 +330,219 @@ class GetModel{
 
     }
 
+    
+
+    /**==================peticion personalizada partidos pendientes======================= */   
+    static public function getMatcheck($sport, $disputed, $orderBy, $orderMode, $startAt, $endAt){
+
+        
+        $idSportTeamArray=array();
+        
+        for ($i=0; $i < count($idSportTeamArray); $i++) { 
+                    $idSportTeamArray[]="id_deporte_equipo";
+                    
+                }
+
+
+
+        $sportArray= explode(",",$sport);
+        
+        
+        
+        
+        
+        $linkText="";
+
+        if(count($idSportTeamArray)>1){
+
+            foreach($idSportTeamArray as $key => $value){
+
+                
+                if($key>0){
+
+                    $linkText .= "OR e.".$value." = :".$value." ";
+
+                }
+            }
+        }
+        
+        $select="id_partido,fecha_partido,tipo_partido,disputado_partido,
+        (select id_equipo from equipos e where e.id_equipo=p.id_equipoLocal_partido ) as 'id_equipoLocal',
+        (select id_equipo from equipos e where e.id_equipo=p.id_equipoVisitante_partido) as 'id_equipoVisitante',
+        (select nombre_equipo from equipos e where e.id_equipo=p.id_equipoLocal_partido ) as 'nombre_equipoLocal',
+        (select nombre_equipo from equipos e where e.id_equipo=p.id_equipoVisitante_partido) as 'nombre_equipoVisitante',
+        (select id_deporte_equipo from equipos e where e.id_equipo=p.id_equipoLocal_partido) as 'id_deporte_equipoLocal',
+        (select id_deporte_equipo from equipos e where e.id_equipo=p.id_equipoVisitante_partido) as 'id_deporte_equipoVisitante',
+        (select escudo_equipo from equipos e where e.id_equipo=p.id_equipoLocal_partido) as 'escudo_equipoLocal',
+        (select escudo_equipo from equipos e where e.id_equipo=p.id_equipoVisitante_partido) as 'escudo_equipoVisitante'";
+        $from='partidos p';
+        $innerJoinText="INNER join equipos e on p.id_partido";
+
+        /**=====================organizamos filtros ============================ */
+        
+        
+        
+
+        $where="(e.$idSportTeamArray[0]=:$idSportTeamArray[0] $linkText)
+        and disputado_partido=$disputed 
+        and (e.id_equipo=p.id_equipoLocal_partido or e.id_equipo=p.id_equipoVisitante_partido)
+        group by p.id_partido";
+        /**=====================organizamos relaciones ============================ */
+
+        
+
+        
+
+            //-------sin ordenar ni limitar datos-----------
+
+            $sql="SELECT $select 
+            FROM $from $innerJoinText
+            WHERE $where
+            ";
+            
+            //-------ordenar datos sin limites-----------
+
+            if($orderBy != null && $orderMode != null && $startAt == null && $endAt == null){
+                $sql="select $select 
+                from $from $innerJoinText 
+                WHERE $where
+                ORDER BY $orderBy $orderMode";
+            }
+
+            //------- ordenar y limitar datos-----------
+
+            if($orderBy != null && $orderMode != null && $startAt != null && $endAt != null){
+                $sql="select $select 
+                from $from $innerJoinText 
+                WHERE $where
+                ORDER BY $orderBy $orderMode LIMIT $startAt, $endAt";
+            }
+
+            //-------limitar datos, sin ordenar-----------
+
+            if($orderBy == null && $orderMode == null && $startAt != null && $endAt != null){
+                $sql="select $select 
+                from $from $innerJoinText 
+                WHERE $where
+                LIMIT $startAt, $endAt";
+            }
+
+            $stmt=Connection::connect()->prepare($sql);
+            
+
+            foreach ($idSportTeamArray as $key => $value) {
+                
+                
+                $stmt-> bindParam(":".$value, $sportArray[$key], PDO::PARAM_STR);
+                echo '<pre>'; print_r($sportArray[$key]); echo '</pre>';
+                
+    
+            }
+
+            try {
+
+                $stmt->execute();
+
+            } catch (PDOException $Exeption) {
+                
+                return null;
+            }
+            echo '<pre>'; print_r($stmt); echo '</pre>';
+            return $stmt->fetchAll(PDO::FETCH_CLASS);
+            
+            
+
+      
+
+
+    }
+
+    /**==================peticion personalizada partidos pendientes2======================= */
+/*
+    static public function getMatcheck2($sport, $disputed, $select, $orderBy, $orderMode, $startAt, $endAt){
+
+        /**=====================organizamos filtros ============================ 
+        $sportArray= explode(",",$sport);
+        
+        $sportText="";
+
+        if(count($sportArray)>1){
+
+            foreach($sportArray as $key => $value){
+
+                
+                if($key>0){
+
+                    $sportText .= "AND ".$value." = :".$value." ";
+
+                }
+            }
+        }
+        /**=====================organizamos relaciones ============================ *
+        
+        $innerJoinText="INNER join equipos e
+        on p.id_equipoLocal_partido=e.id_equipo or p.id_equipoVisitante_partido=e.id_equipo";
+
+
+
+            
+
+            //-------sin ordenar ni limitar datos-----------
+
+            $sql="SELECT $select 
+            FROM 'partidos p' $innerJoinText
+            WHERE $sportArray[0]=:$sportArray[0] $sportText";
+
+            //-------ordenar datos sin limites-----------
+
+            if($orderBy != null && $orderMode != null && $startAt == null && $endAt == null){
+                $sql="select $select 
+                from 'partidos p' $innerJoinText 
+                WHERE $sportArray[0]=:$sportArray[0] $sportText
+                ORDER BY $orderBy $orderMode";
+            }
+
+            //------- ordenar y limitar datos-----------
+
+            if($orderBy != null && $orderMode != null && $startAt != null && $endAt != null){
+                $sql="select $select 
+                from 'partidos p' $innerJoinText 
+                WHERE $sportArray[0]=:$sportArray[0] $sportText
+                ORDER BY $orderBy $orderMode LIMIT $startAt, $endAt";
+            }
+
+            //-------limitar datos, sin ordenar-----------
+
+            if($orderBy == null && $orderMode == null && $startAt != null && $endAt != null){
+                $sql="select $select 
+                from 'partidos p' $innerJoinText 
+                WHERE $sportArray[0]=:$sportArray[0] $sportText
+                LIMIT $startAt, $endAt";
+            }
+
+            $stmt=Connection::connect()->prepare($sql);
+            
+            foreach ($sportArray as $key => $value) {
+
+                $stmt-> bindParam(":".$value, $equalToArray[$key], PDO::PARAM_STR);
+    
+            }
+
+            try {
+
+                $stmt->execute();
+
+            } catch (PDOException $Exeption) {
+                return null;
+            }
+
+            return $stmt->fetchAll(PDO::FETCH_CLASS);
+
+        
+
+
+    }
+*/
     /**==============================peticiones get para el buscador sin relaciones====================================*/
 
     static function getDataSearch($table, $select, $linkTo, $search, $orderBy, $orderMode, $startAt, $endAt){

@@ -16,6 +16,11 @@ $between1=$_GET["between1"] ?? null;
 $between2=$_GET["between2"] ?? null;
 $filterTo=$_GET["filterTo"] ?? null;
 $inTo=$_GET["inTo"] ?? null;
+$disputed=$_GET["disputed"] ?? null;
+$sport=$_GET["sport"] ?? null;
+
+
+
 
 $response=new GetController();
 
@@ -67,7 +72,30 @@ if(isset($linkTo)&&isset($equalTo) && !isset($rel) && !isset($type)){
         $endAt
     ); 
 
+//peticion personalizada partidos pendientes
+/*==========================
 
+peticion personalizada
+nombre equipo
+escudo equipo
+fecha del partido a disputar(partidos no disputados)
+tipo de partido
+deporte equipo
+
+
+=============================*/
+
+}else if(isset($disputed) && $table=="matcheck" && isset($sport)/*isset($rel) && isset($type) && $table=="relations" && isset($linkTo) && isset($between1) && isset($between2)*/){
+    
+    
+    $response->getMatcheck(
+        $sport, 
+        $disputed,
+        $orderBy, $orderMode, $startAt, $endAt
+    );  
+    
+
+    
 /**======================pticion get para el buscador sin relaciones============================== */
 
 
