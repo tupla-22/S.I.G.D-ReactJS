@@ -346,8 +346,7 @@ class GetModel{
                 }
 
 
-                echo '<pre>'; print_r($idSportTeamArray); echo '</pre>';
-        
+             
         
         
         
@@ -356,13 +355,13 @@ class GetModel{
         $linkText="";
 
         if(count($idSportTeamArray)>1){
-
-            foreach($idSportTeamArray as $key => $value){
+            
+            for ($i=0; $i < count($idSportTeamArray); $i++) { 
 
                 
-                if($key>0){
+                if($i>0){
 
-                    $linkText .= "OR e.".$value." = :".$value." ";
+                    $linkText .= "OR e.".$idSportTeamArray[$i]." = '".$sportArray[$i]."' ";
 
                 }
             }
@@ -385,10 +384,13 @@ class GetModel{
         
         
 
-        $where="(e.$idSportTeamArray[0]=:$idSportTeamArray[0] $linkText)
+        $where="(e.$idSportTeamArray[0]='$sportArray[0]' $linkText)
+        
         and disputado_partido=$disputed 
         and (e.id_equipo=p.id_equipoLocal_partido or e.id_equipo=p.id_equipoVisitante_partido)
         group by p.id_partido";
+
+        
         /**=====================organizamos relaciones ============================ */
 
         
@@ -430,16 +432,17 @@ class GetModel{
             }
 
             $stmt=Connection::connect()->prepare($sql);
+            echo '<pre>'; print_r($stmt); echo '</pre>';
             
 
-            foreach ($idSportTeamArray as $key => $value) {
+            /*foreach ($idSportTeamArray as $key => $value) {
                 
                 
                 $stmt-> bindParam(":".$value, $sportArray[$key], PDO::PARAM_STR);
                 echo '<pre>'; print_r($sportArray[$key]); echo '</pre>';
                 
     
-            }
+            }*/
 
             try {
 
