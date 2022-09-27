@@ -334,18 +334,20 @@ class GetModel{
 
     /**==================peticion personalizada partidos pendientes======================= */   
     static public function getMatcheck($sport, $disputed, $orderBy, $orderMode, $startAt, $endAt){
+        echo '<pre>'; print_r($sport); echo '</pre>';
 
         
         $idSportTeamArray=array();
         
-        for ($i=0; $i < count($idSportTeamArray); $i++) { 
+        $sportArray= explode(",",$sport);
+        for ($i=0; $i < count($sportArray); $i++) { 
                     $idSportTeamArray[]="id_deporte_equipo";
                     
                 }
 
 
-
-        $sportArray= explode(",",$sport);
+                echo '<pre>'; print_r($idSportTeamArray); echo '</pre>';
+        
         
         
         
@@ -447,7 +449,6 @@ class GetModel{
                 
                 return null;
             }
-            echo '<pre>'; print_r($stmt); echo '</pre>';
             return $stmt->fetchAll(PDO::FETCH_CLASS);
             
             
