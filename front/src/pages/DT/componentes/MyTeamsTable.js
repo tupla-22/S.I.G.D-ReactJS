@@ -1,13 +1,29 @@
+
+import { Table } from "../../../componentes/styledComponents/Table";
+import { TH } from "../../../componentes/styledComponents/TH";
+
 const MyTeamsTable = () => {
   return (
-    <table>
+    <>
+    <h3>Mis equipos</h3>
+    <Table>
       <thead>
-        <th>Nombre</th>
-        <th>Escudo</th>
-        <th>Jugadores</th>
+        <tr>
+        <TH>Ver estadisticas</TH>
+        <TH>Escudo</TH>
+        <TH>Nombre</TH>
+        <TH>Jugadores</TH>
+        </tr>
       </thead>
-      <tbody></tbody>
-    </table>
+      <tbody>
+
+      </tbody>
+
+    </Table>
+    
+    
+    
+    </>
   );
 };
 

@@ -11,6 +11,8 @@ import Form from "../../../componentes/Form";
 import { helpHttp } from "../../../helpers/helpHttp";
 import React, { useState, useEffect } from 'react';
 import InputDate from "../../../componentes/InputDate";
+import InputDateTime from "../../../componentes/InputTime";
+
 
 const formmatchInit = {
   id_equipoLocal_partido: "",
@@ -116,7 +118,9 @@ const MatchAddForm = () => {
           <MenuItem value={"basketball"}>Baketball</MenuItem>
           <MenuItem value={"handball"}>Handball</MenuItem>
         </Select>
-        <InputDate name="fecha_partido" form={matchForm} setForm={setMatchForm}/>
+
+
+        <InputDateTime/>
       </FormControl>
       
       {/* <FormControl className="Form__input" fullWidth>

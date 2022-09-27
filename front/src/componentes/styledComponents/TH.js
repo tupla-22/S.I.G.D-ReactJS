@@ -6,5 +6,5 @@ export const TH = styled.th`
   box-shadow: 0px 0px 5px #0005;
   min-width: fit-content;
   word-wrap: normal;
-
+  background-color:#fff
 `;

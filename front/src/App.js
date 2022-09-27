@@ -51,12 +51,11 @@ import AdminMatch from "./pages/admin/AdminMatch";
 import MatchAdd from "./pages/admin/componentes/MatchAdd";
 import MatchDel from "./pages/admin/componentes/MatchDelete";
 import MatchUpdate from "./pages/admin/componentes/MatchUpdate";
+import StatsMyTeams from "./pages/DT/StatsMyTeams";
+import MatchManagment from "./pages/analist/MatchManagment";
+import MatchList from "./pages/admin/componentes/MatchList";
 
 function App() {
-
-
-  
-
   return (
     <div className="App">
       <UserProvider>
@@ -69,7 +68,7 @@ function App() {
 
           <Route path="/student/:userId" element={<HomeStudent />}>
             <Route path="history" element={<MatchesHistory />}></Route>
-            <Route path="HomeStudent" element={<Fixture />} />
+            <Route path="Home" element={<Fixture />} />
             <Route path="teams" element={<Teams />}>
               <Route path="teamsAll" element={<AllTeams />}></Route>
               <Route path="myTeam" element={<MyTeam />}></Route>
@@ -81,19 +80,16 @@ function App() {
           </Route>
 
           <Route path="/admin/:userId" element={<HomeAdmin />}>
-            <Route element={<AdminMatch/>} path="match">
-                <Route path="add" element={<MatchAdd/>}></Route>
-                <Route path="delete" element={<MatchDel/>}></Route>
-                <Route path="update" element={<MatchUpdate/>}></Route>
-
+            <Route element={<AdminMatch />} path="match">
+              <Route path="add" element={<MatchAdd />}></Route>
+              <Route path="delete" element={<MatchDel />}></Route>
+              <Route path="update" element={<MatchUpdate />}></Route>
             </Route>
-            <Route
-              path="championship"
-              element={<AdminChampionships/>}>
-                <Route path="add" element={<ChampionshipAdd/>}></Route>
-                <Route path="delete" element={<ChampionshipDeleteForm/>}></Route>
-                <Route path="update" element={<ChampionshipUpdate/>}></Route>
-              </Route>
+            <Route path="championship" element={<AdminChampionships />}>
+              <Route path="add" element={<ChampionshipAdd />}></Route>
+              <Route path="delete" element={<ChampionshipDeleteForm />}></Route>
+              <Route path="update" element={<ChampionshipUpdate />}></Route>
+            </Route>
             <Route path="userAdd" element={<UserAdd />} />
             <Route path="adminUsers" element={<AdminUsers />}>
               <Route path="add" element={<UserAdd />}>
@@ -107,16 +103,14 @@ function App() {
               </Route>
             </Route>
             <Route path="adminTeams" element={<AdminTeams />}>
-              <Route path="add" element={<TeamAdd/>}></Route>
+              <Route path="add" element={<TeamAdd />}></Route>
               <Route path="delete" element={<TeamDelete />}></Route>
               <Route path="update" element={<TeamUpdate />}></Route>
             </Route>
             <Route path="profile" element={<Profile />}>
               <Route path="changePassword" element={<ChangePassword />}></Route>
             </Route>
-            <Route path="homeAdmin" element={<HomeAdm></HomeAdm>}>
-              
-            </Route>
+            <Route path="home" element={<HomeAdm></HomeAdm>}></Route>
           </Route>
           <Route path="/administrative/:userId" element={<HomeAdmin />}>
             <Route path="profile" element={<Profile />}>
@@ -142,37 +136,45 @@ function App() {
             <Route path="profile" element={<Profile />}>
               <Route path="changePassword" element={<ChangePassword />}></Route>
             </Route>
-            <Route path="homeAdmin" element={<HomeAdm></HomeAdm>}></Route>
+            <Route path="home" element={<HomeAdm></HomeAdm>}></Route>
           </Route>
 
           <Route path="/dt/:userId" element={<HomeDT />}>
             <Route path="profile" element={<Profile />}>
               <Route path="changePassword" element={<ChangePassword />}></Route>
             </Route>
-            <Route path="homeDt" element={<HomePageDT />}></Route>
+            <Route path="home" element={<HomePageDT />}></Route>
             <Route path="adminTeams" element={<AdminTeams />}>
-              <Route path="teamAdd" element={<TeamAdd></TeamAdd>}></Route>
-              <Route path="teamDelete" element={<TeamDelete />}></Route>
-              <Route path="teamUpdate" element={<TeamUpdate />}></Route>
+              <Route path="add" element={<TeamAdd></TeamAdd>}></Route>
+              <Route path="delete" element={<TeamDelete />}></Route>
+              <Route path="update" element={<TeamUpdate />}></Route>
             </Route>
-            <Route path="championshipsLoad">
-              <Route path="" element={<ChampionshipsLoad />}></Route>
+            <Route path="championshipsLoad" element={<AdminChampionships />}>
+              <Route path="add" element={<ChampionshipAdd />}></Route>
+              <Route path="delete" element={<ChampionshipsLoad />}></Route>
+              <Route path="update" element={<ChampionshipsLoad />}></Route>
             </Route>
             <Route path="myteams" element={<MyTeams></MyTeams>}></Route>
+            <Route path="stats" element={<StatsMyTeams />}></Route>
           </Route>
 
-          <Route path="analist/:userId" element={<HomeAnalist />}>
+          <Route path="analist/:userId" element={<HomeAnalist/>}>
+          <Route path="matchManagment" element={<MatchManagment/>}>
+            <Route path="basketball" element={<MatchList />}></Route>
+            <Route path="football" element={<MatchList sport={"football"}/>}></Route>
+            <Route path="handball" element={<MatchList/>}></Route>
+          </Route>
+          <Route path="home" element={<HomePageAnalist />}></Route>
             <Route path="profile" element={<Profile />}>
               <Route path="changePassword" element={<ChangePassword />}></Route>
             </Route>
-            <Route path="homeAnalist" element={<HomePageAnalist />}></Route>
           </Route>
 
           <Route path="judge/:userId" element={<HomeJudge />}>
             <Route path="profile" element={<Profile />}>
               <Route path="changePassword" element={<ChangePassword />}></Route>
             </Route>
-            <Route path="homeJudge" element={<HomePageJudge />}></Route>
+            <Route path="home" element={<HomePageJudge />}></Route>
           </Route>
           <Route path="scout/:userId" element={<HomeScout />}>
             <Route path="profile" element={<Profile />}>

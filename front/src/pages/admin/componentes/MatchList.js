@@ -3,41 +3,55 @@ import { TH } from "../../../componentes/styledComponents/TH";
 import React, { useState, useEffect } from "react";
 import { Table } from "../../../componentes/styledComponents/Table";
 import ChampionshipListRow from "./ChampionshipListRow";
+import MatchListRow from "./MatchListRow";
+import DateRangeIcon from "@mui/icons-material/DateRange";
+import ShieldIcon from "@mui/icons-material/Shield";
+import AccessTimeFilledIcon from "@mui/icons-material/AccessTimeFilled";
+import { helpHttp } from "../../../helpers/helpHttp";
 
-const MatchList = () => {
+const MatchList = ({sport}) => {
+  const peticion = helpHttp();
   const [data, setData] = useState([]);
   const [status, setStatus] = useState(false);
 
   useEffect(() => {
-    const pedirData = async () => {
-      await fetch("http://apirest.com/usuarios?select=*")
-        .then((res) => res.json())
-        .then((dat) => {
-          setData(dat.result);
-          setStatus(true);
-        })
-        .catch((e) => {
-          console.log(e);
-        });
-    };
-    pedirData();
+    switch (sport) {
+      case "futball":
+        peticion.get("http://apirest.com/partidos?select=*").then(e => console.log(e.result));
+        break;
+    
+      default:
+        break;
+    }
+
   }, []);
 
   return (
     <>
-      <h3>Campeonatos</h3>
+      <h3>Partidos</h3>
       <DivOver>
         <Table>
           <thead>
             <tr>
-              <TH>Nombre</TH>
-              <TH>ID</TH>
+            <TH>
+              <DateRangeIcon color="secondary" />
+            </TH>
+            <TH>
+              <AccessTimeFilledIcon color="secondary" />
+            </TH>
+            <TH>
+              <ShieldIcon color="secondary"></ShieldIcon>
+            </TH>
+            <TH>VS</TH>
+            <TH>
+              <ShieldIcon color="secondary"></ShieldIcon>
+            </TH>
             </tr>
           </thead>
           <tbody>
             {status &&
               data.map((e, i) => (
-                <ChampionshipListRow key={"champ" + i} data={e} />
+                <MatchListRow key={"champ" + i} data={e} />
               ))}
           </tbody>
         </Table>

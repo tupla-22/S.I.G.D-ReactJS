@@ -4,8 +4,11 @@ const MatchListRow = ({data}) => {
     
     return (  
         <tr>
-            <TD>{data.nombre_campeonato}</TD>
-            <TD>{data.id_campeonato}</TD>
+            <TD>{data.fecha_partido}</TD>
+            <TD></TD>
+            <TD>{data.id_equipoLocal_partido}</TD>
+            <TD>{}</TD>
+            <TD>{data.id_equipoVisitante_partido}</TD>
         </tr>
     );
 }
