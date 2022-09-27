@@ -45,11 +45,60 @@ if (isset($id) && isset($nameID)) {
 
     }
 
-     /**=======================
-     * solicitamos respuesta del controlador para modificar datos en cualquier tabla
-     * ========================= */
+    /**===================peticion put para usuarios autorizados======================= */
+    if(isset($_GET["token"])){
 
-    $response= new PutController();
-    $response-> putData($table, $data, $id, $nameID);
+        $tableToken= $_GET["table"] ?? "usuarios";
+        $suffix= $_GET["suffix"] ?? "usuario";
+
+        $validate= Connection::tokenValidate($_GET["token"],$tableToken, $suffix);
+
+        /**=======================
+         * solicitamos respuesta del controlador para editar datos en cualquier tabla
+         * ========================= */
+
+        if ($validate == "ok") {
+
+
+            $response= new PutController();
+            $response-> putData($table, $data, $id, $nameID);
+
+        }
+
+        //error cuando el token ha expirado
+
+        if ($validate == "expired") {
+            $json= array(
+                'status' => 303,
+                'results' => "Error: the token was expired"
+            );
+            echo json_encode($json, http_response_code($json["status"]));
+            return;
+        }
+
+        //error cuando el token no coincide en bd
+
+        if ($validate == "no-auth") {
+            $json= array(
+                'status' => 400,
+                'results' => "Error: the user is not authorized"
+            );
+            echo json_encode($json, http_response_code($json["status"]));
+            return;
+        }
+
+    //error cuando no envia el token
+
+            
+}else{
+
+    $json= array(
+        'status' => 400,
+        'results' => "Error: authorization required"
+    );
+    echo json_encode($json, http_response_code($json["status"]));
+    return;
+
+}
 
 }
