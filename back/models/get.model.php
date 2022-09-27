@@ -334,7 +334,6 @@ class GetModel{
 
     /**==================peticion personalizada partidos pendientes======================= */   
     static public function getMatcheck($sport, $disputed, $orderBy, $orderMode, $startAt, $endAt){
-        echo '<pre>'; print_r($sport); echo '</pre>';
 
         
         $idSportTeamArray=array();
@@ -432,7 +431,6 @@ class GetModel{
             }
 
             $stmt=Connection::connect()->prepare($sql);
-            echo '<pre>'; print_r($stmt); echo '</pre>';
             
 
             /*foreach ($idSportTeamArray as $key => $value) {
