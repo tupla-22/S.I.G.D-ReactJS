@@ -1,0 +1,1 @@
+const urlApi = "http://apirest.com/"

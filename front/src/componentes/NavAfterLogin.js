@@ -51,7 +51,7 @@ const NavAfterLogin = ({pages=[]}) => {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Link to={""}><img alt="LOGO" className="logo logoUno" src={logo}></img></Link>
+          <Link to={"home"}><img alt="LOGO" className="logo logoUno" src={logo}></img></Link>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton

@@ -41,19 +41,19 @@ const FormLogin = () => {
           localStorage.setItem("user",JSON.stringify(resultUser));
           setUser(resultUser);
           switch(resultUser.id_rol_usuario){
-            case 1:  navigate(`/admin/${resultUser.id_user}/homeAdmin`);
+            case 1:  navigate(`/admin/${resultUser.id_user}/home`);
             break;
-            case 2:  navigate(`/administrative/${resultUser.id_usuario}/homeAdministrative`);
+            case 2:  navigate(`/administrative/${resultUser.id_usuario}/home`);
             break;
-            case 3:  navigate(`/student/${resultUser.id_usuario}/homeStudent`);
+            case 3:  navigate(`/student/${resultUser.id_usuario}/home`);
             break;
-            case 4:  navigate(`/scout/${resultUser.id_usuario}/homeScout`);
+            case 4:  navigate(`/scout/${resultUser.id_usuario}/home`);
             break;
-            case 5:  navigate(`/judge/${resultUser.id_usuario}/homeJudge`);
+            case 5:  navigate(`/judge/${resultUser.id_usuario}/home`);
             break;
-            case 6:  navigate(`/dt/${resultUser.id_usuario}/homeDt`);
+            case 6:  navigate(`/dt/${resultUser.id_usuario}/home`);
             break;
-            case 7:  navigate(`/analist/${resultUser.id_usuario}/homeAnalist`);
+            case 7:  navigate(`/analist/${resultUser.id_usuario}/home`);
             break;
 
           }

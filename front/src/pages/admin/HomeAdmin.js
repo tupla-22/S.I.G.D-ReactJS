@@ -1,11 +1,13 @@
 import { Outlet } from "react-router-dom";
 import NavAfterLogin from "../../componentes/NavAfterLogin";
 import NavLink from "../../componentes/NavLink";
+import { DivFondo } from "../../componentes/styledComponents/DivFondo";
+import Main from "../../componentes/styledComponents/Main";
 import AdminBar from "./componentes/AdminBar";
 
 const HomeAdmin = () => {
   const pages = [
-    <NavLink to="homeAdmin" classAdd="responsive">
+    <NavLink to="home" classAdd="responsive">
       Home
     </NavLink>,
     <NavLink to="adminUsers/add" classAdd="responsive">
@@ -19,13 +21,16 @@ const HomeAdmin = () => {
     </NavLink>,
     <NavLink to="match/add" classAdd="responsive">
       Partidos
-    </NavLink>
+    </NavLink>,
   ];
   return (
-    <div className="homeAdmin">
-        <NavAfterLogin pages={pages}/>
-      <Outlet />
-    </div>
+    <>
+      <NavAfterLogin pages={pages} />
+
+          
+      <DivFondo>
+          <Outlet /></DivFondo>
+    </>
   );
 };
 

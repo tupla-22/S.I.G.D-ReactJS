@@ -21,7 +21,7 @@ export const helpHttp = () => {
 
     return fetch(endpoint, options)
       .then((res) =>
-        res.status==200
+        res.status
           ? res.json()
           : Promise.reject({
               err: true,
