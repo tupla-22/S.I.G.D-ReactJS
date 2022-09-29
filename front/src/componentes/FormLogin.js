@@ -40,8 +40,8 @@ const FormLogin = () => {
           setErrors({...errors,correct:false});
           localStorage.setItem("user",JSON.stringify(resultUser));
           setUser(resultUser);
-          switch(resultUser.id_rol_usuario){
-            case 1:  navigate(`/admin/${resultUser.id_user}/home`);
+          switch(Number.parseInt(resultUser.id_rol_usuario)){
+            case 1:  navigate(`/admin/${resultUser.id_usuario}/home`);
             break;
             case 2:  navigate(`/administrative/${resultUser.id_usuario}/home`);
             break;
