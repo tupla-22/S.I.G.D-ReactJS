@@ -20,7 +20,7 @@ const style = {
   p: 4,
 };
 
-export default function ModalConfirm({confirm,setConfirm}) {
+export default function ModalConfirm({name,confirm,setConfirm}) {
   const [open, setOpen] = React.useState("");
   const handleOpen = () => setOpen(true);
   const handleClose = (e) =>{ 
@@ -31,7 +31,7 @@ export default function ModalConfirm({confirm,setConfirm}) {
 
   return (
     <div>
-      <ButtonClassic onClick={handleOpen}>Eliminar</ButtonClassic>
+      <ButtonClassic onClick={handleOpen}>{name}</ButtonClassic>
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"

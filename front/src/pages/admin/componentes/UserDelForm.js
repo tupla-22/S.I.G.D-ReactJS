@@ -33,7 +33,7 @@ const UserDelForm = () => {
         <Form>
             <h3>Eliminar usuario</h3>
             <TextField type="number" onChange={handleChange} name="ci_usuario" label="Cédula" value={ciUser} className="Form__input"></TextField>
-            <ModalConfirm confirm={confirm} setConfirm={setConfirm}/>
+            <ModalConfirm name="Eliminar" confirm={confirm} setConfirm={setConfirm}/>
         </Form>
      );
 }
