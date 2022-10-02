@@ -16,6 +16,9 @@ import React, { useState, useEffect } from "react";
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
 import { PAlert } from "../../../componentes/PAlert";
 import { blobToBase64 } from "../../../helpers/blobManager";
+import { urlApi } from "../../../functions/globals";
+import { getToken } from "../../../functions/User";
+import { helpHttp } from "../../../helpers/helpHttp";
 
 const UserAddForm = () => {
   const [userForm, setUserForm] = useState({});
@@ -24,32 +27,24 @@ const UserAddForm = () => {
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState(false);
 
-  const handleClick = () => {
-    if (passwordVerified) {
-      const userAdd = async () => {
-        const ciuser = parseInt(userForm.ci_usuario);
-        setUserForm({ ...userForm, ci_usuario: ciuser });
-        const datos = new URLSearchParams(userForm);
+  const peticion = helpHttp();
 
-        const data = {
-          method: "POST",
-          headers: {
-            "Content-type": "application/x-www-form-urlencoded;charset-UTF-8",
-          },
-          body: new URLSearchParams(userForm)
-        };
-        let response = await fetch("http://apirest.com/usuarios?register=true&suffix=usuario", data)
-          .then((e) => e.json())
-          .then((e) => e)
-          .catch((e) => console.error(e));
+  const handleClick = () => {
+    console.log(userForm)
+    if (passwordVerified) {
+      const data = {
+        body: new URLSearchParams(userForm),
       };
-      userAdd();
+
+      peticion
+        .post("http://apirest.com/usuarios?register=true&suffix=usuario", data)
+        .then((e) => console.log(e));
     }
   };
 
   const handleUser = (e) => {
     setTypeUser(e.target.value);
-    setUserForm({...userForm,"id_rol_usuario":e.target.value});
+    setUserForm({ ...userForm, id_rol_usuario: e.target.value });
   };
 
   const handleChange = (event) => {
@@ -75,9 +70,9 @@ const UserAddForm = () => {
     } else setPasswordVerified(false);
   };
 
-  const handlePhoto = (e)=>{
-    blobToBase64(e.target.name,e.target.files,setUserForm,userForm);
-  }
+  const handlePhoto = (e) => {
+    blobToBase64(e.target.name, e.target.files, setUserForm, userForm);
+  };
 
   return (
     <Form
@@ -147,7 +142,7 @@ const UserAddForm = () => {
       <FormControl className="Form__input">
         <InputLabel id="demo-simple-select-label">Tipo de usuario</InputLabel>
         <Select
-          name="tipoUsuario"
+          name="id_rol_usuario"
           label="Tipo de usuario"
           value={userForm.tipoUsuario}
           labelId="demo-simple-select-label"
@@ -170,7 +165,13 @@ const UserAddForm = () => {
       />
       <Button variant="contained" component="label">
         Foto de perfil
-        <input name="fotoPerfil_usuario" onChange={handlePhoto} hidden accept="image/*" type="file" />
+        <input
+          name="fotoPerfil_usuario"
+          onChange={handlePhoto}
+          hidden
+          accept="image/*"
+          type="file"
+        />
         <PhotoCamera />
       </Button>
       <IconButton

@@ -106,7 +106,7 @@ const FormLogin = () => {
           type="password"
         />
         <Box><RecoverPassword>¿Problemas para iniciar sesión?</RecoverPassword></Box>
-        <Button onClick={handleSubmit} className="Form__input" variant='contained'>Entrar</Button>
+        <Button  onClick={handleSubmit} className="Form__input" variant='contained'>Entrar</Button>
 
 
 

@@ -13,7 +13,7 @@ export const helpHttp = () => {
       ? { ...defaultHeader, ...options.headers }
       : defaultHeader;
 
-    options.body = JSON.stringify(options.body) || false;
+    options.body = options.body || false;
     if (!options.body) delete options.body;
 
     //console.log(options);
