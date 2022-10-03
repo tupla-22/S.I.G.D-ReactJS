@@ -1,5 +1,9 @@
-const urlApi = (toquen,resto) =>{
+import { getToken } from "./User"
+
+export const urlApi = (url) =>{
     
-   return `http://apirest.com/${resto}&token=${token}`
+   return `http://apirest.com/${url}&token=${getToken()}`
 }
+
+
 

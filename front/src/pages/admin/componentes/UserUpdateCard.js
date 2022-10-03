@@ -20,24 +20,24 @@ import { urlApi } from "../../../functions/globals";
 import { getToken } from "../../../functions/User";
 import { helpHttp } from "../../../helpers/helpHttp";
 
-const UserAddForm = () => {
-  const [userForm, setUserForm] = useState({});
+const UserUpdateCard = ({ data }) => {
+  const [userForm, setUserForm] = useState(data);
   const [typeUser, setTypeUser] = useState("");
   const [passwordVerified, setPasswordVerified] = useState(true);
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState(false);
-
+  console.log(userForm);
   const peticion = helpHttp();
 
   const handleClick = () => {
-    console.log(userForm)
+    console.log(userForm);
     if (passwordVerified) {
       const data = {
         body: new URLSearchParams(userForm),
       };
 
       peticion
-        .post("http://apirest.com/usuarios?register=true&suffix=usuario", data)
+        .put(urlApi(`usuarios?id=${userForm.id_usuario}&nameID=id_usuario`) , data)
         .then((e) => console.log(e));
     }
   };
@@ -81,6 +81,7 @@ const UserAddForm = () => {
     >
       <h3>Agregar un usuario</h3>
       <TextField
+        value={userForm.ci_usuario}
         onChange={handleChange}
         name="ci_usuario"
         type="number"
@@ -88,30 +89,35 @@ const UserAddForm = () => {
         label="Cédula de identidad"
       ></TextField>
       <TextField
+        value={userForm.primerNombre_usuario}
         onChange={handleChange}
         name="primerNombre_usuario"
         className="Form__input"
         label="nombre"
       ></TextField>
       <TextField
+        value={userForm.segundoNombre_usuario}
         onChange={handleChange}
         name="segundoNombre_usuario"
         className="Form__input"
         label="Segundo nombre"
       ></TextField>
       <TextField
+        value={userForm.primerApellido_usuario}
         onChange={handleChange}
         name="primerApellido_usuario"
         className="Form__input"
         label="Apellido"
       ></TextField>
       <TextField
+        value={userForm.segundoApellido_usuario}
         onChange={handleChange}
         name="segundoApellido_usuario"
         className="Form__input"
         label="Segundo apellido"
       ></TextField>
       <TextField
+        value={userForm.email_usuario}
         onChange={handleChange}
         name="email_usuario"
         className="Form__input"
@@ -163,17 +169,6 @@ const UserAddForm = () => {
         className="Form__input"
         tipeUser={userForm.tipoUsuario}
       />
-      <Button variant="contained" component="label">
-        Foto de perfil
-        <input
-          name="fotoPerfil_usuario"
-          onChange={handlePhoto}
-          hidden
-          accept="image/*"
-          type="file"
-        />
-        <PhotoCamera />
-      </Button>
       <IconButton
         label=""
         color="primary"
@@ -182,10 +177,10 @@ const UserAddForm = () => {
       ></IconButton>
 
       <ButtonClassic variant="contained" onClick={handleClick}>
-        Agregar
+        Actualizar
       </ButtonClassic>
     </Form>
   );
 };
 
-export default UserAddForm;
+export default UserUpdateCard;

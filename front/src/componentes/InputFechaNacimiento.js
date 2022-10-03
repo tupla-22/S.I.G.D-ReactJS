@@ -5,7 +5,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 
 const InputFechaNacimiento = ({ className, userForm,setUserForm }) => {
-  const [value, setValue] = React.useState(null);
+  const [value, setValue] = React.useState(userForm.fechaNac_usuario);
 
   const handleChange = (e)=>{
     setValue(e);

@@ -8,7 +8,6 @@ const blobToBase64 = (name,archivo,setState,form) =>{
         let con =reader.result
         let auxArr = con.split(',')
         setState({...form,[name]:reader.result})
-        console.log(reader.result);
       }
     })
 
