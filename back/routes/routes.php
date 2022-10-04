@@ -1,5 +1,7 @@
 <?php
 
+require_once "models/connection.php";
+
 $routesArray=explode("/", $_SERVER["REQUEST_URI"]);
 $routesArray=array_filter($routesArray);
 
@@ -29,6 +31,24 @@ if(count($routesArray)==0){
 
     
     $table=explode("?",$routesArray[1])[0];
+
+    /**----------------validar apikey------------------ 
+
+    if (!isset(getallheaders()["Autorization"]) || getallheaders()["Autorization"]!= Connection::apikey()) {
+        
+        $json= array(
+        
+            "status" => 200,
+            "result" => "You are not authorized to make this request"
+        
+        
+        );
+
+        echo json_encode($json, http_response_code($json["status"]));
+
+        return;
+
+    }
 
 
     /**----------------get------------------ */
