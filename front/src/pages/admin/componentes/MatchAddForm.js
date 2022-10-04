@@ -105,20 +105,19 @@ const MatchAddForm = () => {
       </FormControl>
       
       <FormControl className="Form__input" fullWidth>
-        <InputLabel id="demo-simple-select-label">Deporte</InputLabel>
+        <InputLabel id="demo-simple-select-label">Tipo</InputLabel>
         <Select
-          label="Deporte"
+          label="Tipo"
           name="tipo_campeonato"
           value={matchForm.tipo_partido}
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           onChange={handleChange}
         >
-          <MenuItem value={"football"}>Football</MenuItem>
-          <MenuItem value={"basketball"}>Baketball</MenuItem>
-          <MenuItem value={"handball"}>Handball</MenuItem>
+          <MenuItem value={"amistoso"}>Amistoso</MenuItem>
+          <MenuItem value={"campeonato"}>Campeonato</MenuItem>
         </Select>
-      <InputDate form={matchForm} setForm={setMatchForm} name="fecha_partido"/>
+      <InputDate label={"Fecha"} form={matchForm} setForm={setMatchForm} name="fecha_partido"/>
       <InputTime/>
 
       </FormControl>

@@ -3,24 +3,17 @@ import { TH } from "../../../componentes/styledComponents/TH";
 import React, { useState, useEffect } from "react";
 import { Table } from "../../../componentes/styledComponents/Table";
 import ChampionshipListRow from "./ChampionshipListRow";
+import { helpHttp } from "../../../helpers/helpHttp";
+import { urlApi } from "../../../functions/globals";
 
 const ChampionshipList = () => {
   const [data, setData] = useState([]);
-  const [status, setStatus] = useState(false);
+
+  const peticion = helpHttp();
+
 
   useEffect(() => {
-    const pedirData = async () => {
-      await fetch("http://apirest.com/usuarios?select=*")
-        .then((res) => res.json())
-        .then((dat) => {
-          setData(dat.result);
-          setStatus(true);
-        })
-        .catch((e) => {
-          console.log(e);
-        });
-    };
-    pedirData();
+    peticion.get(urlApi("campeonatos?select=*")).then(e=>setData(e.result))
   }, []);
 
   return (
@@ -35,10 +28,7 @@ const ChampionshipList = () => {
             </tr>
           </thead>
           <tbody>
-            {status &&
-              data.map((e, i) => (
-                <ChampionshipListRow key={"champ" + i} data={e} />
-              ))}
+              {data.map((e, i) => (<ChampionshipListRow key={"champ" + i} data={e} />))}
           </tbody>
         </Table>
       </DivOver>

@@ -1,4 +1,5 @@
 import ChampionshipDelForm from "./ChampionshipDelForm";
+import ChampionshipList from "./ChampionshipList";
 
 const ChampionshipDel = () => {
     return ( 
