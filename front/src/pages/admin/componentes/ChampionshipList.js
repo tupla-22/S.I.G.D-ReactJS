@@ -23,7 +23,9 @@ const ChampionshipList = () => {
         <Table>
           <thead>
             <tr>
-              <TH>Nombre</TH>
+            <TH>Nombre</TH>
+            <TH>Fecha inicio</TH>
+            <TH>Fecha Fin</TH>
               <TH>ID</TH>
             </tr>
           </thead>

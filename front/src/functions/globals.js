@@ -6,4 +6,9 @@ export const urlApi = (url) =>{
 }
 
 
+export const dateTradeEs = (fecha) =>{
+   let arrFecha = fecha.split("-")
+   let date = `${arrFecha[2]}/${arrFecha[1]}/${arrFecha[0]}`
+   return date;
+}
 

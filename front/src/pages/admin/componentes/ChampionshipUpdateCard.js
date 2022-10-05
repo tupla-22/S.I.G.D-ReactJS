@@ -6,85 +6,101 @@ import {
   Select,
   TextField,
 } from "@mui/material";
-import { useState } from "react";
 import { ButtonClassic } from "../../../componentes/ButtonClassic";
 import Form from "../../../componentes/Form";
-import "./styles/TeamAddForm.css";
+import "./styles/championshipAddForm.css";
 import { helpHttp } from "../../../helpers/helpHttp";
-import { blobToBase64 } from "../../../helpers/blobManager";
+import InputDate from "../../../componentes/InputDate";
+import InputTime from "../../../componentes/InputTime";
+import { useState, useEffect } from 'react';
+import { urlApi } from "../../../functions/globals";
 
-const formTeamInit = {
-  nombre_equipo: "",
-  id_deporte_equipo:null,
-  escudo_equipo: "",
+
+const formchampionshipInit = {
+  nombre_campeonato: "",
+  id_liga_campeonato: "",
+  deporte_campeonato: "",
 };
 
-const TeamUpdateCard = ({data}) => {
-  const [teamForm, setTeamForm] = useState(data);
+const ChampionshipUpdateCard = ({data}) => {
+  const [championshipForm, setchampionshipForm] =
+    useState(data);
   const [errors, setErrors] = useState(null);
+  const [ligas, setLigas] = useState([]);
+  const [deportes, setDeportes] = useState([]);
+
+  const peticion = helpHttp();
+
+  useEffect(() => {
+    
+    peticion.get(urlApi("ligas?select=*")).then(e=>{ 
+      setLigas(e.result)});
+      peticion.get(urlApi("deportes?select=id_deporte")).then(e=>{ 
+        setDeportes(e.result)});
+  }, []);
+
+
   const handleChange = (event) => {
-    setTeamForm({
-      ...teamForm,
+    console.log(championshipForm)
+    setchampionshipForm({
+      ...championshipForm,
       [event.target.name]: event.target.value,
     });
   };
 
-  const handleEscudo = (e) => {
-    blobToBase64(e.target.name, e.target.files, setTeamForm, teamForm);
-  };
-
   const handleClick = () => {
+    console.log(championshipForm);
     const confi = {
-      method:"POST",
-      headers: {
-        "Content-type": "application/x-www-form-urlencoded;charset-UTF-8",
-      },
-      body:new URLSearchParams(teamForm)
-    }
-    fetch("http://apirest.com/equipos",confi).then(e=>e.json()).then(e=>e).catch(e=>console.log(e));
+      body: new URLSearchParams(championshipForm),
+    };
+    peticion.put(urlApi(`campeonatos?id=${championshipForm.id_campeonato}&nameID=id_campeonato`),confi).then(e=>console.log(e))
 
   };
 
   return (
     <Form>
-      <h3>Agregar un equipo</h3>
+      <h3>Actualizar un campeonato</h3>
       <TextField
-        value={teamForm.nombre_equipo}
+        value={championshipForm.nombre_campeonato}
         onChange={handleChange}
-        name="nombre_equipo"
+        name="nombre_campeonato"
         className="Form__input"
-        label="Nombre del equipo"
+        label="Nombre del campeonato"
       ></TextField>
-      <FormControl className="Form__input" fullWidth>
+       <FormControl className="Form__input" fullWidth>
         <InputLabel id="demo-simple-select-label">Deporte</InputLabel>
         <Select
           label="Deporte"
-          name="id_deporte_equipo"
-          value={teamForm.id_deporte}
+          name="deporte_campeonato"
+          value={championshipForm.deporte_campeonato}
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           onChange={handleChange}
         >
-          <MenuItem value={1}>Handball</MenuItem>
-          <MenuItem value={2}>football</MenuItem>
-          <MenuItem value={3}>basketball</MenuItem>
+           {deportes.map(e=>(<MenuItem value={`${e.id_deporte}`}>{e.id_deporte}</MenuItem>))}
         </Select>
       </FormControl>
-
-      <Button className="Form__input" variant="contained" component="label">
-        Escudo del equipo
-        <input
-          files={teamForm.escudo_equipo}
-          name="escudo_equipo"
-          onChange={handleEscudo}
-          hidden
-          accept="image/*"
-          type="file"
-        />
-      </Button>
-      <ButtonClassic onClick={handleClick} className="Form__input">Agregar</ButtonClassic>
+      <FormControl className="Form__input" fullWidth>
+        <InputLabel id="demo-simple-select-label">Liga</InputLabel>
+        <Select
+          label="Liga"
+          name="id_liga_campeonato"
+          value={championshipForm.id_liga_campeonato}
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          onChange={handleChange}
+        >
+          {ligas.map(e=>(<MenuItem value={`${e.id_liga}`}>{e.nombre_liga}</MenuItem>))}
+        </Select>
+      </FormControl>
+      <InputDate form={championshipForm} setForm={setchampionshipForm} name={"fechaInicio_campeonato"} label={"Fecha de inicio"}></InputDate>
+      <InputDate form={championshipForm} setForm={setchampionshipForm} name={"fechaFin_campeonato"} label={"Fecha de cierre"}></InputDate>
+      
+      <ButtonClassic onClick={handleClick} className="Form__input">
+        Actualizar
+      </ButtonClassic>
     </Form>
   );
 };
 
-export default TeamUpdateCard;
+export default ChampionshipUpdateCard;

@@ -144,4 +144,12 @@ class Connection{
 
     }
 
+
+    /**=====================apikey========================= */    
+
+    static public function apikey(){   
+
+        return "tVf8vPZANG4yj8r";
+
+     }
 }

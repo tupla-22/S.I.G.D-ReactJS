@@ -6,24 +6,24 @@ import ModalConfirm from "./ModalConfirm";
 import { helpHttp } from "../../../helpers/helpHttp";
 import { urlApi } from "../../../functions/globals";
 
-const ChampionshipUpdateForm = ({setTeam}) => {
-    const [idTeam, setidTeam] = useState(null);
+const ChampionshipUpdateForm = ({setData}) => {
+    const [idChampionship, setidChampionship] = useState(null);
     const [confirm, setConfirm] = useState(null);
     const [modalConfirm, setModalConfirm] = useState(null);
 
     const peticion = helpHttp();
 
     const handleChange = (e) => {
-        setidTeam(e.target.value)
+        setidChampionship(e.target.value)
     }
 
     const handleClick = (e)=>{
-        peticion.get(`http://apirest.com/equipos?select=*&linkTo=id_equipo&search=${idTeam}¨¨`).then(e=>setTeam(e.result[0]));
+        peticion.get(`http://apirest.com/campeonatos?select=*&linkTo=id_campeonato&search=${idChampionship}¨¨`).then(e=>setData(e.result[0]));
     }
     return ( 
         <Form>
             <h3>Actualizar campeonato</h3>
-            <TextField type="number" onChange={handleChange}  label="ID" value={idTeam} className="Form__input"></TextField>
+            <TextField type="number" onChange={handleChange}  label="ID" value={idChampionship} className="Form__input"></TextField>
             <ButtonClassic onClick={handleClick}>Actualizar</ButtonClassic>
         </Form>
      );

@@ -12,6 +12,7 @@ import { helpHttp } from "../../../helpers/helpHttp";
 import React, { useState, useEffect } from 'react';
 import InputDate from "../../../componentes/InputDate";
 import InputTime from "../../../componentes/InputTime";
+import { urlApi } from "../../../functions/globals";
 
 
 const formmatchInit = {
@@ -24,16 +25,15 @@ const MatchAddForm = () => {
   const [matchForm, setMatchForm] =useState(formmatchInit);
   const [equipos, setEquipos] = useState([]);
   const [errors, setErrors] = useState(null);
+  const [champ, setChamp] = useState(false);
+  const [championships, setChampionships] = useState([]);
 
   const peticion = helpHttp();
 
 
   useEffect(() => {
-    const peticion = async() =>{
-      await fetch("http://apirest.com/equipos?select=*").then(e=>e.json()).then(e=>setEquipos(e.result)).catch(e=>console.error(e));
-
-    }
-    peticion()
+    peticion.get(urlApi("equipos?select=*")).then(e=>setEquipos(e.result))
+    peticion.get(urlApi("campeonatos?select=*")).then(e=>setChampionships(e.result))
     
   }, []);
   
@@ -103,7 +103,6 @@ const MatchAddForm = () => {
           {equipos.map(e=>(<MenuItem name={e.id_equipo} value={e.nombre_equipo}>{e.nombre_equipo}</MenuItem>))}
         </Select>
       </FormControl>
-      
       <FormControl className="Form__input" fullWidth>
         <InputLabel id="demo-simple-select-label">Tipo</InputLabel>
         <Select
@@ -117,6 +116,21 @@ const MatchAddForm = () => {
           <MenuItem value={"amistoso"}>Amistoso</MenuItem>
           <MenuItem value={"campeonato"}>Campeonato</MenuItem>
         </Select>
+        
+      {champ && <FormControl className="Form__input" fullWidth>
+        <InputLabel id="demo-simple-select-label">Campeonato al que pertenece</InputLabel>
+        <Select
+          label="Campeonato al que pertenece"
+          name="id_equipoVisitante_partido"
+          value={matchForm.id_equipoLocal_partido}
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          onChange={handleChangeTeamVisitante}
+        >
+          {championships.map(e=>(<MenuItem name={e.id_campeonato} value={e.nombre_campeonato}>{e.nombre_campeonato}</MenuItem>))}
+        </Select>
+      </FormControl>}
+      
       <InputDate label={"Fecha"} form={matchForm} setForm={setMatchForm} name="fecha_partido"/>
       <InputTime/>
 
