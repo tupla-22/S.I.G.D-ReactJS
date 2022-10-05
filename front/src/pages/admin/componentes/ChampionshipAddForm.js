@@ -71,7 +71,7 @@ const ChampionshipAddForm = () => {
         <Select
           label="Deporte"
           name="deporte_campeonato"
-          value={championshipForm.tipo_campeonato}
+          value={championshipForm.deporte_campeonato}
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           onChange={handleChange}
