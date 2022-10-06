@@ -7,10 +7,25 @@ class PutController{
     /**================peticion put para editar datos================== */
     static public function putData($table, $data, $id, $nameID){
 
+        if (isset($data["password_usuario"]) && $data["password_usuario"]!= null) {
+
+            $crypt = crypt($data["password_usuario"], 'sha512'); 
+            $data["password_usuario"]= $crypt;
+            
+            $data=array_unique($data);
+            $response= PutModel::putData($table, $data, $id, $nameID);
+        
+            $return= new PutController();
+            $return -> fncResponse($response);
+            
+        }else {
+
         $response= PutModel::putData($table, $data, $id, $nameID);
         
         $return= new PutController();
         $return -> fncResponse($response);
+
+        }
 
     }
 
