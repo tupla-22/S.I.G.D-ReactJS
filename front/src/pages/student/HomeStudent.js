@@ -5,7 +5,7 @@ import StudentBar from "./componentes/StudentBar";
 
 const HomeStudent = () => {
   const pages = [
-    <NavLink to="homeStudent" classAdd="responsive">
+    <NavLink to="home" classAdd="responsive">
       Fixture
     </NavLink>,
     <NavLink classAdd="responsive" to="myStats">

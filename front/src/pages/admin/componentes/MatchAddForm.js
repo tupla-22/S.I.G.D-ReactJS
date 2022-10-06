@@ -52,7 +52,7 @@ const MatchAddForm = () => {
       body: new URLSearchParams(matchForm),
     };
      peticion.post(urlApi("partidos?"),confi)
-      .then((e) => console.log(e.status))
+      .then((e) => console.log(e))
   };
 
 

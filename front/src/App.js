@@ -54,6 +54,9 @@ import MatchUpdate from "./pages/admin/componentes/MatchUpdate";
 import StatsMyTeams from "./pages/DT/StatsMyTeams";
 import MatchManagment from "./pages/analist/MatchManagment";
 import MatchList from "./pages/admin/componentes/MatchList";
+import FixtureFB from "./componentes/FixtureFB";
+import FixtureBB from "./componentes/FixtureBB";
+import FixtureHB from "./componentes/FixtureHB";
 
 function App() {
   return (
@@ -68,7 +71,11 @@ function App() {
 
           <Route path="/student/:userId" element={<HomeStudent />}>
             <Route path="history" element={<MatchesHistory />}></Route>
-            <Route path="Home" element={<Fixture />} />
+            <Route path="Home" element={<Fixture />}>
+              <Route path="fixtureFB" element={<MatchList sport={"football"}/>}/>
+              <Route path="fixtureBB" element={<MatchList sport={"basketball"}/>}/>
+              <Route path="fixtureHB" element={<MatchList sport={"handball"}/>}/>
+            </Route>
             <Route path="teams" element={<Teams />}>
               <Route path="teamsAll" element={<AllTeams />}></Route>
               <Route path="myTeam" element={<MyTeam />}></Route>
@@ -158,13 +165,16 @@ function App() {
             <Route path="stats" element={<StatsMyTeams />}></Route>
           </Route>
 
-          <Route path="analist/:userId" element={<HomeAnalist/>}>
-          <Route path="matchManagment" element={<MatchManagment/>}>
-            <Route path="basketball" element={<MatchList />}></Route>
-            <Route path="football" element={<MatchList sport={"football"}/>}></Route>
-            <Route path="handball" element={<MatchList/>}></Route>
-          </Route>
-          <Route path="home" element={<HomePageAnalist />}></Route>
+          <Route path="analist/:userId" element={<HomeAnalist />}>
+            <Route path="matchManagment" element={<MatchManagment />}>
+              <Route path="basketball" element={<MatchList />}></Route>
+              <Route
+                path="football"
+                element={<MatchList sport={"football"} />}
+              ></Route>
+              <Route path="handball" element={<MatchList />}></Route>
+            </Route>
+            <Route path="home" element={<HomePageAnalist />}></Route>
             <Route path="profile" element={<Profile />}>
               <Route path="changePassword" element={<ChangePassword />}></Route>
             </Route>
