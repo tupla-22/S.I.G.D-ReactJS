@@ -106,7 +106,7 @@ class Connection{
         $token= array(
             
             "iat" => $time, //tiempo presente al que inicia el token
-            "exp" => $time + (60*60*01), //toempo de expiracion del token
+            "exp" => $time + (60*60*24), //toempo de expiracion del token
             "data" =>[
                 "id" => $id,
                 "ci" => $ci//,
