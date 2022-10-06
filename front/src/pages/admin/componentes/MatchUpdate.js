@@ -13,6 +13,7 @@ const MatchUpdate = () => {
     <>
       {data && <MatchUpdateCard data={data} />}
       <MatchUpdateForm setData={setData}/>
+      
       <MatchList sport={"all"} />
     </>
   );

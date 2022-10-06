@@ -67,6 +67,7 @@ const MatchList = ({ sport }) => {
 
   return (
     <>
+      <Form>
         <h3>Partidos</h3>
         <DivOver>
           <Table>
@@ -94,6 +95,7 @@ const MatchList = ({ sport }) => {
             </tbody>
           </Table>
         </DivOver>
+      </Form>
     </>
   );
 };

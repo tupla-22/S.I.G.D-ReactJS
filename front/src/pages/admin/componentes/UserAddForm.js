@@ -19,18 +19,34 @@ import { blobToBase64 } from "../../../helpers/blobManager";
 import { urlApi } from "../../../functions/globals";
 import { getToken } from "../../../functions/User";
 import { helpHttp } from "../../../helpers/helpHttp";
+import { PSuccess } from "../../../componentes/styledComponents/PSuccess";
+
+
+const userFormInit={
+  ci_usuario:"",
+  primerNombre_usuario:"",
+  segundoNombre_usuario:"",
+  primerApellido_usuario:"",
+  segundoApellido_usuario:"",
+  fechaNac_usuario:"",
+  email_usuario:"",
+  password_usuario:"",
+  id_rol_usuario:"",
+
+}
+
 
 const UserAddForm = () => {
-  const [userForm, setUserForm] = useState({});
+  const [userForm, setUserForm] = useState(userFormInit);
   const [typeUser, setTypeUser] = useState("");
   const [passwordVerified, setPasswordVerified] = useState(true);
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState(false);
-
+  const [created, setCreated] = useState(false);
   const peticion = helpHttp();
 
   const handleClick = () => {
-    console.log(userForm)
+    console.log(userForm);
     if (passwordVerified) {
       const data = {
         body: new URLSearchParams(userForm),
@@ -38,7 +54,15 @@ const UserAddForm = () => {
 
       peticion
         .post("http://apirest.com/usuarios?register=true&suffix=usuario", data)
-        .then((e) => console.log(e));
+        .then((e) => {
+          
+          console.log(e)
+          if (e.status == 200){
+            setUserForm(userFormInit)
+            setCreated(true)
+          } {
+          }
+        });
     }
   };
 
@@ -79,8 +103,10 @@ const UserAddForm = () => {
       style={{ display: "flex", flexDirection: "column" }}
       className="userAddForm"
     >
+      {created && <PSuccess>Usuario creado correctamente</PSuccess>}
       <h3>Agregar un usuario</h3>
       <TextField
+        value={userForm.ci_usuario}
         onChange={handleChange}
         name="ci_usuario"
         type="number"
@@ -88,37 +114,42 @@ const UserAddForm = () => {
         label="Cédula de identidad"
       ></TextField>
       <TextField
+        value={userForm.primerNombre_usuario}
         onChange={handleChange}
         name="primerNombre_usuario"
         className="Form__input"
         label="nombre"
       ></TextField>
       <TextField
+        value={userForm.segundoNombre_usuario}
         onChange={handleChange}
         name="segundoNombre_usuario"
         className="Form__input"
         label="Segundo nombre"
       ></TextField>
       <TextField
+        value={userForm.primerApellido_usuario}
         onChange={handleChange}
         name="primerApellido_usuario"
         className="Form__input"
         label="Apellido"
       ></TextField>
       <TextField
+        value={userForm.segundoApellido_usuario}
         onChange={handleChange}
         name="segundoApellido_usuario"
         className="Form__input"
         label="Segundo apellido"
       ></TextField>
       <TextField
+        value={userForm.email_usuario}
         onChange={handleChange}
         name="email_usuario"
         className="Form__input"
         label="Email"
         type="email"
       ></TextField>
-      <InputFechaNacimiento userForm={userForm} setUserForm={setUserForm} />
+      <InputFechaNacimiento valor={userForm.fechaNac_usuario} userForm={userForm} setUserForm={setUserForm} />
 
       {/* <TextField onChange={handleChange} name="tel" type="number" className="Form__input" label="Telefono"></TextField> */}
       <TextField
