@@ -13,7 +13,6 @@ import MatchList from "./MatchList";
 const MatchDelForm = () => {
     const [idMatch, setidMatch] = useState(null);
     const [confirm, setConfirm] = useState(null);
-    const [modalConfirm, setModalConfirm] = useState(null);
     const [done, setDone] = useState(false);
     
     const peticion = helpHttp();
@@ -25,7 +24,6 @@ const MatchDelForm = () => {
 
     const handleSubmit = (e) =>{
         e.preventDefault();
-        setModalConfirm(true)
     }
 
     useEffect(() => {
