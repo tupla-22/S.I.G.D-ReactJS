@@ -27,6 +27,7 @@ class PostController{
         //$dataSuffix=$data["password_".$suffix];
 
         if (isset($data["password_".$suffix]) && $data["password_".$suffix]!= null) {
+
             $crypt = crypt($data["password_".$suffix], 'sha512'); 
             $data["password_".$suffix]= $crypt;
             $data=array_unique($data);

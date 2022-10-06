@@ -30,6 +30,7 @@ class PutModel{
         }
 
         $set= substr($set, 0, -1);
+        
          
         $sql= "UPDATE $table SET $set WHERE $nameID= :$nameID";
 
@@ -60,4 +61,6 @@ class PutModel{
                
 
     }
+
+
 }
