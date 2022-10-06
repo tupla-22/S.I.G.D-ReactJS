@@ -18,7 +18,7 @@ import { urlApi } from "../../../functions/globals";
 const formmatchInit = {
   id_equipoLocal_partido: "",
   id_equipoVisitante_partido: "",
-  tipo_campeonato: "",
+  tipo_partido: "",
 };
 
 const MatchAddForm = () => {
@@ -45,33 +45,16 @@ const MatchAddForm = () => {
       ...matchForm,
       [event.target.name]: event.target.value,
     });
-    console.log(matchForm);
   };
 
   const handleClick = () => {
-    console.log(matchForm);
     const confi = {
-      method: "POST",
-      headers: {
-        "Content-type": "application/x-www-form-urlencoded;charset-UTF-8",
-      },
       body: new URLSearchParams(matchForm),
     };
-    fetch("http://apirest.com/campeonatos", confi)
-      .then((e) => e.json())
-      .then((e) => e)
-      .catch((e) => console.error(e));
+     peticion.post(urlApi("partidos?"),confi)
+      .then((e) => console.log(e.status))
   };
 
-
-  const handleChangeTeamLocal = (e) =>{
-    setMatchForm({...matchForm,id_equipoLocal_partido:e.target.name});
-    console.log(matchForm)
-  }
-  const handleChangeTeamVisitante = (e) =>{
-    setMatchForm({...matchForm,id_equipoVisitante_partido:e.target.name});
-    console.log(matchForm)
-  }
 
   return (
     <Form>
@@ -80,13 +63,12 @@ const MatchAddForm = () => {
         <InputLabel id="demo-simple-select-label">Equipo local</InputLabel>
         <Select
           label="Equipo local"
-          name="id_liga_campeonato"
-          value={matchForm.id_equipoLocal_partido}
+          name="id_equipoLocal_partido"
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          onChange={handleChangeTeamLocal}
+          onChange={handleChange}
         >
-          {equipos.map(e=>(<MenuItem name={e.id_equipo} value={e.nombre_equipo}>{e.nombre_equipo}</MenuItem>))}
+          {equipos.map(e=>(<MenuItem  value={e.id_equipo}>{e.nombre_equipo}</MenuItem>))}
         </Select>
       </FormControl>
       
@@ -95,19 +77,18 @@ const MatchAddForm = () => {
         <Select
           label="Equipo visitante"
           name="id_equipoVisitante_partido"
-          value={matchForm.id_equipoLocal_partido}
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          onChange={handleChangeTeamVisitante}
+          onChange={handleChange}
         >
-          {equipos.map(e=>(<MenuItem name={e.id_equipo} value={e.nombre_equipo}>{e.nombre_equipo}</MenuItem>))}
+          {equipos.map(e=>(<MenuItem  value={e.id_equipo}>{e.nombre_equipo}</MenuItem>))}
         </Select>
       </FormControl>
       <FormControl className="Form__input" fullWidth>
         <InputLabel id="demo-simple-select-label">Tipo</InputLabel>
         <Select
           label="Tipo"
-          name="tipo_campeonato"
+          name="tipo_partido"
           value={matchForm.tipo_partido}
           labelId="demo-simple-select-label"
           id="demo-simple-select"
@@ -125,14 +106,14 @@ const MatchAddForm = () => {
           value={matchForm.id_equipoLocal_partido}
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          onChange={handleChangeTeamVisitante}
+          onChange={handleChange}
         >
           {championships.map(e=>(<MenuItem name={e.id_campeonato} value={e.nombre_campeonato}>{e.nombre_campeonato}</MenuItem>))}
         </Select>
       </FormControl>}
       
-      <InputDate label={"Fecha"} form={matchForm} setForm={setMatchForm} name="fecha_partido"/>
-      <InputTime/>
+      <InputDate label={"Fecha"} form={matchForm} setForm={setMatchForm} name="dia_partido"/>
+      <InputTime form={matchForm} setForm={setMatchForm} name={"hora_partido"}/>
 
       </FormControl>
       
