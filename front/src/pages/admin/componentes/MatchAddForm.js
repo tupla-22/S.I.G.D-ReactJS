@@ -45,6 +45,7 @@ const MatchAddForm = () => {
       ...matchForm,
       [event.target.name]: event.target.value,
     });
+    console.log(matchForm)
   };
 
   const handleClick = () => {
