@@ -25,7 +25,6 @@ const Profile = () => {
   }
 
   const user = JSON.parse(localStorage.getItem("user"))
-  console.log(user)
 
 
   return (
@@ -36,7 +35,7 @@ const Profile = () => {
             <img style={stAvatar} src={user.fotoPerfil_usuario}></img> 
           </Button>
         </div>
-        <h3>{user.primerNombre_usuario}</h3>
+        <h3>{user.primerNombre_usuario} {user.primerApellido_usuario}</h3>
         <div>
           <Button  onClick={handlePassword} sx={stButton} variant="contained">
             Cambiar contraseña
