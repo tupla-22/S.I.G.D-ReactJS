@@ -486,7 +486,7 @@ class GetModel{
             }
         }
        /**=====================sentencias sql ============================ */  
-        $select="nombre_equipo,primerNombre_usuario,ci_usuario,numeroCamiseta_pertenece,altura_fichaJugador,peso_fichaJugador,lateralidad_fichaJugador";
+        $select="nombre_equipo,primerNombre_usuario,primerApellido_usuario,ci_usuario,numeroCamiseta_pertenece,altura_fichaJugador,peso_fichaJugador,lateralidad_fichaJugador";
         $from='fichasJugadores,usuarios,pertenecen,equipos,tienen';
         $innerJoinText="";
         $where="
