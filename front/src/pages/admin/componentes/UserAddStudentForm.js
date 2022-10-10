@@ -73,12 +73,12 @@ const UserAddStudentForm = ({
           startAdornment: <InputAdornment position="start">cm</InputAdornment>,
         }}
       />
-      <TextField
+      {/* <TextField
         onChange={handleChange}
         name="position"
         className="Form__input"
         label="Posición"
-      ></TextField>
+      ></TextField> */}
       
       <FormControl className="Form__input">
         <InputLabel id="demo-simple-select-label">Lateralidad</InputLabel>
