@@ -45,6 +45,7 @@ const MatchAddForm = () => {
       ...matchForm,
       [event.target.name]: event.target.value,
     });
+    console.log(matchForm)
   };
 
   const handleClick = () => {
@@ -52,7 +53,7 @@ const MatchAddForm = () => {
       body: new URLSearchParams(matchForm),
     };
      peticion.post(urlApi("partidos?"),confi)
-      .then((e) => console.log(e.status))
+      .then((e) => console.log(e))
   };
 
 

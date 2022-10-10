@@ -26,7 +26,7 @@ const MatchList = ({ sport }) => {
         peticion
           .get(
             urlApi(
-              "matcheck?disputed=1&sport=handball,football,basketball&orderBy=id_partido&orderMode=asc"
+              "matcheck?disputed=0&sport=handball,football,basketball&orderBy=id_partido&orderMode=asc"
             )
           )
           .then((e) => setData(e.result));
@@ -35,7 +35,7 @@ const MatchList = ({ sport }) => {
           peticion
             .get(
               urlApi(
-                "matcheck?disputed=1&sport=football&orderBy=id_partido&orderMode=asc"
+                "matcheck?disputed=0&sport=football&orderBy=id_partido&orderMode=asc"
               )
             )
             .then((e) => setData(e.result));
@@ -45,7 +45,7 @@ const MatchList = ({ sport }) => {
           peticion
             .get(
               urlApi(
-                "matcheck?disputed=1&sport=handball&orderBy=id_partido&orderMode=asc"
+                "matcheck?disputed=0&sport=handball&orderBy=id_partido&orderMode=asc"
               )
             )
             .then((e) => setData(e.result));
@@ -55,7 +55,7 @@ const MatchList = ({ sport }) => {
           peticion
             .get(
               urlApi(
-                "matcheck?disputed=1&sport=basketball&orderBy=id_partido&orderMode=asc"
+                "matcheck?disputed=0&sport=basketball&orderBy=id_partido&orderMode=asc"
               )
             )
             .then((e) => setData(e.result));
@@ -63,7 +63,7 @@ const MatchList = ({ sport }) => {
       default:
         break;
     }
-  }, []);
+  }, [sport]);
 
   return (
     <>

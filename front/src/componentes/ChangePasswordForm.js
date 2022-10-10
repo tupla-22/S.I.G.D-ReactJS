@@ -11,6 +11,10 @@ const FormPasswordChange = () => {
     console.log(user)
   }
 
+  const handleChange = ()=>{
+
+  }
+
 
   return (
     <FormCien>
@@ -19,19 +23,14 @@ const FormPasswordChange = () => {
       <TextField
         type="password"
         className="FormCien__input"
-
-        label="Contraseña actual"
-      ></TextField>
-      <TextField
-        type="password"
-        className="FormCien__input"
         label="Nueva contraseña"
+        name="contraseña"
       ></TextField>
       <TextField
         type="password"
         label="Repita nueva contraseña"
         className="FormCien__input"
-
+        
       ></TextField>
       <ButtonClassic onClick={handleSubmit}>Cambiar</ButtonClassic>
     </FormCien>
