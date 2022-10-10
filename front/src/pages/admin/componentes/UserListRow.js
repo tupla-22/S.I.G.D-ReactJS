@@ -1,6 +1,7 @@
 import { TD } from "../../../componentes/styledComponents/TD";
+import SettingsIcon from '@mui/icons-material/Settings';
 
-const UserListRow = ({ data }) => {
+const UserListRow = ({ data,userType }) => {
   return(
     
     <tr>
@@ -9,6 +10,7 @@ const UserListRow = ({ data }) => {
       <TD>{data.ci_usuario}</TD>
       <TD>{data.email_usuario}</TD>
       <TD>{data.fechaNac_usuario}</TD>
+      <TD>{data.id_rol_usuario}</TD>
     </tr>
   )
 };

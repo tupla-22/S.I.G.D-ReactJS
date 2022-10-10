@@ -1,57 +1,62 @@
 import {
   Checkbox,
+  FormControl,
   FormControlLabel,
   FormGroup,
   InputAdornment,
+  InputLabel,
+  MenuItem,
+  Select,
   TextField,
 } from "@mui/material";
 import CarnetSalud from "../../../componentes/CarnetSalud";
+import InputDate from "../../../componentes/InputDate";
 
 const UserAddStudentForm = ({
   className,
   deporteJugado,
   setDeporteJugado,
-  userForm,
-  setUserForm,
+  form,
+  setForm
 }) => {
   const handleDeporteJugado = (e) => {};
   const handleChange = (e) => {
-    setUserForm({ ...userForm, [e.target.name]: e.target.value });
+    setForm({ ...form, [e.target.name]: e.target.value });
+    console.log(form)
   };
 
-  const handleSports1 = (e) => {
-    if (!userForm.sports1) {
-      setUserForm({
-        ...userForm,
-        "sports1": e.target.name,
-      });
+  // const handleSports1 = (e) => {
+  //   if (!form.sports1) {
+  //     setForm({
+  //       ...form,
+  //       "sports1": e.target.name,
+  //     });
       
-    }else delete userForm.sports1;
-  };
-  const handleSports2 = (e) => {
-    if (!userForm.sports2) {
-      setUserForm({
-        ...userForm,
-        "sports2": e.target.name,
-      })
-    }else delete userForm.sports2;
-  };
-  const handleSports3 = (e) => {
-    if (!userForm.sports3) {
-      setUserForm({
-        ...userForm,
-        "sports3": e.target.name,
-      });
+  //   }else delete form.sports1;
+  // };
+  // const handleSports2 = (e) => {
+  //   if (!form.sports2) {
+  //     setForm({
+  //       ...form,
+  //       "sports2": e.target.name,
+  //     })
+  //   }else delete form.sports2;
+  // };
+  // const handleSports3 = (e) => {
+  //   if (!form.sports3) {
+  //     setForm({
+  //       ...form,
+  //       "sports3": e.target.name,
+  //     });
       
-    }else delete userForm.sports3;
-  };
+  //   }else delete form.sports3;
+  // };
 
   return (
     <>
-      <CarnetSalud userForm={userForm} setUserForm={setUserForm}></CarnetSalud>
       <TextField
         onChange={handleChange}
-        name="weight"
+        name="peso_fichaJugador"
         className="Form__input"
         label="Peso"
         id="outlined-start-adornment"
@@ -61,7 +66,7 @@ const UserAddStudentForm = ({
       />
       <TextField
         onChange={handleChange}
-        name="height"
+        name="altura_fichaJugador"
         label="altura"
         className="Form__input"
         InputProps={{
@@ -74,20 +79,29 @@ const UserAddStudentForm = ({
         className="Form__input"
         label="Posición"
       ></TextField>
-      <TextField
-        onChange={handleChange}
-        name="side"
-        className="Form__input"
-        label="Lateralidad"
-      ></TextField>
-      <TextField
+      
+      <FormControl className="Form__input">
+        <InputLabel id="demo-simple-select-label">Lateralidad</InputLabel>
+        <Select
+          name="lateralidad_fichaJugador"
+          label="Lateralidad"
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          onChange={handleChange}
+        >
+          <MenuItem value={"zurdo"}>Zurdo</MenuItem>
+          <MenuItem value={"diestro"}>Diestro</MenuItem>
+          <MenuItem value={"ambidiestro"}>Ambidiestro</MenuItem>
+        </Select>
+      </FormControl>
+      {/* <TextField
         onChange={handleChange}
         className="Form__input"
         name="dorsal"
         label="Numero del dorsal"
         type="number"
-      ></TextField>
-      <FormGroup>
+      ></TextField> */}
+      {/* <FormGroup>
         <h3>Deporte jugados</h3>
         <FormControlLabel
           name="footbal"
@@ -107,7 +121,7 @@ const UserAddStudentForm = ({
           control={<Checkbox />}
           label="Handball"
         />
-      </FormGroup>
+      </FormGroup> */}
     </>
   );
 };

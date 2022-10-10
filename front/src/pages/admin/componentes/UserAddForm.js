@@ -20,6 +20,7 @@ import { urlApi } from "../../../functions/globals";
 import { getToken } from "../../../functions/User";
 import { helpHttp } from "../../../helpers/helpHttp";
 import { PSuccess } from "../../../componentes/styledComponents/PSuccess";
+import InputDate from "../../../componentes/InputDate";
 
 
 const userFormInit={
@@ -43,6 +44,8 @@ const UserAddForm = () => {
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState(false);
   const [created, setCreated] = useState(false);
+  const [fichaForm, setFichaForm] = useState({});
+
   const peticion = helpHttp();
 
   const handleClick = () => {
@@ -81,6 +84,8 @@ const UserAddForm = () => {
     if (event.target.name == "password_usuario") {
       setUserForm({ ...userForm, [event.target.name]: event.target.value });
     }
+
+    console.log(userForm,fichaForm)
   };
 
   const handlePassword = (e) => {
@@ -149,7 +154,7 @@ const UserAddForm = () => {
         label="Email"
         type="email"
       ></TextField>
-      <InputFechaNacimiento valor={userForm.fechaNac_usuario} userForm={userForm} setUserForm={setUserForm} />
+      <InputDate label={"Fecha de nacimiento"} name={"fechaNac_usuario"} form={userForm} setForm={setUserForm}></InputDate>
 
       {/* <TextField onChange={handleChange} name="tel" type="number" className="Form__input" label="Telefono"></TextField> */}
       <TextField
@@ -189,11 +194,13 @@ const UserAddForm = () => {
         </Select>
       </FormControl>
       <UserAddTipeController
-        setUserForm={setUserForm}
-        userForm={userForm}
+        setForm={setFichaForm}
+        form={fichaForm}
         className="Form__input"
-        tipeUser={userForm.tipoUsuario}
+        tipeUser={typeUser}
       />
+      
+      <InputDate label={"Carnet de salud válido"} name={"carneSalud_usuario"} form={userForm} setForm={setUserForm}></InputDate>
       <Button variant="contained" component="label">
         Foto de perfil
         <input

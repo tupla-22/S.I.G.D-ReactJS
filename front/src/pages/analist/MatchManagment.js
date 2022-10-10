@@ -3,6 +3,7 @@ import { BoxFlex } from "../../componentes/BoxFlex";
 import CardA from "../../componentes/Card";
 import Main from "../../componentes/styledComponents/Main";
 import MatchList from "../admin/componentes/MatchList";
+import TeamsList from "../admin/componentes/TeamsList";
 import ManagmentBasketballControler from "./componentes/ManagmentBasketballControler";
 import ManagmentControler from "./componentes/ManagmentFootballControler";
 
@@ -15,7 +16,6 @@ const MatchManagment = () => {
         <CardA to={"basketball"} url="https://www.fiba.basketball/api/img/graphic/c5132053-5932-4af1-9e9b-8597ed500e94/940/529" name={"Basketball"}></CardA>
         <CardA to={"handball"} url="https://www.clarin.com/img/2019/12/04/el-handball-es-un-deporte___xrLeAeXU_340x340__1.jpg" name={"Handball"}></CardA>
       </BoxFlex>
-        <ManagmentBasketballControler/>
       <Outlet />
 
 

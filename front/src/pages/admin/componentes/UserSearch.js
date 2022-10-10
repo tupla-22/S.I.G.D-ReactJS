@@ -22,24 +22,19 @@ const UserSearch = () => {
   };
 
   const handleSubmit = (e) => {
-    e.nativeEvent.preventDefault()
-    const as = async () => {
-      setLoading(true);
-      let res = await solicitud
-        .get(
-          `http://apirest.com/usuarios?select=*&linkTo=primerApellido_usuario&search=${apellido}¨¨`
-        )
-        .then((e) => {
-            setUsuariosBuscados(e.result)
-             if(e.status===200)setOk(true);
-                else setOk(false)
-            }
-            
-            )
-            .catch(e=>setOk(false));
-      setLoading(false);
-    };
-    as();
+    e.nativeEvent.preventDefault();
+    setLoading(true);
+    solicitud
+      .get(
+        `http://apirest.com/usuarios?select=*&linkTo=primerApellido_usuario&search=${apellido}¨¨`
+      )
+      .then((e) => {
+        console.log(e)
+        setUsuariosBuscados(e.result);
+        if (e.status == 200) setOk(true);
+        else setOk(false);
+      })
+    setLoading(false);
   };
 
   return (
@@ -66,11 +61,15 @@ const UserSearch = () => {
               <TH>Fecha de nacimiento</TH>
             </thead>
             <tbody>
-              {usuariosBuscados.map((e) => <UserListRow data={e} />)}
+              {usuariosBuscados.map((e) => (
+                <UserListRow data={e} />
+              ))}
             </tbody>
           </Table>
         </DivOver>
-      ) : (<PAlert>No se encontro ningun usuario</PAlert>)}
+      ) : (
+        <PAlert>No se encontro ningun usuario</PAlert>
+      )}
       <UserList />
     </Form>
   );

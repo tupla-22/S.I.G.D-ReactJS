@@ -57,6 +57,8 @@ import MatchList from "./pages/admin/componentes/MatchList";
 import FixtureFB from "./componentes/FixtureFB";
 import FixtureBB from "./componentes/FixtureBB";
 import FixtureHB from "./componentes/FixtureHB";
+import MatchesListButtons from "./pages/analist/componentes/MatchesListButton";
+import LookMatch from "./pages/analist/LookMatch";
 
 function App() {
   return (
@@ -166,13 +168,15 @@ function App() {
           </Route>
 
           <Route path="analist/:userId" element={<HomeAnalist />}>
-            <Route path="matchManagment" element={<MatchManagment />}>
-              <Route path="basketball" element={<MatchList />}></Route>
+          <Route path="lookMatch/:matchId" element={<LookMatch/>}></Route>
+
+          <Route path="matchManagment" element={<MatchManagment />}>
+              <Route path="basketball" element={<MatchesListButtons sport={"basketball"} />}></Route>
               <Route
                 path="football"
-                element={<MatchList sport={"football"} />}
+                element={<MatchesListButtons sport={"football"} />}
               ></Route>
-              <Route path="handball" element={<MatchList />}></Route>
+              <Route path="handball" element={<MatchesListButtons sport={"handball"} />}></Route>
             </Route>
             <Route path="home" element={<HomePageAnalist />}></Route>
             <Route path="profile" element={<Profile />}>
