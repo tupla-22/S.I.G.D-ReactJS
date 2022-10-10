@@ -3,17 +3,17 @@ import { Table } from "../../../componentes/styledComponents/Table";
 import { TH } from "../../../componentes/styledComponents/TH";
 import MyStatsTableRow from "./MyStatsTableRow";
 import React, { useState, useEffect } from 'react';
+import { helpHttp } from "../../../helpers/helpHttp";
+import { urlApi } from "../../../functions/globals";
 
 
+const peticion = helpHttp();
 
 const MyStatsTable = () => {
   const [data, setData] = useState({});
 
   useEffect(() => {
-    fetch("http://apirest.com/usuarios?select=*")
-    .then(dat=>dat.json())
-    .then((dat)=>{ setData({...data,...dat.result[0]}); });
-    setData({...data,is:true})
+    peticion.get(urlApi("estadisticas?select=*")).then(e=>console.log(e))
   }, []);
   return (
     <DivOver>

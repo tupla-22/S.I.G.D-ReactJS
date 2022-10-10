@@ -17,7 +17,6 @@ export default function InputTime({name,form,setForm}) {
           onChange={(date) => {
             setValue(date);
             setForm({...form,[name]:`${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`})
-            console.log(typeof date)
           }}
           renderInput={(params) => <TextField {...params} />}
         />

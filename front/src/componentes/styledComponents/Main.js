@@ -9,7 +9,7 @@ const Main = styled.main`
         display:flex;
         align-items:center;
         flex-direction:column;
-        padding-top:100px
+        padding-top:25px
 `
 
 
