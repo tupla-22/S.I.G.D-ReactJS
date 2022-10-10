@@ -45,27 +45,33 @@ const UserAddForm = () => {
   const [errors, setErrors] = useState(false);
   const [created, setCreated] = useState(false);
   const [fichaForm, setFichaForm] = useState({});
+  const [idFichaJugador, setIdFichaJugador] = useState("");
 
   const peticion = helpHttp();
-
+  const token = getToken();
   const handleClick = () => {
+
     console.log(userForm);
     if (passwordVerified) {
+      peticion.post(urlApi(`fichasJugadores`),{body:new URLSearchParams(fichaForm)}).then(e=>{console.log(e)})
+
       const data = {
         body: new URLSearchParams(userForm),
       };
 
-      peticion
-        .post("http://apirest.com/usuarios?register=true&suffix=usuario", data)
-        .then((e) => {
+      // peticion
+      //   .post("http://apirest.com/usuarios?register=true&suffix=usuario", data)
+      //   .then((e) => {
           
-          console.log(e)
-          if (e.status == 200){
-            setUserForm(userFormInit)
-            setCreated(true)
-          } {
-          }
-        });
+      //     console.log(e)
+      //     if (e.status == 200){
+      //       setCreated(true)
+      //       setUserForm(userFormInit)
+      //     } {
+      //     }
+      //   });
+
+
     }
   };
 
