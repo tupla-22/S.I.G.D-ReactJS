@@ -18,6 +18,7 @@ $filterTo=$_GET["filterTo"] ?? null;
 $inTo=$_GET["inTo"] ?? null;
 $disputed=$_GET["disputed"] ?? null;
 $sport=$_GET["sport"] ?? null;
+$teamID=$_GET["teamID"] ?? null;
 
 
 
@@ -83,7 +84,7 @@ tipo de partido
 deporte equipo
 
 
-=============================*/
+==============matcheck===============*/
 
 }else if(isset($disputed) && $table=="matcheck" && isset($sport)/*isset($rel) && isset($type) && $table=="relations" && isset($linkTo) && isset($between1) && isset($between2)*/){
     
@@ -95,7 +96,18 @@ deporte equipo
     );  
     
 
+    /*==============integrantesEquipo===============*/
+
+}else if(isset($teamID) && $table=="squad"){
     
+    
+    $response->getSquad(
+        $teamID,
+        $orderBy, $orderMode, $startAt, $endAt
+    );  
+    
+
+
 /**======================pticion get para el buscador sin relaciones============================== */
 
 

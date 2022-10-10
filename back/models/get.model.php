@@ -452,6 +452,121 @@ class GetModel{
 
     }
 
+    /**==================peticion personalizada integrantes de equipos======================= */   
+    static public function getSquad($teamID, $orderBy, $orderMode, $startAt, $endAt){
+
+        
+        $idSportTeamArray=array();
+        
+        $teamIDArray= explode(",",$teamID);
+        for ($i=0; $i < count($teamIDArray); $i++) { 
+                    $idSportTeamArray[]="id_equipo";
+                    
+                }
+
+
+             
+        
+        
+        
+        
+        
+        $linkText="";
+
+        if(count($idSportTeamArray)>1){
+            
+            for ($i=0; $i < count($idSportTeamArray); $i++) { 
+
+                
+                if($i>0){
+
+                    $linkText .= "OR ".$idSportTeamArray[$i]." = '".$teamIDArray[$i]."' ";
+
+                }
+            }
+        }
+       /**=====================sentencias sql ============================ */  
+        $select="nombre_equipo,primerNombre_usuario,ci_usuario,numeroCamiseta_pertenece,altura_fichaJugador,peso_fichaJugador,lateralidad_fichaJugador";
+        $from='fichasJugadores,usuarios,pertenecen,equipos,tienen';
+        $innerJoinText="";
+        $where="
+        id_equipo_pertenece=id_equipo 
+        and id_fichaJugador_pertenece=id_fichaJugador 
+        and id_usuario=id_usuario_tiene 
+        and id_fichaJugador=id_fichaJugador_tiene 
+        and ($idSportTeamArray[0]='$teamIDArray[0]' $linkText)
+        ";
+
+        
+        /**=====================organizamos relaciones ============================ */
+
+        
+
+        
+
+            //-------sin ordenar ni limitar datos-----------
+
+            $sql="SELECT $select 
+            FROM $from $innerJoinText
+            WHERE $where
+            ";
+            
+            //-------ordenar datos sin limites-----------
+
+            if($orderBy != null && $orderMode != null && $startAt == null && $endAt == null){
+                $sql="select $select 
+                from $from $innerJoinText 
+                WHERE $where
+                ORDER BY $orderBy $orderMode";
+            }
+
+            //------- ordenar y limitar datos-----------
+
+            if($orderBy != null && $orderMode != null && $startAt != null && $endAt != null){
+                $sql="select $select 
+                from $from $innerJoinText 
+                WHERE $where
+                ORDER BY $orderBy $orderMode LIMIT $startAt, $endAt";
+            }
+
+            //-------limitar datos, sin ordenar-----------
+
+            if($orderBy == null && $orderMode == null && $startAt != null && $endAt != null){
+                $sql="select $select 
+                from $from $innerJoinText 
+                WHERE $where
+                LIMIT $startAt, $endAt";
+            }
+
+            $stmt=Connection::connect()->prepare($sql);
+            
+
+            /*foreach ($idSportTeamArray as $key => $value) {
+                
+                
+                $stmt-> bindParam(":".$value, $sportArray[$key], PDO::PARAM_STR);
+                echo '<pre>'; print_r($sportArray[$key]); echo '</pre>';
+                
+    
+            }*/
+
+            try {
+
+                $stmt->execute();
+
+            } catch (PDOException $Exeption) {
+                
+                return null;
+            }
+            return $stmt->fetchAll(PDO::FETCH_CLASS);
+            
+            
+
+      
+
+
+    }
+
     /**==============================peticiones get para el buscador sin relaciones====================================*/
 
     static function getDataSearch($table, $select, $linkTo, $search, $orderBy, $orderMode, $startAt, $endAt){

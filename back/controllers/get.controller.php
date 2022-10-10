@@ -50,6 +50,17 @@ class GetController{
         $return -> fncResponse($response);
     }
 
+    /**======================peticion personalizada integrantes de equipos============================== */
+
+    static function getSquad($teamID,  $orderBy, $orderMode, $startAt, $endAt ){
+        
+        $response = GetModel::getSquad($teamID,  $orderBy, $orderMode, $startAt, $endAt );
+        
+        $return=new GetController();
+        
+        $return -> fncResponse($response);
+    }
+
     /**==============================peticiones get para el buscador sin relaciones====================================*/
 
     static function getDataSearch($table, $select, $linkTo, $search, $orderBy, $orderMode, $startAt, $endAt){
