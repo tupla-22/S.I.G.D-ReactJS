@@ -11,8 +11,12 @@ import {
 } from "@mui/material";
 import CarnetSalud from "../../../componentes/CarnetSalud";
 import InputDate from "../../../componentes/InputDate";
+import TeamAdd from "./TeamAdd";
+import TeamAddUser from "./TeamAddUser";
 
 const UserAddStudentForm = ({
+  pertenecenForm,
+  setPertenecenForm,
   className,
   deporteJugado,
   setDeporteJugado,
@@ -94,6 +98,7 @@ const UserAddStudentForm = ({
           <MenuItem value={"ambidiestro"}>Ambidiestro</MenuItem>
         </Select>
       </FormControl>
+      <TeamAddUser pertenecenForm={pertenecenForm} setPertenecenForm={setPertenecenForm} ></TeamAddUser>
       {/* <TextField
         onChange={handleChange}
         className="Form__input"

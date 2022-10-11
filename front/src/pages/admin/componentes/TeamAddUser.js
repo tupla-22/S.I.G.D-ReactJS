@@ -20,21 +20,20 @@ import { PAlert } from "../../../componentes/PAlert";
 
 const peticion = helpHttp();
 
-const TeamAddUser = () => {
+const TeamAddUser = ({pertenecenForm,setPertenecenForm}) => {
   const [form, setform] = useState({});
   const [errors, setErrors] = useState(null);
   const [equipos, setEquipos] = useState([]);
   const [done, setDone] = useState(false);
   const [error, setError] = useState(false);
 
-
   const handleChange = (event) => {
-    setform({
-      ...form,
+    setPertenecenForm({
+      ...pertenecenForm,
       [event.target.name]: event.target.value,
     });
 
-    console.log(form);
+    console.log(pertenecenForm);
   };
   useEffect(() => {
     peticion
@@ -43,35 +42,32 @@ const TeamAddUser = () => {
   }, []);
 
   const handleClick = () => {
-    peticion.get(urlApi(`usuarios?select=id_usuario&linkTo=ci_usuario&equalTo=${form.ci_usuario}`)).then(e=> {
-        setform({...form,id_usuario_pertenece:e.result[0].id_usuario})
-        
-    })
-    delete form.ci_usuario_pertenece
+    peticion
+      .get(
+        urlApi(
+          `usuarios?select=id_usuario&linkTo=ci_usuario&equalTo=${form.ci_usuario}`
+        )
+      )
+      .then((e) => {
+        setform({ ...form, id_usuario_pertenece: e.result[0].id_usuario });
+      });
+    delete form.ci_usuario_pertenece;
     const conf = {
-        body:new URLSearchParams(form)
-    }
-    console.log(form)
-    peticion.post(urlApi("pertenecen?"),conf).then(e=>{
-        console.log(e)
-        if(e.status==200){
-            setDone(true)
-        }else setError(true);
-    })
-
+      body: new URLSearchParams(form),
+    };
+    console.log(form);
+    peticion.post(urlApi("pertenecen?"), conf).then((e) => {
+      console.log(e);
+      if (e.status == 200) {
+        setDone(true);
+      } else setError(true);
+    });
   };
 
   return (
-    <Form>
+    <>
       {done && <PSuccess>Usuario ingresado correctamente</PSuccess>}
       {error && <PAlert>Ocurrió un error</PAlert>}
-      <h3>Agregar usuario a un equipo</h3>
-      <TextField
-        onChange={handleChange}
-        name="ci_usuario_pertenece"
-        className="Form__input"
-        label="CI del usuario a ingresar"
-      ></TextField>
       <FormControl className="Form__input" fullWidth>
         <InputLabel id="demo-simple-select-label">Equipo</InputLabel>
         <Select
@@ -86,10 +82,7 @@ const TeamAddUser = () => {
           ))}
         </Select>
       </FormControl>
-      <ButtonClassic onClick={handleClick} className="Form__input">
-        Agregar
-      </ButtonClassic>
-    </Form>
+    </>
   );
 };
 

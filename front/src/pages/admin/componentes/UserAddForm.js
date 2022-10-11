@@ -22,20 +22,17 @@ import { helpHttp } from "../../../helpers/helpHttp";
 import { PSuccess } from "../../../componentes/styledComponents/PSuccess";
 import InputDate from "../../../componentes/InputDate";
 
-
-const userFormInit={
-  ci_usuario:"",
-  primerNombre_usuario:"",
-  segundoNombre_usuario:"",
-  primerApellido_usuario:"",
-  segundoApellido_usuario:"",
-  fechaNac_usuario:"",
-  email_usuario:"",
-  password_usuario:"",
-  id_rol_usuario:"",
-
-}
-
+const userFormInit = {
+  ci_usuario: "",
+  primerNombre_usuario: "",
+  segundoNombre_usuario: "",
+  primerApellido_usuario: "",
+  segundoApellido_usuario: "",
+  fechaNac_usuario: "",
+  email_usuario: "",
+  password_usuario: "",
+  id_rol_usuario: "",
+};
 
 const UserAddForm = () => {
   const [userForm, setUserForm] = useState(userFormInit);
@@ -46,34 +43,69 @@ const UserAddForm = () => {
   const [created, setCreated] = useState(false);
   const [fichaForm, setFichaForm] = useState({});
   const [idFichaJugador, setIdFichaJugador] = useState("");
-
+  const [idUsuario, setIdUsuario] = useState("");
   const peticion = helpHttp();
-  const token = getToken();
-  const handleClick = () => {
+  const [pertenecenForm, setPertenecenForm] = useState({});
 
+
+
+  const handleClick = (e) => {
+    e.preventDefault();
     console.log(userForm);
     if (passwordVerified) {
-      peticion.post(urlApi(`fichasJugadores`),{body:new URLSearchParams(fichaForm)}).then(e=>{console.log(e)})
-
       const data = {
         body: new URLSearchParams(userForm),
       };
 
-      // peticion
-      //   .post("http://apirest.com/usuarios?register=true&suffix=usuario", data)
-      //   .then((e) => {
+      peticion
+        .post("http://apirest.com/usuarios?register=true&suffix=usuario", data)
+        .then((e) => {
+          console.log(e.status);
           
-      //     console.log(e)
-      //     if (e.status == 200){
-      //       setCreated(true)
-      //       setUserForm(userFormInit)
-      //     } {
-      //     }
-      //   });
+          if (e.status == 200) {
+            
+          setIdUsuario(e.result.lastId);
+          
+          setUserForm(userFormInit)
+          }
+        });
 
-
+      peticion
+        .post(urlApi(`fichasJugadores?`), {
+          body: new URLSearchParams(fichaForm),
+        })
+        .then((e) => {
+          setIdFichaJugador(e.result.lastId);
+          setPertenecenForm({...pertenecenForm,id_fichaJugador_pertenece:e.result.lastId});
+          console.log(e.status);
+          if (!created) {
+            
+          setCreated(true);
+            // setUserForm(userFormInit)
+          }else setCreated(false)
+        });
+        
     }
   };
+
+
+  // INGRESANDO TABLA TIENEN RELACIONADAS ENTRE SI
+
+  useEffect(() => {
+    
+    const dataTienen = {
+      id_usuario_tiene: idUsuario,
+      id_fichaJugador_tiene: idFichaJugador,
+    };
+    console.log(dataTienen);
+    peticion
+      .post(urlApi("tienen?"), {
+        body: new URLSearchParams(dataTienen),
+      })
+      .then((e) => console.log(e.status));
+
+      peticion.post(urlApi("pertenecen?"),{body:new URLSearchParams(pertenecenForm)}).then(e=>console.log(e.result,"result de pertenecen"))
+  }, [created]);
 
   const handleUser = (e) => {
     setTypeUser(e.target.value);
@@ -91,7 +123,7 @@ const UserAddForm = () => {
       setUserForm({ ...userForm, [event.target.name]: event.target.value });
     }
 
-    console.log(userForm,fichaForm)
+    console.log(userForm, fichaForm);
   };
 
   const handlePassword = (e) => {
@@ -117,6 +149,7 @@ const UserAddForm = () => {
       {created && <PSuccess>Usuario creado correctamente</PSuccess>}
       <h3>Agregar un usuario</h3>
       <TextField
+      required
         value={userForm.ci_usuario}
         onChange={handleChange}
         name="ci_usuario"
@@ -125,6 +158,7 @@ const UserAddForm = () => {
         label="Cédula de identidad"
       ></TextField>
       <TextField
+      required
         value={userForm.primerNombre_usuario}
         onChange={handleChange}
         name="primerNombre_usuario"
@@ -139,6 +173,7 @@ const UserAddForm = () => {
         label="Segundo nombre"
       ></TextField>
       <TextField
+      required
         value={userForm.primerApellido_usuario}
         onChange={handleChange}
         name="primerApellido_usuario"
@@ -153,6 +188,7 @@ const UserAddForm = () => {
         label="Segundo apellido"
       ></TextField>
       <TextField
+      required
         value={userForm.email_usuario}
         onChange={handleChange}
         name="email_usuario"
@@ -160,10 +196,17 @@ const UserAddForm = () => {
         label="Email"
         type="email"
       ></TextField>
-      <InputDate label={"Fecha de nacimiento"} name={"fechaNac_usuario"} form={userForm} setForm={setUserForm}></InputDate>
+      <InputDate
+      required
+        label={"Fecha de nacimiento"}
+        name={"fechaNac_usuario"}
+        form={userForm}
+        setForm={setUserForm}
+      ></InputDate>
 
       {/* <TextField onChange={handleChange} name="tel" type="number" className="Form__input" label="Telefono"></TextField> */}
       <TextField
+      required
         onBlur={handleVerifiedPassword}
         onChange={handleChange}
         name="password_usuario"
@@ -173,6 +216,7 @@ const UserAddForm = () => {
       ></TextField>
       {!passwordVerified && <PAlert>Los campos contraseña no coinciden</PAlert>}
       <TextField
+      required
         onChange={handlePassword}
         onBlur={handleVerifiedPassword}
         name="password_usuario_verified"
@@ -184,6 +228,7 @@ const UserAddForm = () => {
       <FormControl className="Form__input">
         <InputLabel id="demo-simple-select-label">Tipo de usuario</InputLabel>
         <Select
+        required
           name="id_rol_usuario"
           label="Tipo de usuario"
           value={userForm.tipoUsuario}
@@ -200,13 +245,20 @@ const UserAddForm = () => {
         </Select>
       </FormControl>
       <UserAddTipeController
+        pertenecenForm={pertenecenForm}
+        setPertenecenForm={setPertenecenForm}
         setForm={setFichaForm}
         form={fichaForm}
         className="Form__input"
         tipeUser={typeUser}
       />
-      
-      <InputDate label={"Carnet de salud válido"} name={"carneSalud_usuario"} form={userForm} setForm={setUserForm}></InputDate>
+
+      <InputDate
+        label={"Carnet de salud válido"}
+        name={"carneSalud_usuario"}
+        form={userForm}
+        setForm={setUserForm}
+      ></InputDate>
       <Button variant="contained" component="label">
         Foto de perfil
         <input
@@ -225,7 +277,7 @@ const UserAddForm = () => {
         component="label"
       ></IconButton>
 
-      <ButtonClassic variant="contained" onClick={handleClick}>
+      <ButtonClassic type="submit" variant="contained" onClick={handleClick}>
         Agregar
       </ButtonClassic>
     </Form>

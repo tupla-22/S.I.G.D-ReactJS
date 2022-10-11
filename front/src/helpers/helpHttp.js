@@ -1,5 +1,5 @@
 export const helpHttp = () => {
-  const customFetch = (endpoint, options) => {
+  const customFetch = async (endpoint, options) => {
     const defaultHeader = {
       "Content-type": "application/x-www-form-urlencoded;charset-UTF-8"
 
@@ -19,7 +19,7 @@ export const helpHttp = () => {
     //console.log(options);
     setTimeout(() => controller.abort(), 3000);
 
-    return fetch(endpoint, options)
+    return await fetch(endpoint, options)
       .then((res) =>
         res.status
           ? res.json()

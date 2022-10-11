@@ -23,6 +23,8 @@ const FormLogin = () => {
 
 
   const handleSubmit = (e) =>{
+    e.preventDefault()
+
     const data = new URLSearchParams(usuario);
 
     const options ={
@@ -106,7 +108,7 @@ const FormLogin = () => {
           type="password"
         />
         <Box><RecoverPassword>¿Problemas para iniciar sesión?</RecoverPassword></Box>
-        <Button  onClick={handleSubmit} className="Form__input" variant='contained'>Entrar</Button>
+        <Button type='submit'  onClick={handleSubmit} className="Form__input" variant='contained'>Entrar</Button>
 
 
 

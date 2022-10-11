@@ -2,7 +2,7 @@ import UserAddDTForm from "./UserAddDTForm";
 import UserAddJuzgeForm from "./UserAddJuzgeForm";
 import UserAddStudentForm from "./UserAddStudentForm";
 
-const UserAddTipeController = ({tipeUser,className, form,setForm}) => {
+const UserAddTipeController = ({setPertenecenForm,pertenecenForm ,tipeUser,className, form,setForm}) => {
     
     
     
@@ -13,7 +13,7 @@ const UserAddTipeController = ({tipeUser,className, form,setForm}) => {
         // return <UserAddAdminForm className={className}/>
         // break
         case 3:
-        return <UserAddStudentForm form={form} setForm={setForm} className={className}/>
+        return <UserAddStudentForm setPertenecenForm={setPertenecenForm} pertenecenForm={pertenecenForm} form={form} setForm={setForm} className={className}/>
         break
     }
     
