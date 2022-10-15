@@ -333,9 +333,28 @@ class GetModel{
     
 
     /**==================peticion personalizada partidos pendientes======================= */   
-    static public function getMatcheck($sport, $disputed, $orderBy, $orderMode, $startAt, $endAt){
+    static public function getMatcheck($sport, $disputed, $orderBy, $orderMode, $startAt, $endAt, $linkTo, $equalTo){
 
+        /**=====================organizamos filtros ============================ */
+        $linkToArray= explode(",",$linkTo);
         
+        $equalToArray= explode("¨¨",$equalTo);
+        $linkToText="";
+
+        if(count($linkToArray)>1){
+
+            foreach($linkToArray as $key => $value){
+
+                
+                if($key>0){
+
+                    $linkToText .= "AND ".$value." = :".$value." ";
+
+                }
+            }
+        }
+
+        /**=====================organizamos deportes ============================ */
         $idSportTeamArray=array();
         
         $sportArray= explode(",",$sport);
@@ -379,7 +398,7 @@ class GetModel{
         $innerJoinText="INNER join equipos e on p.id_partido";
         $where="(e.$idSportTeamArray[0]='$sportArray[0]' $linkText)
         and disputado_partido=$disputed 
-        and (e.id_equipo=p.id_equipoLocal_partido or e.id_equipo=p.id_equipoVisitante_partido)
+        and (e.id_equipo=p.id_equipoLocal_partido or e.id_equipo=p.id_equipoVisitante_partido) $linkToText
         group by p.id_partido";
 
         
@@ -425,6 +444,8 @@ class GetModel{
 
             $stmt=Connection::connect()->prepare($sql);
             
+            
+            
 
             /*foreach ($idSportTeamArray as $key => $value) {
                 
@@ -438,6 +459,7 @@ class GetModel{
             try {
 
                 $stmt->execute();
+                
 
             } catch (PDOException $Exeption) {
                 
@@ -486,7 +508,7 @@ class GetModel{
             }
         }
        /**=====================sentencias sql ============================ */  
-        $select="nombre_equipo,primerNombre_usuario,primerApellido_usuario,ci_usuario,numeroCamiseta_pertenece,altura_fichaJugador,peso_fichaJugador,lateralidad_fichaJugador";
+        $select="nombre_equipo,primerNombre_usuario,primerApellido_usuario,id_usuario,ci_usuario,numeroCamiseta_pertenece,altura_fichaJugador,peso_fichaJugador,lateralidad_fichaJugador";
         $from='fichasJugadores,usuarios,pertenecen,equipos,tienen';
         $innerJoinText="";
         $where="

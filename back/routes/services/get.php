@@ -27,7 +27,7 @@ $response=new GetController();
 
 /**======================pticion get con filtro============================== */
 
-if(isset($linkTo)&&isset($equalTo) && !isset($rel) && !isset($type)){
+if(isset($linkTo)&&isset($equalTo) && !isset($rel) && !isset($type) && $table!="matcheck"){
     $response ->getDataFilter(
 
         $table, 
@@ -43,7 +43,7 @@ if(isset($linkTo)&&isset($equalTo) && !isset($rel) && !isset($type)){
 
 /**======================pticion get sin filtro entre tablas relacionadas============================== */
 
-}else if(isset($rel) && isset($type) && $table=="relations" && !isset($linkTo) && !isset($equalTo)){
+}else if(isset($rel) && isset($type) && $table=="relations" && !isset($linkTo) && !isset($equalTo) && $table!="matcheck"){
 
     $response->getRelData(
         
@@ -59,7 +59,7 @@ if(isset($linkTo)&&isset($equalTo) && !isset($rel) && !isset($type)){
 
 /**======================pticion get con filtro entre tablas relacionadas============================== */
 
-}else if(isset($rel) && isset($type) && $table=="relations" && isset($linkTo) && isset($equalTo)){
+}else if(isset($rel) && isset($type) && $table=="relations" && isset($linkTo) && isset($equalTo) && $table!="matcheck"){
 
     $response->getRelDataFilter(
         $rel, 
@@ -90,11 +90,14 @@ deporte equipo
     
     
     $response->getMatcheck(
+        
         $sport, 
         $disputed,
-        $orderBy, $orderMode, $startAt, $endAt
+        $orderBy, $orderMode, $startAt, $endAt,
+        $linkTo, 
+        $equalTo
+
     );  
-    
 
     /*==============integrantesEquipo===============*/
 
@@ -111,7 +114,7 @@ deporte equipo
 /**======================pticion get para el buscador sin relaciones============================== */
 
 
-}else if (!isset($rel) && !isset($type) && isset($linkTo) && isset($search)) {
+}else if (!isset($rel) && !isset($type) && isset($linkTo) && isset($search) && $table!="matcheck") {
     
     $response->getDataSearch(
 
@@ -130,7 +133,7 @@ deporte equipo
 /**======================pticion get para el buscador con relaciones============================== */
 
 
-}else if (isset($rel) && isset($type) && $table=="relations" && isset($linkTo) && isset($search)) {
+}else if (isset($rel) && isset($type) && $table=="relations" && isset($linkTo) && isset($search) && $table!="matcheck") {
     
     $response->getRelDataSearch(
         $rel, 
@@ -146,7 +149,7 @@ deporte equipo
 
     /**======================pticion get para seleccion de rangos(between)============================== */
 
-}else if (!isset($rel) && !isset($type) && isset($linkTo) && isset($between1) && isset($between2)) {
+}else if (!isset($rel) && !isset($type) && isset($linkTo) && isset($between1) && isset($between2) && $table!="matcheck") {
 
     $response->getDataRange(
         $table, 
@@ -164,7 +167,7 @@ deporte equipo
 
     /**======================pticion get para seleccion de rangos(between) con relaciones============================== */
     
-}else if (isset($rel) && isset($type) && $table=="relations" && isset($linkTo) && isset($between1) && isset($between2)) {
+}else if (isset($rel) && isset($type) && $table=="relations" && isset($linkTo) && isset($between1) && isset($between2) && $table!="matcheck") {
 
     $response->getRelDataRange(
         $rel, 

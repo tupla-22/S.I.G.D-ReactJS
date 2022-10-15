@@ -41,13 +41,15 @@ class GetController{
 
     /**======================peticion personalizada partidos pendientes============================== */
 
-    static function getMatcheck($sport, $disputed,  $orderBy, $orderMode, $startAt, $endAt ){
+    static function getMatcheck($sport, $disputed,  $orderBy, $orderMode, $startAt, $endAt, $linkTo, $equalTo ){
         
-        $response = GetModel::getMatcheck($sport, $disputed,  $orderBy, $orderMode, $startAt, $endAt );
+        $response = GetModel::getMatcheck($sport, $disputed,  $orderBy, $orderMode, $startAt, $endAt, $linkTo, $equalTo );
         
         $return=new GetController();
         
         $return -> fncResponse($response);
+        
+        
     }
 
     /**======================peticion personalizada integrantes de equipos============================== */
@@ -153,6 +155,7 @@ static function getRelDataRange(
                 "status" => 200,
                 "total" => count($response),
                 "result" => $response
+                
             
             
             );
@@ -174,23 +177,6 @@ static function getRelDataRange(
 
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
