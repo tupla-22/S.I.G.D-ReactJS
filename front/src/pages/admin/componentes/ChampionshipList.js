@@ -13,7 +13,10 @@ const ChampionshipList = () => {
 
 
   useEffect(() => {
-    peticion.get(urlApi("campeonatos?select=*")).then(e=>setData(e.result))
+    peticion.get(urlApi("campeonatos?select=*")).then(e=>{
+      console.log(e)
+      if(e.status==200)setData(e.result)}
+      )
   }, []);
 
   return (

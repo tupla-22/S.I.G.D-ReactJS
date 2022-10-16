@@ -9,7 +9,7 @@ import ChangeCircleTwoToneIcon from '@mui/icons-material/ChangeCircleTwoTone';
 import MoveUpTwoToneIcon from '@mui/icons-material/MoveUpTwoTone';
 import SettingsOverscanTwoToneIcon from '@mui/icons-material/SettingsOverscanTwoTone';
 
-const ManagmentControlerControler = () => {
+const ManagmentHandballControler = () => {
     const handleClick = (e) =>{
       
     }
@@ -53,4 +53,4 @@ const ManagmentControlerControler = () => {
   );
 };
 
-export default ManagmentControlerControler;
+export default ManagmentHandballControler;

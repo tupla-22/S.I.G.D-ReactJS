@@ -12,19 +12,19 @@ import PanToolTwoToneIcon from "@mui/icons-material/PanToolTwoTone";
 import DirectionsWalkTwoToneIcon from "@mui/icons-material/DirectionsWalkTwoTone";
 import React, { useState, useEffect } from "react";
 import { helpHttp } from "../../../helpers/helpHttp";
-import { getDateTime } from "../../../functions/globals";
+import { getDateTime, getProp } from "../../../functions/globals";
 import UsersModal from "./UsersModal";
 
 const peticion = helpHttp();
 
-const ManagmentBasketballControler = () => {
+const ManagmentBasketballControler = ({ visitantes, locales }) => {
   const [form, setForm] = useState({});
   const handleClick = (e) => {
     setForm({
       ...form,
-      tipo_estadistica: e.target.name,
+      tipo_estadistica: getProp(e).name,
       fecha_estadistica: getDateTime(),
-      valor_estadistica:1,
+      valor_estadistica: 1,
     });
     console.log(form);
   };
@@ -32,41 +32,89 @@ const ManagmentBasketballControler = () => {
   return (
     <>
       <Form>
-        <h3>Control football</h3>
+        <h3>Control basketball</h3>
         <BoxFlex>
-          <UsersModal name="doble" onClick={handleClick} variant="contained">
+          <UsersModal
+            locales={locales}
+            visitantes={visitantes}
+            name="doble"
+            onClick={handleClick}
+            variant="contained"
+          >
             Doble
             <SportsSoccerTwoToneIcon />
           </UsersModal>
-          <Button name="falta" onClick={handleClick} variant="contained">
+          <UsersModal
+            locales={locales}
+            visitantes={visitantes}
+            name="doble"
+            onClick={handleClick}
+            variant="contained"
+          >
             Falta
             <HealingTwoToneIcon />
-          </Button>
-          <Button name="dobleDriblin" onClick={handleClick} variant="contained">
+          </UsersModal>
+          <UsersModal
+            locales={locales}
+            visitantes={visitantes}
+            name="doble"
+            onClick={handleClick}
+            variant="contained"
+          >
             Doble driblin
             <PanToolTwoToneIcon />
-          </Button>
+          </UsersModal>
 
-          <Button name="caminar" onClick={handleClick} variant="contained">
+          <UsersModal
+            locales={locales}
+            visitantes={visitantes}
+            name="doble"
+            onClick={handleClick}
+            variant="contained"
+          >
             Caminar
             <DirectionsWalkTwoToneIcon />
-          </Button>
-          <Button name="saqueLateral" onClick={handleClick} variant="contained">
+          </UsersModal>
+          <UsersModal
+            locales={locales}
+            visitantes={visitantes}
+            name="doble"
+            onClick={handleClick}
+            variant="contained"
+          >
             Saque lateral
             <RectangleTwoToneIcon />
-          </Button>
-          <Button name="cambio" onClick={handleClick} variant="contained">
+          </UsersModal>
+          <UsersModal
+            locales={locales}
+            visitantes={visitantes}
+            name="doble"
+            onClick={handleClick}
+            variant="contained"
+          >
             Cambio
             <ChangeCircleTwoToneIcon />
-          </Button>
-          <Button name="tiroLibre" onClick={handleClick} variant="contained">
+          </UsersModal>
+          <UsersModal
+            locales={locales}
+            visitantes={visitantes}
+            name="doble"
+            onClick={handleClick}
+            variant="contained"
+          >
             Tiro libre
             <MoveUpTwoToneIcon />
-          </Button>
-          <Button name="triple" onClick={handleClick} variant="contained">
+          </UsersModal>
+          <UsersModal
+            locales={locales}
+            visitantes={visitantes}
+            name="doble"
+            onClick={handleClick}
+            variant="contained"
+          >
             Triple
             <SettingsOverscanTwoToneIcon />
-          </Button>
+          </UsersModal>
         </BoxFlex>
       </Form>
     </>

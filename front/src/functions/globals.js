@@ -33,3 +33,12 @@ export const getDateTime = ()=>{
    return `${e.getFullYear()}-${e.getMonth() + 1}-${e.getDate()} ${e.getHours()}:${e.getMinutes()}:${e.getSeconds()}`
 }
 
+
+export const getProp =(e) =>{
+  return e.target.__reactProps$5n5qjexavb2
+}
+
+
+export const getUser=()=>{
+   return JSON.parse(localStorage.getItem("user"))
+}

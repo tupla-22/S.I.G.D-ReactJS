@@ -74,9 +74,18 @@ function App() {
           <Route path="/student/:userId" element={<HomeStudent />}>
             <Route path="history" element={<MatchesHistory />}></Route>
             <Route path="Home" element={<Fixture />}>
-              <Route path="fixtureFB" element={<MatchList sport={"football"}/>}/>
-              <Route path="fixtureBB" element={<MatchList sport={"basketball"}/>}/>
-              <Route path="fixtureHB" element={<MatchList sport={"handball"}/>}/>
+              <Route
+                path="fixtureFB"
+                element={<MatchList sport={"football"} />}
+              />
+              <Route
+                path="fixtureBB"
+                element={<MatchList sport={"basketball"} />}
+              />
+              <Route
+                path="fixtureHB"
+                element={<MatchList sport={"handball"} />}
+              />
             </Route>
             <Route path="teams" element={<Teams />}>
               <Route path="teamsAll" element={<AllTeams />}></Route>
@@ -168,15 +177,21 @@ function App() {
           </Route>
 
           <Route path="analist/:userId" element={<HomeAnalist />}>
-          <Route path="lookMatch/:matchId" element={<LookMatch/>}></Route>
+            <Route path="lookMatch/:matchId" element={<LookMatch />}></Route>
 
-          <Route path="matchManagment" element={<MatchManagment />}>
-              <Route path="basketball" element={<MatchesListButtons sport={"basketball"} />}></Route>
+            <Route path="matchManagment" element={<MatchManagment />}>
+              <Route
+                path="basketball"
+                element={<MatchesListButtons sport={"basketball"} />}
+              ></Route>
               <Route
                 path="football"
                 element={<MatchesListButtons sport={"football"} />}
               ></Route>
-              <Route path="handball" element={<MatchesListButtons sport={"handball"} />}></Route>
+              <Route
+                path="handball"
+                element={<MatchesListButtons sport={"handball"} />}
+              ></Route>
             </Route>
             <Route path="home" element={<HomePageAnalist />}></Route>
             <Route path="profile" element={<Profile />}>

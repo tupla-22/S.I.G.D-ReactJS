@@ -1,5 +1,5 @@
 
-const blobToBase64 = (name,archivo,setState,form) =>{ 
+const blobToBase64 = (name,archivo,setForm,form) =>{ 
     Array.from(archivo).forEach(archivo=>{
       let reader =new FileReader();
       reader.readAsDataURL(archivo);
@@ -7,7 +7,7 @@ const blobToBase64 = (name,archivo,setState,form) =>{
       reader.onload = () =>{
         let con =reader.result
         let auxArr = con.split(',')
-        setState({...form,[name]:reader.result})
+        setForm({...form,[name]:reader.result})
       }
     })
 

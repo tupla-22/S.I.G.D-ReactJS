@@ -12,6 +12,7 @@ const ChampionshipUpdateForm = ({setData}) => {
     const peticion = helpHttp();
 
     const handleChange = (e) => {
+        e.preventDefault(e)
         setidMatch(e.target.value)
     }
 
@@ -22,7 +23,7 @@ const ChampionshipUpdateForm = ({setData}) => {
         <Form>
             <h3>Actualizar campeonato</h3>
             <TextField type="number" onChange={handleChange}  label="ID" value={idMatch} className="Form__input"></TextField>
-            <ButtonClassic onClick={handleClick}>Actualizar</ButtonClassic>
+            <ButtonClassic type="submit" onClick={handleClick}>Actualizar</ButtonClassic>
         </Form>
      );
 }
