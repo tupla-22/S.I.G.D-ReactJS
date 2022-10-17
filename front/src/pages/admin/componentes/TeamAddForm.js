@@ -12,12 +12,16 @@ import Form from "../../../componentes/Form";
 import "./styles/TeamAddForm.css";
 import { helpHttp } from "../../../helpers/helpHttp";
 import { blobToBase64 } from "../../../helpers/blobManager";
+import { urlApi } from "../../../functions/globals";
 
 const formTeamInit = {
   nombre_equipo: "",
   id_deporte_equipo:null,
   escudo_equipo: "",
 };
+
+
+const peticion=helpHttp()
 
 const TeamAddForm = () => {
   const [teamForm, setTeamForm] = useState(formTeamInit);
@@ -39,13 +43,9 @@ const TeamAddForm = () => {
   const handleClick = () => {
     console.log(teamForm)
     const confi = {
-      method:"POST",
-      headers: {
-        "Content-type": "application/x-www-form-urlencoded;charset-UTF-8",
-      },
       body:new URLSearchParams(teamForm)
     }
-    fetch("http://apirest.com/equipos",confi).then(e=>e.json()).then(e=>e).catch(e=>console.log(e));
+    peticion.post(urlApi("equipos?"),confi).then(e=>console.log(e));
 
   };
 
@@ -68,9 +68,9 @@ const TeamAddForm = () => {
           id="demo-simple-select"
           onChange={handleChange}
         >
-          <MenuItem value={1}>Handball</MenuItem>
-          <MenuItem value={2}>football</MenuItem>
-          <MenuItem value={3}>basketball</MenuItem>
+          <MenuItem value={"handball"}>Handball</MenuItem>
+          <MenuItem value={"football"}>football</MenuItem>
+          <MenuItem value={"basketball"}>basketball</MenuItem>
         </Select>
       </FormControl>
 

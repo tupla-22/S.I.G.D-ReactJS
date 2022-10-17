@@ -59,6 +59,8 @@ import FixtureBB from "./componentes/FixtureBB";
 import FixtureHB from "./componentes/FixtureHB";
 import MatchesListButtons from "./pages/analist/componentes/MatchesListButton";
 import LookMatch from "./pages/analist/LookMatch";
+import CheckStats from "./pages/judge/CheckStats";
+import ChampionshipDel from "./pages/admin/componentes/ChampionshipDelete";
 
 function App() {
   return (
@@ -169,8 +171,8 @@ function App() {
             </Route>
             <Route path="championshipsLoad" element={<AdminChampionships />}>
               <Route path="add" element={<ChampionshipAdd />}></Route>
-              <Route path="delete" element={<ChampionshipsLoad />}></Route>
-              <Route path="update" element={<ChampionshipsLoad />}></Route>
+              <Route path="delete" element={<ChampionshipDel />}></Route>
+              <Route path="update" element={<ChampionshipUpdate/>}></Route>
             </Route>
             <Route path="myteams" element={<MyTeams></MyTeams>}></Route>
             <Route path="stats" element={<StatsMyTeams />}></Route>
@@ -200,6 +202,9 @@ function App() {
           </Route>
 
           <Route path="judge/:userId" element={<HomeJudge />}>
+            <Route path="checkStats" element={<CheckStats></CheckStats>}>
+              <Route></Route>
+            </Route>
             <Route path="profile" element={<Profile />}>
               <Route path="changePassword" element={<ChangePassword />}></Route>
             </Route>
@@ -209,7 +214,7 @@ function App() {
             <Route path="profile" element={<Profile />}>
               <Route path="changePassword" element={<ChangePassword />}></Route>
             </Route>
-            <Route path="homeScout" element={<HomePageScout />}></Route>
+            <Route path="home" element={<HomePageScout />}></Route>
           </Route>
 
           <Route path="/*" element={<Error404 />}></Route>

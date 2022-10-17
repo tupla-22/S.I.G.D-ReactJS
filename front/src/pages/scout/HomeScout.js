@@ -1,8 +1,11 @@
 import { Outlet } from "react-router-dom";
 import NavAfterLogin from "../../componentes/NavAfterLogin";
+import NavLink from "../../componentes/NavLink";
 
 const HomeScout = () => {
-    const pages = []
+    const pages = [
+        <NavLink classAdd={"responsive"} to={""}>Buscar Jugador</NavLink>
+    ]
 
 
 

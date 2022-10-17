@@ -18,7 +18,7 @@ const TeamUpdateForm = ({setTeam}) => {
     }
 
     const handleClick = (e)=>{
-        peticion.get(`http://apirest.com/equipos?select=*&linkTo=id_equipo&search=${idTeam}¨¨`).then(e=>setTeam(e.result[0]));
+        peticion.get(urlApi(`equipos?select=*&linkTo=id_equipo&search=${idTeam}¨¨`)).then(e=>setTeam(e.result[0]));
     }
     return ( 
         <Form>

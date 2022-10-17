@@ -9,11 +9,10 @@ import {
 import { ButtonClassic } from "../../../componentes/ButtonClassic";
 import Form from "../../../componentes/Form";
 import { helpHttp } from "../../../helpers/helpHttp";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import InputDate from "../../../componentes/InputDate";
 import InputTime from "../../../componentes/InputTime";
 import { urlApi } from "../../../functions/globals";
-
 
 const formmatchInit = {
   id_equipoLocal_partido: "",
@@ -22,44 +21,74 @@ const formmatchInit = {
 };
 
 const MatchAddForm = () => {
-  const [matchForm, setMatchForm] =useState(formmatchInit);
+  const [matchForm, setMatchForm] = useState(formmatchInit);
   const [equipos, setEquipos] = useState([]);
   const [errors, setErrors] = useState(null);
   const [champ, setChamp] = useState(false);
   const [championships, setChampionships] = useState([]);
-
+  const [deportes, setDeportes] = useState([]);
+  const [deporteElegido, setDeporteElegido] = useState("");
   const peticion = helpHttp();
 
+  useEffect(() => {
+    peticion.get(urlApi("deportes?")).then((e) => {
+      if (e.status == 200) {
+        setDeportes(e.result);
+      }
+    });
+  }, []);
 
   useEffect(() => {
-    peticion.get(urlApi("equipos?select=*")).then(e=>setEquipos(e.result))
-    peticion.get(urlApi("campeonatos?select=*")).then(e=>setChampionships(e.result))
+    peticion.get(urlApi(`equipos?select=*&linkTo=id_deporte_equipo&equalTo=${deporteElegido}`)).then((e) =>{
+      console.log(e)
+     if(e.status==200){setEquipos(e.result)}}
+     );
+    peticion
+      .get(urlApi("campeonatos?select=*"))
+      .then((e) =>{if(e.status==200) {
+      console.log(e)
+
+        setChampionships(e.result)}});
     
-  }, []);
-  
-
-
+  }, [deporteElegido]);
 
   const handleChange = (event) => {
     setMatchForm({
       ...matchForm,
       [event.target.name]: event.target.value,
     });
-    console.log(matchForm)
+    console.log(matchForm);
   };
+
+  const handleDeporteElegido=(e)=>{
+    setDeporteElegido(e.target.value)
+  }
 
   const handleClick = () => {
     const confi = {
       body: new URLSearchParams(matchForm),
     };
-     peticion.post(urlApi("partidos?"),confi)
-      .then((e) => console.log(e))
+    peticion.post(urlApi("partidos?"), confi).then((e) => console.log(e));
   };
-
 
   return (
     <Form>
       <h3>Agregar un partido</h3>
+
+      <FormControl className="Form__input" fullWidth>
+        <InputLabel id="demo-simple-select-label">Deporte</InputLabel>
+        <Select
+          label="Deporte"
+          name="id_equipoLocal_partido"
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          onChange={handleDeporteElegido}
+        >
+          {deportes.map((e) => (
+            <MenuItem value={e.id_deporte}>{e.id_deporte}</MenuItem>
+          ))}
+        </Select>
+      </FormControl>
       <FormControl className="Form__input" fullWidth>
         <InputLabel id="demo-simple-select-label">Equipo local</InputLabel>
         <Select
@@ -69,10 +98,12 @@ const MatchAddForm = () => {
           id="demo-simple-select"
           onChange={handleChange}
         >
-          {equipos.map(e=>(<MenuItem  value={e.id_equipo}>{e.nombre_equipo}</MenuItem>))}
+          {equipos.map((e) => (
+            <MenuItem value={e.id_equipo}>{e.nombre_equipo}</MenuItem>
+          ))}
         </Select>
       </FormControl>
-      
+
       <FormControl className="Form__input" fullWidth>
         <InputLabel id="demo-simple-select-label">Equipo visitante</InputLabel>
         <Select
@@ -82,7 +113,9 @@ const MatchAddForm = () => {
           id="demo-simple-select"
           onChange={handleChange}
         >
-          {equipos.map(e=>(<MenuItem  value={e.id_equipo}>{e.nombre_equipo}</MenuItem>))}
+          {equipos.map((e) => (
+            <MenuItem value={e.id_equipo}>{e.nombre_equipo}</MenuItem>
+          ))}
         </Select>
       </FormControl>
       <FormControl className="Form__input" fullWidth>
@@ -98,26 +131,42 @@ const MatchAddForm = () => {
           <MenuItem value={"amistoso"}>Amistoso</MenuItem>
           <MenuItem value={"campeonato"}>Campeonato</MenuItem>
         </Select>
-        
-      {champ && <FormControl className="Form__input" fullWidth>
-        <InputLabel id="demo-simple-select-label">Campeonato al que pertenece</InputLabel>
-        <Select
-          label="Campeonato al que pertenece"
-          name="id_equipoVisitante_partido"
-          value={matchForm.id_equipoLocal_partido}
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          onChange={handleChange}
-        >
-          {championships.map(e=>(<MenuItem name={e.id_campeonato} value={e.nombre_campeonato}>{e.nombre_campeonato}</MenuItem>))}
-        </Select>
-      </FormControl>}
-      
-      <InputDate label={"Fecha"} form={matchForm} setForm={setMatchForm} name="dia_partido"/>
-      <InputTime form={matchForm} setForm={setMatchForm} name={"hora_partido"}/>
 
+        {champ && (
+          <FormControl className="Form__input" fullWidth>
+            <InputLabel id="demo-simple-select-label">
+              Campeonato al que pertenece
+            </InputLabel>
+            <Select
+              label="Campeonato al que pertenece"
+              name="id_equipoVisitante_partido"
+              value={matchForm.id_equipoLocal_partido}
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              onChange={handleChange}
+            >
+              {championships.map((e) => (
+                <MenuItem name={e.id_campeonato} value={e.nombre_campeonato}>
+                  {e.nombre_campeonato}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        )}
+
+        <InputDate
+          label={"Fecha"}
+          form={matchForm}
+          setForm={setMatchForm}
+          name="dia_partido"
+        />
+        <InputTime
+          form={matchForm}
+          setForm={setMatchForm}
+          name={"hora_partido"}
+        />
       </FormControl>
-      
+
       {/* <FormControl className="Form__input" fullWidth>
         <InputLabel id="demo-simple-select-label">Liga</InputLabel>
         <Select
