@@ -8,7 +8,6 @@ const TeamAdd = () => {
   return (
     <Main>
         <TeamAddForm/>
-        <UserSearch/>
     </Main>
   );
 };

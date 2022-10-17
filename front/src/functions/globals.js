@@ -7,9 +7,13 @@ export const urlApi = (url) =>{
 
 
 export const dateTradeEs = (fecha) =>{
-   let arrFecha = fecha.split("-")
-   let date = `${arrFecha[2]}/${arrFecha[1]}/${arrFecha[0]}`
-   return date;
+   try{
+      let arrFecha = fecha.split("-")
+      let date = `${arrFecha[2]}/${arrFecha[1]}/${arrFecha[0]}`
+      return date;
+   }catch (e){
+      return console.error(e)
+   }
 }
 
 export const passwordVerifier = (password1,password2) =>{

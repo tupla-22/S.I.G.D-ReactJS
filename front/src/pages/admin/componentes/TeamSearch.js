@@ -12,6 +12,7 @@ import { Table } from "../../../componentes/styledComponents/Table";
 import { PAlert } from "../../../componentes/PAlert";
 import TeamsList from "./TeamsList";
 import TeamsListRow from "./TeamsListRow";
+import { urlApi } from "../../../functions/globals";
 
 const TeamSearch = () => {
   const [nombre, setnombre] = useState("");
@@ -24,22 +25,22 @@ const TeamSearch = () => {
   };
 
   const handleSubmit = (e) => {
-    e.nativeEvent.preventDefault();
-    const as = async () => {
-      setLoading(true);
-      let res = await solicitud
-        .get(
-          `http://apirest.com/equipos?select=*&linkTo=nombre_equipo&search=${nombre}¨¨`
+    e.preventDefault();
+    setLoading(true);
+    solicitud
+      .get(
+        urlApi(
+          `equipos?select=*&linkTo=nombre_equipo,visible_equipo&search=${nombre}¨¨1`
         )
-        .then((e) => {
+      )
+      .then((e) => {
+        if (e.status === 200) {
+          setOk(true);
           setUsuariosBuscados(e.result);
-          if (e.status === 200) setOk(true);
-          else setOk(false);
-        })
-        .catch((e) => setOk(false));
-      setLoading(false);
-    };
-    as();
+        } else setOk(false);
+      })
+      .catch((e) => setOk(false));
+    setLoading(false);
   };
 
   return (

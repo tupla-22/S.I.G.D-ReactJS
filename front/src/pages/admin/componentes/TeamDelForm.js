@@ -5,6 +5,7 @@ import {ButtonClassic} from "../../../componentes/ButtonClassic"
 import ModalConfirm from "./ModalConfirm";
 import { helpHttp } from "../../../helpers/helpHttp";
 import { urlApi } from "../../../functions/globals";
+import { id } from "date-fns/locale";
 
 const TeamDelForm = () => {
     const [iDTeam, setIDTeam] = useState(null);
@@ -26,8 +27,12 @@ const TeamDelForm = () => {
 
     useEffect(() => {
         console.log(iDTeam)
+        const data={
+            body:new URLSearchParams({visible_equipo:0})
+        }
         if(confirm == "1"){
-            peticion.del(urlApi(`equipos?id=${iDTeam}&nameID=id_equipo`)).then(e=>console.log(e));
+            peticion.put(urlApi(`equipos?id=${iDTeam}&nameID=id_equipo`),data).then(e=>console.log(e));
+            setConfirm(false)
         }
     }, [confirm]);
     return ( 

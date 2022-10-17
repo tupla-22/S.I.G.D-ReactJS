@@ -53,14 +53,17 @@ const TeamAddForm = () => {
     <Form>
       <h3>Agregar un equipo</h3>
       <TextField
+        FormControl
+        required
         onChange={handleChange}
         name="nombre_equipo"
         className="Form__input"
         label="Nombre del equipo"
       ></TextField>
-      <FormControl className="Form__input" fullWidth>
+      <FormControl required className="Form__input" fullWidth>
         <InputLabel id="demo-simple-select-label">Deporte</InputLabel>
         <Select
+          
           label="Deporte"
           name="id_deporte_equipo"
           value={teamForm.id_deporte}

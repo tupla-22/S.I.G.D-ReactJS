@@ -3,25 +3,24 @@ import { TH } from "../../../componentes/styledComponents/TH";
 import TeamsListRow from "./TeamsListRow";
 import React, { useState, useEffect } from "react";
 import { Table } from "../../../componentes/styledComponents/Table";
+import { urlApi } from "../../../functions/globals";
+import { helpHttp } from "../../../helpers/helpHttp";
+
+const peticion= helpHttp();
 
 const TeamsList = () => {
   const [data, setData] = useState([]);
   const [status, setStatus] = useState(false);
 
   useEffect(() => {
-    const pedirData = async () => {
-      await fetch("http://apirest.com/equipos?select=*")
-        .then((res) => res.json())
-        .then((dat) => {
-          setData(dat.result);
-          setStatus(true);
+        peticion.get(urlApi(`equipos?select=*&linkTo=visible_equipo&equalTo=1`)).then((dat) => {
+          console.log(dat)
+          if(dat.status==200){
+            setData(dat.result);
+            setStatus(true);
+
+          }
         })
-        .catch((e) => {
-          console.log(e);
-        });
-      console.log(data);
-    };
-    pedirData();
   }, []);
 
   return (
