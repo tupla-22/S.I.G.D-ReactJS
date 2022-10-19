@@ -15,7 +15,7 @@ import { blobToBase64 } from "../../../helpers/blobManager";
 
 const formTeamInit = {
   nombre_equipo: "",
-  id_deporte_equipo:null,
+  id_deporte_equipo:"",
   escudo_equipo: "",
 };
 

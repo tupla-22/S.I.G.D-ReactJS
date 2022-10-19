@@ -13,8 +13,7 @@ background: -webkit-linear-gradient(90deg, hsla(18, 76%, 85%, 1) 0%, hsla(203, 6
 
 filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#F6CFBE", endColorstr="#B9DCF2", GradientType=1 );
 min-height:100vh;
-height:fit-content;
+height:200vh;
 width: 100%;
-height:fit-content;
 
 `

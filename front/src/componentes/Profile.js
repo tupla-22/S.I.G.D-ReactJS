@@ -37,8 +37,13 @@ const Profile = () => {
 
   const handlePhoto = (e) => {
     blobToBase64("fotoPerfil_usuario",e.target.files,setPhoto,photo)
-    peticion.put(urlApi(`usuarios?id=${getUser().id_usuario}&nameID=id_usuario`),{body:new URLSearchParams(photo)}).then(e=>console.log(e))
+    
   };
+
+  useEffect(() => {
+    peticion.put(urlApi(`usuarios?id=${getUser().id_usuario}&nameID=id_usuario`),{body:new URLSearchParams(photo)}).then(e=>console.log(e))
+    // localStorage.setItem("user")
+  }, [photo]);
 
   return (
     <div className="profile">

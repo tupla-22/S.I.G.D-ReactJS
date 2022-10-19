@@ -18,13 +18,14 @@ const TeamUpdateForm = ({setTeam}) => {
     }
 
     const handleClick = (e)=>{
+        e.preventDefault();
         peticion.get(urlApi(`equipos?select=*&linkTo=id_equipo&search=${idTeam}¨¨`)).then(e=>setTeam(e.result[0]));
     }
     return ( 
         <Form>
             <h3>Actualizar equipo</h3>
             <TextField type="number" onChange={handleChange}  label="ID" value={idTeam} className="Form__input"></TextField>
-            <ButtonClassic onClick={handleClick}>Actualizar</ButtonClassic>
+            <ButtonClassic type="submit" onClick={handleClick}>Actualizar</ButtonClassic>
         </Form>
      );
 }
