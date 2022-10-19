@@ -2,9 +2,20 @@ import "./styles/Profile.css";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { Button } from "@mui/material";
 import { Outlet, useNavigate } from "react-router-dom";
+import { blobToBase64 } from "../helpers/blobManager";
+import React, { useState, useEffect } from 'react';
+import { helpHttp } from "../helpers/helpHttp";
+import { getUser, urlApi } from "../functions/globals";
+
+const peticion = helpHttp()
+
 const Profile = () => {
+  const [photo, setPhoto] = useState({});
+
   const stAvatar = {
     borderRadius: "100%",
+    height: "350px",
+    width: "350px",
   };
   const stButton = {
     backgroundColor: "secondary.main",
@@ -16,31 +27,41 @@ const Profile = () => {
   };
   const stIcon = { height: "100%", width: "100%", color: "#0005" };
 
-  const navigate= useNavigate();
+  const navigate = useNavigate();
 
-  const handlePassword = () =>{
+  const handlePassword = () => {
     navigate("changePassword");
-  }
+  };
 
+  const user = JSON.parse(localStorage.getItem("user"));
 
+  const handlePhoto = (e) => {
+    blobToBase64("fotoPerfil_usuario",e.target.files,setPhoto,photo)
+    peticion.put(urlApi(`usuarios?id=${getUser().id_usuario}&nameID=id_usuario`),{body:new URLSearchParams(photo)}).then(e=>console.log(e))
+  };
 
   return (
     <div className="profile">
       <div className="section">
         <div className="profile__avatar">
-          <Button sx={stAvatar}>
-            <AccountCircleIcon sx={stIcon} />
-          </Button>
+          <form>
+            <Button sx={stAvatar}  variant="contained" component="label">
+              <img style={stAvatar} src={user.fotoPerfil_usuario}></img>
+              <input onChange={handlePhoto} hidden accept="image/*" type="file" />
+            </Button>
+          </form>
         </div>
-        <h3>Lucas Pérez</h3>
+        <h3>
+          {user.primerNombre_usuario} {user.primerApellido_usuario}
+        </h3>
         <div>
-          <Button  onClick={handlePassword} sx={stButton} variant="contained">
+          <Button onClick={handlePassword} sx={stButton} variant="contained">
             Cambiar contraseña
           </Button>
         </div>
       </div>
       <div className="section ">
-        <Outlet/>
+        <Outlet />
       </div>
     </div>
   );

@@ -1,38 +1,21 @@
-import FixtureHead from "./FixtureHead";
+import DateRangeIcon from "@mui/icons-material/DateRange";
+import ShieldIcon from "@mui/icons-material/Shield";
+import AccessTimeFilledIcon from "@mui/icons-material/AccessTimeFilled";
+import { Table } from "./styledComponents/Table";
+import { TH } from "./styledComponents/TH";
+import Main from "./styledComponents/Main";
 import FixtureRow from "./FixtureRow";
-import Main from "./Main";
-import "./styles/Fixture.css";
-
-const cuadros = {
-  nombre: "Fenix",
-  fecha: "12/05/2022",
-};
+import FixtureBar from "./FixtureBar";
+import { Outlet } from "react-router-dom";
 
 const Fixture = () => {
-    const sx = {
-        padding:10,
-        border:"1px solid #0005",
-        borderRadius:"5px"
-        
-      }
-
-
-
   return (
-    <Main>
-      <h3 style={{padding:"20px"}}>Fixture</h3>
-      <table>
-        <FixtureHead sx={sx}/>
-        <tbody>
-          <FixtureRow data={cuadros.nombre} sx={sx}/>
-          <FixtureRow data={cuadros.nombre} sx={sx}/>
-          <FixtureRow data={cuadros.nombre} sx={sx}/>
-          <FixtureRow data={cuadros.nombre} sx={sx}/>
-          <FixtureRow data={cuadros.nombre} sx={sx}/>
-          <FixtureRow data={cuadros.nombre} sx={sx}/>
-        </tbody>
-      </table>
-    </Main>
+    <>
+      <FixtureBar />
+      <Main>
+        <Outlet />
+      </Main>
+    </>
   );
 };
 

@@ -4,24 +4,75 @@ import { Box } from '@mui/system';
 import {useNavigate } from 'react-router-dom';
 import Link from './Link';
 import "./styles/FormLogin.css"
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import RecoverPassword from './RecoverPassword';
+import { helpHttp } from '../helpers/helpHttp';
+import { PAlert } from './PAlert';
+import UserContext, { UserProvider } from '../contexts/UserContext';
+import Form from './Form';
 
 const FormLogin = () => {
-  const [errors, setErrors] = useState({vacio:true});
-  const [usuario, setUsuario] = useState("");
+  const [errors, setErrors] = useState({errors:false,correct:false});
+  const [usuario, setUsuario] = useState({password_usuario:null,ci_usuario:null});
   const navigate = useNavigate();
+
+  const {user,setUser} = useContext(UserContext);
 
   const regexUsuario =/^([0-9]){1,12}$/;
 
+
+
   const handleSubmit = (e) =>{
-    if(!errors.usuario!="" && errors.vacio!=true){
-      navigate(`/student/${Math.round(Math.random()*1000)}/homeStudent`);
+    e.preventDefault()
+
+    const data = new URLSearchParams(usuario);
+
+    const options ={
+      method:"POST",
+      headers:{"Content-type": "application/x-www-form-urlencoded;charset-UTF-8"},
+      body:data
+    }
+    if(!errors.errors){
+
+      const getUser = async ()=>{
+        const resp = await fetch("http://apirest.com/usuarios?login=true&suffix=usuario",options).then(e=>e.json()).then(e=>{
+        if(e.status==200){
+          let resultUser = e.result[0];
+
+          setErrors({...errors,correct:false});
+          localStorage.setItem("user",JSON.stringify(resultUser));
+          setUser(resultUser);
+          switch(Number.parseInt(resultUser.id_rol_usuario)){
+            case 1:  navigate(`/admin/${resultUser.id_usuario}/home`);
+            break;
+            case 2:  navigate(`/administrative/${resultUser.id_usuario}/home`);
+            break;
+            case 3:  navigate(`/student/${resultUser.id_usuario}/home`);
+            break;
+            case 4:  navigate(`/scout/${resultUser.id_usuario}/home`);
+            break;
+            case 5:  navigate(`/judge/${resultUser.id_usuario}/home`);
+            break;
+            case 6:  navigate(`/dt/${resultUser.id_usuario}/home`);
+            break;
+            case 7:  navigate(`/analist/${resultUser.id_usuario}/home`);
+            break;
+
+          }
+          
+        }else setErrors({...errors,correct:true});
+
+        })
+      }
+      getUser();
+
+      
     }
   }
 
 
   const handleBlur = (e) =>{
-    if(!regexUsuario.test(usuario.trim())){
+    if(!regexUsuario.test(usuario.ci_usuario.trim())){
       setErrors({...errors,
         usuario:"El campo cédula solo acepta números y hasta 8 caracteres",
         vacio:true
@@ -32,28 +83,36 @@ const FormLogin = () => {
     });}
   }
   const handleChange = (e) =>{ 
-    setUsuario(e.target.value);
+    setUsuario({...usuario,[e.target.name]:e.target.value});
   } 
 
     return ( 
-        <div className="formLogin">
+      <Form>
+        {errors.correct && <PAlert>Cédula o contraseña incorrecta</PAlert>}
         <TextField
-          className="formLogin__input"
+          name='ci_usuario'
+          className="Form__input"
           label="Cédula"
           variant='outlined'
           onChange={handleChange}
           onBlur={handleBlur}
         />
-        {errors.usuario && <div style={{color:"red"}}>{errors.usuario}</div>}
+        {errors.usuario &&  <PAlert>{errors.usuario}</PAlert>}
         <TextField
-          className="formLogin__input"
+        
+          onChange={handleChange}
+          name='password_usuario'
+          className="Form__input"
           label="Contraseña"
           variant='outlined'
           type="password"
         />
-        <Box><Link to="help">¿Problemas para iniciar sesión?</Link></Box>
-        <Button onClick={handleSubmit} variant='text'>Entrar</Button>
-        </div>
+        <Box><RecoverPassword>¿Problemas para iniciar sesión?</RecoverPassword></Box>
+        <Button type='submit'  onClick={handleSubmit} className="Form__input" variant='contained'>Entrar</Button>
+
+
+
+      </Form>
      );
 }
  

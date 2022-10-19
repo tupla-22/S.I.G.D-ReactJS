@@ -23,12 +23,13 @@ export default function Bar() {
           >
           </IconButton>
           
-          <img className="logo" src={logo}></img>
+          <img alt="LOGO" className="logoBar" src={logo}></img>
 
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
           </Typography>
-          <Button color="inherit"><NavLink to="help">AYUDA</NavLink></Button>
-          <Button color="inherit"><NavLink to="">LOGIN</NavLink></Button>
+          <Button color="inherit"><NavLink  to="">Inicio</NavLink></Button>
+          <Button color="inherit"><NavLink  to="help">AYUDA</NavLink></Button>
+          <Button color="inherit"><NavLink  to="login">LOGIN</NavLink></Button>
         </Toolbar>
       </AppBar>
     </Box>

@@ -1,14 +1,16 @@
 <?php
 
+require_once "get.model.php";
+
 class Connection{
 
     /**=====================info BD========================= */    
 
-    static public function infoDatabase(){//static cuando retorna algo y solo public cuando necesitamos que se imprima algo
+    static public function infoDatabase(){            //static cuando retorna algo y solo public cuando necesitamos que se imprima algo
         
         $infoDB=array(
 
-            "database" => "api_dinamica",
+            "database" => "gestionDeportiva",
             "user" => "root",
             "pass" =>""
 
@@ -42,5 +44,112 @@ class Connection{
         return $link;
 
     }
+
     
+    /**=====================validar existencia de una tabla en la bd========================= */  
+    static public function getColumnData($table, $columns){
+
+        //-----------traer nombre de la bd-----------
+        $database=Connection::infoDatabase()["database"];
+
+        //-----------traer las columnas de una tabla-----------
+        $validate= Connection::connect()->query("SELECT COLUMN_NAME AS item 
+            FROM information_schema.columns 
+            WHERE table_schema = '$database' AND table_name='$table'
+            ")->fetchAll(PDO::FETCH_OBJ);
+
+
+        //-----------validamos existencia de la tabla-----------
+        if (empty($validate)) {
+            return null;
+        }else{
+
+            //-----------ajuste a solicitud de columnas globales-----------
+
+            if ($columns[0]=="*") {
+                array_shift($columns);//elimino el primer indice del arreglo
+            }
+
+            //-----------validamos existencia de columnas-----------
+            $sum= 0;
+
+            foreach ($validate as $key => $value) {
+
+                //in_array($value->item, $columns);
+                $sum += in_array($value->item, $columns);
+                
+            }
+          
+            return $sum==count($columns) ? $validate : null;
+        }
+
+    }
+
+    /**===================generar token de autenticacion====================== */
+
+    
+
+    static public function jwt($id,$ci){
+        //pido el rol del usuario
+        /*$rol= GetModel::getRelDataFilter(
+            $rel="roles,usuarios", 
+            $type="rol,usuario", 
+            $select="id_rol", 
+            $linkTo="id_usuario_rol", 
+            $equalTo=$id, $orderBy=null, 
+            $orderMode=null, 
+            $startAt=null, 
+            $endAt=null);*/
+       
+        $time= time();
+
+        $token= array(
+            
+            "iat" => $time, //tiempo presente al que inicia el token
+            "exp" => $time + (60*60*24), //toempo de expiracion del token
+            "data" =>[
+                "id" => $id,
+                "ci" => $ci//,
+                //"id_rol" => $rol[0]->{"id_rol"}//le pongo el rol al token
+                ]
+            );
+
+            
+            return $token;
+            
+    }
+
+    /**==================validar el token de seguridad================== */
+
+    static public function tokenValidate($token, $table, $suffix){
+
+        //traemos el usuario de acuerdo al token
+
+        $user= GetModel::getDataFilter($table, "token_exp_".$suffix, "token_".$suffix, $token, null, null, null, null);
+
+        if (!empty($user)) {
+            //validamos que el token no haya expirado
+
+            $time= time();
+            if ($user[0]->{"token_exp_".$suffix} > $time) {
+                
+                return "ok";
+
+            }else{
+                return "expired";
+            }
+        }else {
+            return "no-auth";
+        }
+
+    }
+
+
+    /**=====================apikey========================= */    
+
+    static public function apikey(){   
+
+        return "tVf8vPZANG4yj8r";
+
+     }
 }

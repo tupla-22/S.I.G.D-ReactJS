@@ -1,5 +1,7 @@
 <?php
 
+require_once "models/connection.php";
+
 $routesArray=explode("/", $_SERVER["REQUEST_URI"]);
 $routesArray=array_filter($routesArray);
 
@@ -25,54 +27,56 @@ if(count($routesArray)==0){
  * cuando se hacen peticiones a la api
  */
 
- if(count($routesArray) ==1 && isset($_SERVER["REQUEST_METHOD"])){
+ if(count($routesArray) >0 && isset($_SERVER["REQUEST_METHOD"])){
+
+    
+    $table=explode("?",$routesArray[1])[0];
+
+    /**----------------validar apikey------------------ 
+
+    if (!isset(getallheaders()["Autorization"]) || getallheaders()["Autorization"]!= Connection::apikey()) {
+        
+        $json= array(
+        
+            "status" => 200,
+            "result" => "You are not authorized to make this request"
+        
+        
+        );
+
+        echo json_encode($json, http_response_code($json["status"]));
+
+        return;
+
+    }
 
 
     /**----------------get------------------ */
 
     if($_SERVER["REQUEST_METHOD"]=="GET"){
-
+        
         include "services/get.php";
     }
         /**----------------post------------------ */
 
     if($_SERVER["REQUEST_METHOD"]=="POST"){
-        $json= array(
-    
-            "status" => 200,
-            "result" =>"Solicitud POST"
-        
-        
-        );
 
-        echo json_encode($json, http_response_code($json["status"]));
+        include "services/post.php";
+
     }
 
     /**----------------put------------------ */
 
     if($_SERVER["REQUEST_METHOD"]=="PUT"){
-        $json= array(
-    
-            "status" => 200,
-            "result" =>"Solicitud PUT"
         
-        
-        );
+        include "services/put.php";
 
-        echo json_encode($json, http_response_code($json["status"]));
     }
     /**----------------delete------------------ */
 
     if($_SERVER["REQUEST_METHOD"]=="DELETE"){
-        $json= array(
-    
-            "status" => 200,
-            "result" =>"Solicitud DELETE"
         
-        
-        );
-
-        echo json_encode($json, http_response_code($json["status"]));
+        include "services/delete.php";
     }
  }
 

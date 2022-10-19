@@ -1,12 +1,14 @@
+import { TD } from "./styledComponents/TD";
 
 
 const FixtureRow = ({data, sx}) => {
     return ( 
         <tr>
-            <td style={sx}>Equipo (Logo)</td>
-            <td style={sx}>vs</td>
-            <td style={sx}>Equipo (Logo)</td>
-            <td style={sx}>12/08</td>
+            <TD>12/08</TD>
+            <TD>hora</TD>
+            <TD>Equipo (Logo)</TD>
+            <TD>vs</TD>
+            <TD>Equipo (Logo)</TD>
         </tr>
      );
 }

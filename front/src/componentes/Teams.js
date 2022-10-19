@@ -4,6 +4,7 @@ import EquiposBar from "../pages/student/componentes/EquiposBar";
 const Teams = () => {
   return (
     <>
+    <EquiposBar/>
       <Outlet />
     </>
   );

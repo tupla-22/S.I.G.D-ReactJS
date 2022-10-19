@@ -1,13 +1,11 @@
 
 import ChangePasswordForm from "./ChangePasswordForm";
-const changePassword = () => {
+const ChangePassword = () => {
 
   return (
-    <div className="changePassword">
-      <h3 style={{margin:"15px",textAlign:"center"}}>Cambiar tu contraseña</h3>
+
       <ChangePasswordForm/>
-    </div>
   );
 };
 
-export default changePassword;
+export default ChangePassword;

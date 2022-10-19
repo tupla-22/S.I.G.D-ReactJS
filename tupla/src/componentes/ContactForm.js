@@ -70,8 +70,9 @@ const ContactForm = () => {
       <form className="contactForm" onSubmit={handleSubmit}>
         <TextField
           type="text"
+          variant="standard"
           name="name"
-          placeholder="Escribe tu nombre"
+          label="Escribe tu nombre"
           onBlur={handleBlur}
           onChange={handleChange}
           value={form.name}
@@ -83,7 +84,8 @@ const ContactForm = () => {
         <TextField
           type="email"
           name="email"
-          placeholder="Escribe tu email"
+          variant="standard"
+          label="Escribe tu email"
           onBlur={handleBlur}
           onChange={handleChange}
           value={form.email}
@@ -94,7 +96,8 @@ const ContactForm = () => {
         <TextField
           type="text"
           name="subject"
-          placeholder="Asunto a tratar"
+          variant="standard"
+          label="Asunto a tratar"
           onBlur={handleBlur}
           onChange={handleChange}
           value={form.subject}
@@ -102,17 +105,19 @@ const ContactForm = () => {
           sx={sxTextField}
         />
         {errors.subject && <p style={styles}>{errors.subject}</p>}
-        <textarea
+        <TextField
+          id="outlined-multiline-flexible"
           name="comments"
-          cols="50"
-          rows="5"
-          placeholder="Escribe tus comentarios"
+          maxRows={4}
+          variant="standard"
+          label="Escribe tus comentarios"
           onBlur={handleBlur}
           onChange={handleChange}
           value={form.comments}
+          multiline
           required
           style={sxTextField}
-        ></textarea>
+        />
         {errors.comments && <p style={styles}>{errors.comments}</p>}
         <ButtonClassic type="submit" value="Enviar">Enviar</ButtonClassic>
       </form>

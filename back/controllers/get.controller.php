@@ -9,6 +9,7 @@ class GetController{
 
     static function getData($table, $select, $orderBy, $orderMode, $startAt, $endAt){
         $response = GetModel::getData($table, $select, $orderBy, $orderMode, $startAt, $endAt);
+        
         $return=new GetController();
         $return -> fncResponse($response);
     }
@@ -17,6 +18,7 @@ class GetController{
 
     static function getDataFilter($table, $select, $linkTo, $equalTo, $orderBy, $orderMode, $startAt, $endAt){
         $response = GetModel::getDataFilter($table, $select, $linkTo, $equalTo, $orderBy, $orderMode, $startAt, $endAt);
+        
         $return=new GetController();
         $return -> fncResponse($response);
     }
@@ -37,6 +39,30 @@ class GetController{
         $return -> fncResponse($response);
     }
 
+    /**======================peticion personalizada partidos pendientes============================== */
+
+    static function getMatcheck($sport, $disputed,  $orderBy, $orderMode, $startAt, $endAt, $linkTo, $equalTo ){
+        
+        $response = GetModel::getMatcheck($sport, $disputed,  $orderBy, $orderMode, $startAt, $endAt, $linkTo, $equalTo );
+        
+        $return=new GetController();
+        
+        $return -> fncResponse($response);
+        
+        
+    }
+
+    /**======================peticion personalizada integrantes de equipos============================== */
+
+    static function getSquad($teamID,  $orderBy, $orderMode, $startAt, $endAt ){
+        
+        $response = GetModel::getSquad($teamID,  $orderBy, $orderMode, $startAt, $endAt );
+        
+        $return=new GetController();
+        
+        $return -> fncResponse($response);
+    }
+
     /**==============================peticiones get para el buscador sin relaciones====================================*/
 
     static function getDataSearch($table, $select, $linkTo, $search, $orderBy, $orderMode, $startAt, $endAt){
@@ -53,6 +79,70 @@ class GetController{
         $return -> fncResponse($response);
     }
 
+    /**======================peticion get para seleccionar rangos============================== */
+
+    static function getDataRange(
+    $table, 
+    $select, 
+    $linkTo, 
+    $between1, 
+    $between2, 
+    $orderBy, 
+    $orderMode,
+    $startAt, 
+    $endAt,
+    $filterTo,
+    $inTo
+    ){
+        $response = GetModel::getDataRange(
+            $table, 
+            $select, 
+            $linkTo, 
+            $between1, 
+            $between2, 
+            $orderBy, 
+            $orderMode,
+            $startAt, 
+            $endAt,
+            $filterTo,
+            $inTo
+        );
+        $return=new GetController();
+        $return -> fncResponse($response);
+    }
+/**======================peticion get para seleccionar rangos con relaciones============================== */
+
+static function getRelDataRange(
+    $rel, 
+    $type,
+    $select, 
+    $linkTo, 
+    $between1, 
+    $between2, 
+    $orderBy, 
+    $orderMode,
+    $startAt, 
+    $endAt,
+    $filterTo,
+    $inTo
+    ){
+        $response = GetModel::getRelDataRange(
+            $rel, 
+            $type,
+            $select, 
+            $linkTo, 
+            $between1, 
+            $between2, 
+            $orderBy, 
+            $orderMode,
+            $startAt, 
+            $endAt,
+            $filterTo,
+            $inTo
+        );
+        $return=new GetController();
+        $return -> fncResponse($response);
+    }
 
     /**==============================respuestas del controlador====================================*/
 
@@ -65,6 +155,7 @@ class GetController{
                 "status" => 200,
                 "total" => count($response),
                 "result" => $response
+                
             
             
             );
@@ -74,8 +165,8 @@ class GetController{
             $json= array(
         
                 "status" => 404,
-                "result" => "not found"
-            
+                "result" => "not found",
+                "method" => "get"
             
             );
 
@@ -86,23 +177,6 @@ class GetController{
 
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

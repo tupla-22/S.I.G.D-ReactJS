@@ -1,8 +1,9 @@
-import "./styles/Main.css"
-
-const Main = ({children}) => {
+const Main = () => {
+    
     return ( 
-        <div className="main">{children}</div>
+        <div style={sx}>
+
+        </div>
      );
 }
  

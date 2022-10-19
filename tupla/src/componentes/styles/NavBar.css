@@ -1,0 +1,17 @@
+
+
+.logoUno{
+
+}
+.logoDos{
+    display: none;
+}
+
+@media screen and (max-width:900px){
+    .logoDos{
+        display: block;
+    }
+    .logoUno{
+        display: none;
+    }
+}

@@ -1,3 +1,339 @@
+commit c667b4364db2b35ccacc183d56c3d52ce6581206
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Mon Sep 5 17:59:27 2022 -0300
+
+    Creacion de equipos fue creada
+
+commit 792b2e19e4cb5edfc2308b6f3fea51539c2452c2
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Mon Sep 5 16:49:07 2022 -0300
+
+    Update connection.php
+
+commit 2c3936e72155eb9dd5acdb9352b0316df5d6cbb7
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Mon Sep 5 16:48:31 2022 -0300
+
+    Update connection.php
+
+commit 66f2ee174d1d0f6f133cc9523cf5a95568d9b279
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Mon Sep 5 15:59:36 2022 -0300
+
+    Create seed.php
+
+commit 3193e392f5eb2875540ce1e7f0113e999afedd5f
+Merge: 39d0877 f3c9a04
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Mon Sep 5 15:25:56 2022 -0300
+
+    Merge branch 'main' of https://github.com/tupla-22/S.I.G.D-ReactJS
+
+commit 39d0877a6b9d98fa8375975c0e9b09de9ac3de28
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Mon Sep 5 15:25:54 2022 -0300
+
+    se quitan clases innecesarias
+
+commit f3c9a04e071962b2b28b0e22251d00c5dad95d95
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Mon Sep 5 12:09:57 2022 -0300
+
+    Reparacion de formulario de login
+
+commit e9494f0e52a35186c527a1ed223cb86de0059e4c
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Sun Sep 4 23:31:06 2022 -0300
+
+    Update connection.php
+
+commit 3fb5ca0365835afb5d8063209e0576034b3ec411
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Sun Sep 4 21:12:01 2022 -0300
+
+    Update connection.php
+
+commit d9033ceb31643ab73a40881443f3cbdde063da86
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Sun Sep 4 21:08:34 2022 -0300
+
+    se añade rol al token
+
+commit 73fc3aa7e2d9e377c0216fd88a5c0e839ec90bb4
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Sun Sep 4 20:28:36 2022 -0300
+
+    test
+
+commit 74f627ca7fb2a57b4205c50ca0a73fa25561c8f2
+Merge: 2a3ab8a 5d5af33
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Sun Sep 4 19:52:41 2022 -0300
+
+    Merge branch 'main' of https://github.com/tupla-22/S.I.G.D-ReactJS
+
+commit 2a3ab8ac89930535acef4dce3c15483c32d802bb
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Sun Sep 4 19:52:38 2022 -0300
+
+    Update postController.php
+
+commit 3f8fb149a863970852b8301d7433f632079b2f77
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Sun Sep 4 17:52:05 2022 -0300
+
+    registro y login con jwt
+
+commit 5d5af33d41a16f4eafa4753f456d79ed86037802
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Sun Sep 4 13:39:42 2022 -0300
+
+    Se realizan cambios en el formulario de ingreso de usuario
+
+commit 514f1f13db1bb4edf89a86dd1968d0f6de455eeb
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Sat Sep 3 19:40:15 2022 -0300
+
+    servicio delete
+
+commit 303ab9e59a103e4e1c1ccd139e425645de0da710
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Sat Sep 3 18:06:19 2022 -0300
+
+    gestion de errores en servicio put
+
+commit a390add80921b5bc9173153704bc60f43a8aaa14
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Sat Sep 3 16:41:24 2022 -0300
+
+    Actualizacion de formulario de ingreso de usuarios, pagina principal, login, fixture, etc
+
+commit 687bae83849588bbbc3ba299a4948deb235d7cfc
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Sat Sep 3 16:19:08 2022 -0300
+
+    Update putController.php
+
+commit 297e71bb803be9409b15397c329fc9af3fdc48aa
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Sat Sep 3 16:18:10 2022 -0300
+
+    editar datos con PUT
+
+commit ce6aabafc22e923f6ff8bc950e6a612c798dd5ac
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Fri Sep 2 22:08:09 2022 -0300
+
+    ingreso de datos con post
+
+commit 74a00fdbf76d16d8740a0e32a9f995e18c4fce93
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Fri Sep 2 21:07:45 2022 -0300
+
+    post
+
+commit e8c42a9e6bea14a7c3e93f9e7340f776462a2ee2
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Fri Sep 2 19:26:49 2022 -0300
+
+    correccion de errores
+
+commit 0b4264665ac8d47b9147e1ff47ccbc863d1a4e99
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Fri Sep 2 16:12:39 2022 -0300
+
+    depuracion de errores en solicitdes get
+
+commit c199ee7e9c241cdf4492d3073bf0898c5711e1b0
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Fri Sep 2 13:47:59 2022 -0300
+
+    seleccionar rango de valores con between
+
+commit f0906b1005d6f31fbdc3d6a62f4c76b816a18cda
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Fri Sep 2 10:32:04 2022 -0300
+
+    corregido error cors
+
+commit a6e326e30afc599a50fde120da7c88504dddae83
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Fri Sep 2 09:58:39 2022 -0300
+
+    vuelta a la normalidad
+
+commit 12644683b6b1b868db0ce092fb918decf1836086
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Thu Sep 1 21:04:31 2022 -0300
+
+    test
+
+commit 64d6edf84ac646dc1d9e2f21002375e19324a95e
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Thu Sep 1 21:00:02 2022 -0300
+
+    test
+
+commit d67efd74336c45a63850d6b8d60ff10d3c81d65c
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Thu Sep 1 20:42:02 2022 -0300
+
+    test
+
+commit 17f890c46b3b8826dbcf4192e2b67c051f9977f2
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Sun Aug 28 13:53:29 2022 -0300
+
+    CORRECCION DE ERROR EN PETICION GET
+
+commit 599c86ddbad183c61e4fb02b1390f8a1827b5ceb
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Sun Aug 28 13:33:47 2022 -0300
+
+    se cambia la base de datos
+
+commit edd8c34eb05ae5f60d5f959726553316a5d25f8b
+Merge: c48e869 8e2942e
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Sun Aug 28 13:27:07 2022 -0300
+
+    Merge branch 'apirest'
+
+commit c48e869c1f941731fe85739d6ed03f29b25941ef
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Fri Aug 19 20:11:39 2022 -0300
+
+    Se modifico la pesaña 'Proyectos'
+
+commit 8e2942e4a7626f4a8c33352b14e914a297f274b5
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Wed Aug 17 03:05:51 2022 -0300
+
+    busqueda con relaciones y con filtro
+
+commit b54c34c6c64242cfcb151e83378322e74c6444b9
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Wed Aug 17 02:19:35 2022 -0300
+
+    buscador primera version
+
+commit 21a52c9e45116f8e454d6ec0218fc2e0c32543c1
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Tue Aug 16 15:36:38 2022 -0300
+
+    Solucionando fomularios
+
+commit 2cf2bff09b4f511fd6fe10dba45bf7946f2bdf46
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Tue Aug 16 14:17:57 2022 -0300
+
+    inner join con filtro
+    
+    qawf
+
+commit 028ac2b3c9436ae4380e5258d6514ba144d9ea93
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Thu Aug 11 09:37:00 2022 -0300
+
+    Reparando cuestiones de test en pestaña 'agregar usuarios'
+
+commit 19dd55573a5268bce5e4072d2cd8428b84fa6915
+Merge: d50f305 ecec4cd
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Mon Aug 8 20:19:14 2022 -0300
+
+    Merge branch 'main' of https://github.com/tupla-22/S.I.G.D-ReactJS
+
+commit ecec4cd7f83bc639d2bfa20eba665da4a7416346
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Mon Aug 8 08:26:42 2022 -0300
+
+    se termino el formulario de alta de usuarios en pestaña 'admin'
+
+commit af08f1afe49791f0b81329755cf17fc3496e861d
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Sun Aug 7 21:16:26 2022 -0300
+
+    se realizaron cambios en el formulario de alta de usuarios
+
+commit 4a2305759178a0efa8c4074cb73c96b65abe3fcf
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Sun Aug 7 11:55:41 2022 -0300
+
+    se añade funcion inner join a la api
+
+commit f100251b120771f161aac5e5187d3a3621c440d4
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Fri Aug 5 08:21:30 2022 -0300
+
+    Realizacion de formularios de ingreso y eliminacion de usuarios y grupos del sistema
+
+commit 03e86e6db41b75b642d204ca0d92695f4899968f
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Thu Aug 4 15:22:16 2022 -0300
+
+    rename get.controller.php
+
+commit fc42c8aba2b4b27c4c9654dfc51c7766c5dd8498
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Thu Aug 4 15:20:34 2022 -0300
+
+    rename folder
+
+commit fb9a4c5a1cf65a149433c4c2e9c2320f2b50f4ff
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Wed Aug 3 21:39:38 2022 -0300
+
+    integracion apirest (get)
+
+commit fc4f9702e4529f2f4c0506ac979264600e1e39b4
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Tue Aug 2 12:10:04 2022 -0300
+
+    Se repararon cosas en la pestaña de estudiante y administrador
+
+commit 81f1122fe73bacb467f074324b204f0b0b227279
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Mon Aug 1 08:22:30 2022 -0300
+
+    Se realizo cambios en la paleta de colores como tambien creacion de componentes requeridos
+
+commit 6134a54d486e0f04015a7c5aa6063ba074f099c5
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Sun Jul 31 12:07:06 2022 -0300
+
+    creacion de la pagina de la empresa 'tupla'
+
+commit 182556cbe9c3f3012227ec828f4922865f7935ff
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Mon Jul 25 08:03:26 2022 -0300
+
+    Preparando CRUD de usuarios y equipos en pestaña de administrador
+
+commit d50f3054403894c87203b51d44b28a5b2e053e45
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Thu Jul 21 19:11:34 2022 -0300
+
+    archivos vacios
+
+commit 1299eb985d1be152549abfcc64d50ac9c67c6a16
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Thu Jul 21 19:02:00 2022 -0300
+
+    estructura de carpetas
+
+commit 9b4f7546c5f59991a02409d49e34245d75abb2b3
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Thu Jul 21 18:39:19 2022 -0300
+
+    renombrar carpeta
+
+commit e8e8fe6e3b01bd103eac21713f30c0c371c778b7
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Mon Jul 18 19:25:22 2022 -0300
+
+    Create log.txt
+
 commit 8f5e88d41cfdc80aab43e04cbb0df48da49fd8b4
 Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
 Date:   Sun Jul 17 11:58:39 2022 -0300

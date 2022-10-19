@@ -1,4 +1,24 @@
-.logo{
+.logoBar{
     height: 60px;
     margin-right: 20px;
 }
+.logo{
+    height: 60px;
+    margin-right: 20px;
+    
+}
+
+@media screen and (max-width:400px){
+    .logo{
+        height: 40px;
+        margin-right: 0px;
+
+    }
+    .logoBar{
+        height: 40px;
+        margin-right: 0px;
+
+    }
+}
+
+
