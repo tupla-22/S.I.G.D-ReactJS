@@ -139,4 +139,4 @@ if (isset($id) && isset($nameID)) {
 
 }
 
-}
+}//cadena de responsabilidad para gestionar permisos

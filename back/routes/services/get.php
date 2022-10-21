@@ -27,7 +27,7 @@ $response=new GetController();
 
 /**======================pticion get con filtro============================== */
 
-if(isset($linkTo)&&isset($equalTo) && !isset($rel) && !isset($type) && $table!="matcheck"){
+if(isset($linkTo)&&isset($equalTo) && !isset($rel) && !isset($type) && $table!="matcheck"&& $table!="procedure"){
     $response ->getDataFilter(
 
         $table, 
@@ -43,7 +43,7 @@ if(isset($linkTo)&&isset($equalTo) && !isset($rel) && !isset($type) && $table!="
 
 /**======================pticion get sin filtro entre tablas relacionadas============================== */
 
-}else if(isset($rel) && isset($type) && $table=="relations" && !isset($linkTo) && !isset($equalTo) && $table!="matcheck"){
+}else if(isset($rel) && isset($type) && $table=="relations" && !isset($linkTo) && !isset($equalTo) && $table!="matcheck"&& $table!="procedure"){
 
     $response->getRelData(
         
@@ -59,7 +59,7 @@ if(isset($linkTo)&&isset($equalTo) && !isset($rel) && !isset($type) && $table!="
 
 /**======================pticion get con filtro entre tablas relacionadas============================== */
 
-}else if(isset($rel) && isset($type) && $table=="relations" && isset($linkTo) && isset($equalTo) && $table!="matcheck"){
+}else if(isset($rel) && isset($type) && $table=="relations" && isset($linkTo) && isset($equalTo) && $table!="matcheck"&& $table!="procedure"){
 
     $response->getRelDataFilter(
         $rel, 
@@ -86,7 +86,7 @@ deporte equipo
 
 ==============matcheck===============*/
 
-}else if(isset($disputed) && $table=="matcheck" && isset($sport)/*isset($rel) && isset($type) && $table=="relations" && isset($linkTo) && isset($between1) && isset($between2)*/){
+}else if(isset($disputed) && $table=="matcheck" && isset($sport)&& $table!="procedure"/*isset($rel) && isset($type) && $table=="relations" && isset($linkTo) && isset($between1) && isset($between2)*/){
     
     
     $response->getMatcheck(
@@ -114,7 +114,7 @@ deporte equipo
 /**======================pticion get para el buscador sin relaciones============================== */
 
 
-}else if (!isset($rel) && !isset($type) && isset($linkTo) && isset($search) && $table!="matcheck") {
+}else if (!isset($rel) && !isset($type) && isset($linkTo) && isset($search) && $table!="matcheck"&& $table!="procedure") {
     
     $response->getDataSearch(
 
@@ -133,7 +133,7 @@ deporte equipo
 /**======================pticion get para el buscador con relaciones============================== */
 
 
-}else if (isset($rel) && isset($type) && $table=="relations" && isset($linkTo) && isset($search) && $table!="matcheck") {
+}else if (isset($rel) && isset($type) && $table=="relations" && isset($linkTo) && isset($search) && $table!="matcheck"&& $table!="procedure") {
     
     $response->getRelDataSearch(
         $rel, 
@@ -149,7 +149,7 @@ deporte equipo
 
     /**======================pticion get para seleccion de rangos(between)============================== */
 
-}else if (!isset($rel) && !isset($type) && isset($linkTo) && isset($between1) && isset($between2) && $table!="matcheck") {
+}else if (!isset($rel) && !isset($type) && isset($linkTo) && isset($between1) && isset($between2) && $table!="matcheck"&& $table!="procedure") {
 
     $response->getDataRange(
         $table, 
@@ -167,7 +167,7 @@ deporte equipo
 
     /**======================pticion get para seleccion de rangos(between) con relaciones============================== */
     
-}else if (isset($rel) && isset($type) && $table=="relations" && isset($linkTo) && isset($between1) && isset($between2) && $table!="matcheck") {
+}else if (isset($rel) && isset($type) && $table=="relations" && isset($linkTo) && isset($between1) && isset($between2) && $table!="matcheck" && $table!="procedure") {
 
     $response->getRelDataRange(
         $rel, 
@@ -183,6 +183,15 @@ deporte equipo
         $filterTo,
         $inTo
     );  
+
+}else if ($table=="procedure" && $table!="matcheck" && isset($_GET["id_usuario"]) && isset($_GET["tipo_estadistica"])) {
+
+    $response->getEstadisticaJugador(
+        $_GET["id_usuario"], 
+        $_GET["tipo_estadistica"]
+        
+    );  
+ 
     
 }else{
 
