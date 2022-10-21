@@ -319,12 +319,12 @@ views
 SELECT cantidadEstadistica(3, tipo_estadistica) as cant
 FROM estadisticas where tipo_estadistica='penal';*/
 
-
+drop procedure cantidadEstadistica;
 DELIMITER //
 create procedure cantidadEstadistica(in usuario int, in est varchar(40))
 
 BEGIN
-	SELECT count(id_estadistica)  
+	SELECT count(id_estadistica)  as 'conteo'
     FROM estadisticas 
     where id_fichaJugador_estadistica=(select id_fichaJugador_tiene 
 										from  tienen 

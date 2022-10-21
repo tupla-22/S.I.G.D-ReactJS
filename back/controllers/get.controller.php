@@ -144,6 +144,14 @@ static function getRelDataRange(
         $return -> fncResponse($response);
     }
 
+static function getEstadisticaJugador($idUsuario, $tipoEstadistica){
+
+
+    $response = GetModel::getEstadisticaJugador($idUsuario, $tipoEstadistica);
+    $return=new GetController();
+    $return -> fncResponse($response);
+}
+
     /**==============================respuestas del controlador====================================*/
 
     public function fncResponse($response){

@@ -896,6 +896,17 @@ class GetModel{
         }
         return $stmt->fetchAll(PDO::FETCH_CLASS);
         }
+    static function getEstadisticaJugador($idUsuario, $tipoEstadistica){
+        $stmt=Connection::connect()->prepare("call cantidadEstadistica($idUsuario, '$tipoEstadistica');");
+        try {
+
+            $stmt->execute();
+
+        } catch (PDOException $Exeption) {
+            return null;
+        }
+        return $stmt->fetchAll(PDO::FETCH_CLASS);
+    }
 
     
     /**======================peticion get para seleccionar rangos con relaciones============================== */
