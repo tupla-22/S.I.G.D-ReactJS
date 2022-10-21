@@ -19,7 +19,7 @@ $inTo=$_GET["inTo"] ?? null;
 $disputed=$_GET["disputed"] ?? null;
 $sport=$_GET["sport"] ?? null;
 $teamID=$_GET["teamID"] ?? null;
-
+$verificado=$_GET["verificado"] ?? null;
 
 
 
@@ -188,8 +188,8 @@ deporte equipo
 
     $response->getEstadisticaJugador(
         $_GET["id_usuario"], 
-        $_GET["tipo_estadistica"]
-        
+        $_GET["tipo_estadistica"],
+        $verificado
     );  
  
     

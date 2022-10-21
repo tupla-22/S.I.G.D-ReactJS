@@ -896,8 +896,8 @@ class GetModel{
         }
         return $stmt->fetchAll(PDO::FETCH_CLASS);
         }
-    static function getEstadisticaJugador($idUsuario, $tipoEstadistica){
-        $stmt=Connection::connect()->prepare("call cantidadEstadistica($idUsuario, '$tipoEstadistica');");
+    static function getEstadisticaJugador($idUsuario, $tipoEstadistica, $verificado){
+        $stmt=Connection::connect()->prepare("call cantidadEstadistica($idUsuario, '$tipoEstadistica', '$verificado');");
         try {
 
             $stmt->execute();

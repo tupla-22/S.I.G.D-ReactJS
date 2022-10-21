@@ -144,10 +144,10 @@ static function getRelDataRange(
         $return -> fncResponse($response);
     }
 
-static function getEstadisticaJugador($idUsuario, $tipoEstadistica){
+static function getEstadisticaJugador($idUsuario, $tipoEstadistica, $verificado){
 
 
-    $response = GetModel::getEstadisticaJugador($idUsuario, $tipoEstadistica);
+    $response = GetModel::getEstadisticaJugador($idUsuario, $tipoEstadistica, $verificado);
     $return=new GetController();
     $return -> fncResponse($response);
 }
