@@ -40,6 +40,7 @@ const UserAddForm = () => {
   const [passwordVerified, setPasswordVerified] = useState(true);
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState(false);
+  const [error, setError] = useState(false);
   const [created, setCreated] = useState(false);
   const [fichaForm, setFichaForm] = useState({});
   const [idFichaJugador, setIdFichaJugador] = useState("");
@@ -47,12 +48,16 @@ const UserAddForm = () => {
   const peticion = helpHttp();
   const [pertenecenForm, setPertenecenForm] = useState({});
 
-
+  const emailRegex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
 
   const handleClick = (e) => {
+
     e.preventDefault();
-    console.log(userForm);
-    if (passwordVerified) {
+    if(!emailRegex.test(userForm.email_usuario))setError(true);
+    else setError(false);
+
+
+    if (passwordVerified && error) {
       const data = {
         body: new URLSearchParams(userForm),
       };
@@ -97,7 +102,7 @@ const UserAddForm = () => {
       id_usuario_tiene: idUsuario,
       id_fichaJugador_tiene: idFichaJugador,
     };
-    console.log(dataTienen);
+
     peticion
       .post(urlApi("tienen?"), {
         body: new URLSearchParams(dataTienen),
@@ -118,7 +123,10 @@ const UserAddForm = () => {
         ...userForm,
         [event.target.name]: event.target.value,
       });
-    }
+
+      
+      
+    } 
     if (event.target.name == "password_usuario") {
       setUserForm({ ...userForm, [event.target.name]: event.target.value });
     }
@@ -188,7 +196,9 @@ const UserAddForm = () => {
         label="Segundo apellido"
       ></TextField>
       <TextField
-      required
+        error={error && "true"}
+        helperText={error && "Email requerido"}
+        required
         value={userForm.email_usuario}
         onChange={handleChange}
         name="email_usuario"
@@ -226,9 +236,9 @@ const UserAddForm = () => {
       ></TextField>
 
       <FormControl className="Form__input">
-        <InputLabel id="demo-simple-select-label">Tipo de usuario</InputLabel>
+        <InputLabel required id="demo-simple-select-label">Tipo de usuario</InputLabel>
         <Select
-        required
+        
           name="id_rol_usuario"
           label="Tipo de usuario"
           value={userForm.tipoUsuario}
