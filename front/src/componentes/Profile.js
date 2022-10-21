@@ -14,8 +14,8 @@ const Profile = () => {
 
   const stAvatar = {
     borderRadius: "100%",
-    height: "350px",
-    width: "350px",
+    height: "200px",
+    width: "200px",
   };
   const stButton = {
     backgroundColor: "secondary.main",
@@ -41,8 +41,14 @@ const Profile = () => {
   };
 
   useEffect(() => {
-    peticion.put(urlApi(`usuarios?id=${getUser().id_usuario}&nameID=id_usuario`),{body:new URLSearchParams(photo)}).then(e=>console.log(e))
-    // localStorage.setItem("user")
+    console.log(user.id_usuario)
+    peticion.put(urlApi(`usuarios?id=${user.id_usuario}&nameID=id_usuario`),{body:new URLSearchParams(photo)}).then(e=>{
+      console.log(e)
+      if(e.status==200){
+        user.fotoPerfil_usuario=photo.fotoPerfil_usuario;
+        localStorage.setItem("user",JSON.stringify(user))
+      }
+    })
   }, [photo]);
 
   return (
@@ -63,6 +69,7 @@ const Profile = () => {
           <Button onClick={handlePassword} sx={stButton} variant="contained">
             Cambiar contraseña
           </Button>
+          
         </div>
       </div>
       <div className="section ">
