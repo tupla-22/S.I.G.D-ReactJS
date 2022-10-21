@@ -1,4 +1,4 @@
-drop database gestiondeportiva;
+drop database if exists gestiondeportiva ;
 create database GestionDeportiva;
 use GestionDeportiva;
 
@@ -320,7 +320,7 @@ views
 SELECT cantidadEstadistica(3, tipo_estadistica) as cant
 FROM estadisticas where tipo_estadistica='penal';*/
 
-drop procedure cantidadEstadistica;
+#drop procedure cantidadEstadistica;
 DELIMITER //
 create procedure cantidadEstadistica(in usuario int, in est varchar(40))
 
