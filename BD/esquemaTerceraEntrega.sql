@@ -1,6 +1,7 @@
+drop database gestiondeportiva;
 create database GestionDeportiva;
 use GestionDeportiva;
-#drop database gestiondeportiva;
+
 create table roles(
 	
     id_rol int primary key auto_increment,
