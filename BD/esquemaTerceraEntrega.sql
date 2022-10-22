@@ -399,7 +399,7 @@ inner join partidos on id_equipo=id_equipoLocal_partido or id_equipo=id_equipoVi
 WHERE id_fichaJugador=3 and disputado_partido=true #or id_fichaJugador=1;
 ORDER BY fecha_estadistica desc;
 
-delete from estadisticas;
+#delete from estadisticas;
 select * from estadisticas;
 select * from pertenecen;
 select * from partidos;
