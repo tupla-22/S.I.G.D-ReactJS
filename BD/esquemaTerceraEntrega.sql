@@ -358,11 +358,51 @@ select * from estadisticas;
 
 /*----------------------------------------------
 procedure para contar estadisticas de un usuario
-*/----------------------------------------------
-/*
-select primerNombre_usuario, primerApellido_usuario, id_usuario
-*/
+usuarios
+estadisticas
+fichasJugadores
+tienen
+----------------------------------------------*/
 
+/*
+seleccionar estadisticas de jugador*/
+
+select id_estadistica, fecha_estadistica, verificado_estadistica,tipo_estadistica,valor_estadistica,descripcion_estadistica,
+		(select primerNombre_usuario from usuarios where id_usuario=id_usuario_estadistica) as 'primerNombre_usuario_analista',
+        (select primerNombre_usuario from usuarios e where id_usuario=id_fichaJugador_estadistica) as 'primerNombre_usuario_fichaJugador',
+        (select id_usuario from usuarios where id_usuario=id_usuario_estadistica) as 'id_usuario_analista',
+        (select id_usuario from usuarios where id_usuario=id_usuario_tiene) as 'id_usuario_fichaJugador' 
+from tienen 
+INNER join usuarios on id_usuario_tiene=id_usuario  
+inner join  fichasJugadores on id_fichaJugador=id_fichaJugador_tiene
+inner join estadisticas on id_fichaJugador_estadistica=id_fichaJugador_tiene
+WHERE id_fichaJugador=4 #or id_fichaJugador=1;
+ORDER BY fecha_estadistica asc;
+        
+
+/*
+seleccionar estadisticas de jugador relacionada a un partido*/
+
+
+select id_partido,id_estadistica, fecha_estadistica, verificado_estadistica,tipo_estadistica,valor_estadistica,descripcion_estadistica,
+		(select primerNombre_usuario from usuarios where id_usuario=id_usuario_estadistica) as 'primerNombre_usuario_analista',
+        (select primerNombre_usuario from usuarios e where id_usuario=id_fichaJugador_estadistica) as 'primerNombre_usuario_fichaJugador',
+        (select id_usuario from usuarios where id_usuario=id_usuario_estadistica) as 'id_usuario_analista',
+        (select id_usuario from usuarios where id_usuario=id_usuario_tiene) as 'id_usuario_fichaJugador' 
+from tienen 
+INNER join usuarios on id_usuario_tiene=id_usuario  
+inner join  fichasJugadores on id_fichaJugador=id_fichaJugador_tiene
+inner join estadisticas on id_fichaJugador_estadistica=id_fichaJugador_tiene
+inner join pertenecen on id_fichaJugador=id_fichaJugador_pertenece
+inner join equipos on id_equipo_pertenece=id_equipo
+inner join partidos on id_equipo=id_equipoLocal_partido or id_equipo=id_equipoVisitante_partido
+WHERE id_fichaJugador=1 and disputado_partido=true #or id_fichaJugador=1;
+ORDER BY fecha_estadistica asc;
+
+
+select * from pertenecen;
+select * from partidos;
+select * from tienen;
 /*
 UPDATE cantidadEquiposDeportes 
 set cantidad_equipo=(select count( id_equipo )

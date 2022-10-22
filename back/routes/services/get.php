@@ -19,7 +19,7 @@ $inTo=$_GET["inTo"] ?? null;
 $disputed=$_GET["disputed"] ?? null;
 $sport=$_GET["sport"] ?? null;
 $teamID=$_GET["teamID"] ?? null;
-$verificado=$_GET["verificado"] ?? null;
+$verificado=$_GET["verificado"] ?? true;
 
 
 
