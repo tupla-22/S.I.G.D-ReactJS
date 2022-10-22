@@ -376,8 +376,8 @@ from tienen
 INNER join usuarios on id_usuario_tiene=id_usuario  
 inner join  fichasJugadores on id_fichaJugador=id_fichaJugador_tiene
 inner join estadisticas on id_fichaJugador_estadistica=id_fichaJugador_tiene
-WHERE id_fichaJugador=4 #or id_fichaJugador=1;
-ORDER BY fecha_estadistica asc;
+WHERE id_fichaJugador=1 #or id_fichaJugador=1;
+ORDER BY fecha_estadistica desc;
         
 
 /*
@@ -394,15 +394,17 @@ INNER join usuarios on id_usuario_tiene=id_usuario
 inner join  fichasJugadores on id_fichaJugador=id_fichaJugador_tiene
 inner join estadisticas on id_fichaJugador_estadistica=id_fichaJugador_tiene
 inner join pertenecen on id_fichaJugador=id_fichaJugador_pertenece
-inner join equipos on id_equipo_pertenece=id_equipo
+inner join equipos on id_equipo_pertenece=id_equipo and id_fichaJugador=id_fichaJugador_pertenece
 inner join partidos on id_equipo=id_equipoLocal_partido or id_equipo=id_equipoVisitante_partido
-WHERE id_fichaJugador=1 and disputado_partido=true #or id_fichaJugador=1;
-ORDER BY fecha_estadistica asc;
+WHERE id_fichaJugador=3 and disputado_partido=true #or id_fichaJugador=1;
+ORDER BY fecha_estadistica desc;
 
-
+delete from estadisticas;
+select * from estadisticas;
 select * from pertenecen;
 select * from partidos;
 select * from tienen;
+select * from fichasJugadores;
 /*
 UPDATE cantidadEquiposDeportes 
 set cantidad_equipo=(select count( id_equipo )
@@ -524,8 +526,13 @@ insert into usuarios (
     password_usuario ,
     verificado_usuario ,
     id_rol_usuario)
-values ( '0', 'root', NULL, '', NULL, 'root@root.com', '0000-00-00', 'sh2H4KzFEzp4o', true , 1),
-	   ('7','analista',NULL, '', NULL, 'analista@mail.com', '0000-00-00', 'shaXiUqr8pMhk', true , 7);
+values  ( '0', 'root', NULL, '', NULL, 'root@root.com', '0000-00-00', 'sh2H4KzFEzp4o', true , 1),
+		( '2', 'administrativo', NULL, '', NULL, 'administrativo@mail.com', '0000-00-00', 'sh2H4KzFEzp4o', true , 1),
+        ( '3', 'estudiante', NULL, '', NULL, 'estudiante@mail.com', '0000-00-00', 'sh2H4KzFEzp4o', true , 1),
+        ( '4', 'ojeador', NULL, '', NULL, 'ojeador@mail.com', '0000-00-00', 'sh2H4KzFEzp4o', true , 1),
+        ( '5', 'juez', NULL, '', NULL, 'juez@mail.com', '0000-00-00', 'sh2H4KzFEzp4o', true , 1),
+        ( '6', 'directorTecnico', NULL, '', NULL, 'directorTecnico@mail.com', '0000-00-00', 'sh2H4KzFEzp4o', true , 1),
+	    ('7','analista',NULL, '', NULL, 'analista@mail.com', '0000-00-00', 'shaXiUqr8pMhk', true , 7);
 
 
 insert into usuarios values
