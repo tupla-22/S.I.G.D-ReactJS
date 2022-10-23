@@ -24,7 +24,7 @@ const LookMatch = () => {
   const [started, setStarted] = useState(false);
   const [paused, setPaused] = useState(false)
   const [endMatch, setEndMatch] = useState(false);
-
+  const [jugando, setJugando] = useState([]);
   let { matchId, sport } = useParams();
 
   useEffect(() => {
@@ -73,7 +73,7 @@ const LookMatch = () => {
 
         <h3>Ingresar las estadisticas del partido</h3>
         <h5>Ingresa los jugadores titulares del partido presionando en sus nombres</h5>
-        <UserListButtons  visitantes={visitantes} locales={locales}/>
+        <UserListButtons jugando={jugando} setJugando={setJugando}  visitantes={visitantes} locales={locales}/>
         <ManagerControl
           matchId={matchId}
           visitantes={visitantes}

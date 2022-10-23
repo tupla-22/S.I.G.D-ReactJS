@@ -104,7 +104,7 @@ const NavAfterLogin = ({pages=[]}) => {
               textDecoration: "none",
             }}
           > 
-          <Link to={"homeStudent"}><img alt="LOGO" className="logo logoDos" src={logo}></img></Link>
+          <Link to={"home"}><img alt="LOGO" className="logo logoDos" src={logo}></img></Link>
 
           </Typography>
 

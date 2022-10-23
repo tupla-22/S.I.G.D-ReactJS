@@ -17,27 +17,34 @@ const Div = styled.div`
   padding: 50px;
   margin: 20px;
   border-radius: 15px;
-  border: 1px solid #888;
-  background: linear-gradient(145deg, #ffffff, #e6e6e6);
-  box-shadow: 7px 7px 14px #cccccc, -7px -7px 14px #ffffff;
+  border:1px solid #999;
+  box-shadow: 1px 1px 10px #0003;
 `;
 
-const UserListButtons = ({ locales, visitantes, name, onClick }) => {
+const UserListButtons = ({jugando,setJugando, locales, visitantes, name, onClick }) => {
   const [user, setUser] = useState({});
-  const [titularesLocales, setTitularesLocales] = useState({});
-  const [titularesVisitantes, setTitularesVisitantes] = useState({});
-  const [titulares, setTitulares] = useState();
+  const [titularesLocales, setTitularesLocales] = useState([]);
+  const [titularesVisitantes, setTitularesVisitantes] = useState([]);
+  const [titulares, setTitulares] = useState([]);
+  const [localesAux, setLocalesAux] = useState([]);
+  const [visitantesAux, setVisitantesAux] = useState([]);
 
-
-  
+  useEffect(() => {
+    setLocalesAux(locales)
+    setVisitantesAux(visitantes)
+  }, [locales,visitantes]);
 
   useEffect((e) => {
-    setTitulares(Object.keys(titularesLocales))
-
+    setTitulares(titulares.concat(Object.keys(titularesLocales)))
+    setJugando([...new Set(titulares)])
+    console.log(jugando)
+    console.log(localesAux,"locales")
   }, [titularesLocales]);
   
   useEffect((e) => {
-    setTitulares(Object.keys(titularesVisitantes))
+    setTitulares(titulares.concat(Object.keys(titularesVisitantes)))
+    setJugando([...new Set(titulares)])
+    console.log(jugando)
   }, [titularesVisitantes]);
 
   const handleTitulares = (e) => {};
@@ -47,13 +54,12 @@ const UserListButtons = ({ locales, visitantes, name, onClick }) => {
       <Div>
         <GridContained>
           <h4>Equipo local:</h4>
-          {locales.map((e) => (
+          {localesAux.map((e) => (
             <Button
               onClick={() => {
-                
-                setTitularesLocales(
-                  {...titularesLocales, [e.id_usuario]: e.primerNombre_usuario }
-                );
+                setTitularesLocales([...titularesLocales,e])
+                console.log(titularesLocales,"titulares locales")
+                setLocalesAux(localesAux.filter((el)=> el.id_usuario != e.id_usuario ))
                 setUser(e);
               }}
               key={e.ci_usuario}
@@ -66,20 +72,28 @@ const UserListButtons = ({ locales, visitantes, name, onClick }) => {
       <Div>
         <GridContained>
           <h3>Titulares locales</h3>
-          {Object.values(titularesLocales).map(e=><Button>{e}</Button>)}
+          {titularesLocales.map(e=><Button onClick={()=>{
+               
+               setTitularesLocales(titularesLocales.filter((el)=> el.id_usuario != e.id_usuario ))
+               setLocalesAux([...localesAux,e])
+          }}>{e.primerNombre_usuario}</Button>)}
         </GridContained>
         <GridContained>
           <h3>Titulares visitantes</h3>
-          {Object.values(titularesVisitantes).map(e=><Button>{e}</Button>)}
+          {titularesVisitantes.map(e=><Button onClick={()=>{
+            setTitularesVisitantes(titularesVisitantes.filter((el)=> el.id_usuario != e.id_usuario ))
+            setVisitantesAux([...visitantesAux,e])
+          }}>{e.primerNombre_usuario}</Button>)}
         </GridContained>
       </Div>
       <Div>
         <GridContained>
           <h4>Equipo visitante: {}</h4>
-          {visitantes.map((e) => (
+          {visitantesAux.map((e) => (
             <Button
               onClick={() => {
-                setTitularesVisitantes({...titularesVisitantes, [e.id_usuario]: e.primerNombre_usuario });
+                setTitularesVisitantes([...titularesVisitantes,e])
+                setVisitantesAux(visitantesAux.filter((el)=> el.id_usuario != e.id_usuario ))
                 setUser(e);
               }}
               key={e.ci_usuario}
