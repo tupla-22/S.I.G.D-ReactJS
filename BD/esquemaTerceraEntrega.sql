@@ -130,7 +130,7 @@ create table fichasJugadores (
 	id_fichaJugador int primary key auto_increment,
     altura_fichaJugador int(3),#cm
     peso_fichaJugador int(6),#g
-    minutosJugados_fichJugador datetime,
+    minutosJugados_fichaJugador datetime,
     lateralidad_fichaJugador enum("zurdo","diestro","ambidiestro"),
     date_created_fichaJugador date default current_timestamp,
     date_updated_fichaJugador timestamp default current_timestamp ON UPDATE CURRENT_TIMESTAMP
