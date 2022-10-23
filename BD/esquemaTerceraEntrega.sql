@@ -371,14 +371,14 @@ seleccionar estadisticas de jugador*/
 
 select id_estadistica, fecha_estadistica, verificado_estadistica,tipo_estadistica,valor_estadistica,descripcion_estadistica,
 		(select primerNombre_usuario from usuarios where id_usuario=id_usuario_estadistica) as 'primerNombre_usuario_analista',
-        (select primerNombre_usuario from usuarios e where id_usuario=id_fichaJugador_estadistica) as 'primerNombre_usuario_fichaJugador',
+        (select primerNombre_usuario from usuarios e where id_fichaJugador=id_fichaJugador_estadistica and id_usuario=id_usuario_tiene) as 'primerNombre_usuario_fichaJugador',
         (select id_usuario from usuarios where id_usuario=id_usuario_estadistica) as 'id_usuario_analista',
         (select id_usuario from usuarios where id_usuario=id_usuario_tiene) as 'id_usuario_fichaJugador' 
 from tienen 
 INNER join usuarios on id_usuario_tiene=id_usuario  
 inner join  fichasJugadores on id_fichaJugador=id_fichaJugador_tiene
 inner join estadisticas on id_fichaJugador_estadistica=id_fichaJugador_tiene
-WHERE id_fichaJugador=1 #or id_fichaJugador=1;
+WHERE id_fichaJugador=3 #or id_fichaJugador=1;
 ORDER BY fecha_estadistica desc;
         
 
@@ -388,7 +388,7 @@ seleccionar estadisticas de jugador relacionada a un partido*/
 
 select id_partido,disputado_partido,id_estadistica, fecha_estadistica, verificado_estadistica,tipo_estadistica,valor_estadistica,descripcion_estadistica,
 		(select primerNombre_usuario from usuarios where id_usuario=id_usuario_estadistica) as 'primerNombre_usuario_analista',
-        (select primerNombre_usuario from usuarios e where id_usuario=id_fichaJugador_estadistica) as 'primerNombre_usuario_fichaJugador',
+        (select primerNombre_usuario from usuarios where id_fichaJugador=id_fichaJugador_estadistica and id_usuario=id_usuario_tiene) as 'primerNombre_usuario_fichaJugador',
         (select id_usuario from usuarios where id_usuario=id_usuario_estadistica) as 'id_usuario_analista',
         (select id_usuario from usuarios where id_usuario=id_usuario_tiene) as 'id_usuario_fichaJugador' 
 from tienen 
@@ -397,7 +397,7 @@ inner join  fichasJugadores on id_fichaJugador=id_fichaJugador_tiene
 inner join estadisticas on id_fichaJugador_estadistica=id_fichaJugador_tiene
 inner join pertenecen on id_fichaJugador=id_fichaJugador_pertenece
 inner join equipos on id_equipo_pertenece=id_equipo and id_fichaJugador=id_fichaJugador_pertenece
-inner join partidos on (id_equipo=id_equipoLocal_partido or id_equipo=id_equipoVisitante_partido) and id_partido_estadistica=5
+inner join partidos on (id_equipo=id_equipoLocal_partido or id_equipo=id_equipoVisitante_partido) and id_partido_estadistica=id_partido
 WHERE id_fichaJugador=3 and disputado_partido=true #or id_fichaJugador=1;
 ORDER BY fecha_estadistica desc;
 
