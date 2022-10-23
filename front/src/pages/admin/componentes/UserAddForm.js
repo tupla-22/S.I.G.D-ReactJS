@@ -56,8 +56,7 @@ const UserAddForm = () => {
     if(!emailRegex.test(userForm.email_usuario))setError(true);
     else setError(false);
 
-
-    if (passwordVerified && error) {
+    if (passwordVerified && !error) {
       const data = {
         body: new URLSearchParams(userForm),
       };
@@ -65,10 +64,10 @@ const UserAddForm = () => {
       peticion
         .post("http://apirest.com/usuarios?register=true&suffix=usuario", data)
         .then((e) => {
-          console.log(e.status);
+          console.log(e.status,"result usuario");
           
           if (e.status == 200) {
-            
+          setCreated(true)
           setIdUsuario(e.result.lastId);
           
           setUserForm(userFormInit)
@@ -82,7 +81,7 @@ const UserAddForm = () => {
         .then((e) => {
           setIdFichaJugador(e.result.lastId);
           setPertenecenForm({...pertenecenForm,id_fichaJugador_pertenece:e.result.lastId});
-          console.log(e.status);
+          console.log(e.status, "result ficha");
           if (!created) {
             
           setCreated(true);
@@ -107,10 +106,15 @@ const UserAddForm = () => {
       .post(urlApi("tienen?"), {
         body: new URLSearchParams(dataTienen),
       })
-      .then((e) => console.log(e.status));
+      .then((e) => {
+        console.log(e.status, "result tienen")
+        peticion.post(urlApi("pertenecen?"),{body:new URLSearchParams(pertenecenForm)}).then(e=>console.log(e.status,"result de pertenecen"))
+      }
+      
+      );
 
-      peticion.post(urlApi("pertenecen?"),{body:new URLSearchParams(pertenecenForm)}).then(e=>console.log(e.result,"result de pertenecen"))
-  }, [created]);
+      
+  }, [idFichaJugador]);
 
   const handleUser = (e) => {
     setTypeUser(e.target.value);
@@ -241,7 +245,6 @@ const UserAddForm = () => {
         
           name="id_rol_usuario"
           label="Tipo de usuario"
-          value={userForm.tipoUsuario}
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           onChange={handleUser}

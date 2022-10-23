@@ -10,6 +10,7 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import StopIcon from '@mui/icons-material/Stop';
 import PauseIcon from '@mui/icons-material/Pause';
 import Clock from "./componentes/Clock";
+import UserListButtons from "./componentes/UserListButtons";
 
 
 const peticion = helpHttp();
@@ -69,8 +70,12 @@ const LookMatch = () => {
   return (
     <>
       <Main>
+
         <h3>Ingresar las estadisticas del partido</h3>
+        <h5>Ingresa los jugadores titulares del partido presionando en sus nombres</h5>
+        <UserListButtons  visitantes={visitantes} locales={locales}/>
         <ManagerControl
+          matchId={matchId}
           visitantes={visitantes}
           locales={locales}
           sport={deporte}

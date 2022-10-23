@@ -6,8 +6,18 @@ import { blobToBase64 } from "../helpers/blobManager";
 import React, { useState, useEffect } from 'react';
 import { helpHttp } from "../helpers/helpHttp";
 import { getUser, urlApi } from "../functions/globals";
+import styled from "styled-components";
 
 const peticion = helpHttp()
+
+
+const Img = styled.img`
+object-fit:contain;
+border-radius: 100%;
+height: 200px;
+width: 200px;
+`
+
 
 const Profile = () => {
   const [photo, setPhoto] = useState({});
@@ -16,6 +26,7 @@ const Profile = () => {
     borderRadius: "100%",
     height: "200px",
     width: "200px",
+
   };
   const stButton = {
     backgroundColor: "secondary.main",
@@ -57,7 +68,7 @@ const Profile = () => {
         <div className="profile__avatar">
           <form>
             <Button sx={stAvatar}  variant="contained" component="label">
-              <img style={stAvatar} src={user.fotoPerfil_usuario}></img>
+              <Img src={user.fotoPerfil_usuario}></Img>
               <input onChange={handlePhoto} hidden accept="image/*" type="file" />
             </Button>
           </form>

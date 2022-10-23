@@ -10,11 +10,10 @@ import AccessTimeFilledIcon from "@mui/icons-material/AccessTimeFilled";
 import { helpHttp } from "../../../helpers/helpHttp";
 import { urlApi } from "../../../functions/globals";
 import Form from "../../../componentes/Form";
+import { Seccion } from "../../../componentes/styledComponents/Seccion";
 
 const MatchList = ({ sport }) => {
-
   // POR PARAMETRO SE LE TRASMITE EL DEPORTE DESEADO
-
 
   const peticion = helpHttp();
   const [data, setData] = useState([]);
@@ -31,35 +30,35 @@ const MatchList = ({ sport }) => {
           )
           .then((e) => setData(e.result));
         break;
-        case "football":
-          peticion
-            .get(
-              urlApi(
-                "matcheck?disputed=0&sport=football&orderBy=id_partido&orderMode=asc"
-              )
+      case "football":
+        peticion
+          .get(
+            urlApi(
+              "matcheck?disputed=0&sport=football&orderBy=id_partido&orderMode=asc"
             )
-            .then((e) => setData(e.result));
-          break;
-          
-        case "handball":
-          peticion
-            .get(
-              urlApi(
-                "matcheck?disputed=0&sport=handball&orderBy=id_partido&orderMode=asc"
-              )
+          )
+          .then((e) => setData(e.result));
+        break;
+
+      case "handball":
+        peticion
+          .get(
+            urlApi(
+              "matcheck?disputed=0&sport=handball&orderBy=id_partido&orderMode=asc"
             )
-            .then((e) => setData(e.result));
-          break;
-          
-        case "basketball":
-          peticion
-            .get(
-              urlApi(
-                "matcheck?disputed=0&sport=basketball&orderBy=id_partido&orderMode=asc"
-              )
+          )
+          .then((e) => setData(e.result));
+        break;
+
+      case "basketball":
+        peticion
+          .get(
+            urlApi(
+              "matcheck?disputed=0&sport=basketball&orderBy=id_partido&orderMode=asc"
             )
-            .then((e) => setData(e.result));
-          break;
+          )
+          .then((e) => setData(e.result));
+        break;
       default:
         break;
     }
@@ -67,7 +66,7 @@ const MatchList = ({ sport }) => {
 
   return (
     <>
-      <Form>
+      <Seccion>
         <h3>Partidos</h3>
         <DivOver>
           <Table>
@@ -95,7 +94,7 @@ const MatchList = ({ sport }) => {
             </tbody>
           </Table>
         </DivOver>
-      </Form>
+      </Seccion>
     </>
   );
 };

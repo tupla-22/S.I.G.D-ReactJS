@@ -21,11 +21,16 @@ import { helpHttp } from "../../../helpers/helpHttp";
 
 const peticion =helpHttp();
 
-const ManagmentFootballControler = ({ locales, visitantes }) => {
+const ManagmentFootballControler = ({matchId, locales, visitantes }) => {
   const [form, setForm] = useState({});
   const [tipo, setTipo] = useState("");
-
+  const [name, setName] = useState(null);
+  
+  
   const handleChange = (e) => {
+    
+    setName(`${e.target.value.nombre} ${e.target.value.apellido}`)
+    
     setForm({
       ...form,
       id_fichaJugador_estadistica: e.target.value.id_fichaJugador_estadistica,
@@ -34,8 +39,10 @@ const ManagmentFootballControler = ({ locales, visitantes }) => {
       id_equipo_estadistica: e.target.value.id_equipo_estadistica,
       fecha_estadistica: getDateTime(),
       valor_estadistica: 1,
+      verificado_estadistica:0,
+      id_partido_estadistica:matchId
     });
-    console.log(form);
+    console.log(form)
   };
 
   const handleType = (e) => {
@@ -52,6 +59,7 @@ const ManagmentFootballControler = ({ locales, visitantes }) => {
 
 
     peticion.post(urlApi("estadisticas?"),info).then(e=>console.log(e))
+    console.log(form)
   };
 
   return (
@@ -102,11 +110,12 @@ const ManagmentFootballControler = ({ locales, visitantes }) => {
         {tipo !== "cambio" && tipo !== "falta" && (
           <>
             <h3>Equipos</h3>
-            <FormControl className="Form__input" fullWidth>
+            <FormControl  className="Form__input" fullWidth>
               <InputLabel id="demo-simple-select-label">
                 Jugador al que se le asigna
               </InputLabel>
               <Select
+                value={name}
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
                 label="Jugador al que se le asigna"
@@ -115,9 +124,12 @@ const ManagmentFootballControler = ({ locales, visitantes }) => {
                 <h3>Locales</h3>
                 {locales.map((e) => (
                   <MenuItem
+                    key={e.ci_usuario}
                     value={{
                       id_fichaJugador_estadistica: e.id_fichaJugador,
                       id_equipo_estadistica: e.id_equipo,
+                      nombre:e.primerNombre_usuario,
+                      apellido:e.primerApellido_usuario,
                     }}
                   >
                     {e.primerNombre_usuario} {e.primerApellido_usuario}
@@ -126,9 +138,12 @@ const ManagmentFootballControler = ({ locales, visitantes }) => {
                 <h3>Visitantes</h3>
                 {visitantes.map((e) => (
                   <MenuItem
+                    key={e.ci_usuario}
                     value={{
                       id_fichaJugador_estadistica: e.id_fichaJugador,
                       id_equipo_estadistica: e.id_equipo,
+                      nombre:e.primerNombre_usuario,
+                      apellido:e.primerApellido_usuario,
                     }}
                   >
                     {e.primerNombre_usuario} {e.primerApellido_usuario}
@@ -147,6 +162,7 @@ const ManagmentFootballControler = ({ locales, visitantes }) => {
                 Jugador al que se le asigna
               </InputLabel>
               <Select
+                value={name}
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
                 label="Jugador al que se le asigna"
@@ -158,6 +174,8 @@ const ManagmentFootballControler = ({ locales, visitantes }) => {
                     value={{
                       id_fichaJugador_estadistica: e.id_fichaJugador,
                       id_equipo_estadistica: e.id_equipo,
+                      nombre:e.primerNombre_usuario,
+                      apellido:e.primerApellido_usuario,
                     }}
                   >
                     {e.primerNombre_usuario} {e.primerApellido_usuario}
@@ -169,6 +187,8 @@ const ManagmentFootballControler = ({ locales, visitantes }) => {
                     value={{
                       id_fichaJugador_estadistica: e.id_fichaJugador,
                       id_equipo_estadistica: e.id_equipo,
+                      nombre:e.primerNombre_usuario,
+                      apellido:e.primerApellido_usuario,
                     }}
                   >
                     {e.primerNombre_usuario} {e.primerApellido_usuario}
@@ -194,6 +214,8 @@ const ManagmentFootballControler = ({ locales, visitantes }) => {
                     value={{
                       id_fichaJugador_estadistica: e.id_fichaJugador,
                       id_equipo_estadistica: e.id_equipo,
+                      nombre:e.primerNombre_usuario,
+                      apellido:e.primerApellido_usuario,
                     }}
                   >
                     {e.primerNombre_usuario} {e.primerApellido_usuario}
@@ -205,6 +227,8 @@ const ManagmentFootballControler = ({ locales, visitantes }) => {
                     value={{
                       id_fichaJugador_estadistica: e.id_fichaJugador,
                       id_equipo_estadistica: e.id_equipo,
+                      nombre:e.primerNombre_usuario,
+                      apellido:e.primerApellido_usuario,
                     }}
                   >
                     {e.primerNombre_usuario} {e.primerApellido_usuario}
@@ -233,6 +257,8 @@ const ManagmentFootballControler = ({ locales, visitantes }) => {
                     value={{
                       id_fichaJugador_estadistica: e.id_fichaJugador,
                       id_equipo_estadistica: e.id_equipo,
+                      nombre:e.primerNombre_usuario,
+                      apellido:e.primerApellido_usuario,
                     }}
                   >
                     {e.primerNombre_usuario} {e.primerApellido_usuario}
@@ -244,6 +270,8 @@ const ManagmentFootballControler = ({ locales, visitantes }) => {
                     value={{
                       id_fichaJugador_estadistica: e.id_fichaJugador,
                       id_equipo_estadistica: e.id_equipo,
+                      nombre:e.primerNombre_usuario,
+                      apellido:e.primerApellido_usuario,
                     }}
                   >
                     {e.primerNombre_usuario} {e.primerApellido_usuario}
@@ -269,6 +297,8 @@ const ManagmentFootballControler = ({ locales, visitantes }) => {
                     value={{
                       id_fichaJugador_estadistica: e.id_fichaJugador,
                       id_equipo_estadistica: e.id_equipo,
+                      nombre:e.primerNombre_usuario,
+                      apellido:e.primerApellido_usuario,
                     }}
                   >
                     {e.primerNombre_usuario} {e.primerApellido_usuario}
@@ -280,6 +310,8 @@ const ManagmentFootballControler = ({ locales, visitantes }) => {
                     value={{
                       id_fichaJugador_estadistica: e.id_fichaJugador,
                       id_equipo_estadistica: e.id_equipo,
+                      nombre:e.primerNombre_usuario,
+                      apellido:e.primerApellido_usuario,
                     }}
                   >
                     {e.primerNombre_usuario} {e.primerApellido_usuario}

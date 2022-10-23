@@ -17,6 +17,7 @@ import "./styles/NavAfterLogin.css";
 import Link from "./Link";
 import DropButton from "./DropButton";
 import BtnLogOut from "./BtnLogOut";
+import { ImgProfil } from "./ImgProfil";
 
 const settings = [
   <Link to="profile">Tu perfil</Link>,
@@ -125,7 +126,7 @@ const NavAfterLogin = ({pages=[]}) => {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src={usuario.fotoPerfil_usuario} />
+                <ImgProfil src={usuario.fotoPerfil_usuario}></ImgProfil>
               </IconButton>
             </Tooltip>
             <Menu
