@@ -901,11 +901,11 @@ class GetModel{
 
         if (isset($idPartido)) {
             
-            $stmt=Connection::connect()->prepare("call estadisticasPartido($idPartido);");
+            $stmt=Connection::connect()->prepare("call estadisticasPartido($idPartido,$verificado);");
         }elseif (isset($idUsuario)) {
             $stmt=Connection::connect()->prepare("call cantidadEstadistica($idUsuario, '$tipoEstadistica', '$verificado');");
         }elseif (isset($idJugador)) {
-            $stmt=Connection::connect()->prepare("call estadisticasJugador($idJugador);");
+            $stmt=Connection::connect()->prepare("call estadisticasJugador($idJugador,$verificado);");
         }
         try {
 
