@@ -12,7 +12,7 @@ create table roles(
     );
     
 
-insert into roles values(1,"administrador",null,null);
+
 #select * from roles;
 
 create table usuarios(
@@ -311,7 +311,7 @@ inner join deportes
 on id_deporte_equipo=new.id_deporte_equipo 
 where id_deporte_equipo=new.id_deporte_equipo and deportes.id_deporte=new.id_deporte_equipo)
 where id_deporte=new.id_deporte_equipo ;
-select * from cantidadEquiposDeportes;
+#select * from cantidadEquiposDeportes;
 
 /*----------------------------------------------
 views
@@ -342,20 +342,20 @@ BEGIN
 END //
 
 DELIMITER ;
-SELECT count(id_estadistica)  as 'conteo'
+/*SELECT count(id_estadistica)  as 'conteo'
     FROM estadisticas 
     where id_fichaJugador_estadistica=(select id_fichaJugador_tiene 
 										from  tienen 
                                         where id_usuario_tiene=1)
-	and tipo_estadistica='gol' and verificado_estadistica=1;
+	and tipo_estadistica='gol' and verificado_estadistica=1;*/
 
-call cantidadEstadistica(1, 'gol', 1);
+/*call cantidadEstadistica(1, 'gol', 1);
 
 select * from usuarios;
 select * from tienen;
 select id_fichaJugador_tiene from  tienen where id_usuario_tiene=12;
 select * from fichasJugadores;
-select * from estadisticas;
+select * from estadisticas;*/
 
 
 
@@ -386,7 +386,7 @@ END //
 
 DELIMITER ;
 
-call estadisticasJugador(8);
+#call estadisticasJugador(8);
 
 
 /*----------------------------------------------
@@ -417,7 +417,7 @@ ORDER BY fecha_estadistica desc;
 END //
 
 DELIMITER ;
-
+/*
 call estadisticasPartido(5);
 
 #delete from estadisticas;
@@ -426,7 +426,7 @@ select * from pertenecen;
 select * from partidos;
 select * from tienen;
 select * from fichasJugadores;
-select * from usuarios;
+select * from usuarios;*/
 /*
 UPDATE cantidadEquiposDeportes 
 set cantidad_equipo=(select count( id_equipo )
@@ -471,9 +471,9 @@ delete from equipos;
 delete from cantidadequiposdeportes;
 delete from partidos;*/
 
-
 insert into roles(id_rol,nombre_rol)
 values
+(1,"administrador"),
 (2,"administrativo"),
 (3,"estudiante"),
 (4,"ojeador"),
@@ -618,7 +618,7 @@ values
     (4,8,11)
 
 ;
-select * from estadisticas;
+#select * from estadisticas;
 insert into estadisticas 
 values 
 
@@ -648,7 +648,7 @@ values
 (null, '1', 'corner', '2022-10-23 20:56:37', '0', NULL, '1', '1', '7', '13', '2022-10-23', '2022-10-23 20:56:51'),
 (null, '1', 'gol', '2022-10-23 20:56:37', '0', NULL, '1', '1', '7', '13', '2022-10-23', '2022-10-23 20:56:55');
 
-
+/*
 select * from estadisticas;
 select * from pertenecen;
 select * from partidos where (id_equipoLocal_partido=3 or id_equipoLocal_partido=4) or (id_equipoVisitante_partido=3 or id_equipoVisitante_partido=4);
