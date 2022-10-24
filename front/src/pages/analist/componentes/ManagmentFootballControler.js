@@ -16,7 +16,7 @@ import MoveUpTwoToneIcon from "@mui/icons-material/MoveUpTwoTone";
 import SettingsOverscanTwoToneIcon from "@mui/icons-material/SettingsOverscanTwoTone";
 import UsersModal from "./UsersModal";
 import React, { useState, useEffect } from "react";
-import { getDateTime, urlApi } from "../../../functions/globals";
+import { getDateTime, getProp, urlApi } from "../../../functions/globals";
 import { helpHttp } from "../../../helpers/helpHttp";
 
 const peticion =helpHttp();
@@ -28,9 +28,7 @@ const ManagmentFootballControler = ({matchId, locales, visitantes }) => {
   
   
   const handleChange = (e) => {
-    
     setName(`${e.target.value.nombre} ${e.target.value.apellido}`)
-    
     setForm({
       ...form,
       id_fichaJugador_estadistica: e.target.value.id_fichaJugador_estadistica,
@@ -42,7 +40,7 @@ const ManagmentFootballControler = ({matchId, locales, visitantes }) => {
       verificado_estadistica:0,
       id_partido_estadistica:matchId
     });
-    console.log(form)
+    console.log(name)
   };
 
   const handleType = (e) => {
@@ -111,13 +109,13 @@ const ManagmentFootballControler = ({matchId, locales, visitantes }) => {
           <>
             <h3>Equipos</h3>
             <FormControl  className="Form__input" fullWidth>
-              <InputLabel id="demo-simple-select-label">
+              <InputLabel  id="demo-simple-select-label3">
                 Jugador al que se le asigna
               </InputLabel>
               <Select
                 value={name}
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
+                labelId="demo-simple-select-label3"
+                id="demo-simple-select3"
                 label="Jugador al que se le asigna"
                 onChange={handleChange}
               >
@@ -203,6 +201,7 @@ const ManagmentFootballControler = ({matchId, locales, visitantes }) => {
                 Jugador al que se le asigna
               </InputLabel>
               <Select
+                value={name}
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
                 label="Jugador al que se le asigna"
@@ -246,6 +245,7 @@ const ManagmentFootballControler = ({matchId, locales, visitantes }) => {
                 Jugador al que se le asigna
               </InputLabel>
               <Select
+              value={name}
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
                 label="Jugador al que se le asigna"
@@ -286,6 +286,7 @@ const ManagmentFootballControler = ({matchId, locales, visitantes }) => {
                 Jugador al que se le asigna
               </InputLabel>
               <Select
+              value={name}
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
                 label="Jugador al que se le asigna"

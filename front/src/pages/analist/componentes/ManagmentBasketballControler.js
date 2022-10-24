@@ -26,7 +26,7 @@ const peticion =helpHttp();
 const ManagmentBasketballControler = ({matchId , locales, visitantes }) => {
   const [form, setForm] = useState({});
   const [tipo, setTipo] = useState("");
-
+  const [nombre, setNombre] = useState("");
   const handleChange = (e) => {
     setForm({
       ...form,
@@ -39,7 +39,8 @@ const ManagmentBasketballControler = ({matchId , locales, visitantes }) => {
       verificado_estadistica:0,
       id_partido_estadistica:matchId
     });
-    console.log(form);
+    setNombre(`${e.target.value.nombre} ${e.target.value.apellido}`)
+    console.log(nombre)
   };
 
   const handleType = (e) => {
@@ -121,6 +122,8 @@ const ManagmentBasketballControler = ({matchId , locales, visitantes }) => {
                     value={{
                       id_fichaJugador_estadistica: e.id_fichaJugador,
                       id_equipo_estadistica: e.id_equipo,
+                      nombre: e.primerNombre_usuario,
+                      apellido: e.primerApellido_usuario
                     }}
                   >
                     {e.primerNombre_usuario} {e.primerApellido_usuario}

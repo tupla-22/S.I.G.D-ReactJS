@@ -22,7 +22,7 @@ const Clock = ({minutos,setMinutos, paused, started,endMatch,matchId,setEndMatch
 
   useEffect(() => {
     const matchInfo={
-        body:new URLSearchParams({disputado_partido:0})
+        body:new URLSearchParams({disputado_partido:1})
     }
     if(endMatch==true){
         peticion.put(urlApi(`partidos?id=${matchId}&nameID=id_partido`),matchInfo).then(e=>console.log(e))
