@@ -896,8 +896,17 @@ class GetModel{
         }
         return $stmt->fetchAll(PDO::FETCH_CLASS);
         }
-    static function getEstadisticaJugador($idUsuario, $tipoEstadistica, $verificado){
-        $stmt=Connection::connect()->prepare("call cantidadEstadistica($idUsuario, '$tipoEstadistica', '$verificado');");
+    static function getEstadisticaJugador($idPartido,$idJugador, $idUsuario, $tipoEstadistica, $verificado){
+        
+
+        if (isset($idPartido)) {
+            
+            $stmt=Connection::connect()->prepare("call estadisticasPartido($idPartido);");
+        }elseif (isset($idUsuario)) {
+            $stmt=Connection::connect()->prepare("call cantidadEstadistica($idUsuario, '$tipoEstadistica', '$verificado');");
+        }elseif (isset($idJugador)) {
+            $stmt=Connection::connect()->prepare("call estadisticasJugador($idJugador);");
+        }
         try {
 
             $stmt->execute();

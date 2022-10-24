@@ -20,6 +20,8 @@ $disputed=$_GET["disputed"] ?? null;
 $sport=$_GET["sport"] ?? null;
 $teamID=$_GET["teamID"] ?? null;
 $verificado=$_GET["verificado"] ?? true;
+$idPartido=$_GET["id_partido"] ?? null;
+$idJugador=$_GET["id_fichaJugador"] ?? null;
 
 
 
@@ -27,7 +29,7 @@ $response=new GetController();
 
 /**======================pticion get con filtro============================== */
 
-if(isset($linkTo)&&isset($equalTo) && !isset($rel) && !isset($type) && $table!="matcheck"&& $table!="procedure"){
+if(isset($linkTo)&&isset($equalTo) && !isset($rel) && !isset($type) && $table!="matcheck"&& $table!="statistics"){
     $response ->getDataFilter(
 
         $table, 
@@ -43,7 +45,7 @@ if(isset($linkTo)&&isset($equalTo) && !isset($rel) && !isset($type) && $table!="
 
 /**======================pticion get sin filtro entre tablas relacionadas============================== */
 
-}else if(isset($rel) && isset($type) && $table=="relations" && !isset($linkTo) && !isset($equalTo) && $table!="matcheck"&& $table!="procedure"){
+}else if(isset($rel) && isset($type) && $table=="relations" && !isset($linkTo) && !isset($equalTo) && $table!="matcheck"&& $table!="statistics"){
 
     $response->getRelData(
         
@@ -59,7 +61,7 @@ if(isset($linkTo)&&isset($equalTo) && !isset($rel) && !isset($type) && $table!="
 
 /**======================pticion get con filtro entre tablas relacionadas============================== */
 
-}else if(isset($rel) && isset($type) && $table=="relations" && isset($linkTo) && isset($equalTo) && $table!="matcheck"&& $table!="procedure"){
+}else if(isset($rel) && isset($type) && $table=="relations" && isset($linkTo) && isset($equalTo) && $table!="matcheck"&& $table!="statistics"){
 
     $response->getRelDataFilter(
         $rel, 
@@ -86,7 +88,7 @@ deporte equipo
 
 ==============matcheck===============*/
 
-}else if(isset($disputed) && $table=="matcheck" && isset($sport)&& $table!="procedure"/*isset($rel) && isset($type) && $table=="relations" && isset($linkTo) && isset($between1) && isset($between2)*/){
+}else if(isset($disputed) && $table=="matcheck" && isset($sport)&& $table!="statistics"/*isset($rel) && isset($type) && $table=="relations" && isset($linkTo) && isset($between1) && isset($between2)*/){
     
     
     $response->getMatcheck(
@@ -101,7 +103,7 @@ deporte equipo
 
     /*==============integrantesEquipo===============*/
 
-}else if(isset($teamID) && $table=="squad"){
+}else if(isset($teamID) && $table=="squad"&& $table!="statistics"){
     
     
     $response->getSquad(
@@ -114,7 +116,7 @@ deporte equipo
 /**======================pticion get para el buscador sin relaciones============================== */
 
 
-}else if (!isset($rel) && !isset($type) && isset($linkTo) && isset($search) && $table!="matcheck"&& $table!="procedure") {
+}else if (!isset($rel) && !isset($type) && isset($linkTo) && isset($search) && $table!="matcheck"&& $table!="statistics") {
     
     $response->getDataSearch(
 
@@ -133,7 +135,7 @@ deporte equipo
 /**======================pticion get para el buscador con relaciones============================== */
 
 
-}else if (isset($rel) && isset($type) && $table=="relations" && isset($linkTo) && isset($search) && $table!="matcheck"&& $table!="procedure") {
+}else if (isset($rel) && isset($type) && $table=="relations" && isset($linkTo) && isset($search) && $table!="matcheck"&& $table!="statistics") {
     
     $response->getRelDataSearch(
         $rel, 
@@ -149,7 +151,7 @@ deporte equipo
 
     /**======================pticion get para seleccion de rangos(between)============================== */
 
-}else if (!isset($rel) && !isset($type) && isset($linkTo) && isset($between1) && isset($between2) && $table!="matcheck"&& $table!="procedure") {
+}else if (!isset($rel) && !isset($type) && isset($linkTo) && isset($between1) && isset($between2) && $table!="matcheck"&& $table!="statistics") {
 
     $response->getDataRange(
         $table, 
@@ -167,7 +169,7 @@ deporte equipo
 
     /**======================pticion get para seleccion de rangos(between) con relaciones============================== */
     
-}else if (isset($rel) && isset($type) && $table=="relations" && isset($linkTo) && isset($between1) && isset($between2) && $table!="matcheck" && $table!="procedure") {
+}else if (isset($rel) && isset($type) && $table=="relations" && isset($linkTo) && isset($between1) && isset($between2) && $table!="matcheck" && $table!="statistics") {
 
     $response->getRelDataRange(
         $rel, 
@@ -184,11 +186,14 @@ deporte equipo
         $inTo
     );  
 
-}else if ($table=="procedure" && $table!="matcheck" && isset($_GET["id_usuario"]) && isset($_GET["tipo_estadistica"])) {
+}else if ($table=="statistics" && $table!="matcheck" && ( (isset($_GET["id_usuario"])&& isset($_GET["tipo_estadistica"])) || isset($idJugador) || isset($idPartido)  ) ) {
 
     $response->getEstadisticaJugador(
-        $_GET["id_usuario"], 
-        $_GET["tipo_estadistica"],
+        $idPartido,
+        
+        $idJugador, 
+        $_GET["id_usuario"]??null, 
+        $_GET["tipo_estadistica"]??null,
         $verificado
     );  
  
@@ -199,6 +204,8 @@ deporte equipo
 
 
     $response ->getData($table, $select, $orderBy, $orderMode,$startAt, $endAt);  
+    
+    
 }
 
 
