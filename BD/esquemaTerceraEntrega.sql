@@ -373,6 +373,7 @@ select id_estadistica, fecha_estadistica, verificado_estadistica,tipo_estadistic
         (select primerApellido_usuario from usuarios where id_usuario=id_usuario_estadistica) as 'primerApellido_usuario_analista',
         (select primerNombre_usuario from usuarios where id_fichaJugador=id_fichaJugador_estadistica and id_usuario=id_usuario_tiene) as 'primerNombre_usuario_fichaJugador',
         (select primerApellido_usuario from usuarios where id_fichaJugador=id_fichaJugador_estadistica and id_usuario=id_usuario_tiene) as 'primerApellido_usuario_fichaJugador',
+        (select fotoPerfil_usuario from usuarios where id_fichaJugador=id_fichaJugador_estadistica and id_usuario=id_usuario_tiene) as 'fotoPerfil_jugador',
         (select id_usuario from usuarios where id_usuario=id_usuario_estadistica) as 'id_usuario_analista',
         (select id_usuario from usuarios where id_usuario=id_usuario_tiene) as 'id_usuario_fichaJugador' 
 from tienen 
@@ -402,6 +403,7 @@ select id_partido,id_estadistica, fecha_estadistica, verificado_estadistica,tipo
         (select primerApellido_usuario from usuarios where id_usuario=id_usuario_estadistica) as 'primerApellido_usuario_analista',
         (select primerNombre_usuario from usuarios where id_fichaJugador=id_fichaJugador_estadistica and id_usuario=id_usuario_tiene) as 'primerNombre_usuario_fichaJugador',
         (select primerApellido_usuario from usuarios where id_fichaJugador=id_fichaJugador_estadistica and id_usuario=id_usuario_tiene) as 'primerApellido_usuario_fichaJugador',
+        (select fotoPerfil_usuario from usuarios where id_fichaJugador=id_fichaJugador_estadistica and id_usuario=id_usuario_tiene) as 'fotoPerfil_jugador',
         (select id_usuario from usuarios where id_usuario=id_usuario_estadistica) as 'id_usuario_analista',
         (select id_usuario from usuarios where id_usuario=id_usuario_tiene) as 'id_usuario_fichaJugador' 
 from tienen 
@@ -417,7 +419,7 @@ ORDER BY fecha_estadistica desc;
 END //
 
 DELIMITER ;
-/*
+
 call estadisticasPartido(5);
 
 #delete from estadisticas;
@@ -426,7 +428,7 @@ select * from pertenecen;
 select * from partidos;
 select * from tienen;
 select * from fichasJugadores;
-select * from usuarios;*/
+select * from usuarios;
 /*
 UPDATE cantidadEquiposDeportes 
 set cantidad_equipo=(select count( id_equipo )
@@ -561,7 +563,7 @@ values  ( '0', 'root', NULL, '', NULL, 'root@root.com', '0000-00-00', 'sh2H4KzFE
 
 
 insert into usuarios values
-(NULL, '53170460', '2', 'Lucas', NULL, 'Perez', 'Codaf', 'lucascoda3@gmail.com', '1999-05-12', 'sh0nMKbm1G1vA', '0', NULL, '1663618696', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2NjM2MTUwOTYsImV4cCI6MTY2MzYxODY5NiwiZGF0YSI6eyJpZCI6MiwiY2kiOjUzMTcwNDYwfX0.0MyOKh4w7eUvlByEaY_nUKlqXI4BKm6j3iEQ7VRvMuLzIeduyffXYm7p_5jYCA6UCquanlvamEGPiAkvGP-Avw', NULL, NULL, '2022-09-09', '2022-09-19 16:18:16'),
+(NULL, '53170460', '2', 'Lucas', NULL, 'Perez', 'Codaf', 'lucascoda3@gmail.com', '1999-05-12', 'sh0nMKbm1G1vA', '0', default, '1663618696', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2NjM2MTUwOTYsImV4cCI6MTY2MzYxODY5NiwiZGF0YSI6eyJpZCI6MiwiY2kiOjUzMTcwNDYwfX0.0MyOKh4w7eUvlByEaY_nUKlqXI4BKm6j3iEQ7VRvMuLzIeduyffXYm7p_5jYCA6UCquanlvamEGPiAkvGP-Avw', NULL, NULL, '2022-09-09', '2022-09-19 16:18:16'),
 (NULL, '32431532', '3', 'luis', 'Lucas', '', 'Coda', 'lucascoasdfda3@gmail.com', '2022-09-01', 'shKXXzZ71sQ0M', '0', NULL, '1663034064', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2NjMwMzA0NjQsImV4cCI6MTY2MzAzNDA2NCwiZGF0YSI6eyJpZCI6MywiY2kiOjMyNDMxNTMyfX0.5K7m1HHy0hrgnKBJt8hcKUXVFG0-_Kwr6Ja14kGrMc-Z3cwzwYo1qmRhZVTaDc1cDWJwZ0u7-XL5tRURO0ausg', NULL, NULL, '2022-09-11', '2022-09-12 21:54:24'),
 (NULL, '31423414', '3', 'luis', 'Lucas', '', 'Coda', 'lucascoqwerasdfda3@gmail.com', '2022-09-01', 'shKXXzZ71sQ0M', '0', null, NULL, NULL,null,null, '2022-09-11', '2022-09-21 13:47:47'),
 (NULL, NULL, NULL, '', NULL, '', NULL, '', '0000-00-00', '', '0', NULL, NULL, NULL, NULL, NULL, '2022-09-12', '2022-09-12 20:45:53'),
