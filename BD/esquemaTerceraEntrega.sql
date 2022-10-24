@@ -130,7 +130,7 @@ create table fichasJugadores (
 	id_fichaJugador int primary key auto_increment,
     altura_fichaJugador int(3),#cm
     peso_fichaJugador int(6),#g
-    minutosJugados_fichaJugador datetime,
+    minutosJugados_fichaJugador int,
     lateralidad_fichaJugador enum("zurdo","diestro","ambidiestro"),
     date_created_fichaJugador date default current_timestamp,
     date_updated_fichaJugador timestamp default current_timestamp ON UPDATE CURRENT_TIMESTAMP
@@ -358,37 +358,50 @@ select * from fichasJugadores;
 select * from estadisticas;
 
 
-/*----------------------------------------------
-procedure para contar estadisticas de un usuario
-usuarios
-estadisticas
-fichasJugadores
-tienen
-----------------------------------------------*/
 
-/*
-seleccionar estadisticas de jugador*/
+/*----------------------------------------------
+procedure seleccionar estadisticas de jugador
+----------------------------------------------*/
+#drop procedure estadisticasJugador;
+DELIMITER //
+create procedure estadisticasJugador(in jugador int)
+
+BEGIN
 
 select id_estadistica, fecha_estadistica, verificado_estadistica,tipo_estadistica,valor_estadistica,descripcion_estadistica,
 		(select primerNombre_usuario from usuarios where id_usuario=id_usuario_estadistica) as 'primerNombre_usuario_analista',
-        (select primerNombre_usuario from usuarios e where id_fichaJugador=id_fichaJugador_estadistica and id_usuario=id_usuario_tiene) as 'primerNombre_usuario_fichaJugador',
+        (select primerApellido_usuario from usuarios where id_usuario=id_usuario_estadistica) as 'primerApellido_usuario_analista',
+        (select primerNombre_usuario from usuarios where id_fichaJugador=id_fichaJugador_estadistica and id_usuario=id_usuario_tiene) as 'primerNombre_usuario_fichaJugador',
+        (select primerApellido_usuario from usuarios where id_fichaJugador=id_fichaJugador_estadistica and id_usuario=id_usuario_tiene) as 'primerApellido_usuario_fichaJugador',
         (select id_usuario from usuarios where id_usuario=id_usuario_estadistica) as 'id_usuario_analista',
         (select id_usuario from usuarios where id_usuario=id_usuario_tiene) as 'id_usuario_fichaJugador' 
 from tienen 
 INNER join usuarios on id_usuario_tiene=id_usuario  
 inner join  fichasJugadores on id_fichaJugador=id_fichaJugador_tiene
 inner join estadisticas on id_fichaJugador_estadistica=id_fichaJugador_tiene
-WHERE id_fichaJugador=3 #or id_fichaJugador=1;
+WHERE id_fichaJugador=jugador #or id_fichaJugador=1;
 ORDER BY fecha_estadistica desc;
         
+END //
 
-/*
-seleccionar estadisticas de jugador relacionada a un partido*/
+DELIMITER ;
+
+call estadisticasJugador(8);
 
 
-select id_partido,disputado_partido,id_estadistica, fecha_estadistica, verificado_estadistica,tipo_estadistica,valor_estadistica,descripcion_estadistica,
+/*----------------------------------------------
+procedure seleccionar estadisticas de jugador relacionada a un partido
+----------------------------------------------*/
+DELIMITER //
+create procedure estadisticasPartido(in partido int)
+
+BEGIN
+
+select id_partido,id_estadistica, fecha_estadistica, verificado_estadistica,tipo_estadistica,valor_estadistica,descripcion_estadistica,
 		(select primerNombre_usuario from usuarios where id_usuario=id_usuario_estadistica) as 'primerNombre_usuario_analista',
+        (select primerApellido_usuario from usuarios where id_usuario=id_usuario_estadistica) as 'primerApellido_usuario_analista',
         (select primerNombre_usuario from usuarios where id_fichaJugador=id_fichaJugador_estadistica and id_usuario=id_usuario_tiene) as 'primerNombre_usuario_fichaJugador',
+        (select primerApellido_usuario from usuarios where id_fichaJugador=id_fichaJugador_estadistica and id_usuario=id_usuario_tiene) as 'primerApellido_usuario_fichaJugador',
         (select id_usuario from usuarios where id_usuario=id_usuario_estadistica) as 'id_usuario_analista',
         (select id_usuario from usuarios where id_usuario=id_usuario_tiene) as 'id_usuario_fichaJugador' 
 from tienen 
@@ -398,8 +411,14 @@ inner join estadisticas on id_fichaJugador_estadistica=id_fichaJugador_tiene
 inner join pertenecen on id_fichaJugador=id_fichaJugador_pertenece
 inner join equipos on id_equipo_pertenece=id_equipo and id_fichaJugador=id_fichaJugador_pertenece
 inner join partidos on (id_equipo=id_equipoLocal_partido or id_equipo=id_equipoVisitante_partido) and id_partido_estadistica=id_partido
-WHERE id_fichaJugador=3 and disputado_partido=true #or id_fichaJugador=1;
+WHERE id_partido=partido #or id_fichaJugador=1;
 ORDER BY fecha_estadistica desc;
+
+END //
+
+DELIMITER ;
+
+call estadisticasPartido(5);
 
 #delete from estadisticas;
 select * from estadisticas;
@@ -407,6 +426,7 @@ select * from pertenecen;
 select * from partidos;
 select * from tienen;
 select * from fichasJugadores;
+select * from usuarios;
 /*
 UPDATE cantidadEquiposDeportes 
 set cantidad_equipo=(select count( id_equipo )
@@ -497,9 +517,9 @@ values
 insert into partidos (id_equipoLocal_partido,id_equipoVisitante_partido,dia_partido,hora_partido,tipo_partido, disputado_partido)
 values (7,11,"2022-02-02",'16:30:00',"torneo", 0 ),
 (11,7,"2022-01-12",'16:30:00',"amistoso", 01 ),
-(1,2,"2022-02-10",'16:30:00',"amistoso", 0 ),
+(1,2,"2022-02-10",'16:30:00',"amistoso", 1 ),
 (2,1,"2022-03-11",'16:30:00',"torneo", 01 ),
-(3,4,"2022-04-09",'16:30:00',"amistoso", 0 ),
+(3,4,"2022-04-09",'16:30:00',"amistoso", 1 ),
 (5,9,"2022-05-08",'16:30:00',"amistoso", 01 ),
 (6,8,"2022-06-07",'16:30:00',"torneo", 0 ),
 (8,10,"2021-07-06",'16:30:00',"amistoso", 01 ),
@@ -507,10 +527,13 @@ values (7,11,"2022-02-02",'16:30:00',"torneo", 0 ),
 (10,6,"2021-09-04",'16:30:00',"torneo", 01 ),
 (11,7,"2021-10-03",'16:30:00',"amistoso", 0 ),
 (1,5,"2021-11-02",'16:30:00',"amistoso", 01 ),
-(1,9,"2021-12-01",'16:30:00',"torneo", 0 ),
+(1,9,"2021-12-01",'16:30:00',"torneo", 1 ),
 (11,7,"2021-10-02",'16:30:00',"amistoso", 01 ),
 (6,8,"2021-09-02",'16:30:00',"amistoso", 0 ),
-(4,3,"2021-04-02",'16:30:00',"liga", 01 );
+(4,3,"2021-04-02",'16:30:00',"liga", 01 ),
+(1,2,"2022-02-14",'16:30:00',"amistoso", 0 ),
+(3,4,"2022-04-05",'16:30:00',"amistoso", 0 ),
+(1,9,"2021-15-01",'16:30:00',"torneo", 0 );
 
 #select id_equipo, id_deporte_equipo from equipos;
 
@@ -595,45 +618,36 @@ values
     (4,8,11)
 
 ;
-
+select * from estadisticas;
 insert into estadisticas 
 values 
-(null, '1', 'gol', '2022-10-20 14:55:39', 1, NULL, '3', '2', '2',5, '2022-10-20', '2022-10-20 14:55:41'),
-(null, '1', 'gol', '2022-10-20 14:55:39', 1, NULL, '3', '2', '2',5, '2022-10-20', '2022-10-20 14:55:41'),
-(null, '1', 'gol', '2022-10-20 14:55:39', 1, NULL, '3', '2', '2',16, '2022-10-20', '2022-10-20 14:55:41'),
-(null, '1', 'gol', '2022-10-20 14:55:39', 1, NULL, '3', '2', '2',16, '2022-10-20', '2022-10-20 14:55:41'),
-(null, '1', 'gol', '2022-10-20 14:55:39', 1, NULL, '3', '2', '2',5, '2022-10-20', '2022-10-20 14:55:41'),
-(null, '1', 'gol', '2022-10-20 14:55:39', 1, NULL, '3', '2', '2',5, '2022-10-20', '2022-10-20 14:55:42'),
-(null, '1', 'gol', '2022-10-20 14:55:45', 1, NULL, '3', '2', '2',16, '2022-10-20', '2022-10-20 14:55:46'),
-(null, '1', 'gol', '2022-10-20 14:55:45', 0, NULL, '3', '2', '2',16, '2022-10-20', '2022-10-20 14:55:46'),
-(null, '1', 'gol', '2022-10-20 14:55:45', 0, NULL, '3', '2', '2',5, '2022-10-20', '2022-10-20 14:55:46'),
-(null, '1', 'gol', '2022-10-20 14:55:51', 0, NULL, '4', '2', '2',5, '2022-10-20', '2022-10-20 14:55:53'),
-(null, '1', 'gol', '2022-10-20 14:55:51', 0, NULL, '4', '2', '2',16, '2022-10-20', '2022-10-20 14:55:53'),
-(null, '1', 'gol', '2022-10-20 14:55:51', 0, NULL, '4', '2', '2',16, '2022-10-20', '2022-10-20 14:55:53'),
-(null, '1', 'gol', '2022-10-20 14:55:51', 0, NULL, '4', '2', '2',5, '2022-10-20', '2022-10-20 14:55:53'),
-(null, '1', 'gol', '2022-10-20 14:55:51', 0, NULL, '4', '2', '2',5, '2022-10-20', '2022-10-20 14:55:54'),
-(null, '1', 'gol', '2022-10-20 14:55:51', 0, NULL, '4', '2', '2',16, '2022-10-20', '2022-10-20 14:55:54'),
-(null, '1', 'gol', '2022-10-20 14:55:51', 0, NULL, '4', '2', '2',16, '2022-10-20', '2022-10-20 14:55:54'),
-(null, '1', 'corner', '2022-10-20 14:55:58', 0, NULL, '1', '1', '2',12, '2022-10-20', '2022-10-20 14:55:59'),
-(null, '1', 'corner', '2022-10-20 14:55:58', 1, NULL, '1', '1', '2',12, '2022-10-20', '2022-10-20 14:55:59'),
-(null, '1', 'corner', '2022-10-20 14:55:58', 1, NULL, '1', '1', '2',13, '2022-10-20', '2022-10-20 14:56:00'),
-(null, '1', 'corner', '2022-10-20 14:55:58', 1, NULL, '1', '1', '2',13, '2022-10-20', '2022-10-20 14:56:00'),
-(null, '1', 'corner', '2022-10-20 14:55:58', 1, NULL, '1', '1', '2',12, '2022-10-20', '2022-10-20 14:56:00'),
-(null, '1', 'corner', '2022-10-20 14:55:58', 1, NULL, '1', '1', '2',12, '2022-10-20', '2022-10-20 14:56:00'),
-(null, '1', 'lateral', '2022-10-20 14:56:04', 0, NULL, '2', '1', '2',4, '2022-10-20', '2022-10-20 14:56:05'),
-(null, '1', 'lateral', '2022-10-20 14:56:04', 0, NULL, '2', '1', '2',3, '2022-10-20', '2022-10-20 14:56:05'),
-(null, '1', 'lateral', '2022-10-20 14:56:04', 0, NULL, '2', '1', '2',3, '2022-10-20', '2022-10-20 14:56:05'),
-(null, '1', 'lateral', '2022-10-20 14:56:04', 0, NULL, '2', '1', '2',4, '2022-10-20', '2022-10-20 14:56:05'),
-(null, '1', 'lateral', '2022-10-20 14:56:04', 0, NULL, '2', '1', '2',4, '2022-10-20', '2022-10-20 14:56:06'),
-(null, '1', 'lateral', '2022-10-20 14:56:04', 0, NULL, '2', '1', '2',3, '2022-10-20', '2022-10-20 14:56:06'),
-(null, '1', 'lateral', '2022-10-20 14:56:04', 0, NULL, '2', '1', '2',3, '2022-10-20', '2022-10-20 14:56:06'),
-(null, '1', 'tiroLibre', '2022-10-20 14:56:11', 1, NULL, '3', '2', '2',5, '2022-10-20', '2022-10-20 14:56:11'),
-(null, '1', 'tiroLibre', '2022-10-20 14:56:11', 1, NULL, '3', '2', '2',5, '2022-10-20', '2022-10-20 14:56:12'),
-(null, '1', 'tiroLibre', '2022-10-20 14:56:11', 1, NULL, '3', '2', '2',16, '2022-10-20', '2022-10-20 14:56:12'),
-(null, '1', 'tiroLibre', '2022-10-20 14:56:11', 1, NULL, '3', '2', '2',16, '2022-10-20', '2022-10-20 14:56:12'),
-(null, '1', 'tiroLibre', '2022-10-20 14:56:11', 1, NULL, '3', '2', '2',5, '2022-10-20', '2022-10-20 14:56:12'),
-(null, '1', 'penal', '2022-10-20 14:56:16', 0, NULL, '1', '1', '2',3, '2022-10-20', '2022-10-20 14:56:17'),
-(null, '1', 'penal', '2022-10-20 14:56:16', 0, NULL, '1', '1', '2',3, '2022-10-20', '2022-10-20 14:56:17');
+
+(null, '1', 'lateral', '2022-10-23 20:51:26', '0', NULL, '1', '1', '7', '3', '2022-10-23', '2022-10-23 20:51:28'),
+(null, '1', 'falta', '2022-10-23 20:51:26', '0', NULL, '1', '1', '7', '3', '2022-10-23', '2022-10-23 20:51:35'),
+(null, '1', 'gol', '2022-10-23 20:51:26', '0', NULL, '1', '1', '7', '3', '2022-10-23', '2022-10-23 20:51:38'),
+(null, '1', 'lateral', '2022-10-23 20:51:26', '0', NULL, '1', '1', '7', '3', '2022-10-23', '2022-10-23 20:51:40'),
+(null, '1', 'tiroLibre', '2022-10-23 20:51:26', '0', NULL, '1', '1', '7', '3', '2022-10-23', '2022-10-23 20:51:42'),
+(null, '1', 'penal', '2022-10-23 20:51:26', '0', NULL, '1', '1', '7', '3', '2022-10-23', '2022-10-23 20:51:56'),
+(null, '1', 'corner', '2022-10-23 20:51:26', '0', NULL, '1', '1', '7', '3', '2022-10-23', '2022-10-23 20:52:16'),
+(null, '1', 'lateral', '2022-10-23 20:55:44', '0', NULL, '8', '4', '7', '5', '2022-10-23', '2022-10-23 20:55:48'),
+(null, '1', 'gol', '2022-10-23 20:55:44', '0', NULL, '8', '4', '7', '5', '2022-10-23', '2022-10-23 20:55:51'),
+(null, '1', 'gol', '2022-10-23 20:55:44', '0', NULL, '8', '4', '7', '5', '2022-10-23', '2022-10-23 20:55:52'),
+(null, '1', 'penal', '2022-10-23 20:55:44', '0', NULL, '8', '4', '7', '5', '2022-10-23', '2022-10-23 20:55:55'),
+(null, '1', 'lateral', '2022-10-23 20:55:44', '0', NULL, '8', '4', '7', '5', '2022-10-23', '2022-10-23 20:55:58'),
+(null, '1', 'corner', '2022-10-23 20:55:44', '0', NULL, '8', '4', '7', '5', '2022-10-23', '2022-10-23 20:56:01'),
+(null, '1', 'corner', '2022-10-23 20:55:44', '0', NULL, '8', '4', '7', '5', '2022-10-23', '2022-10-23 20:56:01'),
+(null, '1', 'lateral', '2022-10-23 20:55:44', '0', NULL, '8', '4', '7', '5', '2022-10-23', '2022-10-23 20:56:03'),
+(null, '1', 'penal', '2022-10-23 20:55:44', '0', NULL, '8', '4', '7', '5', '2022-10-23', '2022-10-23 20:56:07'),
+(null, '1', 'gol', '2022-10-23 20:56:37', '0', NULL, '1', '1', '7', '13', '2022-10-23', '2022-10-23 20:56:40'),
+(null, '1', 'gol', '2022-10-23 20:56:37', '0', NULL, '1', '1', '7', '13', '2022-10-23', '2022-10-23 20:56:40'),
+(null, '1', 'tiroLibre', '2022-10-23 20:56:37', '0', NULL, '1', '1', '7', '13', '2022-10-23', '2022-10-23 20:56:43'),
+(null, '1', 'penal', '2022-10-23 20:56:37', '0', NULL, '1', '1', '7', '13', '2022-10-23', '2022-10-23 20:56:45'),
+(null, '1', 'penal', '2022-10-23 20:56:37', '0', NULL, '1', '1', '7', '13', '2022-10-23', '2022-10-23 20:56:46'),
+(null, '1', 'tiroLibre', '2022-10-23 20:56:37', '0', NULL, '1', '1', '7', '13', '2022-10-23', '2022-10-23 20:56:48'),
+(null, '1', 'tiroLibre', '2022-10-23 20:56:37', '0', NULL, '1', '1', '7', '13', '2022-10-23', '2022-10-23 20:56:48'),
+(null, '1', 'corner', '2022-10-23 20:56:37', '0', NULL, '1', '1', '7', '13', '2022-10-23', '2022-10-23 20:56:51'),
+(null, '1', 'gol', '2022-10-23 20:56:37', '0', NULL, '1', '1', '7', '13', '2022-10-23', '2022-10-23 20:56:55');
+
 
 select * from estadisticas;
 select * from pertenecen;
