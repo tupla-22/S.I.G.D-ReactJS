@@ -10,15 +10,19 @@ import { urlApi } from "../../../functions/globals";
 
 const peticion=helpHttp();
 
-const Clock = ({ paused, started,endMatch,matchId,setEndMatch }) => {
+const Clock = ({minutos,setMinutos, paused, started,endMatch,matchId,setEndMatch }) => {
   const [minits, setMinits] = useState(0);
   const [seconds, setSeconds] = useState(0);
   const [idInterval, setIdInterval] = useState(null);
   const [idMinutos, setIdMinutos] = useState(null);
   
   useEffect(() => {
+    setMinutos(minits)
+  }, [minits]);
+
+  useEffect(() => {
     const matchInfo={
-        body:new URLSearchParams({disputado_partido:1})
+        body:new URLSearchParams({disputado_partido:0})
     }
     if(endMatch==true){
         peticion.put(urlApi(`partidos?id=${matchId}&nameID=id_partido`),matchInfo).then(e=>console.log(e))

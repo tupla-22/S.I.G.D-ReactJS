@@ -17,7 +17,6 @@ const Div = styled.div`
   padding: 50px;
   margin: 20px;
   border-radius: 15px;
-  border:1px solid #999;
   box-shadow: 1px 1px 10px #0003;
 `;
 
@@ -32,20 +31,26 @@ const UserListButtons = ({jugando,setJugando, locales, visitantes, name, onClick
   useEffect(() => {
     setLocalesAux(locales)
     setVisitantesAux(visitantes)
-  }, [locales,visitantes]);
+  }, [locales]);
+
+  useEffect(() => {
+    
+    setLocalesAux(locales)
+    setVisitantesAux(visitantes)
+  }, [visitantes]);
 
   useEffect((e) => {
-    setTitulares(titulares.concat(Object.keys(titularesLocales)))
-    setJugando([...new Set(titulares)])
-    console.log(jugando)
-    console.log(localesAux,"locales")
+    setTitulares([...titularesLocales,...titularesVisitantes])
+    setJugando([...titularesLocales,...titularesVisitantes])
+    
   }, [titularesLocales]);
   
-  useEffect((e) => {
-    setTitulares(titulares.concat(Object.keys(titularesVisitantes)))
-    setJugando([...new Set(titulares)])
-    console.log(jugando)
+  useEffect(() => {
+    setTitulares([...titularesLocales,...titularesVisitantes])
+    setJugando([...titularesLocales,...titularesVisitantes])
   }, [titularesVisitantes]);
+
+
 
   const handleTitulares = (e) => {};
 
@@ -57,9 +62,9 @@ const UserListButtons = ({jugando,setJugando, locales, visitantes, name, onClick
           {localesAux.map((e) => (
             <Button
               onClick={() => {
-                setTitularesLocales([...titularesLocales,e])
-                console.log(titularesLocales,"titulares locales")
+                
                 setLocalesAux(localesAux.filter((el)=> el.id_usuario != e.id_usuario ))
+                setTitularesLocales([...titularesLocales,e])
                 setUser(e);
               }}
               key={e.ci_usuario}
@@ -92,8 +97,8 @@ const UserListButtons = ({jugando,setJugando, locales, visitantes, name, onClick
           {visitantesAux.map((e) => (
             <Button
               onClick={() => {
-                setTitularesVisitantes([...titularesVisitantes,e])
                 setVisitantesAux(visitantesAux.filter((el)=> el.id_usuario != e.id_usuario ))
+                setTitularesVisitantes([...titularesVisitantes,e])
                 setUser(e);
               }}
               key={e.ci_usuario}
