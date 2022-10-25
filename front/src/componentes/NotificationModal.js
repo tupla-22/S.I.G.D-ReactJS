@@ -10,7 +10,7 @@ const style = {
 	top: "50%",
 	left: "50%",
 	transform: "translate(-50%, -50%)",
-	width: 400,
+	width: 300,
 	bgcolor: "background.paper",
 	border: "1px solid #aaa",
 	boxShadow: 24,
@@ -33,7 +33,7 @@ export default function NotificationModal({ state, text }) {
 				aria-describedby="modal-modal-description"
 			>
 				<Box sx={style}>
-					<Typography id="modal-modal-description" sx={{ mt: 2 }}>
+					<Typography id="modal-modal-description" sx={{ mt: 1 }}>
 						{text} <DoneAllIcon color="success" />
 					</Typography>
 				</Box>
