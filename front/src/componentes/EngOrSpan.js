@@ -1,51 +1,54 @@
-import * as React from 'react';
-import PropTypes from 'prop-types';
-import { styled } from '@mui/material/styles';
-import RadioGroup, { useRadioGroup } from '@mui/material/RadioGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Radio from '@mui/material/Radio';
+import * as React from "react"
 import iconEngland from "../media/reino-unido.png"
 import iconSpanish from "../media/espana.png"
-const StyledFormControlLabel = styled((props) => <FormControlLabel {...props} />)(
-  ({ theme, checked }) => ({
-    '.MuiFormControlLabel-label': checked && {
-      color: theme.palette.secondary.main,
-    },
-  }),
-);
+import LanguajeContext from "../contexts/LanguajeContext"
+import { Button } from "@mui/material"
+import styled from "styled-components"
 
+const Img = styled.img`
+	border-radius: 100%;
+	height: 20px;
+	width: 20px;
+  margin:5px;
+`
 
-const sx={
-    color: "white",
-    '&.Mui-checked': {
-      color: "secondary.main",
-    },
-  };
+const Container = styled.div`
+display:flex;
+flex-direction: column;
+width:20px;
 
-function MyFormControlLabel(props) {
-  const radioGroup = useRadioGroup();
-
-  let checked = false;
-
-  if (radioGroup) {
-    checked = radioGroup.value === props.value;
-  }
-
-  return <StyledFormControlLabel checked={checked} {...props} />;
+margin:10px;
+`
+const B = styled.b`
+font-size: 13px;
+`
+const Div = styled.div`
+display:flex;
+align-items:center;
+justify-content:center;
+&:hover{
+  cursor:pointer;
 }
 
-MyFormControlLabel.propTypes = {
-  /**
-   * The value of the component.
-   */
-  value: PropTypes.any,
-};
+`
+export default function EngOrSpan() {
 
-export default function UseRadioGroup() {
-  return (
-    <RadioGroup name="use-radio-group" defaultValue="first">
-      <MyFormControlLabel value="first" label={<img style={{width:"32px"}} src={iconEngland}></img>} control={<Radio sx={sx}/>} />
-      <MyFormControlLabel value="second" label={<img style={{width:"32px"}} src={iconSpanish}></img>} control={<Radio sx={sx}/>} />
-    </RadioGroup>
-  );
+	const { handleLanguaje, text } = React.useContext(LanguajeContext)
+
+  const handleEs = (e) => {
+    handleLanguaje("es")
+    
+  }
+
+  const handleEn = () => {
+    handleLanguaje("en")
+  }
+	return (
+		<>
+			<Container>
+					<Div value={"asdf"} onClick={handleEs}><Img src={iconSpanish} /><B>ES</B></Div> 
+					<Div onClick={handleEn}><Img src={iconEngland} /><B>EN</B></Div>
+			</Container>
+		</>
+	)
 }

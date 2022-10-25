@@ -1,7 +1,9 @@
 import styled from "styled-components";
 
 const Main = styled.main`
-        height:100vh;
+        
+        height:fit-content;
+        min-height:100vh;
         width:100%;
         display:flex;
         align-items:center;
