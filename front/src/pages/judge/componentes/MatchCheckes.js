@@ -5,20 +5,19 @@ import { getProp, urlApi } from "../../../functions/globals"
 import { Seccion } from "../../../componentes/styledComponents/Seccion"
 import styled from "styled-components"
 import { ButtonClassic } from "../../../componentes/ButtonClassic"
+import NotificationModal from "../../../componentes/NotificationModal"
 
 const peticion = helpHttp()
 
 const Container = styled.div`
 	width: 95%;
 	height: fit-content;
-	border-radius: 15px;
-	box-shadow: 1px 1px 10px #0003;
-	margin: 2.5%;
+	border-bottom:1px solid #bbb;
 	display: flex;
 	flex-wrap: wrap;
 	align-items: center;
 	justify-content: center;
-	padding: 1.25%;
+	padding: 2.5%;
 	@media screen and (max-width: 938px) {
 		& {
 			flex-direction: column;
@@ -51,7 +50,7 @@ const IconFoto = styled.img`
 `
 
 const B = styled.b`
-	margin: 5px;
+	margin: 10px;
 `
 
 const Div = styled.div`
@@ -69,11 +68,17 @@ const Div = styled.div`
 	}
 `
 
+
+
 const MatchCheckes = () => {
 	const [partidos, setPartidos] = useState()
 	const [estadisticas, setEstadisticas] = useState([])
 	const { idMatchCheck } = useParams()
 	const [estadistica, setestadistica] = useState({});
+	const [estadisticaAEliminar, setEstadisticaAEliminar] = useState({});
+	const [done, setDone] = useState(false);
+	const [textNotification, setTextNotification] = useState("");
+
 	useEffect(() => {
 		peticion.get(urlApi(`statistics?verificado=0&id_partido=${idMatchCheck}`)).then((e) => {
 			if (e.status == 200) {
@@ -84,16 +89,34 @@ const MatchCheckes = () => {
 
 	useEffect(() => {
 		const data = {
-			body:new URLSearchParams({verificado_estadistica:1})
+			body: new URLSearchParams({ verificado_estadistica: 1 })
 		}
 		console.log(estadistica)
 		peticion.put(urlApi(`estadisticas?id=${estadistica.id_estadistica}}&nameID=id_estadistica`), data).then(result => {
 			if (result.status == 200) {
 				setEstadisticas(estadisticas.filter(el => el.id_estadistica !== estadistica.id_estadistica))
+				setTextNotification("Estadistica verificada correctamente")
+				setDone(true)
+				setTimeout(()=>setDone(false),5000)
 			}
 			
 		})
 	}, [estadistica]);
+
+
+	useEffect(() => {
+		peticion.del(urlApi(`estadisticas?id=${estadisticaAEliminar.id_estadistica}}&nameID=id_estadistica`)).then(result => {
+			console.log(result)
+			if (result.status == 200) {
+				setEstadisticas(estadisticas.filter(el => el.id_estadistica !== estadisticaAEliminar.id_estadistica))
+				setTextNotification("Estadistica eliminada correctamente")
+				setDone(true)
+				setTimeout(()=>setDone(false),5000)
+
+			}
+			
+		})
+	}, [estadisticaAEliminar]);
 
 	const handleSubmit = (e) => {
 		
@@ -101,6 +124,7 @@ const MatchCheckes = () => {
 
 	return (
 		<>
+			{done && <NotificationModal state={done} text={ textNotification} />}
 			{estadisticas.map((estadistica) => (
 				<Container>
 					<Card>
@@ -122,12 +146,12 @@ const MatchCheckes = () => {
 							</B>
 						</Div>
 						<Div>
-							<B>{estadistica.tipo_estadistica}</B>
-							<B>{estadistica.fecha_estadistica}</B>
+							<B>Tipo: {estadistica.tipo_estadistica}</B>
+							<B>Fecha y hora: {estadistica.fecha_estadistica}</B>
 						</Div>
 					</Card>
 					<ButtonClassic onClick={()=>setestadistica(estadistica)} sx={{ margin: "10px" }}>Confirmar estadistica</ButtonClassic>
-					<ButtonClassic sx={{ margin: "10px" }}>Eliminar estadistica</ButtonClassic>
+					<ButtonClassic onClick={()=>setEstadisticaAEliminar(estadistica)} sx={{ margin: "10px" }}>Eliminar estadistica</ButtonClassic>
 				</Container>
 			))}
 		</>
