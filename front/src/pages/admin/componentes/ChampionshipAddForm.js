@@ -14,6 +14,8 @@ import InputDate from "../../../componentes/InputDate";
 import InputTime from "../../../componentes/InputTime";
 import { useState, useEffect } from 'react';
 import { urlApi } from "../../../functions/globals";
+import { PSuccess } from "../../../componentes/styledComponents/PSuccess";
+import { PAlert } from "../../../componentes/PAlert";
 
 
 const formchampionshipInit = {
@@ -28,6 +30,7 @@ const ChampionshipAddForm = () => {
   const [errors, setErrors] = useState(null);
   const [ligas, setLigas] = useState([]);
   const [deportes, setDeportes] = useState([]);
+  const [done, setDone] = useState(false);
 
   const peticion = helpHttp();
 
@@ -53,13 +56,25 @@ const ChampionshipAddForm = () => {
     const confi = {
       body: new URLSearchParams(championshipForm),
     };
-    peticion.post(urlApi("campeonatos?"),confi).then(e=>console.log(e))
+    peticion.post(urlApi("campeonatos?"),confi).then(e=>{
+      if(e.status==200){
+        setErrors(false)
+        setDone(true)
+      }else {
+        setErrors(true)
+        setDone(false)
+      }
+    }
+      
+      )
 
   };
 
   return (
     <Form>
       <h3>Agregar un campeonato</h3>
+      {done && <PSuccess>Campeonato agregado correctamente</PSuccess>}
+      {errors && <PAlert>Ocurrió un error</PAlert>}
       <TextField
         onChange={handleChange}
         name="nombre_campeonato"

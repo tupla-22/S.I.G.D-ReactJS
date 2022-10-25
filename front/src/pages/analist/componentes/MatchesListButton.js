@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Form from "../../../componentes/Form";
 import { PAlert } from "../../../componentes/PAlert";
 import { GridContained } from "../../../componentes/styledComponents/GridContained";
+import { Seccion } from "../../../componentes/styledComponents/Seccion";
 import { Table } from "../../../componentes/styledComponents/Table";
 import { urlApi } from "../../../functions/globals";
 import { helpHttp } from "../../../helpers/helpHttp";
@@ -27,18 +28,15 @@ const MatchesListButtons = ({ sport }) => {
       .then((e) => {
         if (!e.status == 200) setErrors(true);
         setMatches(e.result);
-        console.log(e)
+        console.log(e);
       });
   }, [sport]);
 
-
-
-  const handleClick = (e) =>{
-  }
+  const handleClick = (e) => {};
 
   return (
-    <Form>
-        <h3>Indica el partido a supervisar</h3>
+    <Seccion>
+      <h3>Indica el partido a supervisar</h3>
       <Table>
         <thead></thead>
         <tbody>
@@ -46,12 +44,19 @@ const MatchesListButtons = ({ sport }) => {
             <PAlert>Ocurrió un error</PAlert>
           ) : (
             matches.map((e, i) => (
-              <Button  onClick={(event)=>{navigate(`../../lookMatch/${e.id_partido}`)}} key={e.id_partido}>{<MatchListRow data={e} />}</Button>
+              <Button
+                onClick={(event) => {
+                  navigate(`../lookMatch/${e.id_partido}`);
+                }}
+                key={e.id_partido}
+              >
+                {<MatchListRow data={e} />}
+              </Button>
             ))
           )}
         </tbody>
       </Table>
-    </Form>
+    </Seccion>
   );
 };
 

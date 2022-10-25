@@ -10,12 +10,14 @@ import { helpHttp } from '../helpers/helpHttp';
 import { PAlert } from './PAlert';
 import UserContext, { UserProvider } from '../contexts/UserContext';
 import Form from './Form';
+import LanguajeContext from '../contexts/LanguajeContext';
 
 const FormLogin = () => {
   const [errors, setErrors] = useState({errors:false,correct:false});
   const [usuario, setUsuario] = useState({password_usuario:null,ci_usuario:null});
   const navigate = useNavigate();
-
+ 
+  const {text} = useContext(LanguajeContext)
   const {user,setUser} = useContext(UserContext);
 
   const regexUsuario =/^([0-9]){1,12}$/;
@@ -92,7 +94,7 @@ const FormLogin = () => {
         <TextField
           name='ci_usuario'
           className="Form__input"
-          label="Cédula"
+          label={ text.cedula}
           variant='outlined'
           onChange={handleChange}
           onBlur={handleBlur}
@@ -103,12 +105,12 @@ const FormLogin = () => {
           onChange={handleChange}
           name='password_usuario'
           className="Form__input"
-          label="Contraseña"
+          label={text.contraseña}
           variant='outlined'
           type="password"
         />
-        <Box><RecoverPassword>¿Problemas para iniciar sesión?</RecoverPassword></Box>
-        <Button type='submit'  onClick={handleSubmit} className="Form__input" variant='contained'>Entrar</Button>
+        <Box><RecoverPassword>{ text.problemasParaIniciarSesion }</RecoverPassword></Box>
+        <Button type='submit' onClick={handleSubmit} className="Form__input" variant='contained'>{ text.entrar }</Button>
 
 
 

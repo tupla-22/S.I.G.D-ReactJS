@@ -7,6 +7,7 @@ import { helpHttp } from "../../../helpers/helpHttp";
 import { urlApi } from "../../../functions/globals";
 import ChampionshipList from "./ChampionshipList";
 import { PAlert } from "../../../componentes/PAlert";
+import { PSuccess } from "../../../componentes/styledComponents/PSuccess";
 
 
 const TeamDelForm = () => {
@@ -14,7 +15,7 @@ const TeamDelForm = () => {
     const [confirm, setConfirm] = useState(null);
     const [modalConfirm, setModalConfirm] = useState(null);
     const [done, setDone] = useState(false);
-    
+    const [errors, setErrors] = useState(false);
     const peticion = helpHttp();
 
     const handleChange = (e) => {
@@ -43,9 +44,10 @@ const TeamDelForm = () => {
     }, [confirm]);
     return ( 
         <Form>
+            {done && <PSuccess>Campeonato eliminado correctamente</PSuccess>}
+            {errors && <PAlert>Ocurrió un error</PAlert>}
             <h3>Eliminar equipo</h3>
             <TextField type="number" onChange={handleChange} label="ID" value={idChampionship} className="Form__input"></TextField>
-            {done && <PAlert>Campeonato eliminado</PAlert>}
             <ModalConfirm name="Eliminar" confirm={confirm} setConfirm={setConfirm}/>
             <ChampionshipList/>
         </Form>

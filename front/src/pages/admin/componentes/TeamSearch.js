@@ -20,6 +20,9 @@ const TeamSearch = () => {
   const solicitud = helpHttp();
   const [usuariosBuscados, setUsuariosBuscados] = useState([]);
   const [ok, setOk] = useState();
+  const [errors, setErrors] = useState(false);
+
+
   const handleChange = (e) => {
     setnombre(e.target.value);
   };
@@ -35,9 +38,13 @@ const TeamSearch = () => {
       )
       .then((e) => {
         if (e.status === 200) {
+          setErrors(false)
           setOk(true);
           setUsuariosBuscados(e.result);
-        } else setOk(false);
+        } else {
+          setErrors(true)
+          setOk(false)
+        };
       })
       .catch((e) => setOk(false));
     setLoading(false);
@@ -56,7 +63,7 @@ const TeamSearch = () => {
         Buscar
       </ButtonClassic>
       {loading && <Loader />}
-      {ok ? (
+      {ok &&
         <DivOver>
           <Table>
             <thead>
@@ -70,10 +77,10 @@ const TeamSearch = () => {
               ))}
             </tbody>
           </Table>
-        </DivOver>
-      ) : (
-        <PAlert>No se encontro ningun equipo</PAlert>
-      )}
+        </DivOver>}
+      
+       {errors && <PAlert>No se encontro ningun equipo</PAlert>} 
+      
       <TeamsList />
     </Form>
   );

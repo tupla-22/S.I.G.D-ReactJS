@@ -18,14 +18,21 @@ import UsersModal from "./UsersModal";
 import React, { useState, useEffect } from "react";
 import { getDateTime, urlApi } from "../../../functions/globals";
 import { helpHttp } from "../../../helpers/helpHttp";
+import SportsVolleyballIcon from '@mui/icons-material/SportsVolleyball';
+import SportsVolleyball from "@mui/icons-material/SportsVolleyball";
+import StraightenIcon from '@mui/icons-material/Straighten';
+
 
 const peticion =helpHttp();
 
 const ManagmentHandballControler = ({ locales, visitantes }) => {
   const [form, setForm] = useState({});
   const [tipo, setTipo] = useState("");
+  const [name, setName] = useState("");
 
   const handleChange = (e) => {
+    setName(`${e.value.nombre} ${e.value.apellido}`)
+    console.log(name)
     setForm({
       ...form,
       id_fichaJugador_estadistica: e.target.value.id_fichaJugador_estadistica,
@@ -34,6 +41,7 @@ const ManagmentHandballControler = ({ locales, visitantes }) => {
       id_equipo_estadistica: e.target.value.id_equipo_estadistica,
       fecha_estadistica: getDateTime(),
       valor_estadistica: 1,
+      verificado_estadistica:0
     });
     console.log(form);
   };
@@ -57,7 +65,7 @@ const ManagmentHandballControler = ({ locales, visitantes }) => {
   return (
     <>
       <Form>
-        <h3>Control football</h3>
+        <h3>Control handball</h3>
 
         <FormControl fullWidth>
           <InputLabel id="demo-simple-select-label">Seleccionar</InputLabel>
@@ -70,15 +78,11 @@ const ManagmentHandballControler = ({ locales, visitantes }) => {
           >
             <MenuItem value={"gol"}>
               Gol
-              <SportsSoccerTwoToneIcon />
+              <SportsVolleyball />
             </MenuItem>
             <MenuItem value={"falta"}>
               Falta
               <HealingTwoToneIcon />
-            </MenuItem>
-            <MenuItem value="corner">
-              Corner
-              <RoundedCornerTwoToneIcon />
             </MenuItem>
             <MenuItem value="lateral">
               Lateral
@@ -93,8 +97,12 @@ const ManagmentHandballControler = ({ locales, visitantes }) => {
               <MoveUpTwoToneIcon />
             </MenuItem>
             <MenuItem value="penal">
-              Penal
+               Golpe franco
               <SettingsOverscanTwoToneIcon />
+            </MenuItem>
+            <MenuItem value="sieteMetros">
+               Siete metros
+              <StraightenIcon />
             </MenuItem>
           </Select>
         </FormControl>
@@ -107,6 +115,7 @@ const ManagmentHandballControler = ({ locales, visitantes }) => {
                 Jugador al que se le asigna
               </InputLabel>
               <Select
+                value={name}
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
                 label="Jugador al que se le asigna"
@@ -118,6 +127,8 @@ const ManagmentHandballControler = ({ locales, visitantes }) => {
                     value={{
                       id_fichaJugador_estadistica: e.id_fichaJugador,
                       id_equipo_estadistica: e.id_equipo,
+                      nombre:e.primerNombre_usuario,
+                      apellido:e.primerApellido_usuario,
                     }}
                   >
                     {e.primerNombre_usuario} {e.primerApellido_usuario}
@@ -129,6 +140,8 @@ const ManagmentHandballControler = ({ locales, visitantes }) => {
                     value={{
                       id_fichaJugador_estadistica: e.id_fichaJugador,
                       id_equipo_estadistica: e.id_equipo,
+                      nombre:e.primerNombre_usuario,
+                      apellido:e.primerApellido_usuario,
                     }}
                   >
                     {e.primerNombre_usuario} {e.primerApellido_usuario}
@@ -158,6 +171,8 @@ const ManagmentHandballControler = ({ locales, visitantes }) => {
                     value={{
                       id_fichaJugador_estadistica: e.id_fichaJugador,
                       id_equipo_estadistica: e.id_equipo,
+                      nombre:e.primerNombre_usuario,
+                      apellido:e.primerApellido_usuario,
                     }}
                   >
                     {e.primerNombre_usuario} {e.primerApellido_usuario}
@@ -169,6 +184,8 @@ const ManagmentHandballControler = ({ locales, visitantes }) => {
                     value={{
                       id_fichaJugador_estadistica: e.id_fichaJugador,
                       id_equipo_estadistica: e.id_equipo,
+                      nombre:e.primerNombre_usuario,
+                      apellido:e.primerApellido_usuario,
                     }}
                   >
                     {e.primerNombre_usuario} {e.primerApellido_usuario}

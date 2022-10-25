@@ -18,13 +18,15 @@ import UsersModal from "./UsersModal";
 import React, { useState, useEffect } from "react";
 import { getDateTime, urlApi } from "../../../functions/globals";
 import { helpHttp } from "../../../helpers/helpHttp";
+import SportsBasketballIcon from '@mui/icons-material/SportsBasketball';
+import DirectionsWalkIcon from '@mui/icons-material/DirectionsWalk';
 
 const peticion =helpHttp();
 
-const ManagmentBasketballControler = ({ locales, visitantes }) => {
+const ManagmentBasketballControler = ({matchId , locales, visitantes }) => {
   const [form, setForm] = useState({});
   const [tipo, setTipo] = useState("");
-
+  const [nombre, setNombre] = useState("");
   const handleChange = (e) => {
     setForm({
       ...form,
@@ -34,8 +36,11 @@ const ManagmentBasketballControler = ({ locales, visitantes }) => {
       id_equipo_estadistica: e.target.value.id_equipo_estadistica,
       fecha_estadistica: getDateTime(),
       valor_estadistica: 1,
+      verificado_estadistica:0,
+      id_partido_estadistica:matchId
     });
-    console.log(form);
+    setNombre(`${e.target.value.nombre} ${e.target.value.apellido}`)
+    console.log(nombre)
   };
 
   const handleType = (e) => {
@@ -57,8 +62,7 @@ const ManagmentBasketballControler = ({ locales, visitantes }) => {
   return (
     <>
       <Form>
-        <h3>Control football</h3>
-
+        <h3>Control Basketball</h3>
         <FormControl fullWidth>
           <InputLabel id="demo-simple-select-label">Seleccionar</InputLabel>
           <Select
@@ -68,20 +72,20 @@ const ManagmentBasketballControler = ({ locales, visitantes }) => {
             label="Seleccionar"
             onChange={handleType}
           >
-            <MenuItem value={"gol"}>
-              Gol
-              <SportsSoccerTwoToneIcon />
+          <MenuItem value={"doble"}>
+            Doble
+            <SportsBasketballIcon/>
+          </MenuItem>
+            <MenuItem value={"triple"}>
+              Triple
+              <SportsBasketballIcon/>
             </MenuItem>
             <MenuItem value={"falta"}>
               Falta
               <HealingTwoToneIcon />
             </MenuItem>
-            <MenuItem value="corner">
-              Corner
-              <RoundedCornerTwoToneIcon />
-            </MenuItem>
             <MenuItem value="lateral">
-              Lateral
+              Saque
               <RectangleTwoToneIcon />
             </MenuItem>
             <MenuItem value="cambio">
@@ -92,9 +96,9 @@ const ManagmentBasketballControler = ({ locales, visitantes }) => {
               Tiro libre
               <MoveUpTwoToneIcon />
             </MenuItem>
-            <MenuItem value="penal">
-              Penal
-              <SettingsOverscanTwoToneIcon />
+            <MenuItem value="pasos">
+              Pasos
+              <DirectionsWalkIcon />
             </MenuItem>
           </Select>
         </FormControl>
@@ -118,6 +122,8 @@ const ManagmentBasketballControler = ({ locales, visitantes }) => {
                     value={{
                       id_fichaJugador_estadistica: e.id_fichaJugador,
                       id_equipo_estadistica: e.id_equipo,
+                      nombre: e.primerNombre_usuario,
+                      apellido: e.primerApellido_usuario
                     }}
                   >
                     {e.primerNombre_usuario} {e.primerApellido_usuario}

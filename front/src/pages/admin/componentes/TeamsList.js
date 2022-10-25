@@ -34,7 +34,7 @@ const TeamsList = () => {
             <TH>ID</TH>
           </thead>
 
-          <tbody>{status && data.map((e) => <TeamsListRow data={e} />)}</tbody>
+          <tbody>{status && data.map((e) => <TeamsListRow key={e.id_equipo+"equipo"} data={e} />)}</tbody>
         </Table>
       </DivOver>
     </>

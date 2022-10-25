@@ -15,10 +15,15 @@ const UserUpdateForm = ({user,setUser}) => {
 
     const handleChange = (e) => {
         setCiUser(e.target.value)
+        console.log()
     }
 
     const handleClick = (e)=>{
-        peticion.get(`http://apirest.com/usuarios?select=*&linkTo=ci_usuario&search=${ciUser}¨¨`).then(e=>setUser(e.result[0]));
+        peticion.get(`http://apirest.com/usuarios?select=*&linkTo=ci_usuario&equalTo=${ciUser}¨¨`).then(e=>{
+            if(e.status==200){
+                setUser(e.result[0])
+            }
+        });
     }
     return ( 
         <Form>

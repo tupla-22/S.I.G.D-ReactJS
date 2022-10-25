@@ -38,7 +38,7 @@ const UserList = () => {
             <TH>Rol</TH>
           </thead>
 
-          <tbody>{status && data.map((e) => <UserListRow data={e} />)}</tbody>
+          <tbody>{status && data.map((e) => <UserListRow key={e.ci_usuario} data={e} />)}</tbody>
         </Table>
       </DivOver>
     </>

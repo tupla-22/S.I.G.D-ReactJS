@@ -24,9 +24,15 @@ const UserDelForm = () => {
     }
 
     useEffect(() => {
-        console.log(ciUser)
         if(confirm == "1"){
-            peticion.del(urlApi(`usuarios?id=${ciUser}&nameID=ci_usuario`)).then(e=>console.log(e));
+            peticion.del(urlApi(`usuarios?id=${ciUser}&nameID=ci_usuario`)).then(e=>{
+                console.log(e)
+                if(e.status==200){
+                    setConfirm(0)
+                }else setConfirm(0)
+                
+            }
+            )
         }
     }, [confirm]);
     return ( 

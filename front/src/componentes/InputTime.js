@@ -6,13 +6,13 @@ import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { useState, useEffect } from 'react';
 
 
-export default function InputTime({name,form,setForm}) {
+export default function InputTime({label,name,form,setForm}) {
   const [value, setValue] = React.useState(null);
   return (
     <div style={{ margin: "20px 0", width: "100%" }}>
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <TimePicker
-          label={name}
+          label={label}
           value={value}
           onChange={(date) => {
             setValue(date);

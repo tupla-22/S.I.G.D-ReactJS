@@ -17,6 +17,7 @@ const UserSearch = () => {
   const solicitud = helpHttp();
   const [usuariosBuscados, setUsuariosBuscados] = useState([]);
   const [ok, setOk] = useState();
+  const [errors, setErrors] = useState(false);
   const handleChange = (e) => {
     setApellido(e.target.value);
   };
@@ -29,10 +30,15 @@ const UserSearch = () => {
         `http://apirest.com/usuarios?select=*&linkTo=primerApellido_usuario&search=${apellido}¨¨`
       )
       .then((e) => {
-        console.log(e)
         setUsuariosBuscados(e.result);
-        if (e.status == 200) setOk(true);
-        else setOk(false);
+        if (e.status == 200) {
+          setErrors(false)
+          setOk(true)
+        }
+        else {
+          setErrors(true)
+          setOk(false)
+        };
       })
     setLoading(false);
   };
@@ -50,7 +56,7 @@ const UserSearch = () => {
         Buscar
       </ButtonClassic>
       {loading && <Loader />}
-      {ok ? (
+      {ok &&
         <DivOver>
           <Table>
             <thead>
@@ -67,9 +73,9 @@ const UserSearch = () => {
             </tbody>
           </Table>
         </DivOver>
-      ) : (
-        <PAlert>No se encontro ningun usuario</PAlert>
-      )}
+        }
+        {errors && <PAlert>No se encontro ningun usuario</PAlert>}
+      
       <UserList />
     </Form>
   );

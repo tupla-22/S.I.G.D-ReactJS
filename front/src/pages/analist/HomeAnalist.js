@@ -1,6 +1,8 @@
 import { Outlet } from "react-router-dom";
 import NavAfterLogin from "../../componentes/NavAfterLogin";
 import NavLink from "../../componentes/NavLink";
+import { DivFondo } from "../../componentes/styledComponents/DivFondo";
+import Main from "../../componentes/styledComponents/Main";
 
 const HomeAnalist = () => {
   const pages = [
@@ -15,7 +17,9 @@ const HomeAnalist = () => {
   return (
     <>
       <NavAfterLogin pages={pages} />
-      <Outlet />
+      <Main>
+          <Outlet/>
+      </Main>
     </>
   );
 };

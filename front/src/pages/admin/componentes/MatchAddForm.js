@@ -13,6 +13,9 @@ import React, { useState, useEffect } from "react";
 import InputDate from "../../../componentes/InputDate";
 import InputTime from "../../../componentes/InputTime";
 import { urlApi } from "../../../functions/globals";
+import { PSuccess } from "../../../componentes/styledComponents/PSuccess";
+import { PAlert } from "../../../componentes/PAlert";
+
 
 const formmatchInit = {
   id_equipoLocal_partido: "",
@@ -28,6 +31,7 @@ const MatchAddForm = () => {
   const [championships, setChampionships] = useState([]);
   const [deportes, setDeportes] = useState([]);
   const [deporteElegido, setDeporteElegido] = useState("");
+  const [done, setDone] = useState(false);
   const peticion = helpHttp();
 
   useEffect(() => {
@@ -39,17 +43,23 @@ const MatchAddForm = () => {
   }, []);
 
   useEffect(() => {
-    peticion.get(urlApi(`equipos?select=*&linkTo=id_deporte_equipo&equalTo=${deporteElegido}`)).then((e) =>{
-      console.log(e)
-     if(e.status==200){setEquipos(e.result)}}
-     );
     peticion
-      .get(urlApi("campeonatos?select=*"))
-      .then((e) =>{if(e.status==200) {
-      console.log(e)
-
-        setChampionships(e.result)}});
-    
+      .get(
+        urlApi(
+          `equipos?select=*&linkTo=id_deporte_equipo&equalTo=${deporteElegido}`
+        )
+      )
+      .then((e) => {
+        if (e.status == 200) {
+          setEquipos(e.result);
+        }
+      });
+    peticion.get(urlApi("campeonatos?select=*")).then((e) => {
+      if (e.status == 200) {
+        console.log(e)
+        setChampionships(e.result);
+      }
+    });
   }, [deporteElegido]);
 
   const handleChange = (event) => {
@@ -60,19 +70,32 @@ const MatchAddForm = () => {
     console.log(matchForm);
   };
 
-  const handleDeporteElegido=(e)=>{
-    setDeporteElegido(e.target.value)
-  }
+  const handleDeporteElegido = (e) => {
+    setDeporteElegido(e.target.value);
+  };
 
   const handleClick = () => {
     const confi = {
       body: new URLSearchParams(matchForm),
     };
-    peticion.post(urlApi("partidos?"), confi).then((e) => console.log(e));
+    peticion.post(urlApi("partidos?"), confi).then((e) => {
+    if(e.status==200){
+      setDone(true)
+      setErrors(false)
+    }else{
+      setErrors(true)
+      setDone(false)
+    }
+  }
+    
+    );
   };
 
   return (
     <Form>
+
+      {done && <PSuccess>Partido agregado correctamente</PSuccess>}
+      {errors && <PAlert>Ocurrió un error</PAlert>}
       <h3>Agregar un partido</h3>
 
       <FormControl className="Form__input" fullWidth>
@@ -131,8 +154,7 @@ const MatchAddForm = () => {
           <MenuItem value={"amistoso"}>Amistoso</MenuItem>
           <MenuItem value={"campeonato"}>Campeonato</MenuItem>
         </Select>
-
-        {champ && (
+        {matchForm.tipo_partido == "campeonato" && (
           <FormControl className="Form__input" fullWidth>
             <InputLabel id="demo-simple-select-label">
               Campeonato al que pertenece
@@ -140,7 +162,6 @@ const MatchAddForm = () => {
             <Select
               label="Campeonato al que pertenece"
               name="id_equipoVisitante_partido"
-              value={matchForm.id_equipoLocal_partido}
               labelId="demo-simple-select-label"
               id="demo-simple-select"
               onChange={handleChange}
@@ -154,6 +175,9 @@ const MatchAddForm = () => {
           </FormControl>
         )}
 
+       
+        
+
         <InputDate
           label={"Fecha"}
           form={matchForm}
@@ -161,6 +185,7 @@ const MatchAddForm = () => {
           name="dia_partido"
         />
         <InputTime
+          label={"Hora"}
           form={matchForm}
           setForm={setMatchForm}
           name={"hora_partido"}
