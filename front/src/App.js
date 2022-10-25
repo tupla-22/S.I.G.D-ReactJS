@@ -63,7 +63,7 @@ import CheckStats from "./pages/judge/CheckStats"
 import ChampionshipDel from "./pages/admin/componentes/ChampionshipDelete"
 import MatchCheckes from "./pages/judge/componentes/MatchCheckes"
 import Footer from "./Footer"
-import {LanguajeProvider} from "./contexts/LanguajeContext"
+import { LanguajeProvider } from "./contexts/LanguajeContext"
 
 function App() {
 	return (
@@ -207,7 +207,9 @@ function App() {
 						<Route path="/*" element={<Error404 />}></Route>
 					</Routes>
 				</UserProvider>
-				<Footer></Footer>
+        <div style={{ width: "100%", display: "flex", justifyContent:"center"}}>
+					<Footer></Footer>
+				</div>
 			</div>
 		</LanguajeProvider>
 	)

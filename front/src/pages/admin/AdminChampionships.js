@@ -13,11 +13,9 @@ const AdminChampionships = () => {
   return (
     <>
       <AdminNav pages={pages}></AdminNav>
-      <DivFondo>
         <Main>
           <Outlet></Outlet>
         </Main>
-      </DivFondo>
     </>
   );
 };

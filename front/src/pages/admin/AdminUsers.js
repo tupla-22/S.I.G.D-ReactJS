@@ -12,10 +12,12 @@ const AdminUsers = () => {
     <NavLink to="update">Actualizar</NavLink>,
     ]
   return (
-    <DivFondo>
-        <AdminNav pages={pages}/>
+    <>
+    
+    <AdminNav pages={pages}/>
       <Outlet />
-    </DivFondo>
+    
+    </>
   );
 };
 

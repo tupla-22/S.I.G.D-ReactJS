@@ -7,6 +7,7 @@ import NavAfterLogin from "../componentes/NavAfterLogin"
 import NavLink from "../componentes/NavLink"
 import LanguajeContext from "../contexts/LanguajeContext"
 import Bar from "./componentes/Bar"
+import BarHome from "./componentes/BarHome"
 import "./Home.css"
 const Home = () => {
 	const pages = [
@@ -26,7 +27,7 @@ const Home = () => {
 
 	return (
 		<div className="home">
-			<Bar />
+			<BarHome/>
 			<Outlet />
 		</div>
 	)

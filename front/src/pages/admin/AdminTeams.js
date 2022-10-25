@@ -17,10 +17,8 @@ const AdminTeams = () => {
   return (
     <>
     
-    <DivFondo>
         <AdminNav pages={pages}/>
         <Outlet />
-      </DivFondo>
     
     
     

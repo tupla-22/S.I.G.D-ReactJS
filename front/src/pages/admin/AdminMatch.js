@@ -16,11 +16,9 @@ const AdminMatch = () => {
     <>
       <AdminNav pages={pages}></AdminNav>
 
-      <DivFondo>
         <Main>
           <Outlet />
         </Main>
-      </DivFondo>
     </>
   );
 };

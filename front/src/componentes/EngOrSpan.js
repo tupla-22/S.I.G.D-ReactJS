@@ -4,6 +4,9 @@ import iconSpanish from "../media/espana.png"
 import LanguajeContext from "../contexts/LanguajeContext"
 import { Button } from "@mui/material"
 import styled from "styled-components"
+import { useState, useEffect } from 'react';
+
+
 
 const Img = styled.img`
 	border-radius: 100%;
@@ -26,28 +29,38 @@ const Div = styled.div`
 display:flex;
 align-items:center;
 justify-content:center;
+opacity:50%;
 &:hover{
+  
+opacity:100%;
   cursor:pointer;
 }
 
 `
 export default function EngOrSpan() {
-
+  const [selectEs, setSelectEs] = useState({ opacity: "100%" });
+  const [selectEn, setSelectEn] = useState({});
 	const { handleLanguaje, text } = React.useContext(LanguajeContext)
 
   const handleEs = (e) => {
     handleLanguaje("es")
+    setSelectEs({ opacity: "100%" })
+    setSelectEn({ opacity: "50%" })
     
   }
 
   const handleEn = () => {
     handleLanguaje("en")
+    
+    setSelectEn({ opacity: "100%" })
+    setSelectEs({ opacity: "50%" })
+
   }
 	return (
 		<>
 			<Container>
-					<Div value={"asdf"} onClick={handleEs}><Img src={iconSpanish} /><B>ES</B></Div> 
-					<Div onClick={handleEn}><Img src={iconEngland} /><B>EN</B></Div>
+        <Div style={selectEs} onClick={handleEs}><Img src={iconSpanish} /><B>ES</B></Div> 
+					<Div style={selectEn} onClick={handleEn}><Img src={iconEngland} /><B>EN</B></Div>
 			</Container>
 		</>
 	)
