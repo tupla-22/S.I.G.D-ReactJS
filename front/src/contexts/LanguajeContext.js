@@ -14,7 +14,8 @@ const translation = {
         cedula: "Cédula",
         contraseña: "Contraseña",
         problemasParaIniciarSesion: "¿Problemas para iniciar sesión?",
-        entrar:"Entrar"
+        entrar: "Entrar",
+        elCampoCedulaSoloAceptaNumerosYHasta8Caracteres:"El campo cédula solo acepta números y hasta 8 caracteres"
         
     },
     en: {
@@ -26,7 +27,8 @@ const translation = {
         cedula: "Identity card",
         contraseña: "Password",
         problemasParaIniciarSesion: "problems logging in?",
-        entrar:"Enter"
+        entrar: "Enter",
+        elCampoCedulaSoloAceptaNumerosYHasta8Caracteres:"The ID field only accepts numbers and up to 8 characters"
     },
 }
 

@@ -73,7 +73,7 @@ const MatchCheckes = () => {
 	const [partidos, setPartidos] = useState()
 	const [estadisticas, setEstadisticas] = useState([])
 	const { idMatchCheck } = useParams()
-	const [usuario, setUsuario] = useState({});
+	const [estadistica, setestadistica] = useState({});
 	useEffect(() => {
 		peticion.get(urlApi(`statistics?verificado=0&id_partido=${idMatchCheck}`)).then((e) => {
 			if (e.status == 200) {
@@ -86,9 +86,14 @@ const MatchCheckes = () => {
 		const data = {
 			body:new URLSearchParams({verificado_estadistica:1})
 		}
-		console.log(usuario)
-		peticion.put(urlApi(`estadisticas?id=${usuario.id_estadistica}}&nameID=id_estadistica`),data).then(e=>console.log(e))
-	}, [usuario]);
+		console.log(estadistica)
+		peticion.put(urlApi(`estadisticas?id=${estadistica.id_estadistica}}&nameID=id_estadistica`), data).then(result => {
+			if (result.status == 200) {
+				setEstadisticas(estadisticas.filter(el => el.id_estadistica !== estadistica.id_estadistica))
+			}
+			
+		})
+	}, [estadistica]);
 
 	const handleSubmit = (e) => {
 		
@@ -96,14 +101,14 @@ const MatchCheckes = () => {
 
 	return (
 		<>
-			{estadisticas.map((usuario) => (
+			{estadisticas.map((estadistica) => (
 				<Container>
 					<Card>
 						<Div>
 							<B>Analista</B>
-							<IconFoto src={usuario.fotoPerfil_analista} />
+							<IconFoto src={estadistica.fotoPerfil_analista} />
 							<B>
-								{usuario.primerApellido_usuario_analista} {usuario.primerNombre_usuario_analista}
+								{estadistica.primerApellido_usuario_analista} {estadistica.primerNombre_usuario_analista}
 							</B>
 						</Div>
 						<Div></Div>
@@ -111,17 +116,17 @@ const MatchCheckes = () => {
 					<Card>
 						<Div>
 							<h4>Jugador</h4>
-							<IconFoto src={usuario.fotoPerfil_jugador} />
+							<IconFoto src={estadistica.fotoPerfil_jugador} />
 							<B>
-								{usuario.primerNombre_usuario_fichaJugador} {usuario.primerApellido_usuario_fichaJugador}
+								{estadistica.primerNombre_usuario_fichaJugador} {estadistica.primerApellido_usuario_fichaJugador}
 							</B>
 						</Div>
 						<Div>
-							<B>{usuario.tipo_estadistica}</B>
-							<B>{usuario.fecha_estadistica}</B>
+							<B>{estadistica.tipo_estadistica}</B>
+							<B>{estadistica.fecha_estadistica}</B>
 						</Div>
 					</Card>
-					<ButtonClassic onClick={()=>setUsuario(usuario)} sx={{ margin: "10px" }}>Enviar estadistica</ButtonClassic>
+					<ButtonClassic onClick={()=>setestadistica(estadistica)} sx={{ margin: "10px" }}>Confirmar estadistica</ButtonClassic>
 					<ButtonClassic sx={{ margin: "10px" }}>Eliminar estadistica</ButtonClassic>
 				</Container>
 			))}

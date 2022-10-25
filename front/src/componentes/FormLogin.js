@@ -76,7 +76,7 @@ const FormLogin = () => {
   const handleBlur = (e) =>{
     if(!regexUsuario.test(usuario.ci_usuario.trim())){
       setErrors({...errors,
-        usuario:"El campo cédula solo acepta números y hasta 8 caracteres",
+        usuario:text.elCampoCedulaSoloAceptaNumerosYHasta8Caracteres,
         vacio:true
       });
     }else{setErrors({...errors,
