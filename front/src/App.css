@@ -16,3 +16,9 @@ body{
 .home{
   width: 100%;
 }
+
+.NavLink{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

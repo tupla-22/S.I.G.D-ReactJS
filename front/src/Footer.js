@@ -5,7 +5,7 @@ import EmailIcon from "@mui/icons-material/Email"
 import FacebookIcon from "@mui/icons-material/Facebook"
 
 const Container = styled.footer`
-    margin-top:50px;
+    margin-top:10px;
     width:90%;
 	height: 150px;
 	border-top: 1px solid #aaa;

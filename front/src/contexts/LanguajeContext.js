@@ -34,14 +34,14 @@ const translation = {
 
 const LanguajeProvider = ({ children }) => {
     const [languaje, setLanguaje] = useState(initialLanguaje)
-    const [text, setText] = useState(translation.en)
+    const [text, setText] = useState(translation.es)
 	
 
     const handleLanguaje = (e) => {
         if (e==="es") {
             setLanguaje("es")
             setText(translation.es)
-        } else {
+        }else if (e==="en"){
             setLanguaje("en")
             setText(translation.en)
         }
