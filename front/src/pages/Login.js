@@ -36,6 +36,7 @@ const SubSectionsDos = styled.div`
 	justify-content: center;
 	height: 100%;
     overflow:scroll;
+    background-image:radial-gradient(#eee,#fff);
 
 	@media (max-width: 1000px) {
 		& {

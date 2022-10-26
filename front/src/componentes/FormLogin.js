@@ -10,15 +10,16 @@ import { helpHttp } from '../helpers/helpHttp';
 import { PAlert } from './PAlert';
 import UserContext, { UserProvider } from '../contexts/UserContext';
 import Form from './Form';
+import PasswordInput from './PasswordInput';
 import LanguajeContext from '../contexts/LanguajeContext';
 
 const FormLogin = () => {
   const [errors, setErrors] = useState({errors:false,correct:false});
-  const [usuario, setUsuario] = useState({password_usuario:null,ci_usuario:null});
+  const [usuario, setUsuario] = useState({password_usuario:"",ci_usuario:""});
   const navigate = useNavigate();
- 
+
+  const { user, setUser } = useContext(UserContext);
   const {text} = useContext(LanguajeContext)
-  const {user,setUser} = useContext(UserContext);
 
   const regexUsuario =/^([0-9]){1,12}$/;
 
@@ -74,9 +75,9 @@ const FormLogin = () => {
 
 
   const handleBlur = (e) =>{
-    if(!regexUsuario.test(usuario.ci_usuario.trim())){
+    if(!regexUsuario.test((usuario.ci_usuario.trim()))){
       setErrors({...errors,
-        usuario:text.elCampoCedulaSoloAceptaNumerosYHasta8Caracteres,
+        usuario:"El campo cédula solo acepta números y hasta 8 caracteres",
         vacio:true
       });
     }else{setErrors({...errors,
@@ -94,23 +95,15 @@ const FormLogin = () => {
         <TextField
           name='ci_usuario'
           className="Form__input"
-          label={ text.cedula}
+          label="Cédula"
           variant='outlined'
           onChange={handleChange}
           onBlur={handleBlur}
         />
         {errors.usuario &&  <PAlert>{errors.usuario}</PAlert>}
-        <TextField
-        
-          onChange={handleChange}
-          name='password_usuario'
-          className="Form__input"
-          label={text.contraseña}
-          variant='outlined'
-          type="password"
-        />
-        <Box><RecoverPassword>{ text.problemasParaIniciarSesion }</RecoverPassword></Box>
-        <Button type='submit' onClick={handleSubmit} className="Form__input" variant='contained'>{ text.entrar }</Button>
+        <PasswordInput text={text} setErrors={ setErrors } errors={errors} setUsuario={setUsuario} usuario={usuario} />
+        <Box><RecoverPassword>¿Problemas para iniciar sesión?</RecoverPassword></Box>
+        <Button type='submit'  onClick={handleSubmit} className="Form__input" variant='contained'>Entrar</Button>
 
 
 

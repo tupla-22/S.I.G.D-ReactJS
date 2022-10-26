@@ -34,6 +34,7 @@ const GaleriLogin = styled.img`
 const Div = styled.div`
 	overflow: hidden;
   transition: transform 0.1s;
+  border-radius: 15px;
 	&:hover {
     cursor: pointer;
     transform: rotate(10deg) scale(1.2, 1.2);
@@ -62,8 +63,8 @@ export default function StatsShower() {
 			<Grow in={true} style={{ transformOrigin: "0 0 0" }} {...(checked ? { timeout: 1000 } : {})}>
 				{
 					<Icon>
-						{fotos.map((e) => (
-							<Div>
+						{fotos.map((e,i) => (
+							<Div key={i}>
 								<GaleriLogin src={e.fotoPerfil_usuario} />
 							</Div>
 						))}
