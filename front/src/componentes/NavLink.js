@@ -5,7 +5,7 @@ const NavLink = ({to,classAdd,children}) => {
 
 
     return ( 
-        <NavLinkRR to={to} className={({isActive}) => isActive ? `isActive ${classAdd}` : `noActive ${classAdd}`}>{children}</NavLinkRR>
+        <NavLinkRR to={to} className={({isActive}) => isActive ? `isActive NavLink ${classAdd}` : `noActive NavLink ${classAdd}`}>{children}</NavLinkRR>
      );
 }
  

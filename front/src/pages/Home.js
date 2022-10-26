@@ -10,18 +10,7 @@ import Bar from "./componentes/Bar"
 import BarHome from "./componentes/BarHome"
 import "./Home.css"
 const Home = () => {
-	const pages = [
-		<NavLink classAdd="responsive" to="/">
-			Luasdf
-		</NavLink>,
-		"asdfasdf",
-	]
-	const settings = [
-		<NavLink classAdd="responsive" to="/">
-			Luasdf
-		</NavLink>,
-		"asdfasdf",
-	]
+    
 
     
 

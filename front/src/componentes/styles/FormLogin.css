@@ -2,7 +2,6 @@
     display: flex;
     flex-direction: column;
     height: 250px;
-    width: 400px;
     padding: 70px 50px;
     justify-content: space-between;
     border: 1px solid #0005;
@@ -14,6 +13,7 @@
 @media screen and (max-width:900px){
     .formLogin{
         width: 250px;
+        
     }
 }
 

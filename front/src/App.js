@@ -95,7 +95,40 @@ function App() {
 						</Route>
 
 						<Route path="/admin/:userId" element={<HomeAdmin />}>
-							<Route element={<AdminMatch />} path="match">
+            <Route element={<AdminMatch />} path="match">
+								<Route path="add" element={<MatchAdd />}></Route>
+								<Route path="delete" element={<MatchDel />}></Route>
+								<Route path="update" element={<MatchUpdate />}></Route>
+							</Route>
+							<Route path="championship" element={<AdminChampionships />}>
+								<Route path="add" element={<ChampionshipAdd />}></Route>
+								<Route path="delete" element={<ChampionshipDeleteForm />}></Route>
+								<Route path="update" element={<ChampionshipUpdate />}></Route>
+							</Route>
+							<Route path="userAdd" element={<UserAdd />} />
+							<Route path="adminUsers" element={<AdminUsers />}>
+								<Route path="add" element={<UserAdd />}>
+									{" "}
+								</Route>
+								<Route path="update" element={<UserUpdate />}>
+									{" "}
+								</Route>
+								<Route path="delete" element={<UserDelete />}>
+									{" "}
+								</Route>
+							</Route>
+							<Route path="adminTeams" element={<AdminTeams />}>
+								<Route path="add" element={<TeamAdd />}></Route>
+								<Route path="delete" element={<TeamDelete />}></Route>
+								<Route path="update" element={<TeamUpdate />}></Route>
+							</Route>
+							<Route path="profile" element={<Profile />}>
+								<Route path="changePassword" element={<ChangePassword />}></Route>
+							</Route>
+							<Route path="home" element={<HomeAdm></HomeAdm>}></Route>
+						</Route>
+						<Route path="/administrative/:userId" element={<HomeAdmin />}>
+            <Route element={<AdminMatch />} path="match">
 								<Route path="add" element={<MatchAdd />}></Route>
 								<Route path="delete" element={<MatchDel />}></Route>
 								<Route path="update" element={<MatchUpdate />}></Route>

@@ -1,14 +1,16 @@
 import { Outlet } from "react-router-dom"
 import NavAfterLogin from "../../componentes/NavAfterLogin"
 import NavLink from "../../componentes/NavLink"
+import HomeTwoToneIcon from '@mui/icons-material/HomeTwoTone';
+import CheckBoxTwoToneIcon from '@mui/icons-material/CheckBoxTwoTone';
 
 const HomeJudge = () => {
 	const pages = [
 		<NavLink to={"home"} classAdd={"responsive"}>
-			Home
+			<HomeTwoToneIcon/> Home
 		</NavLink>,
 		<NavLink to={"checkStats"} classAdd={"responsive"}>
-			Comprobar estadísticas
+			<CheckBoxTwoToneIcon/> Comprobar estadísticas
 		</NavLink>,
 	]
 

@@ -1,3 +1,7 @@
 export const getToken = () => {
-  return JSON.parse(localStorage.getItem("user")).token_usuario;
-};
+	try {
+		return JSON.parse(localStorage.getItem("user")).token_usuario
+	} catch (e) {
+		console.log(e)
+	}
+}

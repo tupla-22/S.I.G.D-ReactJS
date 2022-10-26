@@ -18,9 +18,11 @@ import Link from "./Link";
 import DropButton from "./DropButton";
 import BtnLogOut from "./BtnLogOut";
 import { ImgProfil } from "./ImgProfil";
+import AccountBoxTwoToneIcon from '@mui/icons-material/AccountBoxTwoTone';
+import LogoutTwoToneIcon from '@mui/icons-material/LogoutTwoTone';
 
 const settings = [
-  <Link to="profile">Tu perfil</Link>,
+  <Link to="profile" className={"NavLink"}><AccountBoxTwoToneIcon/> Tu perfil</Link>,
   <BtnLogOut/>
   
 ];

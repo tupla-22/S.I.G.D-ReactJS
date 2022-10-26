@@ -16,7 +16,7 @@ const HomePageAnalist = () => {
       <Main>
         <Article>
           <H3>
-            Bienvenido {user.primerNombre_usuario} {user.primerApellido_usuario}{" "}
+            Bienvenido
             al "sistema informático de gestión deportiva de la institución UTU".
           </H3>
           <PW>

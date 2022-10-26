@@ -3,7 +3,7 @@ import "./styles/Link.css"
 
 const Link = ({to,children,className,onClick}) => {
     return ( 
-        <LinkRR onClick={onClick} className={`Link ${className}`} to={to}>{children}</LinkRR>
+        <LinkRR onClick={onClick} className={`Link NavLink ${className}`} to={to}>{children}</LinkRR>
      );
 }
  
