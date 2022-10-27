@@ -364,7 +364,7 @@ procedure seleccionar estadisticas de jugador
 ----------------------------------------------*/
 #drop procedure estadisticasJugador;
 DELIMITER //
-create procedure estadisticasJugador(in jugador int, in verif bool)
+create procedure estadisticasJugador(in usuario int, in verif bool)
 
 BEGIN
 
@@ -381,7 +381,10 @@ from tienen
 INNER join usuarios on id_usuario_tiene=id_usuario  
 inner join  fichasJugadores on id_fichaJugador=id_fichaJugador_tiene
 inner join estadisticas on id_fichaJugador_estadistica=id_fichaJugador_tiene
-WHERE id_fichaJugador=jugador and verificado_estadistica=verif#or id_fichaJugador=1;
+
+    where id_fichaJugador_estadistica=(select id_fichaJugador_tiene 
+										from  tienen 
+                                        where id_usuario_tiene=usuario) and verificado_estadistica=verif#or id_fichaJugador=1;
 ORDER BY fecha_estadistica desc;
         
 END //
@@ -550,17 +553,18 @@ insert into usuarios (
     segundoNombre_usuario ,
     primerApellido_usuario ,
     segundoApellido_usuario ,
+    
     email_usuario ,
     fechaNac_usuario ,
     password_usuario ,
     verificado_usuario ,
     id_rol_usuario)
 values  ( '0', 'root', NULL, '', NULL, 'root@root.com', '0000-00-00', 'sh2H4KzFEzp4o', true , 1),
-		( '2', 'administrativo', NULL, '', NULL, 'administrativo@mail.com', '0000-00-00', 'sh2H4KzFEzp4o', true , 1),
-        ( '3', 'estudiante', NULL, '', NULL, 'estudiante@mail.com', '0000-00-00', 'sh2H4KzFEzp4o', true , 1),
-        ( '4', 'ojeador', NULL, '', NULL, 'ojeador@mail.com', '0000-00-00', 'sh2H4KzFEzp4o', true , 1),
-        ( '5', 'juez', NULL, '', NULL, 'juez@mail.com', '0000-00-00', 'sh2H4KzFEzp4o', true , 1),
-        ( '6', 'directorTecnico', NULL, '', NULL, 'directorTecnico@mail.com', '0000-00-00', 'sh2H4KzFEzp4o', true , 1),
+		( '2', 'administrativo', NULL, '', NULL, 'administrativo@mail.com', '0000-00-00', 'sh2H4KzFEzp4o', true , 2),
+        ( '3', 'estudiante', NULL, '', NULL, 'estudiante@mail.com', '0000-00-00', 'sh2H4KzFEzp4o', true , 3),
+        ( '4', 'ojeador', NULL, '', NULL, 'ojeador@mail.com', '0000-00-00', 'sh2H4KzFEzp4o', true , 4),
+        ( '5', 'juez', NULL, '', NULL, 'juez@mail.com', '0000-00-00', 'sh2H4KzFEzp4o', true , 5),
+        ( '6', 'directorTecnico', NULL, '', NULL, 'directorTecnico@mail.com', '0000-00-00', 'sh2H4KzFEzp4o', true , 6),
 	    ('7','analista',NULL, '', NULL, 'analista@mail.com', '0000-00-00', 'shaXiUqr8pMhk', true , 7);
 
 
