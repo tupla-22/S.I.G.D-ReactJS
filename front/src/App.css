@@ -17,8 +17,40 @@ body{
   width: 100%;
 }
 
+
 .NavLink{
   display: flex;
   align-items: center;
   justify-content: center;
+  transition-property: transform;
+  transition-duration: 0.2s;
+  padding: 10px;
+}
+
+/* .NavLink:hover{
+  transform:  scale(1.1,1.1);
+} */
+
+.noActive{
+  color: #fff;
+  text-decoration: none;
+}
+.isActive{
+  color: #fb6900;
+  text-decoration: none;
+  transform:  scale(1.1,1.1);
+}
+
+
+.btnBlack{
+  color: #000;
+}
+.btnWhite{
+  color: #fff;
+}
+@media screen and (max-width:900px){
+  .responsive{
+      color: #000;
+  }
+  
 }

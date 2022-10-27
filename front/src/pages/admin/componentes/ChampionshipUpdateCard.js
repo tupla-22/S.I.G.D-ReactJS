@@ -12,8 +12,9 @@ import "./styles/championshipAddForm.css";
 import { helpHttp } from "../../../helpers/helpHttp";
 import InputDate from "../../../componentes/InputDate";
 import InputTime from "../../../componentes/InputTime";
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { urlApi } from "../../../functions/globals";
+import LanguajeContext from "../../../contexts/LanguajeContext";
 
 
 const formchampionshipInit = {
@@ -29,6 +30,7 @@ const ChampionshipUpdateCard = ({data}) => {
   const [ligas, setLigas] = useState([]);
   const [deportes, setDeportes] = useState([]);
 
+  const { text } = useContext(LanguajeContext);
   const peticion = helpHttp();
 
   useEffect(() => {
@@ -59,18 +61,18 @@ const ChampionshipUpdateCard = ({data}) => {
 
   return (
     <Form>
-      <h3>Actualizar un campeonato</h3>
+      <h3>{text.actualizarCampeonato}</h3>
       <TextField
         value={championshipForm.nombre_campeonato}
         onChange={handleChange}
         name="nombre_campeonato"
         className="Form__input"
-        label="Nombre del campeonato"
+        label={text.nombreDelCampeonato}
       ></TextField>
        <FormControl className="Form__input" fullWidth>
-        <InputLabel id="demo-simple-select-label">Deporte</InputLabel>
+        <InputLabel id="demo-simple-select-label">{text.deporte}</InputLabel>
         <Select
-          label="Deporte"
+          label={text.deporte}
           name="deporte_campeonato"
           value={championshipForm.deporte_campeonato}
           labelId="demo-simple-select-label"
@@ -81,9 +83,9 @@ const ChampionshipUpdateCard = ({data}) => {
         </Select>
       </FormControl>
       <FormControl className="Form__input" fullWidth>
-        <InputLabel id="demo-simple-select-label">Liga</InputLabel>
+        <InputLabel id="demo-simple-select-label">{text.liga}</InputLabel>
         <Select
-          label="Liga"
+          label={text.liga}
           name="id_liga_campeonato"
           value={championshipForm.id_liga_campeonato}
           labelId="demo-simple-select-label"
@@ -93,11 +95,11 @@ const ChampionshipUpdateCard = ({data}) => {
           {ligas.map(e=>(<MenuItem value={`${e.id_liga}`}>{e.nombre_liga}</MenuItem>))}
         </Select>
       </FormControl>
-      <InputDate form={championshipForm} setForm={setchampionshipForm} name={"fechaInicio_campeonato"} label={"Fecha de inicio"}></InputDate>
-      <InputDate form={championshipForm} setForm={setchampionshipForm} name={"fechaFin_campeonato"} label={"Fecha de cierre"}></InputDate>
+      <InputDate form={championshipForm} setForm={setchampionshipForm} name={"fechaInicio_campeonato"} label={text.fechaDeInicio}></InputDate>
+      <InputDate form={championshipForm} setForm={setchampionshipForm} name={"fechaFin_campeonato"} label={text.fechaDeCierre}></InputDate>
       
       <ButtonClassic onClick={handleClick} className="Form__input">
-        Actualizar
+        {text.actualizar}
       </ButtonClassic>
     </Form>
   );

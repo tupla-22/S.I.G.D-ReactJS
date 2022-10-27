@@ -6,12 +6,13 @@ import {
   Select,
   TextField,
 } from "@mui/material";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { ButtonClassic } from "../../../componentes/ButtonClassic";
 import Form from "../../../componentes/Form";
 import "./styles/TeamAddForm.css";
 import { helpHttp } from "../../../helpers/helpHttp";
 import { blobToBase64 } from "../../../helpers/blobManager";
+import LanguajeContext from "../../../contexts/LanguajeContext";
 
 const formTeamInit = {
   nombre_equipo: "",
@@ -22,6 +23,11 @@ const formTeamInit = {
 const TeamUpdateCard = ({data}) => {
   const [teamForm, setTeamForm] = useState(data);
   const [errors, setErrors] = useState(null);
+
+
+
+  const {text} = useContext(LanguajeContext)
+
   const handleChange = (event) => {
     setTeamForm({
       ...teamForm,
@@ -47,18 +53,18 @@ const TeamUpdateCard = ({data}) => {
 
   return (
     <Form>
-      <h3>Agregar un equipo</h3>
+      <h3>{text.actualizarEquipos}</h3>
       <TextField
         value={teamForm.nombre_equipo}
         onChange={handleChange}
         name="nombre_equipo"
         className="Form__input"
-        label="Nombre del equipo"
+        label={text.nombreDelEquipo}
       ></TextField>
       <FormControl className="Form__input" fullWidth>
-        <InputLabel id="demo-simple-select-label">Deporte</InputLabel>
+        <InputLabel id="demo-simple-select-label">{text.deporte}</InputLabel>
         <Select
-          label="Deporte"
+          label={text.deporte}
           name="id_deporte_equipo"
           value={teamForm.id_deporte}
           labelId="demo-simple-select-label"
@@ -72,7 +78,7 @@ const TeamUpdateCard = ({data}) => {
       </FormControl>
 
       <Button className="Form__input" variant="contained" component="label">
-        Escudo del equipo
+        {text.escudoDelEquipo}
         <input
           files={teamForm.escudo_equipo}
           name="escudo_equipo"
@@ -82,7 +88,7 @@ const TeamUpdateCard = ({data}) => {
           type="file"
         />
       </Button>
-      <ButtonClassic onClick={handleClick} className="Form__input">Agregar</ButtonClassic>
+      <ButtonClassic onClick={handleClick} className="Form__input">{text.agregar}</ButtonClassic>
     </Form>
   );
 };

@@ -9,10 +9,11 @@ import {
   import { ButtonClassic } from "../../../componentes/ButtonClassic";
   import Form from "../../../componentes/Form";
   import { helpHttp } from "../../../helpers/helpHttp";
-  import React, { useState, useEffect } from 'react';
+  import React, { useState, useEffect, useContext } from 'react';
   import InputDate from "../../../componentes/InputDate";
   import InputTime from "../../../componentes/InputTime";
   import { urlApi } from "../../../functions/globals";
+import LanguajeContext from "../../../contexts/LanguajeContext";
   
   
   
@@ -24,8 +25,9 @@ import {
     const [championships, setChampionships] = useState([]);
   
     const peticion = helpHttp();
+    const { text } = useContext(LanguajeContext);
   
-  
+    
     useEffect(() => {
       peticion.get(urlApi("equipos?select=*")).then(e=>setEquipos(e.result))
       peticion.get(urlApi("campeonatos?select=*")).then(e=>setChampionships(e.result))
@@ -53,11 +55,11 @@ import {
   
     return (
       <Form>
-        <h3>Actualizar el partido con la ID:{matchForm.id_partido}</h3>
+        <h3>{text.actualizarPartido} ID:{matchForm.id_partido}</h3>
         <FormControl className="Form__input" fullWidth>
-          <InputLabel id="demo-simple-select-label">Equipo local</InputLabel>
+          <InputLabel id="demo-simple-select-label">{text.equipoLocal }</InputLabel>
           <Select
-            label="Equipo local"
+            label={text.equipoLocal}
             name="id_equipoLocal_partido"
             labelId="demo-simple-select-label"
             id="demo-simple-select"
@@ -68,9 +70,9 @@ import {
         </FormControl>
         
         <FormControl className="Form__input" fullWidth>
-          <InputLabel id="demo-simple-select-label">Equipo visitante</InputLabel>
+          <InputLabel id="demo-simple-select-label">{text.equipoVisitante}</InputLabel>
           <Select
-            label="Equipo visitante"
+            label={text.equipoVisitante}
             name="id_equipoVisitante_partido"
             labelId="demo-simple-select-label"
             id="demo-simple-select"
@@ -80,9 +82,9 @@ import {
           </Select>
         </FormControl>
         <FormControl className="Form__input" fullWidth>
-          <InputLabel id="demo-simple-select-label">Tipo</InputLabel>
+          <InputLabel id="demo-simple-select-label">{text.tipo}</InputLabel>
           <Select
-            label="Tipo"
+            label={text.tipo}
             name="tipo_partido"
             value={matchForm.tipo_partido}
             labelId="demo-simple-select-label"
@@ -94,21 +96,21 @@ import {
           </Select>
           
         {champ && <FormControl className="Form__input" fullWidth>
-          <InputLabel id="demo-simple-select-label">Campeonato al que pertenece</InputLabel>
+          <InputLabel id="demo-simple-select-label">{text.campeonatoAlQuePertenece}</InputLabel>
           <Select
-            label="Campeonato al que pertenece"
+            label={text.campeonatoAlQuePertenece}
             name="id_equipoVisitante_partido"
             value={matchForm.id_equipoLocal_partido}
             labelId="demo-simple-select-label"
             id="demo-simple-select"
             onChange={handleChange}
           >
-            {championships.map(e=>(<MenuItem name={e.id_campeonato} value={e.nombre_campeonato}>{e.nombre_campeonato}</MenuItem>))}
+            {championships.map((e,i)=>(<MenuItem key={i+1231} name={e.id_campeonato} value={e.nombre_campeonato}>{e.nombre_campeonato}</MenuItem>))}
           </Select>
         </FormControl>}
         
-        <InputDate label={"Fecha"} form={matchForm} setForm={setMatchForm} name="dia_partido"/>
-        <InputTime form={matchForm} setForm={setMatchForm} name={"hora_partido"}/>
+        <InputDate label={text.fecha} form={matchForm} setForm={setMatchForm} name="dia_partido"/>
+        <InputTime label={text.hora} form={matchForm} setForm={setMatchForm} name={"hora_partido"}/>
   
         </FormControl>
         

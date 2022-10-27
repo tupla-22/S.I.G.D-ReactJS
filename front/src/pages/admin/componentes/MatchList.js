@@ -1,6 +1,6 @@
 import { DivOver } from "../../../componentes/DivOver";
 import { TH } from "../../../componentes/styledComponents/TH";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Table } from "../../../componentes/styledComponents/Table";
 import ChampionshipListRow from "./ChampionshipListRow";
 import MatchListRow from "./MatchListRow";
@@ -11,6 +11,8 @@ import { helpHttp } from "../../../helpers/helpHttp";
 import { urlApi } from "../../../functions/globals";
 import Form from "../../../componentes/Form";
 import { Seccion } from "../../../componentes/styledComponents/Seccion";
+import HelpCenterIcon from '@mui/icons-material/HelpCenter';
+import LanguajeContext from "../../../contexts/LanguajeContext";
 
 const MatchList = ({ sport }) => {
   // POR PARAMETRO SE LE TRASMITE EL DEPORTE DESEADO
@@ -18,6 +20,8 @@ const MatchList = ({ sport }) => {
   const peticion = helpHttp();
   const [data, setData] = useState([]);
   const [status, setStatus] = useState(false);
+
+  const {text} = useContext(LanguajeContext)
 
   useEffect(() => {
     switch (sport) {
@@ -67,7 +71,7 @@ const MatchList = ({ sport }) => {
   return (
     <>
       <Seccion>
-        <h3>Partidos</h3>
+        <h3>{text.partidos}</h3>
         <DivOver>
           <Table>
             <thead>
@@ -84,6 +88,9 @@ const MatchList = ({ sport }) => {
                 <TH>VS</TH>
                 <TH>
                   <ShieldIcon color="secondary"></ShieldIcon>
+                </TH>
+                <TH>
+                  <HelpCenterIcon color="secondary"/>
                 </TH>
               </tr>
             </thead>

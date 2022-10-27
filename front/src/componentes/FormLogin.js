@@ -77,7 +77,7 @@ const FormLogin = () => {
   const handleBlur = (e) =>{
     if(!regexUsuario.test((usuario.ci_usuario.trim()))){
       setErrors({...errors,
-        usuario:"El campo cédula solo acepta números y hasta 8 caracteres",
+        usuario:"s",
         vacio:true
       });
     }else{setErrors({...errors,
@@ -91,19 +91,19 @@ const FormLogin = () => {
 
     return ( 
       <Form>
-        {errors.correct && <PAlert>Cédula o contraseña incorrecta</PAlert>}
+        {errors.correct && <PAlert>{text.CedulaError}</PAlert>}
         <TextField
           name='ci_usuario'
           className="Form__input"
-          label="Cédula"
+          label={text.cedula}
           variant='outlined'
           onChange={handleChange}
           onBlur={handleBlur}
         />
-        {errors.usuario &&  <PAlert>{errors.usuario}</PAlert>}
+        {errors.usuario &&  <PAlert>{text.elCampoCedulaSoloAceptaNumerosYHasta8Caracteres}</PAlert>}
         <PasswordInput text={text} setErrors={ setErrors } errors={errors} setUsuario={setUsuario} usuario={usuario} />
-        <Box><RecoverPassword>¿Problemas para iniciar sesión?</RecoverPassword></Box>
-        <Button type='submit'  onClick={handleSubmit} className="Form__input" variant='contained'>Entrar</Button>
+        <Box><RecoverPassword>{text.problemasParaIniciarSesion}</RecoverPassword></Box>
+        <Button type='submit'  onClick={handleSubmit} className="Form__input" variant='contained'>{text.entrar}</Button>
 
 
 

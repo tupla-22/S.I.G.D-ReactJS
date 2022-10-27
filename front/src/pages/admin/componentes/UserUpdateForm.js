@@ -1,15 +1,18 @@
 import Form from "../../../componentes/Form"
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Button, TextField } from "@mui/material";
 import {ButtonClassic} from "../../../componentes/ButtonClassic"
 import ModalConfirm from "./ModalConfirm";
 import { helpHttp } from "../../../helpers/helpHttp";
 import { urlApi } from "../../../functions/globals";
+import LanguajeContext from "../../../contexts/LanguajeContext";
 
-const UserUpdateForm = ({user,setUser}) => {
+const UserUpdateForm = ({ user, setUser }) => {
     const [ciUser, setCiUser] = useState(null);
     const [confirm, setConfirm] = useState(null);
     const [modalConfirm, setModalConfirm] = useState(null);
+
+    const {text} = useContext(LanguajeContext)
 
     const peticion = helpHttp();
 
@@ -27,9 +30,9 @@ const UserUpdateForm = ({user,setUser}) => {
     }
     return ( 
         <Form>
-            <h3>Actualizar usuario</h3>
-            <TextField type="number" onChange={handleChange} name="ci_usuario" label="Cédula" value={ciUser} className="Form__input"></TextField>
-            <ButtonClassic onClick={handleClick}>Actualizar</ButtonClassic>
+            <h3>{text.actualizarUsuarios}</h3>
+            <TextField type="number" onChange={handleChange} name="ci_usuario" label={text.cedula} value={ciUser} className="Form__input"></TextField>
+            <ButtonClassic onClick={handleClick}>{text.actualizar}</ButtonClassic>
         </Form>
      );
 }

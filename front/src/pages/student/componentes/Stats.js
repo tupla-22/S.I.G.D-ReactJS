@@ -8,10 +8,11 @@ const Stats = () => {
       <MyStatsTable></MyStatsTable>
       
       <P>
-        En esta tabla se procederán a mostrar las estadisticas generales del
-        usuario y posteriormente se especificara el significado de cada campo;
-        PJ: Partidos jugados, MJ: Minutos jugados, PG: Partidos ganados, PPP:
-        Punto por partido, PE: Partidos empatados
+        PJ: Partidos jugados<br />
+        MJ: Minutos jugados<br />
+        PG: Partidos ganados<br />
+        PPP:Punto por partido<br />
+        PE: Partidos empatados
       </P>
     </Main>
   );

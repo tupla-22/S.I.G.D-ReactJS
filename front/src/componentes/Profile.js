@@ -3,10 +3,11 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { Button } from "@mui/material";
 import { Outlet, useNavigate } from "react-router-dom";
 import { blobToBase64 } from "../helpers/blobManager";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { helpHttp } from "../helpers/helpHttp";
 import { getUser, urlApi } from "../functions/globals";
 import styled from "styled-components";
+import LanguajeContext from "../contexts/LanguajeContext";
 
 const peticion = helpHttp()
 
@@ -21,6 +22,11 @@ width: 200px;
 
 const Profile = () => {
   const [photo, setPhoto] = useState({});
+
+
+  const {text} = useContext(LanguajeContext)
+  
+
 
   const stAvatar = {
     borderRadius: "100%",
@@ -52,9 +58,8 @@ const Profile = () => {
   };
 
   useEffect(() => {
-    console.log(user.id_usuario)
-    peticion.put(urlApi(`usuarios?id=${user.id_usuario}&nameID=id_usuario`),{body:new URLSearchParams(photo)}).then(e=>{
-      console.log(e)
+    peticion.put(urlApi(`usuarios?id=${user.id_usuario}&nameID=id_usuario`), { body: new URLSearchParams(photo) }).then(e => {
+      console.log(e.status,"Foto de peril de usuario")
       if(e.status==200){
         user.fotoPerfil_usuario=photo.fotoPerfil_usuario;
         localStorage.setItem("user",JSON.stringify(user))
@@ -78,7 +83,7 @@ const Profile = () => {
         </h3>
         <div>
           <Button onClick={handlePassword} sx={stButton} variant="contained">
-            Cambiar contraseña
+            {text.cambiarContraseña}
           </Button>
           
         </div>

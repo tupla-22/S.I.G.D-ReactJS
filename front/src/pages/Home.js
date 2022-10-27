@@ -6,7 +6,6 @@ import Link from "../componentes/Link"
 import NavAfterLogin from "../componentes/NavAfterLogin"
 import NavLink from "../componentes/NavLink"
 import LanguajeContext from "../contexts/LanguajeContext"
-import Bar from "./componentes/Bar"
 import BarHome from "./componentes/BarHome"
 import "./Home.css"
 const Home = () => {

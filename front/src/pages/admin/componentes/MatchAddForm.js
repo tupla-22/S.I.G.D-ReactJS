@@ -9,12 +9,13 @@ import {
 import { ButtonClassic } from "../../../componentes/ButtonClassic";
 import Form from "../../../componentes/Form";
 import { helpHttp } from "../../../helpers/helpHttp";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import InputDate from "../../../componentes/InputDate";
 import InputTime from "../../../componentes/InputTime";
 import { urlApi } from "../../../functions/globals";
 import { PSuccess } from "../../../componentes/styledComponents/PSuccess";
 import { PAlert } from "../../../componentes/PAlert";
+import LanguajeContext from "../../../contexts/LanguajeContext";
 
 
 const formmatchInit = {
@@ -32,6 +33,8 @@ const MatchAddForm = () => {
   const [deportes, setDeportes] = useState([]);
   const [deporteElegido, setDeporteElegido] = useState("");
   const [done, setDone] = useState(false);
+
+  const {text} = useContext(LanguajeContext)
   const peticion = helpHttp();
 
   useEffect(() => {
@@ -94,14 +97,14 @@ const MatchAddForm = () => {
   return (
     <Form>
 
-      {done && <PSuccess>Partido agregado correctamente</PSuccess>}
-      {errors && <PAlert>Ocurrió un error</PAlert>}
-      <h3>Agregar un partido</h3>
+      {done && <PSuccess>{text.accionLograda}</PSuccess>}
+      {errors && <PAlert>{text.error}</PAlert>}
+      <h3>{text.agregarPartido}</h3>
 
       <FormControl className="Form__input" fullWidth>
-        <InputLabel id="demo-simple-select-label">Deporte</InputLabel>
+        <InputLabel id="demo-simple-select-label">{text.deporte}</InputLabel>
         <Select
-          label="Deporte"
+          label={text.deporte}
           name="id_equipoLocal_partido"
           labelId="demo-simple-select-label"
           id="demo-simple-select"
@@ -113,9 +116,9 @@ const MatchAddForm = () => {
         </Select>
       </FormControl>
       <FormControl className="Form__input" fullWidth>
-        <InputLabel id="demo-simple-select-label">Equipo local</InputLabel>
+        <InputLabel id="demo-simple-select-label">{text.equipoLocal }</InputLabel>
         <Select
-          label="Equipo local"
+          label={text.equipoLocal}
           name="id_equipoLocal_partido"
           labelId="demo-simple-select-label"
           id="demo-simple-select"
@@ -128,9 +131,9 @@ const MatchAddForm = () => {
       </FormControl>
 
       <FormControl className="Form__input" fullWidth>
-        <InputLabel id="demo-simple-select-label">Equipo visitante</InputLabel>
+        <InputLabel id="demo-simple-select-label">{ text.equipoVisitante}</InputLabel>
         <Select
-          label="Equipo visitante"
+          label={text.equipoVisitante}
           name="id_equipoVisitante_partido"
           labelId="demo-simple-select-label"
           id="demo-simple-select"
@@ -142,9 +145,9 @@ const MatchAddForm = () => {
         </Select>
       </FormControl>
       <FormControl className="Form__input" fullWidth>
-        <InputLabel id="demo-simple-select-label">Tipo</InputLabel>
+        <InputLabel id="demo-simple-select-label">{text.tipo}</InputLabel>
         <Select
-          label="Tipo"
+          label={text.tipo}
           name="tipo_partido"
           value={matchForm.tipo_partido}
           labelId="demo-simple-select-label"
@@ -179,13 +182,13 @@ const MatchAddForm = () => {
         
 
         <InputDate
-          label={"Fecha"}
+          label={text.fecha}
           form={matchForm}
           setForm={setMatchForm}
           name="dia_partido"
         />
         <InputTime
-          label={"Hora"}
+          label={text.hora}
           form={matchForm}
           setForm={setMatchForm}
           name={"hora_partido"}
@@ -208,7 +211,7 @@ const MatchAddForm = () => {
         </Select>
       </FormControl> */}
       <ButtonClassic onClick={handleClick} className="Form__input">
-        Agregar
+        {text.agregar}
       </ButtonClassic>
     </Form>
   );

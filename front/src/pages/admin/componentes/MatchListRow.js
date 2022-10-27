@@ -1,15 +1,16 @@
 import { EscudoList } from "../../../componentes/styledComponents/EscudoList";
 import { TD } from "../../../componentes/styledComponents/TD";
-import { dateTradeEs } from "../../../functions/globals";
+import { dateTradeEs, getUser } from "../../../functions/globals";
 import React, { useState, useEffect } from 'react';
 
 
 const MatchListRow = ({data}) => {
     const [admin, setAdmin] = useState(false);
 
-    useEffect(() => {
+    const user = getUser()
 
-        if(JSON.parse( localStorage.getItem("user")).id_rol_usuario == 1 ||  JSON.parse( localStorage.getItem("user")).id_rol_usuario == 2)  {
+    useEffect(() => {
+        if(user.id_rol_usuario == 1 ||  user.id_rol_usuario == 2)  {
             setAdmin(true)
         }
        
@@ -21,6 +22,7 @@ const MatchListRow = ({data}) => {
             <TD>{data.nombre_equipoLocal}<br/><EscudoList src={data.escudo_equipoLocal}></EscudoList></TD>
             <TD>VS</TD>
             <TD>{data.nombre_equipoVisitante}<br/><EscudoList src={data.escudo_equipoVisitante}/></TD>
+            <TD>{data.tipo_partido}</TD>
             {admin && <TD>ID: {data.id_partido}</TD>}
         </tr>
     );

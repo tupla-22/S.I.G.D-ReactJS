@@ -12,10 +12,11 @@ import "./styles/championshipAddForm.css";
 import { helpHttp } from "../../../helpers/helpHttp";
 import InputDate from "../../../componentes/InputDate";
 import InputTime from "../../../componentes/InputTime";
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { urlApi } from "../../../functions/globals";
 import { PSuccess } from "../../../componentes/styledComponents/PSuccess";
 import { PAlert } from "../../../componentes/PAlert";
+import LanguajeContext from "../../../contexts/LanguajeContext";
 
 
 const formchampionshipInit = {
@@ -32,6 +33,9 @@ const ChampionshipAddForm = () => {
   const [deportes, setDeportes] = useState([]);
   const [done, setDone] = useState(false);
 
+
+
+  const {text} = useContext(LanguajeContext)
   const peticion = helpHttp();
 
   useEffect(() => {
@@ -72,19 +76,19 @@ const ChampionshipAddForm = () => {
 
   return (
     <Form>
-      <h3>Agregar un campeonato</h3>
-      {done && <PSuccess>Campeonato agregado correctamente</PSuccess>}
-      {errors && <PAlert>Ocurrió un error</PAlert>}
+      <h3>{ text.agregarCampeonato}</h3>
+      {done && <PSuccess>{text.accionLograda}</PSuccess>}
+      {errors && <PAlert>{text.error}</PAlert>}
       <TextField
         onChange={handleChange}
         name="nombre_campeonato"
         className="Form__input"
-        label="Nombre del campeonato"
+        label={text.nombreDelCampeonato}
       ></TextField>
        <FormControl className="Form__input" fullWidth>
-        <InputLabel id="demo-simple-select-label">Deporte</InputLabel>
+        <InputLabel id="demo-simple-select-label">{ text.deporte }</InputLabel>
         <Select
-          label="Deporte"
+          label={text.deporte}
           name="deporte_campeonato"
           value={championshipForm.deporte_campeonato}
           labelId="demo-simple-select-label"
@@ -95,9 +99,9 @@ const ChampionshipAddForm = () => {
         </Select>
       </FormControl>
       <FormControl className="Form__input" fullWidth>
-        <InputLabel id="demo-simple-select-label">Liga</InputLabel>
+        <InputLabel id="demo-simple-select-label">{text.liga}</InputLabel>
         <Select
-          label="Liga"
+          label={text.liga}
           name="id_liga_campeonato"
           value={championshipForm.id_liga_campeonato}
           labelId="demo-simple-select-label"
@@ -107,11 +111,11 @@ const ChampionshipAddForm = () => {
           {ligas.map(e=>(<MenuItem value={`${e.id_liga}`}>{e.nombre_liga}</MenuItem>))}
         </Select>
       </FormControl>
-      <InputDate form={championshipForm} setForm={setchampionshipForm} name={"fechaInicio_campeonato"} label={"Fecha de inicio"}></InputDate>
-      <InputDate form={championshipForm} setForm={setchampionshipForm} name={"fechaFin_campeonato"} label={"Fecha de cierre"}></InputDate>
+      <InputDate form={championshipForm} setForm={setchampionshipForm} name={"fechaInicio_campeonato"} label={text.fechaDeInicio}></InputDate>
+      <InputDate form={championshipForm} setForm={setchampionshipForm} name={"fechaFin_campeonato"} label={text.fechaDeCierre}></InputDate>
       
       <ButtonClassic onClick={handleClick} className="Form__input">
-        Agregar
+        {text.agregar}
       </ButtonClassic>
     </Form>
   );

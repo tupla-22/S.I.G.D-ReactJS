@@ -1,5 +1,5 @@
 import Form from "../../../componentes/Form"
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Button, TextField } from "@mui/material";
 import {ButtonClassic} from "../../../componentes/ButtonClassic"
 import ModalConfirm from "./ModalConfirm";
@@ -8,6 +8,7 @@ import { urlApi } from "../../../functions/globals";
 import ChampionshipList from "./ChampionshipList";
 import { PAlert } from "../../../componentes/PAlert";
 import { PSuccess } from "../../../componentes/styledComponents/PSuccess";
+import LanguajeContext from "../../../contexts/LanguajeContext";
 
 
 const TeamDelForm = () => {
@@ -17,6 +18,9 @@ const TeamDelForm = () => {
     const [done, setDone] = useState(false);
     const [errors, setErrors] = useState(false);
     const peticion = helpHttp();
+
+
+    const {text} = useContext(LanguajeContext)
 
     const handleChange = (e) => {
         setidChampionship(e.target.value)
@@ -44,11 +48,11 @@ const TeamDelForm = () => {
     }, [confirm]);
     return ( 
         <Form>
-            {done && <PSuccess>Campeonato eliminado correctamente</PSuccess>}
-            {errors && <PAlert>Ocurrió un error</PAlert>}
-            <h3>Eliminar equipo</h3>
+            {done && <PSuccess>{text.accionLograda}</PSuccess>}
+            {errors && <PAlert>{text.error}</PAlert>}
+            <h3>{ text.eliminarEquipo }</h3>
             <TextField type="number" onChange={handleChange} label="ID" value={idChampionship} className="Form__input"></TextField>
-            <ModalConfirm name="Eliminar" confirm={confirm} setConfirm={setConfirm}/>
+            <ModalConfirm name={text.eliminar} confirm={confirm} setConfirm={setConfirm}/>
             <ChampionshipList/>
         </Form>
      );

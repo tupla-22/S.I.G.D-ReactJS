@@ -49,7 +49,7 @@ export default function StatsShower() {
 
 	useEffect(() => {
 		peticion.get(urlApi("usuarios?select=fotoPerfil_usuario")).then((e) => {
-			console.log(e)
+			console.log(e.status,"Fotos Login")
 			if (e.status == 200) setFotos(e.result)
 		})
 	}, [])
@@ -64,7 +64,7 @@ export default function StatsShower() {
 				{
 					<Icon>
 						{fotos.map((e,i) => (
-							<Div key={i}>
+							<Div key={`fotoLogin${i}`}>
 								<GaleriLogin src={e.fotoPerfil_usuario} />
 							</Div>
 						))}

@@ -42,14 +42,17 @@ export default function EngOrSpan() {
 	const { handleLanguaje, text } = React.useContext(LanguajeContext)
 
 	const handleEs = () => {
-		handleLanguaje("es")
+    handleLanguaje("es")
+    localStorage.setItem("languaje","es")
 		setSelectEs({ opacity: "100%" })
+    console.log(localStorage)
 		setSelectEn({ opacity: "50%" })
 	}
 
-	const handleEn = () => {
+  const handleEn = () => {
+    localStorage.setItem("languaje", "en")
+    console.log(localStorage)
 		handleLanguaje("en")
-
 		setSelectEn({ opacity: "100%" })
 		setSelectEs({ opacity: "50%" })
 	}

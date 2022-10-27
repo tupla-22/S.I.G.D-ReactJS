@@ -6,7 +6,7 @@ import {
   Select,
   TextField,
 } from "@mui/material";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { ButtonClassic } from "../../../componentes/ButtonClassic";
 import Form from "../../../componentes/Form";
 import "./styles/TeamAddForm.css";
@@ -16,6 +16,7 @@ import { urlApi } from "../../../functions/globals";
 import CameraAltIcon from '@mui/icons-material/CameraAlt';
 import { PSuccess } from "../../../componentes/styledComponents/PSuccess";
 import { PAlert } from "../../../componentes/PAlert";
+import LanguajeContext from "../../../contexts/LanguajeContext";
 
 
 const formTeamInit = {
@@ -31,6 +32,9 @@ const TeamAddForm = () => {
   const [teamForm, setTeamForm] = useState(formTeamInit);
   const [errors, setErrors] = useState(null);
   const [done, setDone] = useState(false);
+
+
+  const { text } = useContext(LanguajeContext);
 
   const handleChange = (event) => {
     setTeamForm({
@@ -62,9 +66,9 @@ const TeamAddForm = () => {
 
   return (
     <Form>
-      <h3>Agregar un equipo</h3>
-      {done && <PSuccess>Equipo creado correctamente</PSuccess>}
-      {errors && <PAlert>Ocurrió un error</PAlert>}
+      <h3>{text.agregarEquipo}</h3>
+      {done && <PSuccess>{ text.accionLogradaCorrectamente}</PSuccess>}
+      {errors && <PAlert>{text.error }</PAlert>}
       <TextField
         value={teamForm.nombre_equipo}
         FormControl
@@ -72,12 +76,12 @@ const TeamAddForm = () => {
         onChange={handleChange}
         name="nombre_equipo"
         className="Form__input"
-        label="Nombre del equipo"
+        label={text.nombreDelEquipo}
       ></TextField>
       <FormControl required className="Form__input" fullWidth>
-        <InputLabel id="demo-simple-select-label">Deporte</InputLabel>
+        <InputLabel id="demo-simple-select-label">{text.deporte}</InputLabel>
         <Select
-          label="Deporte"
+          label={text.deporte}
           name="id_deporte_equipo"
           value={teamForm.id_deporte_equipo}
           labelId="demo-simple-select-label"
@@ -91,7 +95,7 @@ const TeamAddForm = () => {
       </FormControl>
 
       <Button className="Form__input" variant="contained" component="label">
-        Escudo del equipo  <CameraAltIcon/>
+        {text.escudoDelEquipo}  <CameraAltIcon/>
         <input
           name="escudo_equipo"
           onChange={handleEscudo}
@@ -100,7 +104,7 @@ const TeamAddForm = () => {
           type="file"
         />
       </Button>
-      <ButtonClassic onClick={handleClick} className="Form__input">Agregar</ButtonClassic>
+      <ButtonClassic onClick={handleClick} className="Form__input">{ text.agregar}</ButtonClassic>
     </Form>
   );
 };

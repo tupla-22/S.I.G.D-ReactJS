@@ -1,15 +1,18 @@
 import Form from "../../../componentes/Form"
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Button, TextField } from "@mui/material";
 import {ButtonClassic} from "../../../componentes/ButtonClassic"
 import ModalConfirm from "./ModalConfirm";
 import { helpHttp } from "../../../helpers/helpHttp";
 import { urlApi } from "../../../functions/globals";
+import LanguajeContext from "../../../contexts/LanguajeContext";
 
 const UserDelForm = () => {
     const [ciUser, setCiUser] = useState(null);
     const [confirm, setConfirm] = useState(null);
     const [modalConfirm, setModalConfirm] = useState(null);
+
+    const {text} = useContext(LanguajeContext)
 
     const peticion = helpHttp();
 
@@ -37,9 +40,9 @@ const UserDelForm = () => {
     }, [confirm]);
     return ( 
         <Form>
-            <h3>Eliminar usuario</h3>
-            <TextField type="number" onChange={handleChange} name="ci_usuario" label="Cédula" value={ciUser} className="Form__input"></TextField>
-            <ModalConfirm name="Eliminar" confirm={confirm} setConfirm={setConfirm}/>
+            <h3>{ text.eliminarUsuario }</h3>
+            <TextField type="number" onChange={handleChange} name="ci_usuario" label={text.cedula} value={ciUser} className="Form__input"></TextField>
+            <ModalConfirm name={text.eliminar} confirm={confirm} setConfirm={setConfirm}/>
         </Form>
      );
 }

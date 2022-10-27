@@ -12,13 +12,14 @@ import Form from "../../../componentes/Form";
 import InputFechaNacimiento from "../../../componentes/InputFechaNacimiento";
 import "./styles/UserAddForm.css";
 import UserAddTipeController from "./UserAddTipeController";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
 import { PAlert } from "../../../componentes/PAlert";
 import { blobToBase64 } from "../../../helpers/blobManager";
 import { urlApi } from "../../../functions/globals";
 import { getToken } from "../../../functions/User";
 import { helpHttp } from "../../../helpers/helpHttp";
+import LanguajeContext from "../../../contexts/LanguajeContext";
 
 const UserUpdateCard = ({ data }) => {
   const [userForm, setUserForm] = useState(data);
@@ -26,11 +27,11 @@ const UserUpdateCard = ({ data }) => {
   const [passwordVerified, setPasswordVerified] = useState(true);
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState(false);
-  console.log(userForm);
+
+  const {text} = useContext(LanguajeContext)
   const peticion = helpHttp();
 
   const handleClick = () => {
-    console.log(userForm);
     if (passwordVerified) {
       const data = {
         body: new URLSearchParams(userForm),
@@ -38,7 +39,7 @@ const UserUpdateCard = ({ data }) => {
 
       peticion
         .put(urlApi(`usuarios?id=${userForm.id_usuario}&nameID=id_usuario`) , data)
-        .then((e) => console.log(e));
+        .then((e) => console.log(e.status));
     }
   };
 
@@ -79,49 +80,49 @@ const UserUpdateCard = ({ data }) => {
       style={{ display: "flex", flexDirection: "column" }}
       className="userAddForm"
     >
-      <h3>Agregar un usuario</h3>
+      <h3>{text.agregarUnUsuario}</h3>
       <TextField
         value={userForm.ci_usuario}
         onChange={handleChange}
         name="ci_usuario"
         type="number"
         className="Form__input"
-        label="Cédula de identidad"
+        label={text.cedula}
       ></TextField>
       <TextField
         value={userForm.primerNombre_usuario}
         onChange={handleChange}
         name="primerNombre_usuario"
         className="Form__input"
-        label="nombre"
+        label={text.nombre}
       ></TextField>
       <TextField
         value={userForm.segundoNombre_usuario}
         onChange={handleChange}
         name="segundoNombre_usuario"
         className="Form__input"
-        label="Segundo nombre"
+        label={text.segundoNombre}
       ></TextField>
       <TextField
         value={userForm.primerApellido_usuario}
         onChange={handleChange}
         name="primerApellido_usuario"
         className="Form__input"
-        label="Apellido"
+        label={text.apellido}
       ></TextField>
       <TextField
         value={userForm.segundoApellido_usuario}
         onChange={handleChange}
         name="segundoApellido_usuario"
         className="Form__input"
-        label="Segundo apellido"
+        label={text.segundoApellido}
       ></TextField>
       <TextField
         value={userForm.email_usuario}
         onChange={handleChange}
         name="email_usuario"
         className="Form__input"
-        label="Email"
+        label={text.correoElectronico}
         type="email"
       ></TextField>
       <InputFechaNacimiento userForm={userForm} setUserForm={setUserForm} />
@@ -133,7 +134,7 @@ const UserUpdateCard = ({ data }) => {
         name="password_usuario"
         className="Form__input"
         type="password"
-        label="Contraseña"
+        label={text.contraseña}
       ></TextField>
       {!passwordVerified && <PAlert>Los campos contraseña no coinciden</PAlert>}
       <TextField
@@ -142,14 +143,14 @@ const UserUpdateCard = ({ data }) => {
         name="password_usuario_verified"
         className="Form__input"
         type="password"
-        label="Repita contraseña"
+        label={text.repetirContraseña}
       ></TextField>
 
       <FormControl className="Form__input">
-        <InputLabel id="demo-simple-select-label">Tipo de usuario</InputLabel>
+        <InputLabel id="demo-simple-select-label">{text.tipoDeUsuario}</InputLabel>
         <Select
           name="id_rol_usuario"
-          label="Tipo de usuario"
+          label={text.tipoDeUsuario}
           value={userForm.tipoUsuario}
           labelId="demo-simple-select-label"
           id="demo-simple-select"
@@ -177,7 +178,7 @@ const UserUpdateCard = ({ data }) => {
       ></IconButton>
 
       <ButtonClassic variant="contained" onClick={handleClick}>
-        Actualizar
+        {text.actualizar}
       </ButtonClassic>
     </Form>
   );

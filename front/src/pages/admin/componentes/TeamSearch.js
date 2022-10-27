@@ -2,7 +2,7 @@ import { Button, TextField } from "@mui/material";
 import { ButtonClassic } from "../../../componentes/ButtonClassic";
 import Form from "../../../componentes/Form";
 import UserList from "./UserList";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { helpHttp } from "../../../helpers/helpHttp";
 import Loader from "../../../componentes/Loader";
 import UserListRow from "./UserListRow";
@@ -13,6 +13,9 @@ import { PAlert } from "../../../componentes/PAlert";
 import TeamsList from "./TeamsList";
 import TeamsListRow from "./TeamsListRow";
 import { urlApi } from "../../../functions/globals";
+import LanguajeContext from "../../../contexts/LanguajeContext";
+import SearchIcon from '@mui/icons-material/Search';
+
 
 const TeamSearch = () => {
   const [nombre, setnombre] = useState("");
@@ -22,6 +25,8 @@ const TeamSearch = () => {
   const [ok, setOk] = useState();
   const [errors, setErrors] = useState(false);
 
+
+  const { text } = useContext(LanguajeContext)
 
   const handleChange = (e) => {
     setnombre(e.target.value);
@@ -52,23 +57,23 @@ const TeamSearch = () => {
 
   return (
     <Form>
-      <h3>Buscar equipo</h3>
+      <h3>{text.buscarEquipo}</h3>
       <TextField
         onChange={handleChange}
         value={nombre}
         className="Form__input"
-        label="Nombre del equipo"
+        label={text.nombreDelEquipo}
       />
       <ButtonClassic type="submit" onClick={handleSubmit} variant="contained">
-        Buscar
+        {text.buscar} <SearchIcon/>
       </ButtonClassic>
       {loading && <Loader />}
       {ok &&
         <DivOver>
           <Table>
             <thead>
-              <TH>Escudo</TH>
-              <TH>Nombre</TH>
+              <TH>{text.escudo}</TH>
+              <TH>{text.nombre}</TH>
               <TH>ID</TH>
             </thead>
             <tbody>
@@ -79,7 +84,7 @@ const TeamSearch = () => {
           </Table>
         </DivOver>}
       
-       {errors && <PAlert>No se encontro ningun equipo</PAlert>} 
+       {errors && <PAlert>{text.noSeEncontro}</PAlert>} 
       
       <TeamsList />
     </Form>

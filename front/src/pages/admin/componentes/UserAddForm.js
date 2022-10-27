@@ -12,7 +12,7 @@ import Form from "../../../componentes/Form";
 import InputFechaNacimiento from "../../../componentes/InputFechaNacimiento";
 import "./styles/UserAddForm.css";
 import UserAddTipeController from "./UserAddTipeController";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
 import { PAlert } from "../../../componentes/PAlert";
 import { blobToBase64 } from "../../../helpers/blobManager";
@@ -21,6 +21,7 @@ import { getToken } from "../../../functions/User";
 import { helpHttp } from "../../../helpers/helpHttp";
 import { PSuccess } from "../../../componentes/styledComponents/PSuccess";
 import InputDate from "../../../componentes/InputDate";
+import LanguajeContext from "../../../contexts/LanguajeContext";
 
 const userFormInit = {
   ci_usuario: "",
@@ -47,6 +48,8 @@ const UserAddForm = () => {
   const [idUsuario, setIdUsuario] = useState("");
   const peticion = helpHttp();
   const [pertenecenForm, setPertenecenForm] = useState({});
+
+  const {text} = useContext(LanguajeContext)
 
   const emailRegex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
 
@@ -159,7 +162,7 @@ const UserAddForm = () => {
       className="userAddForm"
     >
       {created && <PSuccess>Usuario creado correctamente</PSuccess>}
-      <h3>Agregar un usuario</h3>
+      <h3>{text.agregarUnUsuario}</h3>
       <TextField
       required
         value={userForm.ci_usuario}
@@ -167,7 +170,7 @@ const UserAddForm = () => {
         name="ci_usuario"
         type="number"
         className="Form__input"
-        label="Cédula de identidad"
+        label={text.cedula}
       ></TextField>
       <TextField
       required
@@ -175,14 +178,14 @@ const UserAddForm = () => {
         onChange={handleChange}
         name="primerNombre_usuario"
         className="Form__input"
-        label="nombre"
+        label={text.nombre}
       ></TextField>
       <TextField
         value={userForm.segundoNombre_usuario}
         onChange={handleChange}
         name="segundoNombre_usuario"
         className="Form__input"
-        label="Segundo nombre"
+        label={text.segundoNombre}
       ></TextField>
       <TextField
       required
@@ -190,14 +193,14 @@ const UserAddForm = () => {
         onChange={handleChange}
         name="primerApellido_usuario"
         className="Form__input"
-        label="Apellido"
+        label={text.apellido}
       ></TextField>
       <TextField
         value={userForm.segundoApellido_usuario}
         onChange={handleChange}
         name="segundoApellido_usuario"
         className="Form__input"
-        label="Segundo apellido"
+        label={text.segundoApellido}
       ></TextField>
       <TextField
         error={error && "true"}
@@ -207,12 +210,12 @@ const UserAddForm = () => {
         onChange={handleChange}
         name="email_usuario"
         className="Form__input"
-        label="Email"
+        label={text.correoElectronico}
         type="email"
       ></TextField>
       <InputDate
       required
-        label={"Fecha de nacimiento"}
+        label={text.fechaDeNacimiento}
         name={"fechaNac_usuario"}
         form={userForm}
         setForm={setUserForm}
@@ -226,7 +229,7 @@ const UserAddForm = () => {
         name="password_usuario"
         className="Form__input"
         type="password"
-        label="Contraseña"
+        label={text.contraseña}
       ></TextField>
       {!passwordVerified && <PAlert>Los campos contraseña no coinciden</PAlert>}
       <TextField
@@ -236,25 +239,25 @@ const UserAddForm = () => {
         name="password_usuario_verified"
         className="Form__input"
         type="password"
-        label="Repita contraseña"
+        label={text.repetirContraseña}
       ></TextField>
 
       <FormControl className="Form__input">
-        <InputLabel required id="demo-simple-select-label">Tipo de usuario</InputLabel>
+        <InputLabel required id="demo-simple-select-label">{ text.tipoDeUsuario }</InputLabel>
         <Select
         
           name="id_rol_usuario"
-          label="Tipo de usuario"
+          label={text.tipoDeUsuario}
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           onChange={handleUser}
         >
-          <MenuItem value={2}>Administrador</MenuItem>
-          <MenuItem value={3}>Estudiante</MenuItem>
-          <MenuItem value={4}>Reclutador</MenuItem>
-          <MenuItem value={5}>Juez</MenuItem>
-          <MenuItem value={6}>Director Técnico</MenuItem>
-          <MenuItem value={7}>Analista</MenuItem>
+          <MenuItem value={2}>{text.administrador}</MenuItem>
+          <MenuItem value={3}>{text.estudiante}e</MenuItem>
+          <MenuItem value={4}>{text.reclutador}</MenuItem>
+          <MenuItem value={5}>{text.juez}</MenuItem>
+          <MenuItem value={6}>{text.directorTecnico}</MenuItem>
+          <MenuItem value={7}>{text.analista}</MenuItem>
         </Select>
       </FormControl>
       <UserAddTipeController
@@ -267,13 +270,13 @@ const UserAddForm = () => {
       />
 
       <InputDate
-        label={"Carnet de salud válido"}
+        label={text.carnetDeSaludValido}
         name={"carneSalud_usuario"}
         form={userForm}
         setForm={setUserForm}
       ></InputDate>
       <Button variant="contained" component="label">
-        Foto de perfil
+        {text.fotoDePerfil}
         <input
           name="fotoPerfil_usuario"
           onChange={handlePhoto}
@@ -283,15 +286,9 @@ const UserAddForm = () => {
         />
         <PhotoCamera />
       </Button>
-      <IconButton
-        label=""
-        color="primary"
-        aria-label="upload picture"
-        component="label"
-      ></IconButton>
 
       <ButtonClassic type="submit" variant="contained" onClick={handleClick}>
-        Agregar
+        {text.agregar}
       </ButtonClassic>
     </Form>
   );

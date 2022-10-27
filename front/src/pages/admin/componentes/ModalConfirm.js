@@ -6,6 +6,7 @@ import Fade from '@mui/material/Fade';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { ButtonClassic } from '../../../componentes/ButtonClassic';
+import LanguajeContext from '../../../contexts/LanguajeContext';
 
 const style = {
   position: 'absolute',
@@ -29,6 +30,10 @@ export default function ModalConfirm({name,confirm,setConfirm}) {
     console.log(confirm)
   };
 
+  const { text } = React.useContext(LanguajeContext)
+  
+
+
   return (
     <div>
       <ButtonClassic onClick={handleOpen}>{name}</ButtonClassic>
@@ -46,11 +51,11 @@ export default function ModalConfirm({name,confirm,setConfirm}) {
         <Fade in={open}>
           <Box sx={style}>
             <Typography id="transition-modal-title" variant="h6" component="h2">
-              ¿Estas seguro de realizar esta acción?
+              {text.estasSeguro}
             </Typography>
             <Typography id="transition-modal-description" sx={{ mt: 2 }}>
-            <Button name={"1"} onClick={handleClose}>Confirmar</Button>
-            <Button name={"0"} onClick={handleClose}>Cancelar</Button>
+              <Button name={"1"} onClick={handleClose}>{text.confirmar}</Button>
+            <Button name={"0"} onClick={handleClose}>{text.cancelar}</Button>
             </Typography>
           </Box>
         </Fade>

@@ -1,16 +1,19 @@
 import { DivOver } from "../../../componentes/DivOver";
 import { TH } from "../../../componentes/styledComponents/TH";
 import TeamsListRow from "./TeamsListRow";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Table } from "../../../componentes/styledComponents/Table";
 import { urlApi } from "../../../functions/globals";
 import { helpHttp } from "../../../helpers/helpHttp";
+import LanguajeContext from "../../../contexts/LanguajeContext";
 
 const peticion= helpHttp();
 
 const TeamsList = () => {
   const [data, setData] = useState([]);
   const [status, setStatus] = useState(false);
+
+  const {text} = useContext(LanguajeContext)
 
   useEffect(() => {
         peticion.get(urlApi(`equipos?select=*&linkTo=visible_equipo&equalTo=1`)).then((dat) => {
@@ -25,12 +28,12 @@ const TeamsList = () => {
 
   return (
     <>
-      <h3>Equipos</h3>
+      <h3>{text.equipos}</h3>
       <DivOver>
         <Table>
           <thead>
-            <TH>Escudo</TH>
-            <TH>Nombre</TH>
+            <TH>{text.escudo}</TH>
+            <TH>{text.nombre}</TH>
             <TH>ID</TH>
           </thead>
 

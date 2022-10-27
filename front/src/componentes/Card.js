@@ -6,9 +6,11 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import {useNavigate} from "react-router-dom";
+import LanguajeContext from '../contexts/LanguajeContext';
 
 const CardA = ({url,name,data,to}) => {
   const navigate = useNavigate();
+  const {text} = React.useContext(LanguajeContext)
   const handleClick= ()=>{
     navigate(to);
   }
@@ -30,7 +32,7 @@ const CardA = ({url,name,data,to}) => {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button variant='outlined' onClick={handleClick} size="small">Ir</Button>
+          <Button variant='outlined' onClick={handleClick} size="small">{text.ir }</Button>
       </CardActions>
     </Card>
 

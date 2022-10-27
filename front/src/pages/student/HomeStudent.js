@@ -9,7 +9,7 @@ import GroupsTwoToneIcon from '@mui/icons-material/GroupsTwoTone';
 
 const HomeStudent = () => {
   const pages = [
-    <NavLink to="home" classAdd="responsive">
+    <NavLink to="home/fixtureFB" classAdd="responsive">
      <DateRangeTwoToneIcon/> Fixture
     </NavLink>,
     <NavLink classAdd="responsive" to="myStats">

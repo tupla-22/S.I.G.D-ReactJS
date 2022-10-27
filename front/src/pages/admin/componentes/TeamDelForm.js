@@ -1,5 +1,5 @@
 import Form from "../../../componentes/Form"
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Button, TextField } from "@mui/material";
 import {ButtonClassic} from "../../../componentes/ButtonClassic"
 import ModalConfirm from "./ModalConfirm";
@@ -8,6 +8,7 @@ import { urlApi } from "../../../functions/globals";
 import { id } from "date-fns/locale";
 import { PSuccess } from "../../../componentes/styledComponents/PSuccess";
 import { PAlert } from "../../../componentes/PAlert";
+import LanguajeContext from "../../../contexts/LanguajeContext";
 
 const TeamDelForm = () => {
     const [iDTeam, setIDTeam] = useState(null);
@@ -17,6 +18,7 @@ const TeamDelForm = () => {
     const [error, setError] = useState(false);
     const peticion = helpHttp();
 
+    const { text} = useContext(LanguajeContext)
     const handleChange = (e) => {
         setIDTeam(e.target.value)
         console.log(iDTeam)
@@ -41,11 +43,11 @@ const TeamDelForm = () => {
     }, [confirm]);
     return ( 
         <Form>
-            <h3>Eliminar equipo</h3>
-            {done && <PSuccess>Equipo eliminado correctamente</PSuccess>}
+            <h3>{text.eliminarEquipo}</h3>
+            {done && <PSuccess>{text.accionLogradaCorrectamente}</PSuccess>}
             {/* {error && <PAlert>A ocurrido un error</PAlert>} */}
             <TextField type="number" onChange={handleChange} label="ID" value={iDTeam} className="Form__input"></TextField>
-            <ModalConfirm name="Eliminar" confirm={confirm} setConfirm={setConfirm}/>
+            <ModalConfirm name={text.eliminar} confirm={confirm} setConfirm={setConfirm}/>
         </Form>
      );
 }

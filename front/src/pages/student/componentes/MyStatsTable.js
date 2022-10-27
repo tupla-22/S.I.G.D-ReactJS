@@ -4,16 +4,22 @@ import { TH } from "../../../componentes/styledComponents/TH";
 import MyStatsTableRow from "./MyStatsTableRow";
 import React, { useState, useEffect } from 'react';
 import { helpHttp } from "../../../helpers/helpHttp";
-import { urlApi } from "../../../functions/globals";
+import { getUser, urlApi } from "../../../functions/globals";
 
 
 const peticion = helpHttp();
+const user = getUser()
+
 
 const MyStatsTable = () => {
   const [data, setData] = useState({});
 
   useEffect(() => {
-    peticion.get(urlApi("estadisticas?select=*")).then(e=>console.log(e))
+    peticion.get(urlApi(`statistics?id_usuario=${user.id_usuario}&tipo_estadistica=gol`)).then(result => {
+      if (result.status = 200) {
+        setData(result.result)
+      }
+    })
   }, []);
   return (
     <DivOver>

@@ -1,5 +1,5 @@
 import Form from "../../../componentes/Form";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Button, TextField } from "@mui/material";
 import { ButtonClassic } from "../../../componentes/ButtonClassic";
 import ModalConfirm from "./ModalConfirm";
@@ -8,6 +8,8 @@ import { urlApi } from "../../../functions/globals";
 import ChampionshipList from "./ChampionshipList";
 import { PAlert } from "../../../componentes/PAlert";
 import MatchList from "./MatchList";
+import LanguajeContext from "../../../contexts/LanguajeContext";
+import { PSuccess } from "../../../componentes/styledComponents/PSuccess";
 
 const MatchDelForm = () => {
   const [idMatch, setidMatch] = useState(null);
@@ -15,6 +17,7 @@ const MatchDelForm = () => {
   const [done, setDone] = useState(false);
 
   const peticion = helpHttp();
+  const {text} = useContext(LanguajeContext)
 
   const handleChange = (e) => {
     setidMatch(e.target.value);
@@ -40,7 +43,7 @@ const MatchDelForm = () => {
   return (
     <>
       <Form>
-        <h3>Eliminar partido</h3>
+        <h3>{text.eliminarPartido }</h3>
         <TextField
           type="number"
           onChange={handleChange}
@@ -48,9 +51,9 @@ const MatchDelForm = () => {
           value={idMatch}
           className="Form__input"
         ></TextField>
-        {done && <PAlert>Partido eliminado</PAlert>}
+        {done && <PSuccess>{text.accionLograda}</PSuccess>}
         <ModalConfirm
-          name="Eliminar"
+          name={text.eliminar}
           confirm={confirm}
           setConfirm={setConfirm}
         />

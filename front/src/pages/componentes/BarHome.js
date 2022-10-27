@@ -7,11 +7,8 @@ import Typography from "@mui/material/Typography"
 import Menu from "@mui/material/Menu"
 import MenuIcon from "@mui/icons-material/Menu"
 import Container from "@mui/material/Container"
-import Avatar from "@mui/material/Avatar"
 import Button from "@mui/material/Button"
-import Tooltip from "@mui/material/Tooltip"
 import MenuItem from "@mui/material/MenuItem"
-import AdbIcon from "@mui/icons-material/Adb"
 import NavLink from "../../componentes/NavLink"
 import logo from "../../media/icons/logo_small.png"
 import "./styles/bar.css"
@@ -107,8 +104,8 @@ function BarHome() {
 								display: { xs: "block", md: "none" },
 							}}
 						>
-							{pages.map((page) => (
-								<MenuItem key={page} onClick={handleCloseNavMenu}>
+							{pages.map((page,i) => (
+                                <MenuItem key={ "page"+i} onClick={handleCloseNavMenu}>
 									<Typography textAlign="center">{page}</Typography>
 								</MenuItem>
 							))}
@@ -133,9 +130,9 @@ function BarHome() {
 						<img alt="LOGO" className="logoBar" src={logo}></img>
 					</Typography>
 					<Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-						{pages.map((page) => (
+						{pages.map((page,i) => (
 							<Button
-								key={page}
+								key={"page2"+i}
 								onClick={handleCloseNavMenu}
 								sx={{ my: 2, color: "white", display: "block" }}
 							>

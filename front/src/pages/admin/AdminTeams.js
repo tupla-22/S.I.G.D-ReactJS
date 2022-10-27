@@ -4,16 +4,22 @@ import NavLink from "../../componentes/NavLink";
 import AdminNav from "./componentes/AdminNav";
 import AdminTeamsBar from "./componentes/AdminTeamsBar";
 import { getUser } from "../../functions/globals";
+import { useContext } from "react";
+import LanguajeContext from "../../contexts/LanguajeContext";
 
 const user= getUser()
 
 const AdminTeams = () => {
-    const pages = [
-        
-    <NavLink to="add">Agregar</NavLink>,
-    <NavLink to="delete">Eliminar</NavLink>,
-    <NavLink to="update">Actualizar</NavLink>,
-    ]
+
+  
+  const { text } = useContext(LanguajeContext)
+  
+
+  const pages = [
+    <NavLink to="add">{text.agregar}</NavLink>,
+    <NavLink to="delete">{text.eliminar }</NavLink>,
+    <NavLink to="update">{ text.actualizar}</NavLink>,
+  ];
   return (
     <>
     
