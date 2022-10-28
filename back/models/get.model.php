@@ -896,6 +896,9 @@ class GetModel{
         }
         return $stmt->fetchAll(PDO::FETCH_CLASS);
         }
+
+/**======================peticion get para seleccionar estadisticas============================== */
+
     static function getEstadisticaJugador($idPartido,$idJugador, $idUsuario, $tipoEstadistica, $verificado){
         
         
@@ -920,10 +923,132 @@ class GetModel{
         } catch (PDOException $Exeption) {
             return null;
         }
+        
         return $stmt->fetchAll(PDO::FETCH_CLASS);
+        
     }
 
+    static public function getCountEstadisticas($userID, $tipoEstadistica, $verified, $orderBy, $orderMode, $startAt, $endAt){
+
+        
+        $typeArray=array();
+        
+        
+        $tipoEstadisticaArray= explode(",",$tipoEstadistica);
+        for ($i=0; $i < count($tipoEstadisticaArray); $i++) { 
+                    $typeArray[]="tipo_estadistica";
+                    
+                }
+
+
+             
+        
+        
+        
+        
+        
+        $linkText="";
+
+        if(count($typeArray)>1){
+            
+            for ($i=0; $i < count($typeArray); $i++) { 
+
+                
+                if($i>0){
+
+                    $linkText .= "OR ".$typeArray[$i]." = '".$tipoEstadisticaArray[$i]."' ";
+
+                }
+            }
+        }
+       /**=====================sentencias sql ============================ */  
+        $select="tipo_estadistica, count(id_estadistica)  as 'conteo'";
+        $from='estadisticas';
+        $innerJoinText="";
+        $where="id_fichaJugador_estadistica=(select id_fichaJugador_tiene 
+                                            from  tienen 
+                                            where id_usuario_tiene=$userID)
+        and ($typeArray[0]='$tipoEstadisticaArray[0]' $linkText)
+        and verificado_estadistica=$verified
+        group by tipo_estadistica
+        ";
+
+        
+        /**=====================organizamos relaciones ============================ */
+
+        
+
+        
+
+            //-------sin ordenar ni limitar datos-----------
+
+            $sql="SELECT $select 
+            FROM $from $innerJoinText
+            WHERE $where
+            ";
+            
+            //-------ordenar datos sin limites-----------
+
+            if($orderBy != null && $orderMode != null && $startAt == null && $endAt == null){
+                $sql="select $select 
+                from $from $innerJoinText 
+                WHERE $where
+                ORDER BY $orderBy $orderMode";
+            }
+
+            //------- ordenar y limitar datos-----------
+
+            if($orderBy != null && $orderMode != null && $startAt != null && $endAt != null){
+                $sql="select $select 
+                from $from $innerJoinText 
+                WHERE $where
+                ORDER BY $orderBy $orderMode LIMIT $startAt, $endAt";
+            }
+
+            //-------limitar datos, sin ordenar-----------
+
+            if($orderBy == null && $orderMode == null && $startAt != null && $endAt != null){
+                $sql="select $select 
+                from $from $innerJoinText 
+                WHERE $where
+                LIMIT $startAt, $endAt";
+            }
+
+            $stmt=Connection::connect()->prepare($sql);
+            
+
+            /*foreach ($idSportTeamArray as $key => $value) {
+                
+                
+                $stmt-> bindParam(":".$value, $sportArray[$key], PDO::PARAM_STR);
+                echo '<pre>'; print_r($sportArray[$key]); echo '</pre>';
+                
     
+            }*/
+
+            try {
+
+                $stmt->execute();
+                
+
+            } catch (PDOException $Exeption) {
+                
+                
+                return null;
+            }
+
+            return $stmt->fetchAll(PDO::FETCH_CLASS);
+            
+            
+            
+            
+            
+
+      
+
+
+    }
+
     /**======================peticion get para seleccionar rangos con relaciones============================== */
 
     static function getRelDataRange($rel, 

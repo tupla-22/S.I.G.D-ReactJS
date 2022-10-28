@@ -20,6 +20,7 @@ $disputed=$_GET["disputed"] ?? null;
 $sport=$_GET["sport"] ?? null;
 $teamID=$_GET["teamID"] ?? null;
 $verificado=$_GET["verificado"] ?? true;
+$verified=$_GET["verificado"] ?? true;
 $idPartido=$_GET["id_partido"] ?? null;
 $idJugador=$_GET["id_fichaJugador"] ?? null;
 
@@ -186,7 +187,7 @@ deporte equipo
         $inTo
     );  
 
-}else if ($table=="statistics" && $table!="matcheck" && ( (isset($_GET["id_usuario"])&& isset($_GET["tipo_estadistica"])) || isset($idJugador) || isset($idPartido)  ) ) {
+}else if ($table=="statistics" && $table!="matcheck" && ( (!isset($_GET["id_usuario"])&& !isset($_GET["tipo_estadistica"])) || isset($idJugador) || isset($idPartido)  ) ) {
 
     $response->getEstadisticaJugador(
         $idPartido,
@@ -198,7 +199,16 @@ deporte equipo
     );  
  
     
+
+}else if ($table=="statistics" && $table!="matcheck" && ( isset($_GET["id_usuario"])&& isset($_GET["tipo_estadistica"]) ) ) {
+
+    $response->getCountEstadisticas($_GET["id_usuario"], $_GET["tipo_estadistica"], $verified, $orderBy, $orderMode, $startAt, $endAt);  
+    
+ 
+    
 }else{
+
+
 
     /**======================pticion get sin filtro============================== */
 

@@ -155,6 +155,14 @@ static function getEstadisticaJugador($idPartido,$idJugador, $idUsuario, $tipoEs
     $return -> fncResponse($response);
 }
 
+static function getCountEstadisticas($userID, $tipoEstadistica, $verified, $orderBy, $orderMode, $startAt, $endAt){
+    $response = GetModel::getCountEstadisticas($userID, $tipoEstadistica, $verified, $orderBy, $orderMode, $startAt, $endAt);
+    
+    
+    $return=new GetController();
+    $return -> fncResponse($response);
+}
+
     /**==============================respuestas del controlador====================================*/
 
     public function fncResponse($response){
