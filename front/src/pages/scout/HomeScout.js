@@ -4,7 +4,7 @@ import NavLink from "../../componentes/NavLink";
 
 const HomeScout = () => {
     const pages = [
-        <NavLink classAdd={"responsive"} to={""}>Buscar Jugador</NavLink>
+        <NavLink classAdd={"responsive"} to={"findPlayer"}>Buscar Jugador</NavLink>
     ]
 
 

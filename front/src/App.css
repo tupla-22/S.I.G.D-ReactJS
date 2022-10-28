@@ -27,16 +27,16 @@ body{
   padding: 10px;
 }
 
-/* .NavLink:hover{
-  transform:  scale(1.1,1.1);
-} */
+.NavLink:hover{
+  transform:  scale(1.2,1.2);
+}
 
 .noActive{
   color: #fff;
   text-decoration: none;
 }
 .isActive{
-  color: #fb6900;
+  color: #fff;
   text-decoration: none;
   transform:  scale(1.1,1.1);
 }

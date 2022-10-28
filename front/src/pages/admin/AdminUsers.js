@@ -1,16 +1,17 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import { DivFondo } from "../../componentes/styledComponents/DivFondo";
 import NavLink from "../../componentes/NavLink";
 import AdminNav from "./componentes/AdminNav";
 import AdminUsersBar from "./componentes/AdminUsersBar";
 import LanguajeContext from "../../contexts/LanguajeContext";
 import { useContext } from "react";
+import React, { useState, useEffect } from 'react';
+
 
 const AdminUsers = () => {
 
   
   const { text } = useContext(LanguajeContext)
-  
 
   const pages = [
     <NavLink to="add">{text.agregar}</NavLink>,

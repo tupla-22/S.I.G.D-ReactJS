@@ -64,6 +64,7 @@ import ChampionshipDel from "./pages/admin/componentes/ChampionshipDelete"
 import MatchCheckes from "./pages/judge/componentes/MatchCheckes"
 import Footer from "./Footer"
 import { LanguajeProvider } from "./contexts/LanguajeContext"
+import FindPlayer from "./pages/scout/FindPlayer"
 
 function App() {
 	return (
@@ -231,6 +232,7 @@ function App() {
 							<Route path="home" element={<HomePageJudge />}></Route>
 						</Route>
 						<Route path="scout/:userId" element={<HomeScout />}>
+							<Route path="findPlayer" element={<FindPlayer/>}></Route>
 							<Route path="profile" element={<Profile />}>
 								<Route path="changePassword" element={<ChangePassword />}></Route>
 							</Route>

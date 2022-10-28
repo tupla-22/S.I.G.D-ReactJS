@@ -88,11 +88,15 @@ const translation = {
         hora: "Hora",
         eliminarPartido:"Eliminar partido",
         actualizarPartido:"Actualizar partido",
-        campeonatoAlQuePertenece:"Campeonato al que pertenece",
+        campeonatoAlQuePertenece: "Campeonato al que pertenece",
+        visualizar: "Visualizar",
+        cartaDeJugador:"Carta de jugador",
         
     },
     en: {
-        campeonatoAlQuePertenece:"Championship to which it belongs",
+        cartaDeJugador:"playerCard",
+        visualizar:"Watch",
+        campeonatoAlQuePertenece: "Championship to which it belongs",
         actualizarPartido:"Update match",
         eliminarPartido:"Delete match",
         fecha: "Date",

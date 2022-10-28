@@ -5,10 +5,16 @@ import { H3 } from "../../componentes/styledComponents/H3";
 import Main from "../../componentes/styledComponents/Main";
 import { PW } from "../../componentes/styledComponents/PW";
 import { getUser } from "../../functions/globals";
+import React, { useState, useEffect } from 'react';
 
-const user = getUser()
+
 
 const HomePageJudge = () => {
+
+  const user = getUser()
+  useEffect(() => {
+    
+  }, []);
     return ( 
         <>
           <Main>

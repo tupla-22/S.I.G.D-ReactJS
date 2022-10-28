@@ -1,10 +1,10 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import { DivFondo } from "../../componentes/styledComponents/DivFondo";
 import NavLink from "../../componentes/NavLink";
 import AdminNav from "./componentes/AdminNav";
 import AdminTeamsBar from "./componentes/AdminTeamsBar";
 import { getUser } from "../../functions/globals";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import LanguajeContext from "../../contexts/LanguajeContext";
 
 const user= getUser()

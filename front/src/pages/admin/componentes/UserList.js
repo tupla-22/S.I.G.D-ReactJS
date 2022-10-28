@@ -9,6 +9,7 @@ import SettingsIcon from "@mui/icons-material/Settings"
 
 import { unstable_detectScrollType } from "@mui/utils"
 import LanguajeContext from "../../../contexts/LanguajeContext"
+import { Button } from "@mui/material"
 
 const UserList = () => {
   const [data, setData] = useState([])
@@ -22,7 +23,8 @@ const UserList = () => {
 	useEffect(() => {
 		peticion.get(urlApi("usuarios?select=*")).then((dat) => {
 			setData(dat.result)
-			setStatus(true)
+      setStatus(true)
+      console.log(user)
 		})
     userVerifier(setUserType, userType)
 	}, [])
@@ -32,7 +34,8 @@ const UserList = () => {
 			<h3>{text.usuarios}</h3>
 			<DivOver>
 				<Table>
-					<thead>
+          <thead>
+            {user.id_rol_usuario == 4 && <th></th>}
 						<TH>{text.nombre}</TH>
 						<TH>{text.apellido}</TH>
 						<TH>{text.cedula}</TH>
@@ -41,7 +44,7 @@ const UserList = () => {
             <TH>{text.rol}</TH>
 					</thead>
 
-					<tbody>{status && data.map((e) => <UserListRow key={e.ci_usuario} data={e} />)}</tbody>
+					<tbody>{status && data.map((e) => <UserListRow user={user} key={e.ci_usuario} data={e} />)}</tbody>
 				</Table>
 			</DivOver>
 		</>

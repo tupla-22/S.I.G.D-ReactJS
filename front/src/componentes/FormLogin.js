@@ -91,7 +91,7 @@ const FormLogin = () => {
 
     return ( 
       <Form>
-        {errors.correct && <PAlert>{text.CedulaError}</PAlert>}
+        {errors.correct && <PAlert>{text.cedulaError}</PAlert>}
         <TextField
           name='ci_usuario'
           className="Form__input"

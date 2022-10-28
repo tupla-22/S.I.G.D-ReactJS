@@ -11,6 +11,9 @@ import { DivOver } from "../../../componentes/DivOver"
 import { Table } from "../../../componentes/styledComponents/Table"
 import { PAlert } from "../../../componentes/PAlert"
 import LanguajeContext from "../../../contexts/LanguajeContext"
+import { getUser } from "../../../functions/globals"
+import SearchIcon from '@mui/icons-material/Search';
+
 
 const UserSearch = () => {
 	const [apellido, setApellido] = useState("")
@@ -22,16 +25,19 @@ const UserSearch = () => {
 
 	const { text } = useContext(LanguajeContext)
 
+  const user= getUser()
+
 	const handleChange = (e) => {
 		setApellido(e.target.value)
 	}
 
 	const handleSubmit = (e) => {
-		e.nativeEvent.preventDefault()
+		e.preventDefault()
 		setLoading(true)
 		solicitud
 			.get(`http://apirest.com/usuarios?select=*&linkTo=primerApellido_usuario&search=${apellido}¨¨`)
-			.then((e) => {
+      .then((e) => {
+        console.log(e)
 				setUsuariosBuscados(e.result)
 				if (e.status == 200) {
 					setErrors(false)
@@ -49,14 +55,15 @@ const UserSearch = () => {
 			<h3>{text.buscarUsuario}</h3>
 			<TextField onChange={handleChange} value={apellido} className="Form__input" label={text.apellido} />
 			<ButtonClassic type="submit" onClick={handleSubmit} variant="contained">
-				{text.buscar}
+				{text.buscar} <SearchIcon/>
 			</ButtonClassic>
 			{loading && <Loader />}
 			{ok && (
 				<DivOver>
 					<Table>
-						<thead>
-							<TH>{text.nombre}</TH>
+            <thead>
+              {user.id_rol_usuario == 4 && <th></th>}
+              <TH>{text.nombre}</TH>
 							<TH>{text.apellido}</TH>
 							<TH>{text.cedula}</TH>
 							<TH>{text.correoElectronico}</TH>
@@ -65,7 +72,7 @@ const UserSearch = () => {
 						</thead>
 						<tbody>
 							{usuariosBuscados.map((e) => (
-								<UserListRow data={e} />
+								<UserListRow user={user} data={e} />
 							))}
 						</tbody>
 					</Table>

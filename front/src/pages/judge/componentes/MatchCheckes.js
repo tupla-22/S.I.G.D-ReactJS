@@ -6,6 +6,8 @@ import { Seccion } from "../../../componentes/styledComponents/Seccion"
 import styled from "styled-components"
 import { ButtonClassic } from "../../../componentes/ButtonClassic"
 import NotificationModal from "../../../componentes/NotificationModal"
+import { Alert } from "@mui/material"
+import AlertiSuccees from "../../../componentes/AlertSuccees"
 
 const peticion = helpHttp()
 
@@ -92,12 +94,12 @@ const MatchCheckes = () => {
 			body: new URLSearchParams({ verificado_estadistica: 1 })
 		}
 		console.log(estadistica)
-		peticion.put(urlApi(`estadisticas?id=${estadistica.id_estadistica}}&nameID=id_estadistica`), data).then(result => {
+		peticion.put(urlApi(`estadisticas?id=${estadistica.id_estadistica}&nameID=id_estadistica`), data).then(result => {
 			if (result.status == 200) {
 				setEstadisticas(estadisticas.filter(el => el.id_estadistica !== estadistica.id_estadistica))
 				setTextNotification("Estadistica verificada correctamente")
 				setDone(true)
-				setTimeout(()=>setDone(false),5000)
+				setTimeout(()=>setDone(false),3000)
 			}
 			
 		})
@@ -105,13 +107,13 @@ const MatchCheckes = () => {
 
 
 	useEffect(() => {
-		peticion.del(urlApi(`estadisticas?id=${estadisticaAEliminar.id_estadistica}}&nameID=id_estadistica`)).then(result => {
+		peticion.del(urlApi(`estadisticas?id=${estadisticaAEliminar.id_estadistica}&nameID=id_estadistica`)).then(result => {
 			console.log(result)
 			if (result.status == 200) {
 				setEstadisticas(estadisticas.filter(el => el.id_estadistica !== estadisticaAEliminar.id_estadistica))
 				setTextNotification("Estadistica eliminada correctamente")
 				setDone(true)
-				setTimeout(()=>setDone(false),5000)
+				setTimeout(()=>setDone(false),3000)
 
 			}
 			
@@ -124,7 +126,7 @@ const MatchCheckes = () => {
 
 	return (
 		<>
-			{done && <NotificationModal state={done} text={ textNotification} />}
+			{done &&  <AlertiSuccees severity="success">This is a success message!</AlertiSuccees>}
 			{estadisticas.map((estadistica) => (
 				<Container>
 					<Card>
