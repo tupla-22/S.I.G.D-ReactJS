@@ -364,7 +364,7 @@ procedure seleccionar estadisticas de jugador
 ----------------------------------------------*/
 #drop procedure estadisticasJugador;
 DELIMITER //
-create procedure estadisticasJugador(in usuario int, in verif bool)
+create procedure estadisticasJugador(in jugador int, in verif bool)
 
 BEGIN
 
@@ -382,9 +382,7 @@ INNER join usuarios on id_usuario_tiene=id_usuario
 inner join  fichasJugadores on id_fichaJugador=id_fichaJugador_tiene
 inner join estadisticas on id_fichaJugador_estadistica=id_fichaJugador_tiene
 
-    where id_fichaJugador_estadistica=(select id_fichaJugador_tiene 
-										from  tienen 
-                                        where id_usuario_tiene=usuario) and verificado_estadistica=verif#or id_fichaJugador=1;
+    where id_fichaJugador_estadistica=jugador and verificado_estadistica=verif#or id_fichaJugador=1;
 ORDER BY fecha_estadistica desc;
         
 END //

@@ -898,11 +898,17 @@ class GetModel{
         }
     static function getEstadisticaJugador($idPartido,$idJugador, $idUsuario, $tipoEstadistica, $verificado){
         
+        
+        
 
         if (isset($idPartido)) {
             
             $stmt=Connection::connect()->prepare("call estadisticasPartido($idPartido,$verificado);");
         }elseif (isset($idUsuario)) {
+
+            $tipoEstadisticaArray= explode(",",$tipoEstadistica);
+            
+
             $stmt=Connection::connect()->prepare("call cantidadEstadistica($idUsuario, '$tipoEstadistica', '$verificado');");
         }elseif (isset($idJugador)) {
             $stmt=Connection::connect()->prepare("call estadisticasJugador($idJugador,$verificado);");
