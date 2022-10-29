@@ -204,6 +204,16 @@ const LanguajeProvider = ({ children }) => {
     const [languaje, setLanguaje] = useState(initialLanguaje)
     const [text, setText] = useState(translation.es)
 	
+    useEffect(() => {
+        if (localStorage.getItem("languaje") == "es") {
+            
+            setLanguaje("es")
+            setText(translation.es)
+        } if (localStorage.getItem("languaje") == "en") {
+            setLanguaje("en")
+            setText(translation.en)
+        } 
+    }, []);
     
 
     const handleLanguaje = (e) => {

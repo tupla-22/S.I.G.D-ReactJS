@@ -36,22 +36,32 @@ const Div = styled.div`
 		cursor: pointer;
 	}
 `
+
 export default function EngOrSpan() {
 	const [selectEs, setSelectEs] = useState({ opacity: "100%" })
 	const [selectEn, setSelectEn] = useState({})
 	const { handleLanguaje, text } = React.useContext(LanguajeContext)
 
+	useEffect(() => {
+		if (localStorage.getItem("languaje") == "es") {
+			setSelectEs({ opacity: "100%" })
+			setSelectEn({ opacity: "50%" })
+		}
+		if (localStorage.getItem("languaje") == "en") {
+			setSelectEn({ opacity: "100%" })
+			setSelectEs({ opacity: "50%" })
+		}
+	}, [])
+
 	const handleEs = () => {
-    handleLanguaje("es")
-    localStorage.setItem("languaje","es")
+		handleLanguaje("es")
+		localStorage.setItem("languaje", "es")
 		setSelectEs({ opacity: "100%" })
-    console.log(localStorage)
 		setSelectEn({ opacity: "50%" })
 	}
 
-  const handleEn = () => {
-    localStorage.setItem("languaje", "en")
-    console.log(localStorage)
+	const handleEn = () => {
+		localStorage.setItem("languaje", "en")
 		handleLanguaje("en")
 		setSelectEn({ opacity: "100%" })
 		setSelectEs({ opacity: "50%" })
