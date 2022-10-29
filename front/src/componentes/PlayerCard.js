@@ -10,6 +10,8 @@ import { IconFoto } from "./styledComponents/IconFoto"
 import { useState, useEffect } from "react"
 import { helpHttp } from "../helpers/helpHttp"
 import { urlApi } from "../functions/globals"
+import { H3 } from "./styledComponents/H3"
+import { unstable_requirePropFactory } from "@mui/utils"
 
 const Container = styled.section`
 	position: absolute;
@@ -22,8 +24,8 @@ const Container = styled.section`
 	border-radius: 15px;
 	background-color: #fff;
 	display: grid;
-	grid-template-columns: repeat(2, minmax(100px, 1fr));
-	grid-template-rows: repeat(2, 200px);
+	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+	grid-auto-rows: minmax(200px, auto);
 	@media screen and (max-width: 800px) {
 		& {
 			width: 90%;
@@ -43,23 +45,60 @@ const style = {
 	borderRadius: "15px",
 }
 
-const Div = styled.div`
-	background-color: black;
+const Picture = styled.div`
 	border: 1px solid #fff;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction:column;
 `
 
+const Div = styled.div`
+	display: flex;
+	flex-direction:column;
+`
 
-export default function PlayerCard({ state, idUsuario,usuario }) {
+const B = styled.b`
+margin:10px;
+`
+
+const usuarioInit = {
+	fotoPerfil_usuario: "",
+}
+
+export default function PlayerCard({ state, idUsuario }) {
 	const [open, setOpen] = React.useState(state)
+	const [usuario, setUsuario] = useState(usuarioInit)
+	const [stats, setStats] = useState([]);
+	const [carga, setCarga] = useState(false)
+
 	const handleOpen = () => {
 		setOpen(true)
-		
 	}
-	console.log(usuario)
 	const handleClose = () => setOpen(false)
-
+	const peticion = helpHttp()
 	const { text } = React.useContext(LanguajeContext)
 
+	useEffect(() => {
+		peticion
+			.get(
+				urlApi(
+					`usuarios?select=primerNombre_usuario,primerApellido_usuario,fotoPerfil_usuario&linkTo=id_usuario&equalTo=${idUsuario}`
+				)
+			)
+			.then((result) => {
+				if (result.status == 200) {
+					setUsuario(result.result[0])
+					setCarga(true)
+				}
+			})
+		peticion.get(urlApi(`statistics?id_usuario=${idUsuario}&tipo_estadistica=gol,penal,lateral&verificado=0&orderBy=tipo_Estadistica&orderMode=asc`)).then(e => {
+			console.log(e)
+			if (e.status == 200) {
+				setStats(e.result)
+			}
+		})
+	}, [])
 
 	return (
 		<div>
@@ -73,11 +112,20 @@ export default function PlayerCard({ state, idUsuario,usuario }) {
 				aria-describedby="modal-modal-description"
 			>
 				<Container>
+					<Picture>
+						<IconFoto src={usuario.fotoPerfil_usuario} />
+					</Picture>
 					<Div>
-						{/* <IconFoto src={usuario.fotoPerfil_usuario} />   */}
+						<b>{usuario.primerNombre_usuario}</b>
+						<b>{usuario.primerApellido_usuario}</b>
 					</Div>
-					<Div></Div>
-					<Div></Div>
+					<Div>
+						{stats.map(e => (
+							<>
+								<B>{e.tipo_estadistica}: { e.conteo}</B>
+							</>
+						))}
+					</Div>
 					<Div></Div>
 				</Container>
 			</Modal>
