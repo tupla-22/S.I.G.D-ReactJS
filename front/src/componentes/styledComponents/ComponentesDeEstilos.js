@@ -13,3 +13,9 @@ export const P = styled.p`
 margin: 10px;
 color:#333;
 `
+
+export const BoxFilas = styled.div`
+    display:flex;
+    flex-direction: column;
+
+`

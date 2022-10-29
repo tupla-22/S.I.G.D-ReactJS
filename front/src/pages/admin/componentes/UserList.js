@@ -22,8 +22,10 @@ const UserList = () => {
 	const user = getUser()
 	useEffect(() => {
 		peticion.get(urlApi("usuarios?select=*")).then((dat) => {
-      if (dat.status == 200) {
-				setData(dat.result)
+			if (dat.status == 200) {
+		  
+				
+				setData(dat.result.filter(e=> e.ci_usuario != 0))
 				setStatus(true)
 			}
 		})

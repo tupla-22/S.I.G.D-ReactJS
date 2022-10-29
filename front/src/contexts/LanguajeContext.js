@@ -98,9 +98,12 @@ const translation = {
         tipoDeEstadistica: "Tipo de estadística",
         cantidad:"Cantidad",
         buscarJugador: "Buscar jugador",
+        cambiarCorreo: "Cambiar correo",
+        
         
     },
     en: {
+        cambiarCorreo: "Change email",
         buscarJugador:"Find player",
         cantidad:"amount",
         tipoDeEstadistica:"Stat type",
