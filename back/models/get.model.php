@@ -962,9 +962,9 @@ class GetModel{
             }
         }
        /**=====================sentencias sql ============================ */  
-        $select="tipo_estadistica, count(id_estadistica)  as 'conteo'";
+        $select="minutosJugados_fichaJugador, tipo_estadistica, count(id_estadistica)  as 'conteo'";
         $from='estadisticas';
-        $innerJoinText="";
+        $innerJoinText="inner join fichasJugadores on id_fichaJugador_estadistica=id_fichaJugador";
         $where="id_fichaJugador_estadistica=(select id_fichaJugador_tiene 
                                             from  tienen 
                                             where id_usuario_tiene=$userID)
