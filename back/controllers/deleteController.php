@@ -9,7 +9,7 @@ class DeleteController{
    
     static public function deleteData($table, $id, $nameID){
 
-        if ($nameID=="id_usuario" && $id==1 && $table=="usuarios") {
+        if ($nameID=="ci_usuario" && $id==0 && $table=="usuarios") {
             $response="RootNo";
         }else {
             $response= DeleteModel::deleteData($table, $id, $nameID);
