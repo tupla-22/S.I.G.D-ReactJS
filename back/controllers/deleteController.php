@@ -17,7 +17,7 @@ class DeleteController{
         }
 
         $return= new DeleteController();
-            $return -> fncResponse($response);
+        $return -> fncResponse($response);
 
     }
 
