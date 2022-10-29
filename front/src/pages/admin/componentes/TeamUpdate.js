@@ -10,7 +10,7 @@ const TeamUpdate = () => {
 
     return ( 
         <Main>
-            {team && <TeamUpdateCard data={team}/>}
+            {team && <TeamUpdateCard setTeam={setTeam} data={team}/>}
             <TeamUpdateForm setTeam={setTeam}></TeamUpdateForm>
             <TeamSearch/>
         </Main>
