@@ -5,12 +5,19 @@ require_once "models/deleteModel.php";
 class DeleteController{
 
     /**================peticion delete para eliminar datos================== */
+
+   
     static public function deleteData($table, $id, $nameID){
 
-        $response= DeleteModel::deleteData($table, $id, $nameID);
-        
+        if ($nameID=="id_usuario" && $id==1 && $table=="usuarios") {
+            $response="RootNo";
+        }else {
+            $response= DeleteModel::deleteData($table, $id, $nameID);
+         
+        }
+
         $return= new DeleteController();
-        $return -> fncResponse($response);
+            $return -> fncResponse($response);
 
     }
 
@@ -18,12 +25,23 @@ class DeleteController{
 
     public function fncResponse($response){
 
-        if(!empty($response)){
+        if(!empty($response) && $response!="RootNo"){
 
             $json= array(
         
                 "status" => 200,
                 "result" => $response
+            
+            
+            );
+
+        }elseif($response=="RootNo"){
+
+            $json= array(
+        
+                "status" => 403,
+                "result" => "no se puede matar a dios",
+                "method" => "delete"
             
             
             );
