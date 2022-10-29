@@ -74,6 +74,13 @@ create table equipos(
     foreign key (id_deporte_equipo) references deportes(id_deporte)
 );
 
+create table fotosEquipos(
+id_fotoEquipo longtext,
+id_equipo_fotoEquipo int primary key,
+foreign key (id_equipo_fotoEquipo) references equipos(id_equipo)
+);
+
+
 create table cantidadEquiposDeportes(
 	id_deporte varchar(40) primary key,
     cantidad_equipo int,
@@ -137,6 +144,12 @@ create table partidos(
 	foreign key ( id_equipoVisitante_partido) references equipos(id_equipo)
 );
 
+create table fotosPartidos(
+id_fotoPartido longtext,
+id_equipo_fotoPartido int primary key,
+foreign key (id_equipo_fotoPartido) references equipos(id_equipo)
+);
+
 create table campeonatos(
 	id_campeonato int primary key auto_increment,
     campeon_campeonato varchar(50),
@@ -150,6 +163,13 @@ create table campeonatos(
     date_updated_campeonato timestamp default current_timestamp ON UPDATE CURRENT_TIMESTAMP,
     foreign key (id_liga_campeonato) references ligas(id_liga)
 );
+
+create table fotosCampeonatos(
+id_fotoCampeonato longtext,
+id_equipo_fotoCampeonato int primary key,
+foreign key (id_equipo_fotoCampeonato) references equipos(id_equipo)
+);
+
 
 create table compiten(
 	id_campeonato_compite int,
@@ -526,6 +546,8 @@ insert into usuarios values
 insert into telefonos (id_telefono, id_usuario_telefono)
 values 
 ('095551830',17);
+
+select * from telefonos;
 
 insert into fichasJugadores 
 	(altura_fichaJugador,#cm
