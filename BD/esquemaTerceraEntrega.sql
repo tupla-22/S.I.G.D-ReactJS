@@ -364,6 +364,7 @@ select id_estadistica, fecha_estadistica, verificado_estadistica,tipo_estadistic
         (select primerNombre_usuario from usuarios where id_fichaJugador=id_fichaJugador_estadistica and id_usuario=id_usuario_tiene) as 'primerNombre_usuario_fichaJugador',
         (select primerApellido_usuario from usuarios where id_fichaJugador=id_fichaJugador_estadistica and id_usuario=id_usuario_tiene) as 'primerApellido_usuario_fichaJugador',
         (select fotoPerfil_usuario from usuarios where id_fichaJugador=id_fichaJugador_estadistica and id_usuario=id_usuario_tiene) as 'fotoPerfil_jugador',
+        minutosJugados_fichaJugador,
         (select id_usuario from usuarios where id_usuario=id_usuario_estadistica) as 'id_usuario_analista',
         (select id_usuario from usuarios where id_usuario=id_usuario_tiene) as 'id_usuario_fichaJugador' 
 from tienen 
@@ -379,7 +380,7 @@ END //
 DELIMITER ;
 
 call estadisticasJugador(8, false);
-
+select * from fichasJugadores;
 
 /*----------------------------------------------
 procedure seleccionar estadisticas de jugador relacionada a un partido
