@@ -6,33 +6,27 @@ import LanguajeContext from "../../../contexts/LanguajeContext"
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye"
 import { Button } from "@mui/material"
 import PlayerCard from "../../../componentes/PlayerCard"
-import React, { useState } from 'react';
-import {useEffect } from 'react';
+import React, { useState } from "react"
+import { useEffect } from "react"
 import { helpHttp } from "../../../helpers/helpHttp"
 
 const peticion = helpHttp()
 
 const UserListRow = ({ user, data, userType }) => {
-  const [state, setState] = useState(false);
-  const [peticionOj, setPeticionOj] = useState(false);
+	const [state, setState] = useState(false)
+	const [peticionOj, setPeticionOj] = useState(false)
 	const { text } = useContext(LanguajeContext)
 
-  
-  
-	
-
-  const handleVisualizador = () => {
-     setState(true)
-  }
+	const handleVisualizador = () => {
+		setState(true)
+	}
 
 	return (
-    <>
+		<>
 			<tr>
 				{user.id_rol_usuario == 4 && (
 					<td>
-            <PlayerCard idUsuario={data.id_usuario} state={state} variant="contained">
-							
-						</PlayerCard>
+						<PlayerCard idUsuario={data.id_usuario} state={state} variant="contained"></PlayerCard>
 					</td>
 				)}
 				<TD>{data.primerNombre_usuario}</TD>
