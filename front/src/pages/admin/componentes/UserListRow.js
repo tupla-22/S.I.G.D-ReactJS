@@ -14,22 +14,12 @@ const peticion = helpHttp()
 
 const UserListRow = ({ user, data, userType }) => {
   const [state, setState] = useState(false);
-  const [usuario, setUsuario] = useState({});
-
+  const [peticionOj, setPeticionOj] = useState(false);
 	const { text } = useContext(LanguajeContext)
 
-  useEffect(() => {
-    peticion.get(
-			urlApi(
-				`usuarios?select=primerNombre_usuario,primerApellido_usuario,fotoPerfil_usuario&linkTo=id_usuario&equalTo=${data.ci_usuario}`
-			)
-		).then(result => {
-			console.log(result,"usuario")
-			if (result.status == 200) {
-				setUsuario(result.reusult)
-			}
-		})
-  }, []);
+  
+  
+	
 
   const handleVisualizador = () => {
      setState(true)
@@ -40,7 +30,7 @@ const UserListRow = ({ user, data, userType }) => {
 			<tr>
 				{user.id_rol_usuario == 4 && (
 					<td>
-						<PlayerCard usuario={usuario} state={state} variant="contained">
+            <PlayerCard idUsuario={data.id_usuario} state={state} variant="contained">
 							
 						</PlayerCard>
 					</td>

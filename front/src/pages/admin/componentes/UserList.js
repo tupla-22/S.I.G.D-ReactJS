@@ -12,21 +12,22 @@ import LanguajeContext from "../../../contexts/LanguajeContext"
 import { Button } from "@mui/material"
 
 const UserList = () => {
-  const [data, setData] = useState([])
-  const [status, setStatus] = useState(false)
-  const [userType, setUserType] = useState({})
-  const peticion = helpHttp()
+	const [data, setData] = useState([])
+	const [status, setStatus] = useState(false)
+	const [userType, setUserType] = useState({})
+	const peticion = helpHttp()
 
-  const { text } = useContext(LanguajeContext)
+	const { text } = useContext(LanguajeContext)
 
-  const user = getUser()
+	const user = getUser()
 	useEffect(() => {
 		peticion.get(urlApi("usuarios?select=*")).then((dat) => {
-			setData(dat.result)
-      setStatus(true)
-      console.log(user)
+      if (dat.status == 200) {
+				setData(dat.result)
+				setStatus(true)
+			}
 		})
-    userVerifier(setUserType, userType)
+		userVerifier(setUserType, userType)
 	}, [])
 
 	return (
@@ -34,17 +35,19 @@ const UserList = () => {
 			<h3>{text.usuarios}</h3>
 			<DivOver>
 				<Table>
-          <thead>
-            {user.id_rol_usuario == 4 && <th></th>}
+					<thead>
+						{user.id_rol_usuario == 4 && <th></th>}
 						<TH>{text.nombre}</TH>
 						<TH>{text.apellido}</TH>
 						<TH>{text.cedula}</TH>
 						<TH>{text.correoElectronico}</TH>
 						<TH>{text.fechaDeNacimiento}</TH>
-            <TH>{text.rol}</TH>
+						<TH>{text.rol}</TH>
 					</thead>
 
-					<tbody>{status && data.map((e) => <UserListRow user={user} key={e.ci_usuario} data={e} />)}</tbody>
+					<tbody>
+						{status && data.map((e) => <UserListRow user={user} key={e.ci_usuario} data={e} />)}
+					</tbody>
 				</Table>
 			</DivOver>
 		</>
