@@ -305,6 +305,7 @@ class GetModel{
 
             $stmt=Connection::connect()->prepare($sql);
             
+            
             foreach ($linkToArray as $key => $value) {
 
                 $stmt-> bindParam(":".$value, $equalToArray[$key], PDO::PARAM_STR);
