@@ -241,7 +241,6 @@ delete from telefonos
 where id_usuario_telefono = old.id_usuario;
 
 
-
 /*==========================
 trigger roles telefonos delete
 =============================*/
