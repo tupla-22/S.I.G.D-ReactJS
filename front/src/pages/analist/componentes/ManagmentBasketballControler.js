@@ -20,6 +20,7 @@ import { getDateTime, urlApi } from "../../../functions/globals";
 import { helpHttp } from "../../../helpers/helpHttp";
 import SportsBasketballIcon from '@mui/icons-material/SportsBasketball';
 import DirectionsWalkIcon from '@mui/icons-material/DirectionsWalk';
+import { ButtonClassic } from "../../../componentes/ButtonClassic";
 
 const peticion =helpHttp();
 
@@ -297,9 +298,9 @@ const ManagmentBasketballControler = ({matchId , locales, visitantes }) => {
         )}
         {tipo == "falta"}
 
-        <Button onClick={handleSubmit} type={"submit"} variant="outlined">
+        <ButtonClassic onClick={handleSubmit} type={"submit"} >
           enviar{" "}
-        </Button>
+        </ButtonClassic>
         {/* <BoxFlex>
           <UsersModal
             name={"gol"}

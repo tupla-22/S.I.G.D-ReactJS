@@ -63,7 +63,8 @@ const Profile = () => {
 			})
 	}, [photo])
 
-	return (
+  return (
+    
 		<div className="profile">
 			<div className="section">
 				<div className="profile__avatar">

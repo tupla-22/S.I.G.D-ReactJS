@@ -10,7 +10,7 @@ const UserUpdate = () => {
   return (
     <>
       <Main>
-        {user && <UserUpdateCard data={user}/>}
+        {user && <UserUpdateCard setUser={setUser} data={user}/>}
         <UserUpdateForm user={user} setUser={setUser} />
         <UserSearch/>
       </Main>

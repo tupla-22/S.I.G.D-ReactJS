@@ -9,12 +9,13 @@ import { id } from "date-fns/locale";
 import { PSuccess } from "../../../componentes/styledComponents/PSuccess";
 import { PAlert } from "../../../componentes/PAlert";
 import LanguajeContext from "../../../contexts/LanguajeContext";
+import AlertSuccees from "../../../componentes/AlertSuccees";
 
 const TeamDelForm = () => {
     const [iDTeam, setIDTeam] = useState(null);
     const [confirm, setConfirm] = useState(null);
     const [modalConfirm, setModalConfirm] = useState(null);
-    const [done, setDone] = useState(false);
+    const [ok, setOk] = useState(false);
     const [error, setError] = useState(false);
     const peticion = helpHttp();
 
@@ -38,17 +39,22 @@ const TeamDelForm = () => {
         if(confirm == "1"){
             peticion.put(urlApi(`equipos?id=${iDTeam}&nameID=id_equipo`),data).then(e=>console.log(e));
             setConfirm(false)
-            setDone(true)
+            setOk(true)
+            setTimeout(()=>{setOk(false)},5000)
         }else setError(true)
     }, [confirm]);
     return ( 
+
+        <>
+        {ok && <AlertSuccees/>}
         <Form>
             <h3>{text.eliminarEquipo}</h3>
-            {done && <PSuccess>{text.accionLogradaCorrectamente}</PSuccess>}
             {/* {error && <PAlert>A ocurrido un error</PAlert>} */}
             <TextField type="number" onChange={handleChange} label="ID" value={iDTeam} className="Form__input"></TextField>
             <ModalConfirm name={text.eliminar} confirm={confirm} setConfirm={setConfirm}/>
         </Form>
+        
+        </>
      );
 }
  

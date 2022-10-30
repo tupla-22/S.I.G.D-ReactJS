@@ -99,10 +99,15 @@ const translation = {
         cantidad:"Cantidad",
         buscarJugador: "Buscar jugador",
         cambiarCorreo: "Cambiar correo",
+        localesEnElJuego: "Locales en el juego",
+        visitantesEnElJuego: "Visitantes en el juego",
+        
         
         
     },
     en: {
+        localesEnElJuego: "Locals in the game",
+        visitantesEnElJuego: "Visitors in the game",
         cambiarCorreo: "Change email",
         buscarJugador:"Find player",
         cantidad:"amount",
@@ -119,7 +124,7 @@ const translation = {
         fecha: "Date",
         hora:"Time",
         tipo:"Type",
-        equipoLocal: "Local tema",
+        equipoLocal: "Local team",
         equipoVisitante: "Visiting team",
         agregarPartido:"Add match",
         actualizarCampeonato:"Update championship",

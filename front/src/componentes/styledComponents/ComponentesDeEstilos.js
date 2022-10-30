@@ -19,3 +19,26 @@ export const BoxFilas = styled.div`
     flex-direction: column;
 
 `
+
+
+export const H3 = styled.h3`
+margin:20px 10px;
+
+`
+
+export const H2 = styled.h2`
+margin:20px 10px;
+
+`
+export const H1 = styled.h1`
+margin:20px 10px;
+`
+
+
+
+export const BoxColCen = styled.div`
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+`

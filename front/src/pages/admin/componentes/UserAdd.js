@@ -1,15 +1,12 @@
+import Main from "../../../componentes/styledComponents/Main";
 import UserAddForm from "./UserAddForm";
 
 const UserAdd = () => {
-  const sx = {
-    display:"flex",
-    justifyContent:"center"
-  };
 
   return (
-    <div style={sx}>
-      <UserAddForm />
-    </div>
+    <Main>
+      <UserAddForm/>
+    </Main>
   );
 };
 

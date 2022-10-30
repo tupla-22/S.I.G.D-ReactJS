@@ -21,6 +21,7 @@ import { helpHttp } from "../../../helpers/helpHttp";
 import SportsVolleyballIcon from '@mui/icons-material/SportsVolleyball';
 import SportsVolleyball from "@mui/icons-material/SportsVolleyball";
 import StraightenIcon from '@mui/icons-material/Straighten';
+import { ButtonClassic } from "../../../componentes/ButtonClassic";
 
 
 const peticion =helpHttp();
@@ -308,9 +309,9 @@ const ManagmentHandballControler = ({ locales, visitantes }) => {
         )}
         {tipo == "falta"}
 
-        <Button onClick={handleSubmit} type={"submit"} variant="outlined">
+        <ButtonClassic onClick={handleSubmit} type={"submit"} >
           enviar{" "}
-        </Button>
+        </ButtonClassic>
         {/* <BoxFlex>
           <UsersModal
             name={"gol"}

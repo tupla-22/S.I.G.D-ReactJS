@@ -7,7 +7,7 @@ import Button from "@mui/material/Button"
 import Typography from "@mui/material/Typography"
 import { ButtonClassic } from "../../../componentes/ButtonClassic"
 import UserList from "../../admin/componentes/UserList"
-import UserListButtons from "./UserListButtons"
+import UserListButtons from "./WhoArePlaying"
 
 const style = {
 	position: "absolute",

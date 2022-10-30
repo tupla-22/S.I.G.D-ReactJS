@@ -60,6 +60,7 @@ const UserAddStudentForm = ({
     <>
       <TextField
         onChange={handleChange}
+        value={form.peso_fichaJugador}
         name="peso_fichaJugador"
         className="Form__input"
         label="Peso"
@@ -70,6 +71,7 @@ const UserAddStudentForm = ({
       />
       <TextField
         onChange={handleChange}
+        value={form.altura_fichaJugador}
         name="altura_fichaJugador"
         label="altura"
         className="Form__input"

@@ -7,16 +7,16 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { ButtonClassic } from '../../../componentes/ButtonClassic';
 import LanguajeContext from '../../../contexts/LanguajeContext';
-
+import CheckCircleTwoToneIcon from '@mui/icons-material/CheckCircleTwoTone';
+import HighlightOffTwoToneIcon from '@mui/icons-material/HighlightOffTwoTone';
 const style = {
   position: 'absolute',
   top: '50%',
   left: '50%',
   borderRadius:"15px",
   transform: 'translate(-50%, -50%)',
-  width: 400,
+  width:320,
   bgcolor: 'background.paper',
-  border: '2px solid #000',
   boxShadow: 24,
   p: 4,
 };
@@ -54,8 +54,8 @@ export default function ModalConfirm({name,confirm,setConfirm}) {
               {text.estasSeguro}
             </Typography>
             <Typography id="transition-modal-description" sx={{ mt: 2 }}>
-              <Button name={"1"} onClick={handleClose}>{text.confirmar}</Button>
-            <Button name={"0"} onClick={handleClose}>{text.cancelar}</Button>
+              <Button name={"1"} onClick={handleClose}><CheckCircleTwoToneIcon/> {text.confirmar}</Button>
+            <Button color='error' name={"0"} onClick={handleClose}>{<HighlightOffTwoToneIcon/>}  {text.cancelar}</Button>
             </Typography>
           </Box>
         </Fade>

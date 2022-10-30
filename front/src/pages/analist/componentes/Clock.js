@@ -1,64 +1,60 @@
-import QueryBuilderIcon from "@mui/icons-material/QueryBuilder";
-import { set, setSeconds } from "date-fns";
-import React, { useState, useEffect } from "react";
-import Button from "@mui/material/Button";
-import { useMediaQuery } from "@mui/material";
-import { id } from "date-fns/locale";
-import { Box } from "@mui/system";
-import { helpHttp } from "../../../helpers/helpHttp";
-import { urlApi } from "../../../functions/globals";
+import QueryBuilderIcon from "@mui/icons-material/QueryBuilder"
+import { set, setSeconds } from "date-fns"
+import React, { useState, useEffect } from "react"
+import Button from "@mui/material/Button"
+import { useMediaQuery } from "@mui/material"
+import { id } from "date-fns/locale"
+import { Box } from "@mui/system"
+import { helpHttp } from "../../../helpers/helpHttp"
+import { urlApi } from "../../../functions/globals"
+import { BoxColCen } from "../../../componentes/styledComponents/ComponentesDeEstilos"
+import { useNavigate } from "react-router-dom"
 
-const peticion=helpHttp();
+const peticion = helpHttp()
 
-const Clock = ({minutos,setMinutos, paused, started,endMatch,matchId,setEndMatch }) => {
-  const [minits, setMinits] = useState(0);
-  const [seconds, setSeconds] = useState(0);
-  const [idInterval, setIdInterval] = useState(null);
-  const [idMinutos, setIdMinutos] = useState(null);
+const Clock = ({ confirm, minutos, setMinutos, paused, started, endMatch, matchId, setEndMatch }) => {
+	const [minits, setMinits] = useState(0)
+	const [seconds, setSeconds] = useState(0)
+	const [idInterval, setIdInterval] = useState(null)
+  const [idMinutos, setIdMinutos] = useState(null)
   
-  useEffect(() => {
-    setMinutos(minits)
-  }, [minits]);
 
   useEffect(() => {
-    const matchInfo={
-        body:new URLSearchParams({disputado_partido:1})
+    if (endMatch == true) {
+      clearInterval(idInterval)
     }
-    if(endMatch==true){
-        peticion.put(urlApi(`partidos?id=${matchId}&nameID=id_partido`),matchInfo).then(e=>console.log(e))
-        setEndMatch(false)
-    }
-    if(started==1 && paused==0){
-        
-        setIdInterval(
-            setInterval(() => {
-                setSeconds(seconds =>seconds + 1)
-                
-                
-          }, 1000)) 
+  }, [endMatch]);
+ 
+	useEffect(() => {
+		setMinutos(minits)
+	}, [minits])
 
-          setIdMinutos(
-            setInterval(() => {
-            setMinits(minits => minits + 1);
+	useEffect(() => {
+		if (started == 1 && paused == 0) {
+			setIdInterval(
+				setInterval(() => {
+					setSeconds((seconds) => seconds + 1)
+				}, 1000)
+			)
+		} else {
+			clearInterval(idInterval)
+		}
+	}, [started, paused])
 
-          }, 60000)) 
+	useEffect(() => {
+		if (seconds == 60) {
+			setSeconds(0)
+			setMinits(minits + 1)
+		}
+	}, [seconds])
+	return (
+		<BoxColCen>
+			<QueryBuilderIcon />
+			<h3>
+				{minits}:{seconds}
+			</h3>
+		</BoxColCen>
+	)
+}
 
-    }else{
-        clearInterval(idInterval)
-        clearInterval(idMinutos)
-    };
-  }, [started,paused]);
-  
-  useEffect(() => {
-    if(seconds==60) setSeconds(0)
-  }, [seconds]);
-
-  return (
-    <Box>
-       <QueryBuilderIcon /><br/><h3>{minits}:{seconds}</h3>
-      <br />
-    </Box>
-  );
-};
-
-export default Clock;
+export default Clock

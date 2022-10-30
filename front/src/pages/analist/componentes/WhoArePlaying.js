@@ -8,6 +8,16 @@ import { GridContained } from "../../../componentes/styledComponents/GridContain
 import { H3 } from "../../../componentes/styledComponents/H3"
 import { urlApi } from "../../../functions/globals"
 import { helpHttp } from "../../../helpers/helpHttp"
+import SyncAltIcon from "@mui/icons-material/SyncAlt"
+import RepeatOnTwoToneIcon from "@mui/icons-material/RepeatOnTwoTone"
+import ArrowCircleLeftTwoToneIcon from "@mui/icons-material/ArrowCircleLeftTwoTone"
+import ArrowCircleRightTwoToneIcon from '@mui/icons-material/ArrowCircleRightTwoTone';
+import ArrowCircleUpTwoToneIcon from '@mui/icons-material/ArrowCircleUpTwoTone';
+import ArrowCircleDownTwoToneIcon from '@mui/icons-material/ArrowCircleDownTwoTone';
+import { B } from "../../../componentes/styledComponents/ComponentesDeEstilos"
+import { useContext } from "react"
+import LanguajeContext from "../../../contexts/LanguajeContext"
+import { useParams } from "react-router-dom"
 
 const peticion = helpHttp()
 
@@ -18,10 +28,15 @@ const Div = styled.div`
 	margin: 20px;
 	border-radius: 15px;
 	box-shadow: 1px 1px 10px #0003;
+	background-color: #fff;
+	align-items: center;
+	justify-content: center;
 `
 
 const Container = styled.div`
 	display: flex;
+	align-items: center;
+	justify-content: center;
 	@media screen and (max-width: 840px) {
 		& {
 			flex-direction: column;
@@ -29,13 +44,45 @@ const Container = styled.div`
 	}
 `
 
-const UserListButtons = ({ jugando, setJugando, locales, visitantes, name, onClick }) => {
+const DAux = styled.div`
+
+@media screen and (max-width: 840px) {
+		& {
+			display:none;
+		}
+	}
+
+
+`
+
+
+const DAuxDos = styled.div`
+display:none;
+@media screen and (max-width: 840px) {
+		& {
+			display:inline-block;
+		}
+	}
+
+
+`
+
+
+const WhoArePlaying = ({ jugando, setJugando, locales, visitantes, name, onClick }) => {
 	const [user, setUser] = useState({})
 	const [titularesLocales, setTitularesLocales] = useState([])
 	const [titularesVisitantes, setTitularesVisitantes] = useState([])
 	const [titulares, setTitulares] = useState([])
 	const [localesAux, setLocalesAux] = useState([])
 	const [visitantesAux, setVisitantesAux] = useState([])
+
+	const { text } = useContext(LanguajeContext)
+	const peticion = helpHttp()
+
+	const {matchId} = useParams()
+
+
+
 
 	useEffect(() => {
 		setLocalesAux(locales)
@@ -64,11 +111,13 @@ const UserListButtons = ({ jugando, setJugando, locales, visitantes, name, onCli
 
 	return (
 		<>
-			<h4 style={{margin:"30px"}}>Indique los jugadores que están jugando</h4>
+			<h4 style={{ margin: "30px" }}>Indique los jugadores que están jugando en cada instante</h4>
 			<Container>
 				<Div>
+					<DAux><ArrowCircleRightTwoToneIcon color="secondary" fontSize="large" /></DAux>
+					<DAuxDos><ArrowCircleDownTwoToneIcon color="secondary" fontSize="large"/></DAuxDos>
+					<B>{text.equipoLocal}</B>
 					<GridContained>
-						<h4>Equipo local:</h4>
 						{localesAux.map((e) => (
 							<Button
 								onClick={() => {
@@ -78,14 +127,16 @@ const UserListButtons = ({ jugando, setJugando, locales, visitantes, name, onCli
 								}}
 								key={e.ci_usuario}
 							>
-								{e.primerNombre_usuario}
+								{e.primerNombre_usuario} {e.primerApellido_usuario }
 							</Button>
 						))}
 					</GridContained>
 				</Div>
 				<Div>
+					<RepeatOnTwoToneIcon color="secondary" fontSize="large" />
+
 					<GridContained>
-						<h3>Titulares locales</h3>
+						<B>{ text.localesEnElJuego}</B>
 						{titularesLocales.map((e) => (
 							<Button
 								onClick={() => {
@@ -95,12 +146,12 @@ const UserListButtons = ({ jugando, setJugando, locales, visitantes, name, onCli
 									setLocalesAux([...localesAux, e])
 								}}
 							>
-								{e.primerNombre_usuario}
+								{e.primerNombre_usuario} {e.primerApellido_usuario }
 							</Button>
 						))}
 					</GridContained>
 					<GridContained>
-						<h3>Titulares visitantes</h3>
+						<B>{ text.visitantesEnElJuego}</B>
 						{titularesVisitantes.map((e) => (
 							<Button
 								onClick={() => {
@@ -110,14 +161,16 @@ const UserListButtons = ({ jugando, setJugando, locales, visitantes, name, onCli
 									setVisitantesAux([...visitantesAux, e])
 								}}
 							>
-								{e.primerNombre_usuario}
+								{e.primerNombre_usuario} {e.primerApellido_usuario }
 							</Button>
 						))}
 					</GridContained>
 				</Div>
 				<Div>
+					<DAux><ArrowCircleLeftTwoToneIcon color="secondary" fontSize="large" /></DAux>
+					<DAuxDos><ArrowCircleUpTwoToneIcon color="secondary" fontSize="large"/></DAuxDos>
 					<GridContained>
-						<h4>Equipo visitante: {}</h4>
+					    <B>{text.equipoVisitante} </B>
 						{visitantesAux.map((e) => (
 							<Button
 								onClick={() => {
@@ -127,7 +180,7 @@ const UserListButtons = ({ jugando, setJugando, locales, visitantes, name, onCli
 								}}
 								key={e.ci_usuario}
 							>
-								{e.primerNombre_usuario}
+								{e.primerNombre_usuario} {e.primerApellido_usuario }
 							</Button>
 						))}
 					</GridContained>
@@ -137,4 +190,4 @@ const UserListButtons = ({ jugando, setJugando, locales, visitantes, name, onCli
 	)
 }
 
-export default UserListButtons
+export default WhoArePlaying

@@ -1,7 +1,6 @@
 import { Outlet } from "react-router-dom";
 import NavAfterLogin from "../../componentes/NavAfterLogin";
 import NavLink from "../../componentes/NavLink";
-import StudentBar from "./componentes/StudentBar";
 import DateRangeTwoToneIcon from '@mui/icons-material/DateRangeTwoTone';
 import QueryStatsTwoToneIcon from '@mui/icons-material/QueryStatsTwoTone';
 import HistoryTwoToneIcon from '@mui/icons-material/HistoryTwoTone';

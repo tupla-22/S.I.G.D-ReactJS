@@ -12,16 +12,17 @@ import UsersModal from "./UsersModal"
 import React, { useState, useEffect } from "react"
 import { getDateTime, getProp, urlApi } from "../../../functions/globals"
 import { helpHttp } from "../../../helpers/helpHttp"
+import { ButtonClassic } from "../../../componentes/ButtonClassic"
 
 const peticion = helpHttp()
 
 const ManagmentFootballControler = ({ matchId, locales, visitantes }) => {
 	const [form, setForm] = useState({})
 	const [tipo, setTipo] = useState("")
-	const [name, setName] = useState(null)
+	const [name, setName] = useState("")
 
 	const handleChange = (e) => {
-		setName(`${e.target.value.nombre} ${e.target.value.apellido}`)
+		
 		setForm({
 			...form,
 			id_fichaJugador_estadistica: e.target.value.id_fichaJugador_estadistica,
@@ -32,9 +33,12 @@ const ManagmentFootballControler = ({ matchId, locales, visitantes }) => {
 			verificado_estadistica: 0,
 			id_partido_estadistica: matchId,
 		})
-		console.log(name)
+		setName(`${e.target.value.nombre} ${e.target.value.apellido}`)
 	}
 
+	useEffect(() => {
+		console.log(name)
+	}, [name]);
 	const handleType = (e) => {
 		setTipo(e.target.value)
 		setForm({ ...form, tipo_estadistica: e.target.value })
@@ -99,12 +103,13 @@ const ManagmentFootballControler = ({ matchId, locales, visitantes }) => {
 				{tipo !== "cambio" && tipo !== "falta" && (
 					<>
 						<h3>Equipos</h3>
+						
 						<FormControl className="Form__input" fullWidth>
-							<InputLabel id="demo-simple-select-label3">Jugador al que se le asigna</InputLabel>
+							<InputLabel id="selectId">Jugador al que se le asigna</InputLabel>
 							<Select
 								value={name}
-								labelId="demo-simple-select-label3"
-								id="demo-simple-select3"
+								labelId="selectId"
+								id="selectId"
 								label="Jugador al que se le asigna"
 								onChange={handleChange}
 							>
@@ -305,9 +310,9 @@ const ManagmentFootballControler = ({ matchId, locales, visitantes }) => {
 				)}
 				{tipo == "falta"}
 
-				<Button onClick={handleSubmit} type={"submit"} variant="outlined">
+				<ButtonClassic onClick={handleSubmit} type={"submit"} >
 					enviar{" "}
-				</Button>
+				</ButtonClassic>
 				{/* <BoxFlex>
           <UsersModal
             name={"gol"}
