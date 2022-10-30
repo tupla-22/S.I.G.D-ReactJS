@@ -61,7 +61,6 @@ const addTelFormInit = {
 	id_usuario_telefono: "",
 }
 const emailFormInit = {
-	id_usuario: "",
 	email_usuario: "",
 }
 
