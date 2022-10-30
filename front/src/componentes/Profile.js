@@ -9,6 +9,9 @@ import { getUser, urlApi } from "../functions/globals"
 import styled from "styled-components"
 import LanguajeContext from "../contexts/LanguajeContext"
 import { BoxFilas } from "./styledComponents/ComponentesDeEstilos"
+import { setISOWeek } from "date-fns"
+import AlertSuccees from "./AlertSuccees"
+import AddAPhotoTwoToneIcon from '@mui/icons-material/AddAPhotoTwoTone';
 
 const peticion = helpHttp()
 
@@ -21,7 +24,7 @@ const Img = styled.img`
 
 const Profile = () => {
 	const [photo, setPhoto] = useState({})
-
+	const [ok, setOk] = useState(false)
 	const { text } = useContext(LanguajeContext)
 
 	const stAvatar = {
@@ -41,9 +44,7 @@ const Profile = () => {
 
 	const navigate = useNavigate()
 
-	const handlePassword = () => {
-		navigate("changePassword")
-	}
+	const handlePassword = () => {}
 
 	const user = JSON.parse(localStorage.getItem("user"))
 
@@ -57,46 +58,47 @@ const Profile = () => {
 			.then((e) => {
 				console.log(e.status, "Foto de peril de usuario")
 				if (e.status == 200) {
+					setOk(true)
+					setTimeout(() => {
+						setOk(false)
+					}, 5000)
 					user.fotoPerfil_usuario = photo.fotoPerfil_usuario
 					localStorage.setItem("user", JSON.stringify(user))
 				}
 			})
 	}, [photo])
 
-  return (
-    
-		<div className="profile">
-			<div className="section">
-				<div className="profile__avatar">
-					<form>
-						<Button sx={stAvatar} variant="contained" component="label">
-							<Img src={user.fotoPerfil_usuario}></Img>
-							<input onChange={handlePhoto} hidden accept="image/*" type="file" />
+	return (
+		<>
+			{ok && <AlertSuccees />}
+			<div className="profile">
+				<div className="section">
+					<div className="profile__avatar">
+						<form>
+							<Button sx={stAvatar} variant="contained" component="label">
+								<AddAPhotoTwoToneIcon fontSize="large" sx={{opacity:"50%", position: "absolute" }} />
+								<Img src={user.fotoPerfil_usuario}></Img>
+								<input onChange={handlePhoto} hidden accept="image/*" type="file" />
+							</Button>
+						</form>
+					</div>
+					<h3>
+						{user.primerNombre_usuario} {user.primerApellido_usuario}
+					</h3>
+					<BoxFilas>
+						<Button onClick={() => navigate("contactInformation")} sx={stButton} variant="contained">
+							{text.datosDeContacto}
 						</Button>
-					</form>
+						<Button onClick={() => navigate("changePassword")} sx={stButton} variant="contained">
+							{text.cambiarContraseña}
+						</Button>
+					</BoxFilas>
 				</div>
-				<h3>
-					{user.primerNombre_usuario} {user.primerApellido_usuario}
-				</h3>
-				<BoxFilas>
-					<Button onClick={handlePassword} sx={stButton} variant="contained">
-						{text.cambiarCorreo}
-					</Button>
-					<Button onClick={handlePassword} sx={stButton} variant="contained">
-						{text.cambiarContraseña}
-					</Button>
-					<Button onClick={handlePassword} sx={stButton} variant="contained">
-						{text.cambiarContraseña}
-					</Button>
-					<Button onClick={handlePassword} sx={stButton} variant="contained">
-						{text.cambiarContraseña}
-					</Button>
-				</BoxFilas>
+				<div className="section ">
+					<Outlet />
+				</div>
 			</div>
-			<div className="section ">
-				<Outlet />
-			</div>
-		</div>
+		</>
 	)
 }
 

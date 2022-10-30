@@ -11,19 +11,21 @@ import { passwordVerifier, urlApi } from "../functions/globals"
 import { PSuccess } from "./styledComponents/PSuccess"
 import { PAlert } from "./PAlert"
 import LanguajeContext from "../contexts/LanguajeContext"
+import AlertSuccees from "./AlertSuccees"
 const FormPasswordChange = () => {
 	const [password, setPassword] = useState("")
 	const [password2, setPassword2] = useState("")
 	const [verified, setVerified] = useState(null)
 	const [error, setError] = useState(null)
-
+	const [ok, setOk] = useState(false)
 	const user = JSON.parse(localStorage.getItem("user"))
 
 	const { text } = useContext(LanguajeContext)
 
 	const peticion = helpHttp()
 
-	const handleSubmit = () => {
+	const handleSubmit = (e) => {
+		e.preventDefault()
 		console.log(passwordVerifier(password, password2))
 
 		if (passwordVerifier(password, password2)) {
@@ -32,7 +34,15 @@ const FormPasswordChange = () => {
 			const conf = {
 				body: new URLSearchParams(usuario),
 			}
-			peticion.put(urlApi(`usuarios?id=${user.id_usuario}&nameID=id_usuario`), conf).then((e) => console.log(e))
+			peticion.put(urlApi(`usuarios?id=${user.id_usuario}&nameID=id_usuario`), conf).then((e) => {
+				console.log(e)
+				if (e.status == 200) {
+					setOk(true)
+					setTimeout(() => {
+						setOk(false)
+					}, 5000)
+				}
+			})
 			setVerified(true)
 		} else setError(true)
 	}
@@ -47,26 +57,31 @@ const FormPasswordChange = () => {
 	}
 
 	return (
-		<FormCien>
-			{error && <PAlert>{text.lasContraseñasNoCoinciden}</PAlert>}
-			{verified && <PSuccess>{text.accionLogradaCorrectamente}</PSuccess>}
-			<h3>{text.cambiarContraseña}</h3>
-			<TextField
-				type="password"
-				className="FormCien__input"
-				label={text.nuevaContraseña}
-				name="password_usuario"
-				onChange={handleChange}
-			/>
-			<TextField
-				type="password"
-				label={text.repitaNuevaContraseña}
-				className="FormCien__input"
-				name="passwordVerifier"
-				onChange={handleChange}
-			/>
-			<ButtonClassic onClick={handleSubmit}>{text.cambiar}</ButtonClassic>
-		</FormCien>
+		<>
+			{ok && <AlertSuccees />}
+
+			<FormCien>
+				{error && <PAlert>{text.lasContraseñasNoCoinciden}</PAlert>}
+				<h3>{text.cambiarContraseña}</h3>
+				<TextField
+					type="password"
+					className="FormCien__input"
+					label={text.nuevaContraseña}
+					name="password_usuario"
+					onChange={handleChange}
+				/>
+				<TextField
+					type="password"
+					label={text.repitaNuevaContraseña}
+					className="FormCien__input"
+					name="passwordVerifier"
+					onChange={handleChange}
+				/>
+				<ButtonClassic type="submit" onClick={handleSubmit}>
+					{text.cambiar}
+				</ButtonClassic>
+			</FormCien>
+		</>
 	)
 }
 

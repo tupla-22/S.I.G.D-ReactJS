@@ -1,11 +1,12 @@
 import Main from "../../componentes/styledComponents/Main"
-import UserSearch from "../admin/componentes/UserSearch"
+import PlayerList from "./componentes/PlayersList"
+import PlayersSearchs from "./componentes/PlayersSearch"
 
 const FindPlayer = () => {
 	return (
 		<>
 			<Main>
-				<UserSearch />
+				<PlayersSearchs/>
 			</Main>
 		</>
 	)

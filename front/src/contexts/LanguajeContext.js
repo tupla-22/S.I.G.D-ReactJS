@@ -101,11 +101,25 @@ const translation = {
         cambiarCorreo: "Cambiar correo",
         localesEnElJuego: "Locales en el juego",
         visitantesEnElJuego: "Visitantes en el juego",
-        
-        
+        caracteristicasDelJugador: "Caracteristicas del jugador",
+        jugadores: "Jugadores",
+        altura: "Altura",
+        peso: "Peso",
+        minutosJugados: "Minutos jugados",
+        lateralidad: "Lateralidad",
+        nombreYApellido: "Nombre y apellido",
+        datosDeContacto:"Datos de contacto"
         
     },
     en: {
+        datosDeContacto:"Contact information",
+        nombreYApellido: "Name and surname",
+        lateralidad: "Laterality",
+        minutosJugados:"Played minutes",
+        peso: "Weight",
+        altura:"Height",
+        jugadores:"Players",
+        caracteristicasDelJugador: "Player features",
         localesEnElJuego: "Locals in the game",
         visitantesEnElJuego: "Visitors in the game",
         cambiarCorreo: "Change email",

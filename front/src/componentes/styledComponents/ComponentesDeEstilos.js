@@ -3,11 +3,15 @@ import styled from "styled-components";
 
 
 export const B = styled.b`
-margin: 20px 10px;
+margin: 10px 10px;
 color:#333;
 `
 
-
+export const BoxCen = styled.div`
+    display: flex;
+    align-items:center;
+    justify-content:center;
+`
 
 export const P = styled.p`
 margin: 10px;
@@ -21,8 +25,11 @@ export const BoxFilas = styled.div`
 `
 
 
-export const H3 = styled.h3`
+export const H3B = styled.h3`
 margin:20px 10px;
+border-bottom:1px solid #0003;
+display:inline-block;
+width:fit-content;
 
 `
 

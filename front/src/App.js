@@ -65,6 +65,7 @@ import MatchCheckes from "./pages/judge/componentes/MatchCheckes"
 import Footer from "./Footer"
 import { LanguajeProvider } from "./contexts/LanguajeContext"
 import FindPlayer from "./pages/scout/FindPlayer"
+import ChangeContactInformation from "./componentes/ChangeContactInformation"
 
 function App() {
 	return (
@@ -91,12 +92,13 @@ function App() {
 							</Route>
 							<Route path="myStats" element={<Stats />}></Route>
 							<Route path="profile" element={<Profile />}>
+								<Route path="contactInformation" element={<ChangeContactInformation />}></Route>
 								<Route path="changePassword" element={<ChangePassword />}></Route>
 							</Route>
 						</Route>
 
 						<Route path="/admin/:userId" element={<HomeAdmin />}>
-            <Route element={<AdminMatch />} path="match">
+							<Route element={<AdminMatch />} path="match">
 								<Route path="add" element={<MatchAdd />}></Route>
 								<Route path="delete" element={<MatchDel />}></Route>
 								<Route path="update" element={<MatchUpdate />}></Route>
@@ -124,12 +126,13 @@ function App() {
 								<Route path="update" element={<TeamUpdate />}></Route>
 							</Route>
 							<Route path="profile" element={<Profile />}>
+								<Route path="contactInformation" element={<ChangeContactInformation />}></Route>
 								<Route path="changePassword" element={<ChangePassword />}></Route>
 							</Route>
 							<Route path="home" element={<HomeAdm></HomeAdm>}></Route>
 						</Route>
 						<Route path="/administrative/:userId" element={<HomeAdmin />}>
-            <Route element={<AdminMatch />} path="match">
+							<Route element={<AdminMatch />} path="match">
 								<Route path="add" element={<MatchAdd />}></Route>
 								<Route path="delete" element={<MatchDel />}></Route>
 								<Route path="update" element={<MatchUpdate />}></Route>
@@ -157,12 +160,14 @@ function App() {
 								<Route path="update" element={<TeamUpdate />}></Route>
 							</Route>
 							<Route path="profile" element={<Profile />}>
+								<Route path="contactInformation" element={<ChangeContactInformation />}></Route>
 								<Route path="changePassword" element={<ChangePassword />}></Route>
 							</Route>
 							<Route path="home" element={<HomeAdm></HomeAdm>}></Route>
 						</Route>
 						<Route path="/administrative/:userId" element={<HomeAdmin />}>
 							<Route path="profile" element={<Profile />}>
+								<Route path="contactInformation" element={<ChangeContactInformation />}></Route>
 								<Route path="changePassword" element={<ChangePassword />}></Route>
 							</Route>
 							<Route path="userAdd" element={<UserAdd />} />
@@ -184,6 +189,7 @@ function App() {
 							</Route>
 							<Route path="profile" element={<Profile />}>
 								<Route path="changePassword" element={<ChangePassword />}></Route>
+								<Route path="contactInformation" element={<ChangeContactInformation />}></Route>
 							</Route>
 							<Route path="home" element={<HomeAdm></HomeAdm>}></Route>
 						</Route>
@@ -191,6 +197,7 @@ function App() {
 						<Route path="/dt/:userId" element={<HomeDT />}>
 							<Route path="profile" element={<Profile />}>
 								<Route path="changePassword" element={<ChangePassword />}></Route>
+								<Route path="contactInformation" element={<ChangeContactInformation />}></Route>
 							</Route>
 							<Route path="home" element={<HomePageDT />}></Route>
 							<Route path="adminTeams" element={<AdminTeams />}>
@@ -218,6 +225,7 @@ function App() {
 							<Route path="home" element={<HomePageAnalist />}></Route>
 							<Route path="profile" element={<Profile />}>
 								<Route path="changePassword" element={<ChangePassword />}></Route>
+								<Route path="contactInformation" element={<ChangeContactInformation />}></Route>
 							</Route>
 						</Route>
 
@@ -227,14 +235,16 @@ function App() {
 								<Route></Route>
 							</Route>
 							<Route path="profile" element={<Profile />}>
+								<Route path="contactInformation"></Route>
 								<Route path="changePassword" element={<ChangePassword />}></Route>
 							</Route>
 							<Route path="home" element={<HomePageJudge />}></Route>
 						</Route>
 						<Route path="scout/:userId" element={<HomeScout />}>
-							<Route path="findPlayer" element={<FindPlayer/>}></Route>
+							<Route path="findPlayer" element={<FindPlayer />}></Route>
 							<Route path="profile" element={<Profile />}>
 								<Route path="changePassword" element={<ChangePassword />}></Route>
+								<Route path="contactInformation" element={<ChangeContactInformation />}></Route>
 							</Route>
 							<Route path="home" element={<HomePageScout />}></Route>
 						</Route>
@@ -242,7 +252,7 @@ function App() {
 						<Route path="/*" element={<Error404 />}></Route>
 					</Routes>
 				</UserProvider>
-        <div style={{ width: "100%", display: "flex", justifyContent:"center"}}>
+				<div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
 					<Footer></Footer>
 				</div>
 			</div>

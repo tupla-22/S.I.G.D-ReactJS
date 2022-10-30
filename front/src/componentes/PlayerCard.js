@@ -12,7 +12,7 @@ import { helpHttp } from "../helpers/helpHttp"
 import { dateTradeEs, urlApi } from "../functions/globals"
 import { H3 } from "./styledComponents/H3"
 import { unstable_requirePropFactory } from "@mui/utils"
-import { B, P } from "./styledComponents/ComponentesDeEstilos"
+import { B, H3B, P } from "./styledComponents/ComponentesDeEstilos"
 import { TH } from "./styledComponents/TH"
 import { TD } from "./styledComponents/TD"
 import { Table } from "./styledComponents/Table"
@@ -46,8 +46,6 @@ const Picture = styled.div`
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
-
-	
 `
 
 const Div = styled.div`
@@ -64,6 +62,7 @@ export default function PlayerCard({ state, idUsuario }) {
 	const [usuario, setUsuario] = useState(usuarioInit)
 	const [stats, setStats] = useState([])
 	const [telefonos, setTelefonos] = useState([])
+	const [features, setFeatures] = useState({})
 	const handleOpen = () => {
 		setOpen(true)
 	}
@@ -87,12 +86,25 @@ export default function PlayerCard({ state, idUsuario }) {
 		peticion
 			.get(
 				urlApi(
-					`statistics?id_usuario=${idUsuario}&tipo_estadistica=gol,penal,lateral&verificado=0&orderBy=tipo_Estadistica&orderMode=asc`
+					`statistics?id_usuario=${idUsuario}&tipo_estadistica=gol,penal,lateral&verificado=1&orderBy=tipo_Estadistica&orderMode=asc`
 				)
 			)
 			.then((e) => {
 				if (e.status == 200) {
 					setStats(e.result)
+				}
+			})
+
+		peticion
+			.get(
+				urlApi(
+					`relations?select=altura_fichaJugador,peso_fichaJugador,minutosJugados_fichaJugador,lateralidad_fichaJugador&rel=tienen,usuarios,fichasJugadores&type=tiene,usuario,fichaJugador&linkTo=id_usuario&equalTo=${idUsuario}`
+				)
+			)
+			.then((e) => {
+				console.log(e, "Features response")
+				if (e.status == 200) {
+					setFeatures(e.result[0])
 				}
 			})
 	}, [])
@@ -114,22 +126,22 @@ export default function PlayerCard({ state, idUsuario }) {
 							<IconFoto src={usuario.fotoPerfil_usuario} />
 						</Picture>
 						<Div>
-							<B>{text.jugador}</B>
+							<H3B>{text.jugador}</H3B>
 							<P>
-								{usuario.primerNombre_usuario} {usuario.primerApellido_usuario}
+								<b>{text.nombreYApellido}: </b>{usuario.primerNombre_usuario} {usuario.primerApellido_usuario}
 							</P>
 							<P>
-								{text.fechaDeNacimiento}: {dateTradeEs(usuario.fechaNac_usuario)}
+								<b>{text.fechaDeNacimiento}:</b> {dateTradeEs(usuario.fechaNac_usuario)}
 							</P>
 						</Div>
 					</Div>
 					<Div>
-						<B>{text.estadisticas}</B>
+						<H3B>{text.estadisticas}</H3B>
 						<Table>
 							<thead>
 								<tr>
 									<TH>{text.tipoDeEstadistica}</TH>
-									<TH>{ text.cantidad}</TH>
+									<TH>{text.cantidad}</TH>
 								</tr>
 							</thead>
 							<tbody>
@@ -146,7 +158,18 @@ export default function PlayerCard({ state, idUsuario }) {
 					</Div>
 					<Div>
 						<>
-							<B>{text.contacto}</B>
+							<H3B>{text.caracteristicasDelJugador}</H3B>
+
+							<P><b>{text.altura}:</b>  {features.altura_fichaJugador}cm</P>
+							<P><b>{text.peso}:</b>  {features.peso_fichaJugador}Kg</P>
+							<P> <b>{text.minutosJugados}:</b> {features.minutosJugados_fichaJugador}m</P>
+							<P><b>{text.lateralidad}:</b> {features.lateralidad_fichaJugador}</P>
+						</>
+					</Div>
+					
+					<Div>
+						<>
+							<H3B>{text.contacto}</H3B>
 
 							{telefonos.map((telefono) => (
 								<P>{telefono.id_telefono}</P>
