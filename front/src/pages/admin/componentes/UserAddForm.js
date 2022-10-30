@@ -71,9 +71,8 @@ const UserAddForm = () => {
 
 				if (e.status == 200) {
 					setOk(true)
-					setTimeout(() => {
-						setOk(false)
-					}, 5000)
+          setTimeout(() => { setOk(false) }, 5000)
+          setTypeUser("")
 					setPasswordVerified(false)
 					setCreated(true)
 					setIdUsuario(e.result.lastId)
@@ -175,7 +174,8 @@ const UserAddForm = () => {
       {ok && <AlertSuccees />}
 			<Form style={{ display: "flex", flexDirection: "column" }} className="userAddForm">
 				<h3>{text.agregarUnUsuario}</h3>
-				<TextField
+        <TextField
+          defaultChecked
 					required
 					value={userForm.ci_usuario}
 					onChange={handleChange}
@@ -185,7 +185,8 @@ const UserAddForm = () => {
 					label={text.cedula}
 				></TextField>
 				<TextField
-					required
+          required
+          defaultChecked
 					value={userForm.primerNombre_usuario}
 					onChange={handleChange}
 					name="primerNombre_usuario"
@@ -199,7 +200,8 @@ const UserAddForm = () => {
 					className="Form__input"
 					label={text.segundoNombre}
 				></TextField>
-				<TextField
+        <TextField
+          defaultChecked
 					required
 					value={userForm.primerApellido_usuario}
 					onChange={handleChange}
@@ -214,7 +216,8 @@ const UserAddForm = () => {
 					className="Form__input"
 					label={text.segundoApellido}
 				></TextField>
-				<TextField
+        <TextField
+          defaultChecked
 					error={error && "true"}
 					helperText={error && "Email requerido"}
 					required
@@ -235,7 +238,7 @@ const UserAddForm = () => {
 					className="Form__input"
 					label={text.numeroTelefonico}
 				></TextField>
-				<InputDate
+        <InputDate
 					required
 					label={text.fechaDeNacimiento}
 					name={"fechaNac_usuario"}
@@ -244,7 +247,7 @@ const UserAddForm = () => {
 				></InputDate>
 
 				{/* <TextField onChange={handleChange} name="tel" type="number" className="Form__input" label="Telefono"></TextField> */}
-				<TextField
+        <TextField
 					required
 					onBlur={handleVerifiedPassword}
 					onChange={handleChange}
@@ -254,7 +257,7 @@ const UserAddForm = () => {
 					label={text.contraseña}
 				></TextField>
 				{!passwordVerified && <PAlert>Los campos contraseña no coinciden</PAlert>}
-				<TextField
+        <TextField
 					required
 					onChange={handlePassword}
 					onBlur={handleVerifiedPassword}
@@ -268,7 +271,9 @@ const UserAddForm = () => {
 					<InputLabel required id="demo-simple-select-label">
 						{text.tipoDeUsuario}
 					</InputLabel>
-					<Select
+          <Select
+            value={typeUser}
+            defaultChecked
 						name="id_rol_usuario"
 						label={text.tipoDeUsuario}
 						labelId="demo-simple-select-label"
