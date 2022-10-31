@@ -11,7 +11,7 @@ import LanguajeContext from "../contexts/LanguajeContext"
 import { BoxFilas } from "./styledComponents/ComponentesDeEstilos"
 import { setISOWeek } from "date-fns"
 import AlertSuccees from "./AlertSuccees"
-import AddAPhotoTwoToneIcon from '@mui/icons-material/AddAPhotoTwoTone';
+import AddAPhotoTwoToneIcon from "@mui/icons-material/AddAPhotoTwoTone"
 
 const peticion = helpHttp()
 
@@ -53,19 +53,21 @@ const Profile = () => {
 	}
 
 	useEffect(() => {
-		peticion
-			.put(urlApi(`usuarios?id=${user.id_usuario}&nameID=id_usuario`), { body: new URLSearchParams(photo) })
-			.then((e) => {
-				console.log(e.status, "Foto de peril de usuario")
-				if (e.status == 200) {
-					setOk(true)
-					setTimeout(() => {
-						setOk(false)
-					}, 5000)
-					user.fotoPerfil_usuario = photo.fotoPerfil_usuario
-					localStorage.setItem("user", JSON.stringify(user))
-				}
-			})
+		if (photo.fotoPerfil_usuario !== "") {
+			peticion
+				.put(urlApi(`usuarios?id=${user.id_usuario}&nameID=id_usuario`), { body: new URLSearchParams(photo) })
+				.then((e) => {
+					console.log(e.status, "Foto de peril de usuario")
+					if (e.status == 200) {
+						setOk(true)
+						setTimeout(() => {
+							setOk(false)
+						}, 5000)
+						user.fotoPerfil_usuario = photo.fotoPerfil_usuario
+						localStorage.setItem("user", JSON.stringify(user))
+					}
+				})
+		}
 	}, [photo])
 
 	return (
@@ -76,7 +78,10 @@ const Profile = () => {
 					<div className="profile__avatar">
 						<form>
 							<Button sx={stAvatar} variant="contained" component="label">
-								<AddAPhotoTwoToneIcon fontSize="large" sx={{opacity:"50%", position: "absolute" }} />
+								<AddAPhotoTwoToneIcon
+									fontSize="large"
+									sx={{ opacity: "50%", position: "absolute" }}
+								/>
 								<Img src={user.fotoPerfil_usuario}></Img>
 								<input onChange={handlePhoto} hidden accept="image/*" type="file" />
 							</Button>
