@@ -5,21 +5,30 @@ import DateRangeTwoToneIcon from '@mui/icons-material/DateRangeTwoTone';
 import QueryStatsTwoToneIcon from '@mui/icons-material/QueryStatsTwoTone';
 import HistoryTwoToneIcon from '@mui/icons-material/HistoryTwoTone';
 import GroupsTwoToneIcon from '@mui/icons-material/GroupsTwoTone';
+import { useContext } from "react";
+import LanguajeContext from "../../contexts/LanguajeContext";
+import EmojiEventsTwoToneIcon from '@mui/icons-material/EmojiEventsTwoTone';
 
 const HomeStudent = () => {
+
+  const { text} = useContext(LanguajeContext)
+
   const pages = [
     <NavLink to="home/fixtureFB" classAdd="responsive">
      <DateRangeTwoToneIcon/> Fixture
     </NavLink>,
     <NavLink classAdd="responsive" to="myStats">
-     <QueryStatsTwoToneIcon/> Mis estadisticas
+     <QueryStatsTwoToneIcon/> {text.misEstadisticas}
     </NavLink>,
     <NavLink classAdd="responsive" to="history">
-     <HistoryTwoToneIcon/> Historial
+     <HistoryTwoToneIcon/> {text.historial}
     </NavLink>,
     <NavLink classAdd="responsive" to="teams/myTeam">
-     <GroupsTwoToneIcon/> Equipos
+     <GroupsTwoToneIcon/> {text.equipos}
     </NavLink>,
+    <NavLink classAdd="responsive" to="championships">
+     <EmojiEventsTwoToneIcon/> {text.campeonatos}
+    </NavLink>
   ];
 
   return (

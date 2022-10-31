@@ -5,10 +5,13 @@ import { getUser, urlApi } from "../functions/globals"
 import { helpHttp } from "../helpers/helpHttp"
 import AlertSuccees from "./AlertSuccees"
 import { ButtonClassic } from "./ButtonClassic"
-import { B, BoxColCen, H3B } from "./styledComponents/ComponentesDeEstilos"
+import { B, BoxColCen, H3B, P } from "./styledComponents/ComponentesDeEstilos"
 import HighlightOffTwoToneIcon from "@mui/icons-material/HighlightOffTwoTone"
 import MarkEmailReadTwoToneIcon from "@mui/icons-material/MarkEmailReadTwoTone"
 import ChangeCircleTwoToneIcon from "@mui/icons-material/ChangeCircleTwoTone"
+import { PAlert } from "./PAlert"
+import { useContext } from "react"
+import LanguajeContext from "../contexts/LanguajeContext"
 const Container = styled.div`
 	display: flex;
 	flex-direction: column;
@@ -69,12 +72,20 @@ const ChangeContactInformation = () => {
 	const [telefonos, setTelefonos] = useState([])
 	const [addTelForm, setAddTelForm] = useState(addTelFormInit)
 	const [ok, setOk] = useState(false)
-	const [telLength, setTelLength] = useState(0)
 	const [changeEmail, setChangeEmail] = useState(false)
-    const [email, setEmail] = useState(emailFormInit)
+	const [email, setEmail] = useState(emailFormInit)
+	const [errors, setErrors] = useState({})
+	const rexEmail = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i
+    const regexTelefono = /^((\d){4,9}$)/g
+    
 
 
     const user = getUser()
+    
+
+    const {text}=useContext(LanguajeContext)
+
+
 	useEffect(() => {
 		peticion
 			.get(urlApi(`telefonos?select=id_telefono&linkTo=id_usuario_telefono&equalTo=${user.id_usuario}`))
@@ -83,43 +94,54 @@ const ChangeContactInformation = () => {
 				if (e.status == 200) {
 					setTelefonos(e.result)
 				}
-            })
+			})
 	}, [])
 
 	const handleSubmit = (e) => {
 		e.preventDefault()
-		console.log(addTelForm)
-		peticion.post(urlApi(`telefonos?`), { body: new URLSearchParams(addTelForm) }).then((e) => {
-			console.log(e)
-			if (e.status == 200) {
-				setTelefonos([...telefonos, addTelForm])
-				setOk(true)
-				setTimeout(() => {
-					setOk(false)
-				}, 5000)
-				setAddTelForm(addTelFormInit)
-			}
-		})
-    }
-    
-    const handleEmail = (e) => {
-        setEmail({...email,[e.target.name]:e.target.value})
-    }
-    const handleSubmitEmail = (event) => {
-        event.preventDefault()
-        peticion.put(urlApi(`usuarios?id=${user.id_usuario}&nameID=id_usuario`), { body: new URLSearchParams(email) }).then((e) => {
-			console.log(e)
-            if (e.status == 200) {
-                localStorage.setItem("user",JSON.stringify({ ...user, ...email }))
-                console.log(user)
-                setOk(true)
-                setEmail(emailFormInit)
-				setTimeout(() => {
-					setOk(false)
-				}, 5000)
-			}
-		})
-    }
+		if (regexTelefono.test(addTelForm.id_telefono)) {
+			peticion.post(urlApi(`telefonos?`), { body: new URLSearchParams(addTelForm) }).then((e) => {
+				console.log(e)
+				if (e.status == 200) {
+					setErrors({ ...errors, tel: false })
+					setTelefonos([...telefonos, addTelForm])
+					setOk(true)
+					setTimeout(() => {
+						setOk(false)
+					}, 5000)
+					setAddTelForm(addTelFormInit)
+				}
+			})
+		} else {
+			setErrors({ ...errors, tel: true })
+		}
+	}
+
+	const handleEmail = (e) => {
+		setEmail({ ...email, [e.target.name]: e.target.value })
+	}
+	const handleSubmitEmail = (event) => {
+		event.preventDefault()
+		if (rexEmail.test(email.email_usuario)) {
+			peticion
+				.put(urlApi(`usuarios?id=${user.id_usuario}&nameID=id_usuario`), { body: new URLSearchParams(email) })
+				.then((e) => {
+					console.log(e)
+					if (e.status == 200) {
+						setErrors({ ...errors, email: false })
+						localStorage.setItem("user", JSON.stringify({ ...user, ...email }))
+						console.log(user)
+						setOk(true)
+						setEmail(emailFormInit)
+						setTimeout(() => {
+							setOk(false)
+						}, 5000)
+					}
+				})
+		} else {
+			setErrors({ ...errors, email: true })
+		}
+	}
 
 	const handleAddNum = (e) => {
 		setAddTelForm({ ...addTelForm, id_usuario_telefono: user.id_usuario, [e.target.name]: e.target.value })
@@ -131,25 +153,29 @@ const ChangeContactInformation = () => {
 			<Container>
 				<Div2>
 					<Div>
-						{telefonos.length < 3 && (
+						{telefonos.length < 3 ? (
 							<form style={{ display: "flex", alignItems: "center" }}>
-                                <TextField
-                                    defaultChecked
+								<TextField
+									helperText={errors.tel ? text.numeroEquivodado : ""}
+									error={errors.tel ? true : false}
+									defaultChecked
 									value={addTelForm.id_telefono}
 									size="small"
 									name="id_telefono"
 									onChange={handleAddNum}
 									type={"number"}
-									label="Agregar número"
+									label={text.agregarNumero}
 								/>
 								<ButtonClassic type="submit" onClick={handleSubmit} sx={{ margin: "15px" }}>
-									Agregar
+									{text.agregar}
 								</ButtonClassic>
 							</form>
+						) : (
+							<PAlert>{text.cantidadDeTelefonosExedida}</PAlert>
 						)}
 					</Div>
 					<Div3>
-						<b>Numeros telefónicos:</b>
+						<b>{text.numerosTelefonicos}:</b>
 						{telefonos.map((e) => (
 							<BoxCen>
 								<DivHe>
@@ -189,17 +215,23 @@ const ChangeContactInformation = () => {
 							<form style={{ display: "flex", alignItems: "center" }}>
 								<BoxCen>
 									<TextField
+										helperText={errors.email ? text.correoIncorrecto : false}
+										error={errors.email ? true : false}
 										value={email.email_usuario}
 										size="small"
 										name="email_usuario"
 										onChange={handleEmail}
 										type={"email"}
-										label="Cambiar corréo"
+										label={text.cambiarCorreo}
 									/>
-									<ButtonClassic type="submit" onClick={handleSubmitEmail} sx={{ margin: "15px" }}>
-										Agregar
+									<ButtonClassic
+										type="submit"
+										onClick={handleSubmitEmail}
+										sx={{ margin: "15px" }}
+									>
+										{text.cambiar}
 									</ButtonClassic>
-								</BoxCen>{" "}
+								</BoxCen>
 							</form>
 						)}
 
@@ -212,7 +244,8 @@ const ChangeContactInformation = () => {
 									color="success"
 								/>
 							</DivHe>
-							<B>Correo electronico: {user.email_usuario}</B>
+								<B>{text.correoElectronico}: </B>
+								<P>{user.email_usuario}</P>
 						</BoxCen>
 					</Div3>
 				</Div2>

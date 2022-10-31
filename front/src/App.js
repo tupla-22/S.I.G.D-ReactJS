@@ -66,6 +66,9 @@ import Footer from "./Footer"
 import { LanguajeProvider } from "./contexts/LanguajeContext"
 import FindPlayer from "./pages/scout/FindPlayer"
 import ChangeContactInformation from "./componentes/ChangeContactInformation"
+import Championships from "./pages/student/Championships"
+import ChampionshipsOpen from "./pages/student/componentes/ChampionshipsOpen"
+import ChampionshipsClosed from "./pages/student/componentes/ChampionshipsClosed"
 
 function App() {
 	return (
@@ -94,6 +97,10 @@ function App() {
 							<Route path="profile" element={<Profile />}>
 								<Route path="contactInformation" element={<ChangeContactInformation />}></Route>
 								<Route path="changePassword" element={<ChangePassword />}></Route>
+							</Route>
+							<Route path="championships" element={<Championships />}>
+								<Route path="open" element={<ChampionshipsOpen/>}></Route>
+								<Route path="closed" element={<ChampionshipsClosed/>}></Route>
 							</Route>
 						</Route>
 

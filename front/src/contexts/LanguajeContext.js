@@ -108,10 +108,30 @@ const translation = {
         minutosJugados: "Minutos jugados",
         lateralidad: "Lateralidad",
         nombreYApellido: "Nombre y apellido",
-        datosDeContacto:"Datos de contacto"
+        datosDeContacto: "Datos de contacto",
+        agregarNumero: "Agregar número",
+        numeroEquipovocado: "Número equivocado",
+        cantidadDeTelefonosExedida: "Cantida de teléfonos exedida",
+        numerosTelefonicos: "Numeros telefónicos",
+        correoIncorrecto: "Corréo incorrecto",
+        misEstadisticas: "Mis estadísticas",
+        historial: "Historial",
+        abiertos: "Abiertos",
+        cerrados: "Cerrados",
+        
+        
         
     },
     en: {
+        cerrados: "Closed",
+        abiertos:"Open",
+        historial: "History",
+        misEstadisticas:"My stats",
+        correoIncorrecto:"Wrong email",
+        numerosTelefonicos:"Telephones numbers",
+        cantidadDeTelefonosExedida:"Number of Phones Exceeded",
+        numeroEquivocado:"Wrong number",
+        agregarNumero: "Add number",
         datosDeContacto:"Contact information",
         nombreYApellido: "Name and surname",
         lateralidad: "Laterality",

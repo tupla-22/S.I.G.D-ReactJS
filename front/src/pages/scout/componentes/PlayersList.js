@@ -11,7 +11,7 @@ import LanguajeContext from "../../../contexts/LanguajeContext"
 import { Button } from "@mui/material"
 import { Seccion } from "../../../componentes/styledComponents/Seccion"
 
-const PlayerList = () => {
+const PlayerList = ({ players }) => {
 	const [data, setData] = useState([])
 	const [status, setStatus] = useState(false)
 	const [userType, setUserType] = useState({})
@@ -25,36 +25,46 @@ const PlayerList = () => {
 		"relations?select=id_usuario,ci_usuario,carneSalud_usuario,fechaNac_usuario,email_usuario,primerApellido_usuario,primerNombre_usuario,id_rol_usuario&rel=tienen,usuarios&type=tiene,usuario"
 
 	useEffect(() => {
-		peticion.get(urlApi(urlJugadores)).then((dat) => {
-			console.log(dat)
-			if (dat.status == 200) {
-				setData(dat.result.filter((e) => e.ci_usuario != 0))
-				setStatus(true)
-			}
-		})
+		if (!players) {
+			peticion.get(urlApi(urlJugadores)).then((dat) => {
+				console.log(dat)
+				if (dat.status == 200) {
+					setData(dat.result.filter((e) => e.ci_usuario != 0))
+					setStatus(true)
+				}
+			})
+		} else {
+			setData(players)
+		}
 		userVerifier(setUserType, userType)
 	}, [])
 
+	useEffect(() => {
+		if(players){
+			setData(players)
+		}
+	}, [players]);
+
 	return (
 		<>
-				<h3>{text.jugadores}</h3>
-				<DivOver>
-					<Table>
-						<thead>
-							{user.id_rol_usuario == 4 && <th></th>}
-							<TH>{text.nombre}</TH>
-							<TH>{text.apellido}</TH>
-							<TH>{text.cedula}</TH>
-							<TH>{text.correoElectronico}</TH>
-							<TH>{text.fechaDeNacimiento}</TH>
-							<TH>{text.rol}</TH>
-						</thead>
+			<h3>{text.jugadores}</h3>
+			<DivOver>
+				<Table>
+					<thead>
+						{user.id_rol_usuario == 4 && <th></th>}
+						<TH>{text.nombre}</TH>
+						<TH>{text.apellido}</TH>
+						<TH>{text.cedula}</TH>
+						<TH>{text.correoElectronico}</TH>
+						<TH>{text.fechaDeNacimiento}</TH>
+						<TH>{text.rol}</TH>
+					</thead>
 
-						<tbody>
-							{status && data.map((e) => <UserListRow user={user} key={e.ci_usuario} data={e} />)}
-						</tbody>
-					</Table>
-				</DivOver>
+					<tbody>
+						{data.map((e) => <UserListRow user={user} key={e.ci_usuario} data={e} />)}
+					</tbody>
+				</Table>
+			</DivOver>
 		</>
 	)
 }

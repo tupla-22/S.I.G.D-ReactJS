@@ -32,7 +32,11 @@ const MatchList = ({ sport }) => {
               "matcheck?disputed=0&sport=handball,football,basketball&orderBy=id_partido&orderMode=asc"
             )
           )
-          .then((e) => setData(e.result));
+          .then((e) =>{
+            if (e.status == 200) {
+              setData(e.result)
+            }
+          });
         break;
       case "football":
         peticion
@@ -41,7 +45,11 @@ const MatchList = ({ sport }) => {
               "matcheck?disputed=0&sport=football&orderBy=id_partido&orderMode=asc"
             )
           )
-          .then((e) => setData(e.result));
+          .then((e) =>{
+            if (e.status == 200) {
+              setData(e.result)
+            }
+          });
         break;
 
       case "handball":
@@ -51,7 +59,11 @@ const MatchList = ({ sport }) => {
               "matcheck?disputed=0&sport=handball&orderBy=id_partido&orderMode=asc"
             )
           )
-          .then((e) => setData(e.result));
+          .then((e) =>{
+            if (e.status == 200) {
+              setData(e.result)
+            }
+          });
         break;
 
       case "basketball":
@@ -61,7 +73,11 @@ const MatchList = ({ sport }) => {
               "matcheck?disputed=0&sport=basketball&orderBy=id_partido&orderMode=asc"
             )
           )
-          .then((e) => setData(e.result));
+          .then((e) =>{
+            if (e.status == 200) {
+              setData(e.result)
+            }
+          });
         break;
       default:
         break;
