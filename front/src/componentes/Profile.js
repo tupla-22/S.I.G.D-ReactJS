@@ -52,8 +52,8 @@ const Profile = () => {
 		blobToBase64("fotoPerfil_usuario", e.target.files, setPhoto, photo)
 	}
 
-	useEffect(() => {
-		if (photo.fotoPerfil_usuario !== "") {
+  useEffect(() => {
+    if (photo.fotoPerfil_usuario) {
 			peticion
 				.put(urlApi(`usuarios?id=${user.id_usuario}&nameID=id_usuario`), { body: new URLSearchParams(photo) })
 				.then((e) => {
@@ -67,7 +67,9 @@ const Profile = () => {
 						localStorage.setItem("user", JSON.stringify(user))
 					}
 				})
-		}
+      
+
+    }
 	}, [photo])
 
 	return (
