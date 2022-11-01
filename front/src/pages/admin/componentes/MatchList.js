@@ -15,6 +15,8 @@ import HelpCenterIcon from "@mui/icons-material/HelpCenter"
 import LanguajeContext from "../../../contexts/LanguajeContext"
 import { BoxCen, TR } from "../../../componentes/styledComponents/ComponentesDeEstilos"
 import Loader from "../../../componentes/Loader"
+import MilitaryTechTwoToneIcon from "@mui/icons-material/MilitaryTechTwoTone"
+import SportsSoccerTwoToneIcon from "@mui/icons-material/SportsSoccerTwoTone"
 
 const MatchList = ({ sport, disputed }) => {
 	// POR PARAMETRO SE LE TRASMITE EL DEPORTE DESEADO Y SI FUE DISPUTADO
@@ -23,7 +25,9 @@ const MatchList = ({ sport, disputed }) => {
 	const [data, setData] = useState([])
 	const [status, setStatus] = useState(false)
 	const [loading, setLoading] = useState(false)
-	const { text } = useContext(LanguajeContext)
+  const { text } = useContext(LanguajeContext)
+  
+  
 
 	useEffect(() => {
 		if (sport) {
@@ -68,12 +72,31 @@ const MatchList = ({ sport, disputed }) => {
 							<TH>
 								<HelpCenterIcon fontSize="large" color="secondary" />
 							</TH>
+
+							{disputed == 1 && (
+								<>
+									<TH>
+										<BoxCen>
+											<MilitaryTechTwoToneIcon fontSize="large" color="secondary" />{" "}
+											{text.ganador}
+										</BoxCen>
+									</TH>
+
+									<TH>
+										<BoxCen>
+											<SportsSoccerTwoToneIcon fontSize="large" color="secondary" />{" "}
+											{text.goles}
+										</BoxCen>
+									</TH>
+								</>
+              )}
+              {}
 						</TR>
 					</thead>
 					<tbody>
 						{loading && <Loader />}
 						{data.map((e, i) => (
-							<MatchListRow key={"champ" + i} data={e} />
+							<MatchListRow key={"champ" + i} disputed={disputed} sport={sport} data={e} />
 						))}
 					</tbody>
 				</Table>

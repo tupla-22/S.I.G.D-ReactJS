@@ -121,11 +121,14 @@ const translation = {
         deportes: "Deportes",
         agregarDeporte: "Agregar deporte",
         nombreDelDeporte: "Nombre del deporte",
-        
+        ganador: "Ganador",
+        goles:"Goles",
         
         
     },
     en: {
+        goles:"Goals",
+        ganador:"Winner",
         nombreDelDeporte: "Sport name",
         agregarDeporte: "Add sport",
         deportes:"Sports",
