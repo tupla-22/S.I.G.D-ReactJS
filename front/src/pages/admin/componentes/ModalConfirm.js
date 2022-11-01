@@ -23,7 +23,10 @@ const style = {
 
 export default function ModalConfirm({name,confirm,setConfirm}) {
   const [open, setOpen] = React.useState("");
-  const handleOpen = () => setOpen(true);
+  const handleOpen = (e) => {
+    e.preventDefault()
+    setOpen(true)
+  };
   const handleClose = (e) =>{ 
     setOpen(false)
     setConfirm(e.target.name)
@@ -36,7 +39,7 @@ export default function ModalConfirm({name,confirm,setConfirm}) {
 
   return (
     <div>
-      <ButtonClassic onClick={handleOpen}>{name}</ButtonClassic>
+      <ButtonClassic type="submit" onClick={handleOpen}>{name}</ButtonClassic>
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"

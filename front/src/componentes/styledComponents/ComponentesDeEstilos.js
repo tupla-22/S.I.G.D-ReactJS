@@ -49,3 +49,8 @@ flex-direction:column;
 align-items:center;
 justify-content:center;
 `
+
+
+
+export const TR = styled.tr`
+`

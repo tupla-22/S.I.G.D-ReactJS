@@ -13,8 +13,9 @@ import Form from "../../../componentes/Form";
 import { Seccion } from "../../../componentes/styledComponents/Seccion";
 import HelpCenterIcon from '@mui/icons-material/HelpCenter';
 import LanguajeContext from "../../../contexts/LanguajeContext";
+import { TR } from "../../../componentes/styledComponents/ComponentesDeEstilos";
 
-const MatchList = ({ sport }) => {
+const MatchList = ({ sport,disputed }) => {
   // POR PARAMETRO SE LE TRASMITE EL DEPORTE DESEADO
 
   const peticion = helpHttp();
@@ -29,7 +30,7 @@ const MatchList = ({ sport }) => {
         peticion
           .get(
             urlApi(
-              "matcheck?disputed=0&sport=handball,football,basketball&orderBy=id_partido&orderMode=asc"
+              `matcheck?disputed=${disputed ? disputed : 0}&sport=handball,football,basketball&orderBy=id_partido&orderMode=asc`
             )
           )
           .then((e) =>{
@@ -42,7 +43,7 @@ const MatchList = ({ sport }) => {
         peticion
           .get(
             urlApi(
-              "matcheck?disputed=0&sport=football&orderBy=id_partido&orderMode=asc"
+              `matcheck?disputed=${disputed ? disputed : 0}&sport=football&orderBy=id_partido&orderMode=asc`
             )
           )
           .then((e) =>{
@@ -56,7 +57,7 @@ const MatchList = ({ sport }) => {
         peticion
           .get(
             urlApi(
-              "matcheck?disputed=0&sport=handball&orderBy=id_partido&orderMode=asc"
+              `matcheck?disputed=${disputed ? disputed : 0}&sport=handball&orderBy=id_partido&orderMode=asc`
             )
           )
           .then((e) =>{
@@ -70,7 +71,7 @@ const MatchList = ({ sport }) => {
         peticion
           .get(
             urlApi(
-              "matcheck?disputed=0&sport=basketball&orderBy=id_partido&orderMode=asc"
+              `matcheck?disputed=${disputed ? disputed : 0}&sport=basketball&orderBy=id_partido&orderMode=asc`
             )
           )
           .then((e) =>{
@@ -86,29 +87,28 @@ const MatchList = ({ sport }) => {
 
   return (
     <>
-      <Seccion>
         <h3>{text.partidos}</h3>
         <DivOver>
           <Table>
             <thead>
-              <tr>
+              <TR>
                 <TH>
-                  <DateRangeIcon color="secondary" />
+                  <DateRangeIcon fontSize="large" color="secondary" />
                 </TH>
                 <TH>
-                  <AccessTimeFilledIcon color="secondary" />
+                  <AccessTimeFilledIcon fontSize="large" color="secondary" />
                 </TH>
                 <TH>
-                  <ShieldIcon color="secondary"></ShieldIcon>
+                  <ShieldIcon fontSize="large" color="secondary"></ShieldIcon>
                 </TH>
                 <TH>VS</TH>
                 <TH>
-                  <ShieldIcon color="secondary"></ShieldIcon>
+                  <ShieldIcon fontSize="large" color="secondary"></ShieldIcon>
                 </TH>
                 <TH>
-                  <HelpCenterIcon color="secondary"/>
+                  <HelpCenterIcon fontSize="large" color="secondary"/>
                 </TH>
-              </tr>
+              </TR>
             </thead>
             <tbody>
               {data.map((e, i) => (
@@ -117,7 +117,6 @@ const MatchList = ({ sport }) => {
             </tbody>
           </Table>
         </DivOver>
-      </Seccion>
     </>
   );
 };

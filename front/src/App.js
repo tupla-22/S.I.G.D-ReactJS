@@ -83,7 +83,7 @@ function App() {
 						</Route>
 
 						<Route path="/student/:userId" element={<HomeStudent />}>
-							<Route path="history" element={<MatchesHistory />}></Route>
+							<Route path="history" element={<History/>}></Route>
 							<Route path="Home" element={<Fixture />}>
 								<Route path="fixtureFB" element={<MatchList sport={"football"} />} />
 								<Route path="fixtureBB" element={<MatchList sport={"basketball"} />} />

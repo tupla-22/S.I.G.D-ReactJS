@@ -2,7 +2,7 @@ import { EscudoList } from "../../../componentes/styledComponents/EscudoList"
 import { TD } from "../../../componentes/styledComponents/TD"
 import { dateTradeEs, getUser } from "../../../functions/globals"
 import React, { useState, useEffect } from "react"
-import { BoxColCen } from "../../../componentes/styledComponents/ComponentesDeEstilos"
+import { BoxColCen, TR } from "../../../componentes/styledComponents/ComponentesDeEstilos"
 import { Button } from "@mui/material"
 import VisibilityIcon from "@mui/icons-material/Visibility"
 import { helpHttp } from "../../../helpers/helpHttp"
@@ -24,7 +24,7 @@ const MatchListRow = ({ data }) => {
 
 	return (
 		<>
-			<tr>
+			<TR>
 				<TD>{dateTradeEs(data.dia_partido)}</TD>
 				<TD>{data.hora_partido}</TD>
 				<TD>
@@ -63,7 +63,7 @@ const MatchListRow = ({ data }) => {
 						<BoxColCen>ID: {data.id_partido}</BoxColCen>
 					</TD>
 				)}
-			</tr>
+			</TR>
 		</>
 	)
 }
