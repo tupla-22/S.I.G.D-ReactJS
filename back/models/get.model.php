@@ -393,6 +393,8 @@ class GetModel{
         (select nombre_equipo from equipos e where e.id_equipo=p.id_equipoVisitante_partido) as 'nombre_equipoVisitante',
         (select id_deporte_equipo from equipos e where e.id_equipo=p.id_equipoLocal_partido) as 'id_deporte_equipoLocal',
         (select id_deporte_equipo from equipos e where e.id_equipo=p.id_equipoVisitante_partido) as 'id_deporte_equipoVisitante',
+        (select anotacionLocal_partido from equipos e where e.id_equipo=p.id_equipoLocal_partido) as 'anotacion_equipoLocal',
+        (select anotacionVisitante_partido from equipos e where e.id_equipo=p.id_equipoLocal_partido) as 'anotacion_equipoVisitante',
         (select escudo_equipo from equipos e where e.id_equipo=p.id_equipoLocal_partido) as 'escudo_equipoLocal',
         (select escudo_equipo from equipos e where e.id_equipo=p.id_equipoVisitante_partido) as 'escudo_equipoVisitante'";
         $from='partidos p';
