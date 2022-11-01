@@ -422,6 +422,81 @@ select * from partidos;
 select * from tienen;
 select * from fichasJugadores;
 select * from usuarios;
+
+
+
+/*======================================================
+procedure para obtener el equipo por la id de un usuario
+=======================================================*/
+
+delimiter //
+
+create procedure obtenerEquipoPorIdUsuario (in usuario int)
+begin
+select id_equipo,nombre_equipo, escudo_equipo, id_deporte_equipo, id_liga_equipo from equipos 
+inner join pertenecen on id_equipo=id_equipo_pertenece 
+inner join fichasJugadores on id_fichaJugador=id_fichaJugador_pertenece
+inner join tienen on id_fichaJugador=id_fichaJugador_tiene
+inner join usuarios on id_usuario=id_usuario_tiene
+where id_usuario=usuario;
+
+end //
+delimiter ;
+
+#call obtenerEquipoPorIdUsuario (9);
+
+
+/*======================================================
+procedure para obtener los integrantes de un equipo con la id de cualquier usuario perteneciente al misimo
+=======================================================*/
+
+
+delimiter $$
+create procedure obtenerIntegrantesEquipoPorUsuarioId (in usuario int)
+begin
+select id_usuario, ci_usuario, primerNombre_usuario, primerApellido_usuario, email_usuario, fechaNac_usuario, fotoPerfil_usuario, id_fichaJugador, altura_fichaJugador, peso_fichaJugador, minutosJugados_fichaJugador, lateralidad_fichaJugador 
+from usuarios 
+inner join tienen on id_usuario=id_usuario_tiene
+inner join fichasJugadores on id_fichaJugador=id_fichaJugador_tiene
+where id_usuario in
+(select id_usuario_tiene as "id_usuario" from tienen where id_fichaJugador_tiene in
+(select id_fichaJugador_pertenece
+from pertenecen where id_equipo_pertenece in
+(select id_equipo_pertenece as "id_equipo"
+from pertenecen where id_fichaJugador_pertenece in (
+select id_fichaJugador
+from usuarios
+inner join tienen on id_usuario=id_usuario_tiene
+inner join fichasJugadores on id_fichaJugador_tiene=id_fichaJugador
+where id_usuario=usuario))));
+
+end $$
+delimiter ;
+
+#call obtenerIntegrantesEquipoPorUsuarioId (9);
+
+
+/*select id_usuario, ci_usuario, primerNombre_usuario, primerApellido_usuario, email_usuario, fechaNac_usuario, fotoPerfil_usuario, id_fichaJugador, altura_fichaJugador, peso_fichaJugador, minutosJugados_fichaJugador, lateralidad_fichaJugador, id_equipo, nombre_equipo
+from usuarios 
+inner join tienen on id_usuario=id_usuario_tiene
+inner join fichasJugadores on id_fichaJugador=id_fichaJugador_tiene
+inner join pertenecen on id_fichaJugador=id_fichaJugador_pertenece
+inner join equipos on id_equipo_pertenece=id_equipo
+where id_usuario in
+(select id_usuario_tiene as "id_usuario" from tienen where id_fichaJugador_tiene in
+(select id_fichaJugador_pertenece
+from pertenecen where id_equipo_pertenece in
+(select id_equipo_pertenece as "id_equipo"
+from pertenecen where id_fichaJugador_pertenece in (
+select id_fichaJugador
+from usuarios
+inner join tienen on id_usuario=id_usuario_tiene
+inner join fichasJugadores on id_fichaJugador_tiene=id_fichaJugador
+where id_usuario=9))));*/
+
+
+
+
 /*
 UPDATE cantidadEquiposDeportes 
 set cantidad_equipo=(select count( id_equipo )
@@ -868,7 +943,7 @@ los equipos(de los partidos),
 	escudo
     nombre
 */
-select * from estadisticas;
+#select * from estadisticas;
 # table registran;
 
 
