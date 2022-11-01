@@ -386,7 +386,7 @@ class GetModel{
             }
         }
        /**=====================sentencias sql ============================ */  
-        $select="id_partido,dia_partido,hora_partido,tipo_partido,disputado_partido,
+        $select="id_partido,dia_partido,hora_partido,tipo_partido,disputado_partido,ganador_partido,
         (select id_equipo from equipos e where e.id_equipo=p.id_equipoLocal_partido ) as 'id_equipoLocal',
         (select id_equipo from equipos e where e.id_equipo=p.id_equipoVisitante_partido) as 'id_equipoVisitante',
         (select nombre_equipo from equipos e where e.id_equipo=p.id_equipoLocal_partido ) as 'nombre_equipoLocal',

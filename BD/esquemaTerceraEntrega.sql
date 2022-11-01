@@ -137,6 +137,7 @@ create table partidos(
     anotacionVisitante_partido int,
     tipo_partido varchar(40),
     disputado_partido bool default 0,
+    ganador_partido varchar(40) default null,
     date_created_partido date default current_timestamp,
     date_updated_partido timestamp default current_timestamp ON UPDATE CURRENT_TIMESTAMP,
     primary key (id_partido,id_equipoLocal_partido, id_equipoVisitante_partido),
@@ -474,7 +475,6 @@ end $$
 delimiter ;
 
 #call obtenerIntegrantesEquipoPorUsuarioId (9);
-
 
 /*select id_usuario, ci_usuario, primerNombre_usuario, primerApellido_usuario, email_usuario, fechaNac_usuario, fotoPerfil_usuario, id_fichaJugador, altura_fichaJugador, peso_fichaJugador, minutosJugados_fichaJugador, lateralidad_fichaJugador, id_equipo, nombre_equipo
 from usuarios 
