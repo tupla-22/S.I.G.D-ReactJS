@@ -752,27 +752,27 @@ values
 ("sub 20","copa america",2,"2022-01-12","2022-02-12"),
 ("clasico","copa sudamericana",1,"2022-03-12","2022-04-12");
 
-insert into partidos (id_equipoLocal_partido,id_equipoVisitante_partido,dia_partido,hora_partido,tipo_partido, disputado_partido)
-values (7,11,"2022-02-02",'16:30:00',"torneo", 0 ),
-(11,7,"2022-01-12",'16:30:00',"amistoso", 01 ),
-(1,2,"2022-02-10",'16:30:00',"amistoso", 1 ),
-(2,1,"2022-03-11",'16:30:00',"torneo", 01 ),
-(3,4,"2022-04-09",'16:30:00',"amistoso", 1 ),
-(5,9,"2022-05-08",'16:30:00',"amistoso", 01 ),
-(6,8,"2022-06-07",'16:30:00',"torneo", 0 ),
-(8,10,"2021-07-06",'16:30:00',"amistoso", 01 ),
-(6,10,"2021-08-05",'16:30:00',"amistoso", 0 ),
-(10,6,"2021-09-04",'16:30:00',"torneo", 01 ),
-(11,7,"2021-10-03",'16:30:00',"amistoso", 0 ),
-(1,5,"2021-11-02",'16:30:00',"amistoso", 01 ),
-(1,9,"2021-12-01",'16:30:00',"torneo", 1 ),
-(11,7,"2021-10-02",'16:30:00',"amistoso", 01 ),
-(6,8,"2021-09-02",'16:30:00',"amistoso", 0 ),
-(4,3,"2021-04-02",'16:30:00',"liga", 01 ),
-(1,2,"2022-02-14",'16:30:00',"amistoso", 0 ),
-(3,4,"2022-04-05",'16:30:00',"amistoso", 0 ),
-(1,9,"2021-15-01",'16:30:00',"torneo", 0 ),
-(12, 5, '2022-10-28', '09:45:00', 'amistoso', 1)
+insert into partidos (id_equipoLocal_partido,id_equipoVisitante_partido,dia_partido,hora_partido,tipo_partido, disputado_partido,anotacionLocal_partido, anotacionVisitante_partido, ganador_partido)
+values (7,11,"2022-02-02",'16:30:00',"torneo", 0 , null, null, null),
+(11,7,"2022-01-12",'16:30:00',"amistoso", 01, 3,4,"test" ),
+(1,2,"2022-02-10",'16:30:00',"amistoso", 1, 2,5,"test" ),
+(2,1,"2022-03-11",'16:30:00',"torneo", 01, 2,1,"test" ),
+(3,4,"2022-04-09",'16:30:00',"amistoso", 1, 2,5,"test" ),
+(5,9,"2022-05-08",'16:30:00',"amistoso", 01, 7,4,"test" ),
+(6,8,"2022-06-07",'16:30:00',"torneo", 0 , null, null, null),
+(8,10,"2021-07-06",'16:30:00',"amistoso", 01, 3,4,"test" ),
+(6,10,"2021-08-05",'16:30:00',"amistoso", 0 , null, null, null),
+(10,6,"2021-09-04",'16:30:00',"torneo", 01, 2,5,"test" ),
+(11,7,"2021-10-03",'16:30:00',"amistoso", 0 , null, null, null),
+(1,5,"2021-11-02",'16:30:00',"amistoso", 01, 2,7,"test" ),
+(1,9,"2021-12-01",'16:30:00',"torneo", 1, 7,4,"test" ),
+(11,7,"2021-10-02",'16:30:00',"amistoso", 01, 1,4,"test" ),
+(6,8,"2021-09-02",'16:30:00',"amistoso", 0 , null, null, null),
+(4,3,"2021-04-02",'16:30:00',"liga", 01, 1,4,"test"  ),
+(1,2,"2022-02-14",'16:30:00',"amistoso", 0, null, null, null ),
+(3,4,"2022-04-05",'16:30:00',"amistoso", 0, null, null, null ),
+(1,9,"2021-15-01",'16:30:00',"torneo", 0, null, null, null ),
+(12, 5, '2022-10-28', '09:45:00', 'amistoso', 1, 1,4,"test" )
 ;
 
 
