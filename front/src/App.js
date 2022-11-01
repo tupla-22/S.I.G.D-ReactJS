@@ -69,6 +69,9 @@ import ChangeContactInformation from "./componentes/ChangeContactInformation"
 import Championships from "./pages/student/Championships"
 import ChampionshipsOpen from "./pages/student/componentes/ChampionshipsOpen"
 import ChampionshipsClosed from "./pages/student/componentes/ChampionshipsClosed"
+import AdminSports from "./pages/admin/AdminSorts"
+import SportAdd from "./pages/admin/componentes/SportAdd"
+import SportDelete from "./pages/admin/componentes/SportDelete"
 
 function App() {
 	return (
@@ -83,7 +86,7 @@ function App() {
 						</Route>
 
 						<Route path="/student/:userId" element={<HomeStudent />}>
-							<Route path="history" element={<History/>}></Route>
+							<Route path="history" element={<History />}></Route>
 							<Route path="Home" element={<Fixture />}>
 								<Route path="fixtureFB" element={<MatchList sport={"football"} />} />
 								<Route path="fixtureBB" element={<MatchList sport={"basketball"} />} />
@@ -99,12 +102,16 @@ function App() {
 								<Route path="changePassword" element={<ChangePassword />}></Route>
 							</Route>
 							<Route path="championships" element={<Championships />}>
-								<Route path="open" element={<ChampionshipsOpen/>}></Route>
-								<Route path="closed" element={<ChampionshipsClosed/>}></Route>
+								<Route path="open" element={<ChampionshipsOpen />}></Route>
+								<Route path="closed" element={<ChampionshipsClosed />}></Route>
 							</Route>
 						</Route>
 
 						<Route path="/admin/:userId" element={<HomeAdmin />}>
+							<Route element={<AdminSports/>} path="sports">
+								<Route path="add" element={<SportAdd />}></Route>
+								<Route path="delete" element={<SportDelete />}></Route>
+							</Route>
 							<Route element={<AdminMatch />} path="match">
 								<Route path="add" element={<MatchAdd />}></Route>
 								<Route path="delete" element={<MatchDel />}></Route>

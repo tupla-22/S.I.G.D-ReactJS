@@ -928,7 +928,41 @@ class GetModel{
         return $stmt->fetchAll(PDO::FETCH_CLASS);
         
     }
+    static function getIntegrantesEquipoPorIDUsuario($idUsuario){
+        
+        
+               
+    $stmt=Connection::connect()->prepare("call obtenerIntegrantesEquipoPorUsuarioId ($idUsuario);");
 
+    try {
+
+        $stmt->execute();
+
+    } catch (PDOException $Exeption) {
+        return null;
+    }
+    
+    return $stmt->fetchAll(PDO::FETCH_CLASS);
+        
+    }
+
+    static function getEquipoPorIDUsuarioPerteneciente($idUsuario){
+        
+        
+               
+        $stmt=Connection::connect()->prepare("call obtenerEquipoPorIdUsuario ($idUsuario);");
+    
+        try {
+    
+            $stmt->execute();
+    
+        } catch (PDOException $Exeption) {
+            return null;
+        }
+        
+        return $stmt->fetchAll(PDO::FETCH_CLASS);
+            
+    }
     static public function getCountEstadisticas($userID, $tipoEstadistica, $verified, $orderBy, $orderMode, $startAt, $endAt){
 
         

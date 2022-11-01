@@ -205,7 +205,17 @@ deporte equipo
     $response->getCountEstadisticas($_GET["id_usuario"], $_GET["tipo_estadistica"], $verified, $orderBy, $orderMode, $startAt, $endAt);  
     
  
+}else if ($table=="getIntegrantesEquipoPorIDUsuario" && $table!="statistics" && $table!="matcheck" && isset($_GET["id_usuario"]) ) {
+
+    $response->getIntegrantesEquipoPorIDUsuario($_GET["id_usuario"]);  
     
+ 
+}else if ($table=="getEquipoPorIDUsuarioPerteneciente" && $table!="statistics" && $table!="matcheck" && isset($_GET["id_usuario"]) ) {
+
+    $response->getEquipoPorIDUsuarioPerteneciente($_GET["id_usuario"]);  
+    
+ 
+          
 }else{
 
 

@@ -1,4 +1,7 @@
+import TeamsList from "../pages/admin/componentes/TeamsList";
 import AllTeamsTable from "./AllTeamsTable";
+import { H3B } from "./styledComponents/ComponentesDeEstilos";
+import { H3 } from "./styledComponents/H3";
 import Main from "./styledComponents/Main";
 
 const AllTeams = () => {
@@ -10,9 +13,8 @@ const AllTeams = () => {
 
     return ( 
         <Main>  
-            <h3 style={{padding:20}}>Todos los equipos</h3>
-
-                <AllTeamsTable/>
+            <H3B>Todos los equipos</H3B>
+                <TeamsList/>
         </Main>
      );
 }

@@ -8,20 +8,27 @@ import PlayerList from "../scout/componentes/PlayersList";
 
 const MyTeam = () => {
     const [players, setPlayers] = useState([]);
-
+    const [myTeam, setMyTeam] = useState({});
     const peticion = helpHttp()
     const { text } = useContext(LanguajeContext)
 
 	const user = getUser()
 
 	const urlJugadores =
-		"relations?select=id_usuario,ci_usuario,carneSalud_usuario,fechaNac_usuario,email_usuario,primerApellido_usuario,primerNombre_usuario,id_rol_usuario&rel=tienen,usuarios&type=tiene,usuario"
-
+		`getIntegrantesEquipoPorIDUsuario?id_usuario=${user.id_usuario}`
+    const urlMiEquipo =`getEquipoPorIDUsuarioPerteneciente?id_usuario=${user.id_usuario}`
 	useEffect(() => {
 			peticion.get(urlApi(urlJugadores)).then((dat) => {
 				console.log(dat)
 				if (dat.status == 200) {
 					setPlayers(dat.result)
+				}
+            })
+            peticion.get(urlApi(urlMiEquipo)).then((dat) => {
+				console.log(dat)
+                if (dat.status == 200) {
+                    setMyTeam(dat.result[0])
+                console.log(myTeam)
 				}
 			})
 	}, [])
@@ -29,7 +36,7 @@ const MyTeam = () => {
     return ( 
     
     <Main>
-        <h3 style={{padding:20}}>Equipo: (nombre)</h3>
+        <h3 style={{padding:20}}>Equipo: {myTeam.nombre_equipo}</h3>
         <PlayerList players={players}/>
     </Main>
      );

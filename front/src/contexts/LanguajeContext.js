@@ -118,11 +118,17 @@ const translation = {
         historial: "Historial",
         abiertos: "Abiertos",
         cerrados: "Cerrados",
+        deportes: "Deportes",
+        agregarDeporte: "Agregar deporte",
+        nombreDelDeporte: "Nombre del deporte",
         
         
         
     },
     en: {
+        nombreDelDeporte: "Sport name",
+        agregarDeporte: "Add sport",
+        deportes:"Sports",
         cerrados: "Closed",
         abiertos:"Open",
         historial: "History",
