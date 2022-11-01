@@ -21,7 +21,8 @@ const UserUpdateForm = ({ user, setUser }) => {
         console.log()
     }
 
-    const handleClick = (e)=>{
+    const handleClick = (e) => {
+        e.preventDefault()
         peticion.get(`http://apirest.com/usuarios?select=*&linkTo=ci_usuario&equalTo=${ciUser}¨¨`).then(e=>{
             if(e.status==200){
                 setUser(e.result[0])
@@ -32,7 +33,7 @@ const UserUpdateForm = ({ user, setUser }) => {
         <Form>
             <h3>{text.actualizarUsuarios}</h3>
             <TextField type="number" onChange={handleChange} name="ci_usuario" label={text.cedula} value={ciUser} className="Form__input"></TextField>
-            <ButtonClassic onClick={handleClick}>{text.actualizar}</ButtonClassic>
+            <ButtonClassic type="submit" onClick={handleClick}>{text.actualizar}</ButtonClassic>
         </Form>
      );
 }

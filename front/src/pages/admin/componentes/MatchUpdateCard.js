@@ -17,7 +17,7 @@ import LanguajeContext from "../../../contexts/LanguajeContext";
   
   
   
-  const MatchUpdateCard = ({data}) => {
+  const MatchUpdateCard = ({data,setOk,setData}) => {
     const [matchForm, setMatchForm] =useState(data);
     const [equipos, setEquipos] = useState([]);
     const [errors, setErrors] = useState(null);
@@ -44,12 +44,22 @@ import LanguajeContext from "../../../contexts/LanguajeContext";
       });
     };
   
-    const handleClick = () => {
+    const handleClick = (e) => {
+      e.preventDefault()
       const confi = {
         body: new URLSearchParams(matchForm),
       };
        peticion.put(urlApi(`partidos?id=${matchForm.id_partido}&nameID=id_partido`),confi)
-        .then((e) => console.log(e.status))
+         .then((e) => {
+           console.log(e.status,"Actualizacion de partido")
+           if (e.status ==200) {
+             setOk(true)
+             setTimeout(() => {
+               setOk(false)
+             }, 5000)
+             setData(null)
+            }
+         })
     };
   
   
@@ -129,7 +139,7 @@ import LanguajeContext from "../../../contexts/LanguajeContext";
             <MenuItem value={3}>3</MenuItem>
           </Select>
         </FormControl> */}
-        <ButtonClassic onClick={handleClick} className="Form__input">
+        <ButtonClassic type="submit" onClick={handleClick} className="Form__input">
           Agregar
         </ButtonClassic>
       </Form>

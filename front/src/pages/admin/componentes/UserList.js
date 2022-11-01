@@ -11,7 +11,7 @@ import { unstable_detectScrollType } from "@mui/utils"
 import LanguajeContext from "../../../contexts/LanguajeContext"
 import { Button } from "@mui/material"
 
-const UserList = () => {
+const UserList = ({ciUsuarioEliminado}) => {
 	const [data, setData] = useState([])
 	const [status, setStatus] = useState(false)
 	const [userType, setUserType] = useState({})
@@ -31,6 +31,14 @@ const UserList = () => {
 		})
 		userVerifier(setUserType, userType)
 	}, [])
+
+	useEffect(() => {
+		if (ciUsuarioEliminado) {
+			setData(data.filter(el => el.ci_usuario != ciUsuarioEliminado))
+		}
+		console.log(ciUsuarioEliminado)
+		console.log(data)
+	}, [ciUsuarioEliminado]);
 
 	return (
 		<>

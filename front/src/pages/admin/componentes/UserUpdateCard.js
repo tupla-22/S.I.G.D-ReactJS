@@ -14,18 +14,18 @@ import { helpHttp } from "../../../helpers/helpHttp"
 import LanguajeContext from "../../../contexts/LanguajeContext"
 import AlertSuccees from "../../../componentes/AlertSuccees"
 
-const UserUpdateCard = ({ data, setUser }) => {
+const UserUpdateCard = ({ data, setUser, setOk }) => {
 	const [userForm, setUserForm] = useState(data)
 	const [typeUser, setTypeUser] = useState("")
 	const [passwordVerified, setPasswordVerified] = useState(true)
 	const [password, setPassword] = useState("")
 	const [errors, setErrors] = useState(false)
-	const [ok, setOk] = useState(false)
 
 	const { text } = useContext(LanguajeContext)
 	const peticion = helpHttp()
 
-	const handleClick = () => {
+  const handleClick = (e) => {
+    e.preventDefault()
 		if (passwordVerified) {
 			const data = {
 				body: new URLSearchParams(userForm),
@@ -78,7 +78,7 @@ const UserUpdateCard = ({ data, setUser }) => {
 
 	return (
     <>
-      {ok && <AlertSuccees/>}
+      
 			<Form style={{ display: "flex", flexDirection: "column" }} className="userAddForm">
 				<h3>{text.agregarUnUsuario}</h3>
 				<TextField
@@ -172,7 +172,7 @@ const UserUpdateCard = ({ data, setUser }) => {
 				/>
 				<IconButton label="" color="primary" aria-label="upload picture" component="label"></IconButton>
 
-				<ButtonClassic variant="contained" onClick={handleClick}>
+				<ButtonClassic type="submit" variant="contained" onClick={handleClick}>
 					{text.actualizar}
 				</ButtonClassic>
 			</Form>

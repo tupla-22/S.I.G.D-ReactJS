@@ -15,7 +15,7 @@ import { getUser } from "../../../functions/globals"
 import SearchIcon from '@mui/icons-material/Search';
 
 
-const UserSearch = () => {
+const UserSearch = ({ciUsuarioEliminado}) => {
 	const [apellido, setApellido] = useState("")
 	const [loading, setLoading] = useState(false)
 	const solicitud = helpHttp()
@@ -80,7 +80,7 @@ const UserSearch = () => {
 			)}
       {errors && <PAlert>{ text.noSeEncontro}</PAlert>}
 
-			<UserList />
+			<UserList ciUsuarioEliminado={ciUsuarioEliminado}/>
 		</Form>
 	)
 }

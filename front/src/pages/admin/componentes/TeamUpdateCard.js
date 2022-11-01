@@ -40,7 +40,8 @@ const TeamUpdateCard = ({ setTeam, data, ok, setOk }) => {
 			console.log(e.status, "Actualizacion")
 			if (e.status == 200) {
 				setOk(true)
-				setTeam(null)
+        setTeam(null)
+        setTimeout(() => { setOk(false) }, 5000)
 			}
 		})
 	}

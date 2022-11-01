@@ -19,14 +19,15 @@ const ChampionshipUpdateForm = ({setData}) => {
         setidChampionship(e.target.value)
     }
 
-    const handleClick = (e)=>{
+    const handleClick = (e) => {
+        e.preventDefault()
         peticion.get(`http://apirest.com/campeonatos?select=*&linkTo=id_campeonato&search=${idChampionship}¨¨`).then(e=>setData(e.result[0]));
     }
     return ( 
         <Form>
             <h3>{text.actualizarCampeonato}</h3>
             <TextField type="number" onChange={handleChange}  label="ID" value={idChampionship} className="Form__input"></TextField>
-            <ButtonClassic onClick={handleClick}>{text.actualizar}</ButtonClassic>
+            <ButtonClassic type="submit"  onClick={handleClick}>{text.actualizar}</ButtonClassic>
         </Form>
      );
 }

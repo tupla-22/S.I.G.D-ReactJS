@@ -7,13 +7,14 @@ import { helpHttp } from "../../../helpers/helpHttp"
 import { urlApi } from "../../../functions/globals"
 import LanguajeContext from "../../../contexts/LanguajeContext"
 import AlertSuccees from "../../../componentes/AlertSuccees"
+import UserSearch from "./UserSearch"
 
 const UserDelForm = () => {
     const [ciUser, setCiUser] = useState(null)
     const [confirm, setConfirm] = useState(null)
     const [modalConfirm, setModalConfirm] = useState(null)
     const [ok, setOk] = useState(false);
-
+    const [ciUsuarioEliminado, setciUsuarioEliminado] = useState(null);
 	const { text } = useContext(LanguajeContext)
 
 	const peticion = helpHttp()
@@ -31,11 +32,12 @@ const UserDelForm = () => {
 		if (confirm == "1") {
 			peticion.del(urlApi(`usuarios?id=${ciUser}&nameID=ci_usuario`)).then((e) => {
 				console.log(e)
-				if (e.status == 200) {
+                if (e.status == 200) {
+                    setciUsuarioEliminado(ciUser)
                     setConfirm(0)
                     setOk(true)
                     setTimeout(()=>{setOk(false)},5000)
-				} else setConfirm(0)
+				} else {setConfirm(0)}
 			})
 		}
 	}, [confirm])
@@ -53,7 +55,9 @@ const UserDelForm = () => {
 					className="Form__input"
 				></TextField>
 				<ModalConfirm name={text.eliminar} confirm={confirm} setConfirm={setConfirm} />
-			</Form>
+            </Form>
+            
+           <UserSearch ciUsuarioEliminado={ciUsuarioEliminado}></UserSearch>
 		</>
 	)
 }

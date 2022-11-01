@@ -21,16 +21,16 @@ const style = {
   p: 4,
 };
 
-export default function ModalConfirm({name,confirm,setConfirm}) {
+export default function ModalConfirm({name,setConfirm}) {
   const [open, setOpen] = React.useState("");
   const handleOpen = (e) => {
     e.preventDefault()
     setOpen(true)
   };
-  const handleClose = (e) =>{ 
+  const handleClose = (e) => { 
+    e.preventDefault()
     setOpen(false)
     setConfirm(e.target.name)
-    console.log(confirm)
   };
 
   const { text } = React.useContext(LanguajeContext)

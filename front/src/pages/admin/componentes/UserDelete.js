@@ -10,7 +10,6 @@ const UserDelete = () => {
         <>
          <Main>
            <UserDelForm></UserDelForm>
-           <UserSearch></UserSearch>
          </Main>
         </>
      );
