@@ -102,7 +102,9 @@ const LookMatch = () => {
 	// MANEJADORES
 
 	const handleStart = () => {
-		if (!started) setStarted(true)
+    if (!started) {
+      setStarted(true)
+    }
 		else {
 			setStarted(false)
 			setEndMatch(true)
@@ -127,7 +129,7 @@ const LookMatch = () => {
 				/>
 
 				<h3>Ingresar las estadisticas del partido</h3>
-				<ManagerControl matchId={matchId} visitantes={visitantes} locales={locales} sport={deporte} />
+				<ManagerControl confirm={confirm} endMatch={endMatch} matchId={matchId} visitantes={visitantes} locales={locales} sport={deporte} />
 
 				<Clock
 					minutos={minutos}

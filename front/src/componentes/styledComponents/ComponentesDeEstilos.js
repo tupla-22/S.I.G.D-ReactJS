@@ -54,3 +54,11 @@ justify-content:center;
 
 export const TR = styled.tr`
 `
+
+
+export const BoxAlCen = styled.div`
+display:flex;
+align-items:center;
+width:100%;
+`
+

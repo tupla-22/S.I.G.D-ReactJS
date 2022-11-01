@@ -49,7 +49,7 @@ export const getUser=()=>{
 }
 
 
-const calcularEdad = (fecha) => {
+export const calcularEdad = (fecha) => {
    var hoy = new Date();
    var cumpleanos = new Date(fecha);
    var edad = hoy.getFullYear() - cumpleanos.getFullYear();
@@ -60,4 +60,11 @@ const calcularEdad = (fecha) => {
    }
 
    return edad;
+
+}
+
+
+
+export const localGetItem = (name) => {
+   return JSON.parse(localStorage.getItem(name)) 
 }

@@ -120,6 +120,7 @@ const WhoArePlaying = ({ jugando, setJugando, locales, visitantes, name, onClick
 					<GridContained>
 						{localesAux.map((e) => (
 							<Button
+								
 								onClick={() => {
 									setLocalesAux(localesAux.filter((el) => el.id_usuario != e.id_usuario))
 									setTitularesLocales([...titularesLocales, e])

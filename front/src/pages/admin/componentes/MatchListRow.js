@@ -75,7 +75,7 @@ const MatchListRow = ({ data, disputed, sport }) => {
 						<TD>
 							<BoxCen>
 								<BoxColCen>
-									{data.nombre_equipoVisitante} <B>{data.anotacion_equipoLocal}</B>
+									{data.nombre_equipoLocal} <B>{data.anotacion_equipoLocal}</B>
 								</BoxColCen>
 								<b>-----</b>
 								<BoxColCen>
