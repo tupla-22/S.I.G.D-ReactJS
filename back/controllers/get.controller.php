@@ -163,6 +163,22 @@ static function getCountEstadisticas($userID, $tipoEstadistica, $verified, $orde
     $return -> fncResponse($response);
 }
 
+
+static function getIntegrantesEquipoPorIDUsuario($idUsuario){
+    $response = GetModel::getIntegrantesEquipoPorIDUsuario($idUsuario);
+    $return=new GetController();
+    $return -> fncResponse($response);
+
+}
+
+
+static function getEquipoPorIDUsuarioPerteneciente($idUsuario){
+    $response = GetModel::getEquipoPorIDUsuarioPerteneciente($idUsuario);
+    $return=new GetController();
+    $return -> fncResponse($response);
+
+}
+
     /**==============================respuestas del controlador====================================*/
 
     public function fncResponse($response){
