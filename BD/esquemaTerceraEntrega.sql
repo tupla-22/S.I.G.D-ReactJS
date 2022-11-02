@@ -434,9 +434,6 @@ where id_campeonato_compite = old.id_campeonato;
 
 /*==========================
 trigger before campeonato delete (corresponden)
-    foreign key (id_partido_corresponde) references partidos(id_partido),
-    foreign key (id_equipoLocal_corresponde) references partidos(id_equipoLocal_partido),
-    foreign key (id_equipoVisitante_corresponde) references partidos(id_equipoVisitante_partido),
 =============================*/
 
 CREATE TRIGGER before_campeonato_delete_corresponden
@@ -444,6 +441,121 @@ before DELETE
 ON campeonatos FOR EACH ROW
 delete from corresponden
 where id_campeonato_corresponde = old.id_campeonato;
+
+/*==========================
+trigger before partido delete (corresponden)
+=============================*/
+
+CREATE TRIGGER before_partido_delete_corresponden
+before DELETE
+ON partidos FOR EACH ROW
+delete from corresponden
+where id_partido_corresponde = old.id_partido;
+
+/*==========================
+trigger before equipoLocal delete (corresponden)
+=============================*/
+
+CREATE TRIGGER before_equipoLocal_delete_corresponden
+before DELETE
+ON equipos FOR EACH ROW
+delete from corresponden
+where id_equipoLocal_corresponde = old.id_equipo;
+
+/*==========================
+trigger before equipoVisitante delete (corresponden)
+=============================*/
+
+CREATE TRIGGER before_equipoVisitante_delete_corresponden
+before DELETE
+ON equipos FOR EACH ROW
+delete from corresponden
+where id_equipoVisitante_corresponde = old.id_equipo;
+
+/*==========================
+trigger before deporte delete (conciben)
+=============================*/
+
+CREATE TRIGGER before_deporte_delete_conciben
+before DELETE
+ON deportes FOR EACH ROW
+delete from conciben
+where id_deporte_concibe = old.id_deporte;
+
+/*==========================
+trigger before deporte delete (conciben)
+=============================*/
+
+CREATE TRIGGER before_tipoEstadistica_delete_conciben
+before DELETE
+ON tiposEstadisticas FOR EACH ROW
+delete from conciben
+where id_tipoEstadistica_concibe = old.id_tipoEstadistica;
+
+/*==========================
+trigger before fichaJugador delete (estadisticas)
+=============================*/
+
+CREATE TRIGGER before_fichaJugador_delete_estadisticas
+before DELETE
+ON pertenecen FOR EACH ROW
+update estadisticas 
+set id_fichaJugador_estadistica=null
+where id_fichaJugador_estadistica = old.id_fichaJugador_pertenece;
+
+/*==========================
+trigger before equipo delete (estadisticas)
+=============================*/
+
+CREATE TRIGGER before_equipo_delete_estadisticas
+before DELETE
+ON pertenecen FOR EACH ROW
+update estadisticas 
+set id_equipo_estadistica=null
+where id_equipo_estadistica = old.id_equipo_pertenece;
+
+/*==========================
+trigger before analista delete (estadisticas)
+=============================*/
+
+CREATE TRIGGER before_analista_delete_estadisticas
+before DELETE
+ON usuarios FOR EACH ROW
+update estadisticas 
+set id_usuario_estadistica=null
+where id_usuario_estadistica = old.id_usuario;
+
+/*==========================
+trigger before juez delete (estadisticas)
+=============================*/
+
+CREATE TRIGGER before_juez_delete_estadisticas
+before DELETE
+ON usuarios FOR EACH ROW
+update estadisticas 
+set id_juez_estadistica=null
+where id_juez_estadistica = old.id_usuario;
+
+/*==========================
+trigger before partido delete (estadisticas)
+=============================*/
+
+CREATE TRIGGER before_partido_delete_estadisticas
+before DELETE
+ON partidos FOR EACH ROW
+update estadisticas 
+set id_partido_estadistica=null
+where id_partido_estadistica = old.id_partido;
+
+/*==========================
+trigger before tipoEstadistica delete (estadisticas)
+=============================*/
+
+CREATE TRIGGER before_tipoEstadistica_delete_estadisticas
+before DELETE
+ON tiposEstadisticas FOR EACH ROW
+delete from estadisticas 
+where tipo_estadistica = old.id_tipoEstadistica;
 
 /*================================
 trigger after_deporte_insert
