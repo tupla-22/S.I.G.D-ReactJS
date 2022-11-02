@@ -1003,6 +1003,15 @@ insert into pertenecen values
 ('12', '13', NULL, '2022-10-29', '2022-10-29 19:10:48')
 ;
 
+insert into tiposEstadisticas (id_tipoEstadistica)
+values 
+("gol"),
+("falta"),
+("corner"),
+("lateral"),
+("cambio"),
+("tiroLibre"),
+("penal");
 
 
 select * from pertenecen;
