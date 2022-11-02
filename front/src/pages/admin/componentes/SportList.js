@@ -10,7 +10,7 @@ import SportListRow from "./SportListRow"
 
 const peticion = helpHttp()
 
-const SportList = () => {
+const SportList = ({idEliminado}) => {
 	const [data, setData] = useState([])
 	const [status, setStatus] = useState(false)
   const [sport, setSport] = useState("");
@@ -25,7 +25,12 @@ const SportList = () => {
 			}
 		})
 
-	}, [])
+  }, [])
+
+  useEffect(() => {
+    setData(data.filter((e)=>e.id_deporte!=idEliminado))
+  }, [idEliminado]);
+  
 
 	return (
 		<>

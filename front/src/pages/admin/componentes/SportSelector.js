@@ -6,7 +6,7 @@ import Main from "../../../componentes/styledComponents/Main"
 import React, { useState } from "react"
 import { helpHttp } from "../../../helpers/helpHttp"
 import { urlApi } from "../../../functions/globals"
-
+import imgSport from "../../../media/herramientas-deportivas_53876-138077.jpg";
 const SportSelector = ({ routeAdd }) => {
 	const [sports, setSports] = useState([])
 
@@ -26,7 +26,7 @@ const SportSelector = ({ routeAdd }) => {
 					{sports.map((e) => (
 						<CardA
 							to={`../${e.id_deporte}/${routeAdd || ""}`}
-							url="https://img.olympicchannel.com/images/image/private/t_social_share_thumb/f_auto/primary/qjxgsf7pqdmyqzsptxju"
+              url={e.foto_deporte || imgSport}
 							name={e.id_deporte}
 						></CardA>
 					))}

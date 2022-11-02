@@ -32,9 +32,7 @@ export default function SportListRowPopStatsShower({ sport }) {
 	}
 
 	useEffect(() => {
-		console.log(sport)
 		peticion.get(urlApi(`conciben?select=*&linkTo=id_deporte_concibe&equalTo=${sport}`)).then((dat) => {
-			console.log(dat)
 			if (dat.status == 200) {
 				setStats(dat.result)
 			}

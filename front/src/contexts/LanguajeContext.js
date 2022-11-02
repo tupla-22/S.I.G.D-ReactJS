@@ -129,9 +129,12 @@ const translation = {
 			"Tu como estudiante puede ver tús estadícas, historial de partidos, fechas de proximos partidos, campeonatos y mucho mas. puede empezar e investigar probando todas las caracteristicas sin restricciones. Que disfrutes de la experiencia.",
         tituloBienvenida:'al "sistema informático de gestión deportiva de la institución UTU".',
 		bienvenido: "Bienvenido",
-		imagen:"Imagen",
+		imagen: "Imagen",
+		eliminarDeporte: "Eliminar deporte",
+		
     },
 	en: {
+		eliminarDeporte:"Delte sport",
 		imagen:"Image",
         bienvenido:"Welcome",
         tituloBienvenida:'to the "sports management computer system of the UTU institution".',

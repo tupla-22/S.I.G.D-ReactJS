@@ -10,14 +10,12 @@ import HomeStudent from "./pages/student/HomeStudent"
 import Error404 from "./componentes/Error404"
 import HomeAdmin from "./pages/admin/HomeAdmin"
 import UserAdd from "./pages/admin/componentes/UserAdd"
-import TeamsAll from "./componentes/TeamsAll"
 import Teams from "./componentes/Teams"
 import MyTeam from "./pages/student/MyTeam"
 import Stats from "./pages/student/componentes/Stats"
 import History from "./pages/student/componentes/History"
 import AdminUsers from "./pages/admin/AdminUsers"
 import AdminTeams from "./pages/admin/AdminTeams"
-import changePassword from "./componentes/ChangePassword"
 import UserUpdate from "./pages/admin/componentes/UserUpdate"
 import UserDelete from "./pages/admin/componentes/UserDelete"
 import TeamAdd from "./pages/admin/componentes/TeamAdd"
@@ -26,13 +24,9 @@ import TeamUpdate from "./pages/admin/componentes/TeamUpdate"
 import HomeAdm from "./pages/admin/HomePageAdmin"
 import HomeHome from "./pages/HomeHome"
 import HomeDT from "./pages/DT/HomeDT"
-import DTBar from "./pages/DT/componentes/DTBar"
 import HomePageDT from "./pages/DT/HomePageDT"
 import MyTeams from "./pages/DT/MyTeams"
-import ChampionshipsLoadBar from "./componentes/ChampionshipsLoadBar"
-import ChampionshipsLoad from "./componentes/ChampionshipsLoad"
 import AllTeams from "./componentes/AllTeams"
-import MatchesHistory from "./componentes/MatchesHistory"
 import { UserProvider } from "./contexts/UserContext"
 import HomeAnalist from "./pages/analist/HomeAnalist"
 import HomeJudge from "./pages/judge/HomeJudge"
@@ -40,9 +34,6 @@ import HomeScout from "./pages/scout/HomeScout"
 import HomePageAnalist from "./pages/analist/HomePageAnalist"
 import HomePageJudge from "./pages/judge/HomePageJudge"
 import HomePageScout from "./pages/scout/HomePageScout"
-import AdminNav from "./pages/admin/componentes/AdminNav"
-import Link from "./componentes/Link"
-import NavLink from "./componentes/NavLink"
 import ChampionshipAdd from "./pages/admin/componentes/ChampionshipAdd"
 import AdminChampionships from "./pages/admin/AdminChampionships"
 import ChampionshipDeleteForm from "./pages/admin/componentes/ChampionshipDelForm"
@@ -54,12 +45,8 @@ import MatchUpdate from "./pages/admin/componentes/MatchUpdate"
 import StatsMyTeams from "./pages/DT/StatsMyTeams"
 import MatchManagment from "./pages/admin/componentes/SportSelector"
 import MatchList from "./pages/admin/componentes/MatchList"
-import FixtureFB from "./componentes/FixtureFB"
-import FixtureBB from "./componentes/FixtureBB"
-import FixtureHB from "./componentes/FixtureHB"
 import MatchesListButtons from "./pages/analist/componentes/MatchesListButton"
 import LookMatch from "./pages/analist/LookMatch"
-import CheckStats from "./pages/judge/CheckStats"
 import ChampionshipDel from "./pages/admin/componentes/ChampionshipDelete"
 import MatchCheckes from "./pages/judge/componentes/MatchCheckes"
 import Footer from "./Footer"
@@ -75,6 +62,7 @@ import SportDelete from "./pages/admin/componentes/SportDelete"
 import MatchesListButtonsJudge from "./pages/judge/componentes/MatchesListButtonJudzge"
 import HomePage from "./pages/student/HomePage"
 import SportUpdate from "./pages/admin/componentes/SportUpdate"
+import SelectSportToMatch from "./pages/analist/componentes/SelectMatchToWatch"
 
 function App() {
 	return (
@@ -236,12 +224,11 @@ function App() {
 
 						<Route path="analist/:userId" element={<HomeAnalist />}>
 							<Route path="lookMatch/:matchId" element={<LookMatch />}></Route>
-
 							<Route path="matchManagment" element={<MatchManagment />}></Route>
-
-							<Route path="basketball" element={<MatchesListButtons sport={"basketball"} />}></Route>
+							<Route path=":sport" element={<SelectSportToMatch/>}></Route>
+							{/* <Route path="basketball" element={<MatchesListButtons sport={"basketball"} />}></Route>
 							<Route path="football" element={<MatchesListButtons sport={"football"} />}></Route>
-							<Route path="handball" element={<MatchesListButtons sport={"handball"} />}></Route>
+							<Route path="handball" element={<MatchesListButtons sport={"handball"} />}></Route> */}
 							<Route path="home" element={<HomePageAnalist />}></Route>
 							<Route path="profile" element={<Profile />}>
 								<Route path="changePassword" element={<ChangePassword />}></Route>
