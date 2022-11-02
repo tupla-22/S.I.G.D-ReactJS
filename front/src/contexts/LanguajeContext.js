@@ -128,9 +128,11 @@ const translation = {
 		bienvenidaEstudiante:
 			"Tu como estudiante puede ver tús estadícas, historial de partidos, fechas de proximos partidos, campeonatos y mucho mas. puede empezar e investigar probando todas las caracteristicas sin restricciones. Que disfrutes de la experiencia.",
         tituloBienvenida:'al "sistema informático de gestión deportiva de la institución UTU".',
-        bienvenido:"Bienvenido",
+		bienvenido: "Bienvenido",
+		imagen:"Imagen",
     },
-    en: {
+	en: {
+		imagen:"Image",
         bienvenido:"Welcome",
         tituloBienvenida:'to the "sports management computer system of the UTU institution".',
         bienvenidaEstudiante:"You as a student can see your statistics, match history, dates of upcoming matches, championships and much more. you can start and investigate by trying all the features without restrictions. May you enjoy the experience.",
