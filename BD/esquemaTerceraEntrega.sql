@@ -176,6 +176,7 @@ foreign key (id_campeonato_fotoCampeonato) references campeonatos(id_campeonato)
 create table compiten(
 	id_campeonato_compite int,
     id_equipo_compite int,
+    punto_compite int,
     date_created_compite date default current_timestamp,
     date_updated_compite timestamp default current_timestamp ON UPDATE CURRENT_TIMESTAMP,
     primary key(id_campeonato_compite, id_equipo_compite),
@@ -187,8 +188,6 @@ create table corresponden(
 	id_partido_corresponde int,#poner trigger
     id_equipoLocal_corresponde int,
     id_equipoVisitante_corresponde int, 
-    puntoLocal_corresponde int,
-    puntoVisitante_corresponde int,
     id_campeonato_corresponde int,
     date_created_corresponde date default current_timestamp,
     date_updated_corresponde timestamp default current_timestamp ON UPDATE CURRENT_TIMESTAMP,
@@ -201,15 +200,15 @@ create table corresponden(
 
 create table tiposEstadisticas(
 	id_tipoEstadistica varchar(40) primary key,
-    date_created_estadistica date default current_timestamp,
-    date_updated_estadistica timestamp default current_timestamp ON UPDATE CURRENT_TIMESTAMP
+    date_created_tipoEstadistica date default current_timestamp,
+    date_updated_tipoEstadistica timestamp default current_timestamp ON UPDATE CURRENT_TIMESTAMP
 );
 
 create table conciben(
 	id_deporte_concibe varchar(40),
     id_tipoEstadistica_concibe varchar(40),
-    date_created_estadistica date default current_timestamp,
-    date_updated_estadistica timestamp default current_timestamp ON UPDATE CURRENT_TIMESTAMP,
+    date_created_concibe date default current_timestamp,
+    date_updated_concibe timestamp default current_timestamp ON UPDATE CURRENT_TIMESTAMP,
     primary key (id_deporte_concibe,id_tipoEstadistica_concibe),
     foreign key (id_deporte_concibe) references deportes(id_deporte),
     foreign key (id_tipoEstadistica_concibe) references tiposEstadisticas(id_tipoEstadistica)
@@ -661,7 +660,6 @@ where id_usuario=usuario))));
 
 end $$
 delimiter ;
-
 #call obtenerIntegrantesEquipoPorUsuarioId (9);
 
 /*select id_usuario, ci_usuario, primerNombre_usuario, primerApellido_usuario, email_usuario, fechaNac_usuario, fotoPerfil_usuario, id_fichaJugador, altura_fichaJugador, peso_fichaJugador, minutosJugados_fichaJugador, lateralidad_fichaJugador, id_equipo, nombre_equipo
