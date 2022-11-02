@@ -205,7 +205,7 @@ create table tiposEstadisticas(
     date_updated_estadistica timestamp default current_timestamp ON UPDATE CURRENT_TIMESTAMP
 );
 
-create table concibe(
+create table conciben(
 	id_deporte_concibe varchar(40),
     id_tipoEstadistica_concibe varchar(40),
     date_created_estadistica date default current_timestamp,
@@ -1012,6 +1012,9 @@ values
 ("cambio"),
 ("tiroLibre"),
 ("penal");
+
+
+insert into conciben (id)
 
 
 select * from pertenecen;
