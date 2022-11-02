@@ -301,7 +301,11 @@ values
 ("lateral"),
 ("cambio"),
 ("tiroLibre"),
-("penal");
+("penal"),
+("doble"),
+("triple"),
+("saque"),
+("pasos");
 
 
 insert into conciben (id_deporte_concibe, id_tipoEstadistica_concibe)
@@ -312,7 +316,14 @@ values
 ("football","lateral"),
 ("football","cambio"),
 ("football","tiroLibre"),
-("football","penal");
+("football","penal"),
+("basketball","falta"),
+("basketball","tiroLibre"),
+("basketball","doble"),
+("basketball","triple"),
+("basketball","cambio"),
+("basketball","pasos"),
+("basketball","saque");
 
 
 select * from pertenecen;
