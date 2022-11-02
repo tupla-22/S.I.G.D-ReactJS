@@ -13,10 +13,10 @@ const SportUpdate = () => {
 		<Main>
 
 			<SportList/>
-			{ok && <AlertSuccees />}
+			{/* {ok && <AlertSuccees />}
 			{team && <TeamUpdateCard ok={ok} setOk={setOk} setTeam={setTeam} data={team} />}
 			<TeamUpdateForm setTeam={setTeam}></TeamUpdateForm>
-			<TeamSearch />
+			<TeamSearch /> */}
 		</Main>
 	)
 }

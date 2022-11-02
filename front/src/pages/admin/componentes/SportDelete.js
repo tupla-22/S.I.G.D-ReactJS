@@ -4,14 +4,16 @@ import UserSearch from "./UserSearch"
 import Main from "../../../componentes/styledComponents/Main"
 import TeamDelForm from "./TeamDelForm"
 import TeamSearch from "./TeamSearch"
+import SportList from "./SportList"
+import SportDelForm from "./SportDelForm"
 const SportDelete = () => {
 	const [idDel, setIdDel] = useState("")
 
 	return (
 		<>
 			<Main>
-				<TeamDelForm></TeamDelForm>
-				<TeamSearch></TeamSearch>
+				<SportDelForm/>
+				<SportList/>
 			</Main>
 		</>
 	)
