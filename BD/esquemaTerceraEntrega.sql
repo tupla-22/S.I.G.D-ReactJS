@@ -237,6 +237,7 @@ create table estadisticas(
     foreign key (tipo_estadistica) references tiposEstadisticas(id_tipoEstadistica)
 );
 
+/*
 create table registran(
 	id_estadistica_registra int primary key,
     id_usuario_registra int,
@@ -245,7 +246,7 @@ create table registran(
     foreign key (id_estadistica_registra) references estadisticas(id_estadistica),
     foreign key (id_usuario_registra) references usuarios(id_usuario)
 );
-
+*/
 
 /*|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 								trigers
