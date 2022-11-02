@@ -5,8 +5,9 @@ import MyStatsTableRow from "./MyStatsTableRow";
 import React, { useState, useEffect } from 'react';
 import { helpHttp } from "../../../helpers/helpHttp";
 import { getUser, urlApi } from "../../../functions/globals";
-import PlayerCard from "../../../componentes/PlayerCard";
+import PlayerCard from "../../../componentes/PlayerModal.js";
 import { H3B } from "../../../componentes/styledComponents/ComponentesDeEstilos";
+import PlayerCardOnly from "../../../componentes/PlayerCardOnly";
 
 
 const peticion = helpHttp();
@@ -19,7 +20,7 @@ const MyStatsTable = () => {
   return (
     <>
       <H3B>Precionando en el icono puedes observar tus estadisticas y datos como los ven el reclutador</H3B>
-      <PlayerCard idUsuario={user.id_usuario}/>
+      <PlayerCardOnly idUsuario={user.id_usuario}/>
     </>
   );
 };

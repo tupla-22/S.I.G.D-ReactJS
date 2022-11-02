@@ -17,6 +17,7 @@ import { BoxCen, TR } from "../../../componentes/styledComponents/ComponentesDeE
 import Loader from "../../../componentes/Loader"
 import MilitaryTechTwoToneIcon from "@mui/icons-material/MilitaryTechTwoTone"
 import SportsSoccerTwoToneIcon from "@mui/icons-material/SportsSoccerTwoTone"
+import { Outlet } from "react-router-dom"
 
 const MatchList = ({ sport, disputed }) => {
 	// POR PARAMETRO SE LE TRASMITE EL DEPORTE DESEADO Y SI FUE DISPUTADO
@@ -50,7 +51,8 @@ const MatchList = ({ sport, disputed }) => {
 	}, [sport])
 
 	return (
-		<>
+    <>
+      <Outlet/>
 			<h3>{text.partidos}</h3>
 			<DivOver>
 				<Table>

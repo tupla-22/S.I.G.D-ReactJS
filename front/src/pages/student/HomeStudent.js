@@ -8,13 +8,18 @@ import GroupsTwoToneIcon from '@mui/icons-material/GroupsTwoTone';
 import { useContext } from "react";
 import LanguajeContext from "../../contexts/LanguajeContext";
 import EmojiEventsTwoToneIcon from '@mui/icons-material/EmojiEventsTwoTone';
+import HomeTwoToneIcon from '@mui/icons-material/HomeTwoTone';
 
 const HomeStudent = () => {
 
   const { text} = useContext(LanguajeContext)
 
   const pages = [
-    <NavLink to="home/fixtureFB" classAdd="responsive">
+    <NavLink to="home" classAdd="responsive">
+      <HomeTwoToneIcon /> { text.inicio}
+    </NavLink>,
+    
+    <NavLink to="fixture" classAdd="responsive">
      <DateRangeTwoToneIcon/> Fixture
     </NavLink>,
     <NavLink classAdd="responsive" to="myStats">

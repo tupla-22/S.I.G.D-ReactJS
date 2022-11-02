@@ -9,6 +9,7 @@ import { helpHttp } from "../../../helpers/helpHttp"
 import ModalChampionship from "./ModalChampioship"
 import { useNavigate } from "react-router-dom"
 import ManageSearchTwoToneIcon from "@mui/icons-material/ManageSearchTwoTone"
+import FactCheckTwoToneIcon from '@mui/icons-material/FactCheckTwoTone';
 
 const MatchListRow = ({ data, disputed, sport }) => {
 	const [admin, setAdmin] = useState(false)
@@ -95,7 +96,17 @@ const MatchListRow = ({ data, disputed, sport }) => {
 							<ManageSearchTwoToneIcon fontSize="large" />
 						</Button>
 					</TD>
-				)}
+                )}
+                
+					{ user.id_rol_usuario == 5 && <TD>
+						<Button
+							onClick={(event) => {
+								navigate(`../matchCheckes/${data.id_partido}`)
+							}}
+						>
+							<FactCheckTwoToneIcon fontSize="large" />
+						</Button>
+					</TD>}
 			</TR>
 		</>
 	)
