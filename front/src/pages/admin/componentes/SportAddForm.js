@@ -13,6 +13,7 @@ import LanguajeContext from "../../../contexts/LanguajeContext"
 import AlertSuccees from "../../../componentes/AlertSuccees"
 import { BoxFlex } from "../../../componentes/BoxFlex"
 import { BoxAlCen } from "../../../componentes/styledComponents/ComponentesDeEstilos"
+import AddAPhotoTwoToneIcon from '@mui/icons-material/AddAPhotoTwoTone';
 
 const formTeamInit = {
 	id_deporte: "",
@@ -37,9 +38,6 @@ const SportAddForm = () => {
 		})
 	}
 
-	const handleEscudo = (e) => {
-		blobToBase64(e.target.name, e.target.files, setsportForm, sportForm)
-	}
 
 	const handleClick = (e) => {
 		e.preventDefault()
@@ -85,7 +83,13 @@ const SportAddForm = () => {
 		e.preventDefault()
 		setStatsForm({[e.target.name]:e.target.value})
 	}
+	
+	
+	const handlePhoto = (e) => {
+		blobToBase64(e.target.name, e.target.files, setsportForm, sportForm)
+	}
 
+	
 	return (
 		<>
 			{ok && <AlertSuccees />}
@@ -102,6 +106,12 @@ const SportAddForm = () => {
 						margin="normal"
 						label={text.nombreDelDeporte}
 					></TextField>
+					
+				<Button variant="contained" component="label">
+					{text.fotoDePerfil}
+					<input name="foto_deporte" onChange={handlePhoto} hidden accept="image/*" type="file" />
+					<AddAPhotoTwoToneIcon />
+				</Button>
 					<ButtonClassic type="submit" onClick={handleClick} className="Form__input">
 						{text.agregar}
 					</ButtonClassic>

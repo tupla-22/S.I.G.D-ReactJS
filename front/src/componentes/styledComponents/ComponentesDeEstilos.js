@@ -50,6 +50,15 @@ align-items:center;
 justify-content:center;
 `
 
+export const BoxAlJusCen = styled.div`
+width:100%;
+height:100%;
+display:flex;
+flex-direction:column;
+justify-content:center;
+`
+
+
 
 
 export const TR = styled.tr`
@@ -62,3 +71,15 @@ align-items:center;
 width:100%;
 `
 
+
+
+
+export const TDF = styled.td`
+
+padding: 10px;
+  border-radius: 2px;
+  box-shadow:0px 0px 5px #0005;
+  min-width: fit-content;
+  background-color:#fff;
+  border-radius: 0px 40px 40px 0px   ;
+`
