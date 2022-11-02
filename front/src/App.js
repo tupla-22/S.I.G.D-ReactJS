@@ -80,9 +80,10 @@ function App() {
 							<Route path="history" element={<History />}></Route>
 							<Route path="Home" element={<HomePage />}></Route>
 							<Route path="Fixture" element={<Fixture />}>
-								<Route path="fixtureFB" element={<MatchList sport={"football"} />} />
+								<Route path=":sport" element={<SelectSportToMatch disputed={0} />}></Route>
+								{/* <Route path="fixtureFB" element={<MatchList sport={"football"} />} />
 								<Route path="fixtureBB" element={<MatchList sport={"basketball"} />} />
-								<Route path="fixtureHB" element={<MatchList sport={"handball"} />} />
+								<Route path="fixtureHB" element={<MatchList sport={"handball"} />} /> */}
 							</Route>
 
 							<Route path="teams" element={<Teams />}>
@@ -225,7 +226,7 @@ function App() {
 						<Route path="analist/:userId" element={<HomeAnalist />}>
 							<Route path="lookMatch/:matchId" element={<LookMatch />}></Route>
 							<Route path="matchManagment" element={<MatchManagment />}></Route>
-							<Route path=":sport" element={<SelectSportToMatch/>}></Route>
+							<Route path=":sport" element={<SelectSportToMatch disputed={0} />}></Route>
 							{/* <Route path="basketball" element={<MatchesListButtons sport={"basketball"} />}></Route>
 							<Route path="football" element={<MatchesListButtons sport={"football"} />}></Route>
 							<Route path="handball" element={<MatchesListButtons sport={"handball"} />}></Route> */}

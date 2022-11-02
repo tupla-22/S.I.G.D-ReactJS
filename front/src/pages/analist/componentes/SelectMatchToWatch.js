@@ -5,7 +5,7 @@ const SelectMatchToWatch = () => {
 	const { sport } = useParams()
 	return (
 		<>
-			<MatchList sport={sport} />
+			<MatchList  sport={sport} />
 		</>
 	)
 }

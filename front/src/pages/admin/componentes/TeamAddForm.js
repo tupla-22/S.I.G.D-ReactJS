@@ -1,5 +1,5 @@
 import { Button, FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material"
-import { useContext, useState } from "react"
+import { useContext, useState, useEffect } from "react"
 import { ButtonClassic } from "../../../componentes/ButtonClassic"
 import Form from "../../../componentes/Form"
 import "./styles/TeamAddForm.css"
@@ -24,8 +24,17 @@ const TeamAddForm = () => {
 	const [teamForm, setTeamForm] = useState(formTeamInit)
 	const [errors, setErrors] = useState(null)
 	const [ok, setOk] = useState(false)
+	const [sports, setSports] = useState([]);
 
 	const { text } = useContext(LanguajeContext)
+	const peticion = helpHttp()
+	useEffect(() => {
+		peticion.get(urlApi("deportes?")).then(e => {
+			if (e.status = 200) {
+				setSports(e.result)
+			}
+		})
+	}, []);
 
 	const handleChange = (event) => {
 		setTeamForm({
@@ -80,9 +89,7 @@ const TeamAddForm = () => {
 						id="demo-simple-select"
 						onChange={handleChange}
 					>
-						<MenuItem value={"handball"}>Handball</MenuItem>
-						<MenuItem value={"football"}>football</MenuItem>
-						<MenuItem value={"basketball"}>basketball</MenuItem>
+						{sports.map(e => <MenuItem value={e.id_deporte}>{e.id_deporte }</MenuItem>)}
 					</Select>
 				</FormControl>
 
