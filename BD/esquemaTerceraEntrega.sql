@@ -199,6 +199,22 @@ create table corresponden(
     foreign key (id_campeonato_corresponde) references campeonatos(id_campeonato)
 );
 
+create table tiposEstadisticas(
+	id_tipoEstadistica varchar(40) primary key,
+    date_created_estadistica date default current_timestamp,
+    date_updated_estadistica timestamp default current_timestamp ON UPDATE CURRENT_TIMESTAMP
+);
+
+create table concibe(
+	id_deporte_concibe varchar(40),
+    id_tipoEstadistica_concibe varchar(40),
+    date_created_estadistica date default current_timestamp,
+    date_updated_estadistica timestamp default current_timestamp ON UPDATE CURRENT_TIMESTAMP,
+    primary key (id_deporte_concibe,id_tipoEstadistica_concibe),
+    foreign key (id_deporte_concibe) references deportes(id_deporte),
+    foreign key (id_tipoEstadistica_concibe) references tiposEstadisticas(id_tipoEstadistica)
+);
+
 create table estadisticas(
 	id_estadistica int primary key auto_increment,
     valor_estadistica int,
@@ -215,7 +231,8 @@ create table estadisticas(
     foreign key (id_fichaJugador_estadistica) references pertenecen(id_fichaJugador_pertenece),
     foreign key (id_equipo_estadistica) references pertenecen(id_equipo_pertenece),
     foreign key (id_usuario_estadistica) references usuarios(id_usuario),
-    foreign key (id_partido_estadistica) references partidos(id_partido)
+    foreign key (id_partido_estadistica) references partidos(id_partido),
+    foreign key (tipo_estadistica) references tiposEstadisticas(id_tipoEstadistica)
 );
 
 create table registran(
