@@ -232,6 +232,16 @@ values
 ("sub 20","copa america",2,"2022-01-12","2022-02-12"),
 ("clasico","copa sudamericana",1,"2022-03-12","2022-04-12");
 
+insert into campeonatos (tipo_campeonato, nombre_campeonato,id_liga_campeonato, fechaInicio_campeonato , fechaFin_campeonato, campeon_campeonato)
+values
+("sub 20","copa america",2,"2022-01-12","2022-02-12","TeamTupla"),
+("sub 20","copa america",2,"2018-01-12","2018-02-12","TeamTupla"),
+("sub 20","copa america",2,"2019-01-12","2019-02-12","TeamTupla"),
+("sub 20","copa america",2,"2018-03-12","2018-04-12","TeamTupla"),
+("sub 20","copa america",2,"2019-01-12","2019-02-12","team5"),
+("sub 20","copa america",2,"2018-03-12","2018-04-12","team5"),
+("clasico","copa sudamericana",1,"2022-03-12","2022-04-12","TeamTupla");
+
 insert into partidos (id_equipoLocal_partido,id_equipoVisitante_partido,dia_partido,hora_partido,tipo_partido, disputado_partido,anotacionLocal_partido, anotacionVisitante_partido, ganador_partido)
 values (7,11,"2022-02-02",'16:30:00',"torneo", 0 , null, null, null),
 (11,7,"2022-01-12",'16:30:00',"amistoso", 01, 3,4,"test" ),
