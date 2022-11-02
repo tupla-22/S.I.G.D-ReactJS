@@ -74,6 +74,7 @@ import SportAdd from "./pages/admin/componentes/SportAdd"
 import SportDelete from "./pages/admin/componentes/SportDelete"
 import MatchesListButtonsJudge from "./pages/judge/componentes/MatchesListButtonJudzge"
 import HomePage from "./pages/student/HomePage"
+import SportUpdate from "./pages/admin/componentes/SportUpdate"
 
 function App() {
 	return (
@@ -115,6 +116,7 @@ function App() {
 							<Route element={<AdminSports />} path="sports">
 								<Route path="add" element={<SportAdd />}></Route>
 								<Route path="delete" element={<SportDelete />}></Route>
+								<Route path="update" element={<SportUpdate />}></Route>
 							</Route>
 							<Route element={<AdminMatch />} path="match">
 								<Route path="add" element={<MatchAdd />}></Route>

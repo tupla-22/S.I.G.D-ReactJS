@@ -9,7 +9,7 @@ const AdminSports = () => {
     const {text} = useContext(LanguajeContext)
 
 
-    const pages = [<NavLink to={"add"}>{text.agregar}</NavLink>, <NavLink to={"delete"}>{text.eliminar}</NavLink>]
+    const pages = [<NavLink to={"add"}>{text.agregar}</NavLink>, <NavLink to={"delete"}>{text.eliminar}</NavLink>,<NavLink to={"update"}>{text.actualizar}</NavLink>]
 
 	return (
 		<>
