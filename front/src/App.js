@@ -52,7 +52,7 @@ import MatchAdd from "./pages/admin/componentes/MatchAdd"
 import MatchDel from "./pages/admin/componentes/MatchDelete"
 import MatchUpdate from "./pages/admin/componentes/MatchUpdate"
 import StatsMyTeams from "./pages/DT/StatsMyTeams"
-import MatchManagment from "./pages/analist/MatchManagment"
+import MatchManagment from "./pages/admin/componentes/SportSelector"
 import MatchList from "./pages/admin/componentes/MatchList"
 import FixtureFB from "./componentes/FixtureFB"
 import FixtureBB from "./componentes/FixtureBB"
@@ -72,6 +72,8 @@ import ChampionshipsClosed from "./pages/student/componentes/ChampionshipsClosed
 import AdminSports from "./pages/admin/AdminSorts"
 import SportAdd from "./pages/admin/componentes/SportAdd"
 import SportDelete from "./pages/admin/componentes/SportDelete"
+import MatchesListButtonsJudge from "./pages/judge/componentes/MatchesListButtonJudzge"
+import HomePage from "./pages/student/HomePage"
 
 function App() {
 	return (
@@ -87,11 +89,13 @@ function App() {
 
 						<Route path="/student/:userId" element={<HomeStudent />}>
 							<Route path="history" element={<History />}></Route>
-							<Route path="Home" element={<Fixture />}>
+							<Route path="Home" element={<HomePage />}></Route>
+							<Route path="Fixture" element={<Fixture />}>
 								<Route path="fixtureFB" element={<MatchList sport={"football"} />} />
 								<Route path="fixtureBB" element={<MatchList sport={"basketball"} />} />
 								<Route path="fixtureHB" element={<MatchList sport={"handball"} />} />
 							</Route>
+
 							<Route path="teams" element={<Teams />}>
 								<Route path="teamsAll" element={<AllTeams />}></Route>
 								<Route path="myTeam" element={<MyTeam />}></Route>
@@ -108,7 +112,7 @@ function App() {
 						</Route>
 
 						<Route path="/admin/:userId" element={<HomeAdmin />}>
-							<Route element={<AdminSports/>} path="sports">
+							<Route element={<AdminSports />} path="sports">
 								<Route path="add" element={<SportAdd />}></Route>
 								<Route path="delete" element={<SportDelete />}></Route>
 							</Route>
@@ -244,12 +248,13 @@ function App() {
 						</Route>
 
 						<Route path="judge/:userId" element={<HomeJudge />}>
-							<Route path="checkMatch/:idMatchCheck" element={<MatchCheckes />}></Route>
-							<Route path="checkStats" element={<CheckStats></CheckStats>}>
+							<Route path=":sport" element={<MatchesListButtonsJudge />}></Route>
+							<Route path="matchCheckes/:idMatchCheck" element={<MatchCheckes />}></Route>
+							<Route path="selectSportCheckStats" element={<MatchManagment routeAdd={""} />}>
 								<Route></Route>
 							</Route>
 							<Route path="profile" element={<Profile />}>
-								<Route path="contactInformation"></Route>
+								<Route path="contactInformation" element={<ChangeContactInformation />}></Route>
 								<Route path="changePassword" element={<ChangePassword />}></Route>
 							</Route>
 							<Route path="home" element={<HomePageJudge />}></Route>

@@ -8,6 +8,10 @@ import { ButtonClassic } from "../../../componentes/ButtonClassic"
 import NotificationModal from "../../../componentes/NotificationModal"
 import { Alert } from "@mui/material"
 import AlertiSuccees from "../../../componentes/AlertSuccees"
+import Main from "../../../componentes/styledComponents/Main"
+import { H2 } from "../../../componentes/styledComponents/ComponentesDeEstilos"
+import { useContext } from "react"
+import LanguajeContext from "../../../contexts/LanguajeContext"
 
 const peticion = helpHttp()
 
@@ -81,6 +85,9 @@ const MatchCheckes = () => {
 	const [done, setDone] = useState(false);
 	const [textNotification, setTextNotification] = useState("");
 
+
+	const { text} = useContext(LanguajeContext)
+
 	useEffect(() => {
 		peticion.get(urlApi(`statistics?verificado=0&id_partido=${idMatchCheck}`)).then((e) => {
 			if (e.status == 200) {
@@ -126,6 +133,10 @@ const MatchCheckes = () => {
 
 	return (
 		<>
+			{estadisticas.length == 0 && <Main>
+			
+				<H2>{text.noSeEncontraroEstadisticas}</H2>
+			</Main>}
 			{done &&  <AlertiSuccees severity="success">This is a success message!</AlertiSuccees>}
 			{estadisticas.map((estadistica) => (
 				<Container>
