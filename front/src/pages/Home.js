@@ -1,4 +1,3 @@
-
 import { useEffect } from "react"
 import { Outlet, useNavigate } from "react-router-dom"
 import { getUser } from "../functions/globals"
@@ -9,6 +8,9 @@ const Home = () => {
 
 	useEffect(() => {
 		const user = getUser()
+		// var data = 1667411663
+		// var date = new Date(data * 1000).toISOString()
+		// alert(date.split("T")[1].split(".")[0])
 
 		if (user != undefined) {
 			switch (user.id_rol_usuario) {

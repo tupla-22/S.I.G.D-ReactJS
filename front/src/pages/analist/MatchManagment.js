@@ -2,10 +2,6 @@ import { Outlet } from "react-router-dom";
 import { BoxFlex } from "../../componentes/BoxFlex";
 import CardA from "../../componentes/Card";
 import Main from "../../componentes/styledComponents/Main";
-import MatchList from "../admin/componentes/MatchList";
-import TeamsList from "../admin/componentes/TeamsList";
-import ManagmentBasketballControler from "./componentes/ManagmentBasketballControler";
-import ManagmentControler from "./componentes/ManagmentFootballControler";
 
 const MatchManagment = () => {
   return (
