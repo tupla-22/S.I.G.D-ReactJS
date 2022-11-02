@@ -79,7 +79,7 @@ const UserAddForm = () => {
 					setOk(true)
 					setTimeout(() => {
 						setOk(false)
-						navigate("add")
+						navigate("../add")
 						
 					}, 5000)
 					setTypeUser("")
