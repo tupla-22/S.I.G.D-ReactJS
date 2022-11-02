@@ -15,6 +15,7 @@ import { PSuccess } from "../../../componentes/styledComponents/PSuccess"
 import InputDate from "../../../componentes/InputDate"
 import LanguajeContext from "../../../contexts/LanguajeContext"
 import AlertSuccees from "../../../componentes/AlertSuccees"
+import { useNavigate } from "react-router-dom"
 
 const userFormInit = {
 	ci_usuario: "",
@@ -52,6 +53,9 @@ const UserAddForm = () => {
 	const [telefonoForm, setTelefonoForm] = useState(telefonoFormInit)
 	const [ok, setOk] = useState(false)
 
+
+	const navigate = useNavigate()
+
 	const { text } = useContext(LanguajeContext)
 
 	const emailRegex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i
@@ -60,6 +64,8 @@ const UserAddForm = () => {
 		e.preventDefault()
 		if (!emailRegex.test(userForm.email_usuario)) setError(true)
 		else setError(false)
+
+
 
 		if (passwordVerified && !error) {
 			const data = {
@@ -71,8 +77,12 @@ const UserAddForm = () => {
 
 				if (e.status == 200) {
 					setOk(true)
-          setTimeout(() => { setOk(false) }, 5000)
-          setTypeUser("")
+					setTimeout(() => {
+						setOk(false)
+						navigate("add")
+						
+					}, 5000)
+					setTypeUser("")
 					setPasswordVerified(false)
 					setCreated(true)
 					setIdUsuario(e.result.lastId)
@@ -170,12 +180,12 @@ const UserAddForm = () => {
 	}
 
 	return (
-    <>
-      {ok && <AlertSuccees />}
+		<>
+			{ok && <AlertSuccees />}
 			<Form style={{ display: "flex", flexDirection: "column" }} className="userAddForm">
 				<h3>{text.agregarUnUsuario}</h3>
-        <TextField
-          defaultChecked
+				<TextField
+					defaultChecked
 					required
 					value={userForm.ci_usuario}
 					onChange={handleChange}
@@ -185,8 +195,8 @@ const UserAddForm = () => {
 					label={text.cedula}
 				></TextField>
 				<TextField
-          required
-          defaultChecked
+					required
+					defaultChecked
 					value={userForm.primerNombre_usuario}
 					onChange={handleChange}
 					name="primerNombre_usuario"
@@ -200,8 +210,8 @@ const UserAddForm = () => {
 					className="Form__input"
 					label={text.segundoNombre}
 				></TextField>
-        <TextField
-          defaultChecked
+				<TextField
+					defaultChecked
 					required
 					value={userForm.primerApellido_usuario}
 					onChange={handleChange}
@@ -216,8 +226,8 @@ const UserAddForm = () => {
 					className="Form__input"
 					label={text.segundoApellido}
 				></TextField>
-        <TextField
-          defaultChecked
+				<TextField
+					defaultChecked
 					error={error && "true"}
 					helperText={error && "Email requerido"}
 					required
@@ -238,7 +248,7 @@ const UserAddForm = () => {
 					className="Form__input"
 					label={text.numeroTelefonico}
 				></TextField>
-        <InputDate
+				<InputDate
 					required
 					label={text.fechaDeNacimiento}
 					name={"fechaNac_usuario"}
@@ -247,7 +257,7 @@ const UserAddForm = () => {
 				></InputDate>
 
 				{/* <TextField onChange={handleChange} name="tel" type="number" className="Form__input" label="Telefono"></TextField> */}
-        <TextField
+				<TextField
 					required
 					onBlur={handleVerifiedPassword}
 					onChange={handleChange}
@@ -257,7 +267,7 @@ const UserAddForm = () => {
 					label={text.contraseña}
 				></TextField>
 				{!passwordVerified && <PAlert>Los campos contraseña no coinciden</PAlert>}
-        <TextField
+				<TextField
 					required
 					onChange={handlePassword}
 					onBlur={handleVerifiedPassword}
@@ -271,9 +281,9 @@ const UserAddForm = () => {
 					<InputLabel required id="demo-simple-select-label">
 						{text.tipoDeUsuario}
 					</InputLabel>
-          <Select
-            value={typeUser}
-            defaultChecked
+					<Select
+						value={typeUser}
+						defaultChecked
 						name="id_rol_usuario"
 						label={text.tipoDeUsuario}
 						labelId="demo-simple-select-label"
