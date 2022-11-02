@@ -77,11 +77,22 @@ const UserAddForm = () => {
 
 				if (e.status == 200) {
 					setOk(true)
+					
 					setTimeout(() => {
-						setOk(false)
+						navigate("../")
+						
+					}, 2000)
+					
+					setTimeout(() => {
 						navigate("../add")
 						
-					}, 5000)
+					}, 2020)
+					
+					setTimeout(() => {
+
+						setOk(false)
+						
+					}, 4000)
 					setTypeUser("")
 					setPasswordVerified(false)
 					setCreated(true)
