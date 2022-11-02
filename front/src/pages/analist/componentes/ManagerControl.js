@@ -11,11 +11,11 @@ import React, { useState, useEffect } from "react"
 import { getDateTime, localGetItem, urlApi } from "../../../functions/globals"
 import { helpHttp } from "../../../helpers/helpHttp"
 import { ButtonClassic } from "../../../componentes/ButtonClassic"
-import { BoxAlCen } from "../../../componentes/styledComponents/ComponentesDeEstilos"
+import { BoxAlCen, H3B } from "../../../componentes/styledComponents/ComponentesDeEstilos"
 import SportsBasketballIcon from "@mui/icons-material/SportsBasketball"
 import DirectionsWalkIcon from "@mui/icons-material/DirectionsWalk"
-import SportsVolleyball from "@mui/icons-material/SportsVolleyball";
-import StraightenIcon from '@mui/icons-material/Straighten';
+import SportsVolleyball from "@mui/icons-material/SportsVolleyball"
+import StraightenIcon from "@mui/icons-material/Straighten"
 
 const peticion = helpHttp()
 
@@ -24,119 +24,13 @@ const matchFormInit = {
 	anotacionVisitante_partido: 0,
 }
 
-const basketballManager = [
-	<MenuItem value={"doble"}>
-		Doble
-		<SportsBasketballIcon />
-	</MenuItem>,
-	<MenuItem value={"triple"}>
-		Triple
-		<SportsBasketballIcon />
-	</MenuItem>,
-	<MenuItem value={"falta"}>
-		Falta
-		<HealingTwoToneIcon />
-	</MenuItem>,
-	<MenuItem value="lateral">
-		Saque
-		<RectangleTwoToneIcon />
-	</MenuItem>,
-	<MenuItem value="cambio">
-		Cambio
-		<ChangeCircleTwoToneIcon />
-	</MenuItem>,
-	<MenuItem value="tiroLibre">
-		Tiro libre
-		<MoveUpTwoToneIcon />
-	</MenuItem>,
-	<MenuItem value="pasos">
-		Pasos
-		<DirectionsWalkIcon />
-	</MenuItem>,
-]
-
-const footballManager = [
-	<MenuItem value={"gol"}>
-		<BoxAlCen>
-			Gol
-			<SportsSoccerTwoToneIcon />
-		</BoxAlCen>
-	</MenuItem>,
-	<MenuItem value={"falta"}>
-		<BoxAlCen>
-			Falta
-			<HealingTwoToneIcon />
-		</BoxAlCen>
-	</MenuItem>,
-	<MenuItem value="corner">
-		<BoxAlCen>
-			Corner
-			<RoundedCornerTwoToneIcon />
-		</BoxAlCen>
-	</MenuItem>,
-	<MenuItem value="lateral">
-		<BoxAlCen>
-			Lateral
-			<RectangleTwoToneIcon />
-		</BoxAlCen>
-	</MenuItem>,
-	<MenuItem value="cambio">
-		<BoxAlCen>
-			Cambio
-			<ChangeCircleTwoToneIcon />
-		</BoxAlCen>
-	</MenuItem>,
-	<MenuItem value="tiroLibre">
-		<BoxAlCen>
-			Tiro libre
-			<MoveUpTwoToneIcon />
-		</BoxAlCen>
-	</MenuItem>,
-	<MenuItem value="penal">
-		<BoxAlCen>
-			Penal
-			<SettingsOverscanTwoToneIcon />
-		</BoxAlCen>
-	</MenuItem>,
-]
-
-const handballManager = [
-	<MenuItem value={"gol"}>
-		Gol
-		<SportsVolleyball />
-	</MenuItem>,
-	<MenuItem value={"falta"}>
-		Falta
-		<HealingTwoToneIcon />
-	</MenuItem>,
-	<MenuItem value="lateral">
-		Lateral
-		<RectangleTwoToneIcon />
-	</MenuItem>,
-	<MenuItem value="cambio">
-		Cambio
-		<ChangeCircleTwoToneIcon />
-	</MenuItem>,
-	<MenuItem value="tiroLibre">
-		Tiro libre
-		<MoveUpTwoToneIcon />
-	</MenuItem>,
-	<MenuItem value="penal">
-		Golpe franco
-		<SettingsOverscanTwoToneIcon />
-	</MenuItem>,
-	<MenuItem value="sieteMetros">
-		Siete metros
-		<StraightenIcon />
-	</MenuItem>,
-]
-
 const ManagmentControl = ({ sport, confirm, endMatch, matchId, locales, visitantes }) => {
 	const [form, setForm] = useState({})
 	const [tipo, setTipo] = useState("")
 	const [name, setName] = useState("")
+	const [stats, setStats] = useState([])
 	const [matchForm, setMatchForm] = useState(matchFormInit)
-
+	const [name2, setName2] = useState("");
 	const handleChange = (e) => {
 		setForm({
 			...form,
@@ -149,6 +43,21 @@ const ManagmentControl = ({ sport, confirm, endMatch, matchId, locales, visitant
 			id_partido_estadistica: matchId,
 		})
 		setName(`${e.target.value.nombre} ${e.target.value.apellido}`)
+	}
+
+	
+	const handleChangeDos = (e) => {
+		setForm({
+			...form,
+			id_fichaJugador_estadistica: e.target.value.id_fichaJugador_estadistica,
+			id_usuario_estadistica: JSON.parse(localStorage.getItem("user")).id_usuario,
+			id_equipo_estadistica: e.target.value.id_equipo_estadistica,
+			fecha_estadistica: getDateTime(),
+			valor_estadistica: 1,
+			verificado_estadistica: 0,
+			id_partido_estadistica: matchId,
+		})
+		setName2(`${e.target.value.nombre} ${e.target.value.apellido}`)
 	}
 
 	useEffect(() => {
@@ -176,6 +85,25 @@ const ManagmentControl = ({ sport, confirm, endMatch, matchId, locales, visitant
 			})
 		}
 	}, [confirm])
+
+	useEffect(() => {
+		peticion.get(urlApi(`conciben?linkTo=id_deporte_concibe&equalTo=${sport}`)).then((e) => {
+			if (e.status == 200) {
+				console.log(e)
+				setStats(
+					e.result.map((e) => (
+						<MenuItem value={e.id_tipoEstadistica_concibe}>
+							<BoxAlCen>
+								{e.id_tipoEstadistica_concibe}
+								{<img style={{ height: "20px" }} src={e.icono_tipoEstadistica}></img>}
+							</BoxAlCen>
+						</MenuItem>
+					))
+				)
+				console.log(stats)
+			}
+		})
+	}, [sport])
 
 	const handleType = (e) => {
 		setTipo(e.target.value)
@@ -221,40 +149,43 @@ const ManagmentControl = ({ sport, confirm, endMatch, matchId, locales, visitant
 						label="Seleccionar"
 						onChange={handleType}
 					>
-						{sport === "football" && footballManager.map((e) => e)}
-						{sport === "handball" && handballManager.map((e) => e)}
-						{sport === "basketball" && basketballManager.map((e) => e)}
+						{stats.map((e) => e)}
 					</Select>
 				</FormControl>
 
 				{tipo !== "cambio" && tipo !== "falta" && (
 					<>
 						<h3>Equipos</h3>
-
+						
+							
+						{name && <p style={{position:"relative",bottom:"-50px",right:"-10px"}}>{name}</p> }
 						<FormControl className="Form__input" fullWidth>
 							<InputLabel id="selectId">Jugador al que se le asigna</InputLabel>
+							
 							<Select
-								value={name}
+								value={form}
 								labelId="selectId"
 								id="selectId"
 								label="Jugador al que se le asigna"
 								onChange={handleChange}
 							>
-								<h3>Locales</h3>
+								<H3B>Locales</H3B>
 								{locales.map((e) => (
 									<MenuItem
 										key={e.ci_usuario}
+										name={"sadfasd"}
 										value={{
 											id_fichaJugador_estadistica: e.id_fichaJugador,
 											id_equipo_estadistica: e.id_equipo,
 											nombre: e.primerNombre_usuario,
 											apellido: e.primerApellido_usuario,
 										}}
-									>
+									>	
+										
 										{e.primerNombre_usuario} {e.primerApellido_usuario}
 									</MenuItem>
 								))}
-								<h3>Visitantes</h3>
+								<H3B>Visitantes</H3B>
 								{visitantes.map((e) => (
 									<MenuItem
 										key={e.ci_usuario}
@@ -276,6 +207,7 @@ const ManagmentControl = ({ sport, confirm, endMatch, matchId, locales, visitant
 				{tipo == "falta" && (
 					<>
 						<h3>Jugador que realizo falta</h3>
+						{name && <p style={{position:"relative",bottom:"-50px",right:"-10px"}}>{name}</p> }
 						<FormControl className="Form__input" fullWidth>
 							<InputLabel id="demo-simple-select-label">Jugador al que se le asigna</InputLabel>
 							<Select
@@ -315,6 +247,7 @@ const ManagmentControl = ({ sport, confirm, endMatch, matchId, locales, visitant
 						</FormControl>
 
 						<h3>Jugador al que le hicieron falta</h3>
+						{name2 && <p style={{position:"relative",bottom:"-50px",right:"-10px"}}>{name2}</p> }
 						<FormControl className="Form__input" fullWidth>
 							<InputLabel id="demo-simple-select-label">Jugador al que se le asigna</InputLabel>
 							<Select
@@ -322,7 +255,7 @@ const ManagmentControl = ({ sport, confirm, endMatch, matchId, locales, visitant
 								labelId="demo-simple-select-label"
 								id="demo-simple-select"
 								label="Jugador al que se le asigna"
-								onChange={handleChange}
+								onChange={handleChangeDos}
 							>
 								<h3>Locales</h3>
 								{locales.map((e) => (
@@ -357,6 +290,7 @@ const ManagmentControl = ({ sport, confirm, endMatch, matchId, locales, visitant
 				{tipo == "cambio" && (
 					<>
 						<h3>Jugador que entra</h3>
+						{name && <p style={{position:"relative",bottom:"-50px",right:"-10px"}}>{name}</p> }
 						<FormControl className="Form__input" fullWidth>
 							<InputLabel id="demo-simple-select-label">Jugador al que se le asigna</InputLabel>
 							<Select
@@ -396,6 +330,7 @@ const ManagmentControl = ({ sport, confirm, endMatch, matchId, locales, visitant
 						</FormControl>
 
 						<h3>Jugador que sale</h3>
+						{name2 && <p style={{position:"relative",bottom:"-50px",right:"-10px"}}>{name2}</p> }
 						<FormControl className="Form__input" fullWidth>
 							<InputLabel id="demo-simple-select-label">Jugador al que se le asigna</InputLabel>
 							<Select
@@ -403,7 +338,7 @@ const ManagmentControl = ({ sport, confirm, endMatch, matchId, locales, visitant
 								labelId="demo-simple-select-label"
 								id="demo-simple-select"
 								label="Jugador al que se le asigna"
-								onChange={handleChange}
+								onChange={handleChangeDos}
 							>
 								<h3>Locales</h3>
 								{locales.map((e) => (
