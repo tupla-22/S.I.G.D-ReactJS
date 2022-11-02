@@ -73,20 +73,11 @@ const UserAddForm = () => {
 			}
 
 			peticion.post("http://apirest.com/usuarios?register=true&suffix=usuario", data).then((e) => {
-				console.log(e.status, "result usuario")
+				console.log(e, "result usuario")
 
 				if (e.status == 200) {
 					setOk(true)
 					
-					setTimeout(() => {
-						navigate("../")
-						
-					}, 2000)
-					
-					setTimeout(() => {
-						navigate("../add")
-						
-					}, 2020)
 					
 					setTimeout(() => {
 
@@ -124,7 +115,7 @@ const UserAddForm = () => {
 	useEffect(() => {
 		if (telefonoForm.id_usuario_telefono != "") {
 			peticion.post(urlApi(`telefonos?`), { body: new URLSearchParams(telefonoForm) }).then((e) => {
-				console.log(e.status, "telefonos")
+				console.log(e, "telefonos")
 				if (e.status == 200) {
 					setTelefonoForm(telefonoFormInit)
 				}
@@ -145,10 +136,10 @@ const UserAddForm = () => {
 				body: new URLSearchParams(dataTienen),
 			})
 			.then((e) => {
-				console.log(e.status, "result tienen")
+				console.log(e, "result tienen")
 				peticion
 					.post(urlApi("pertenecen?"), { body: new URLSearchParams(pertenecenForm) })
-					.then((e) => console.log(e.status, "result de pertenecen"))
+					.then((e) => console.log(e, "result de pertenecen"))
 			})
 	}, [idFichaJugador])
 
