@@ -225,12 +225,14 @@ create table estadisticas(
     id_fichaJugador_estadistica int,
     id_equipo_estadistica int,
     id_usuario_estadistica int,
+    id_juez_estadistica int,
     id_partido_estadistica int,
     date_created_estadistica date default current_timestamp,
     date_updated_estadistica timestamp default current_timestamp ON UPDATE CURRENT_TIMESTAMP,
     foreign key (id_fichaJugador_estadistica) references pertenecen(id_fichaJugador_pertenece),
     foreign key (id_equipo_estadistica) references pertenecen(id_equipo_pertenece),
     foreign key (id_usuario_estadistica) references usuarios(id_usuario),
+    foreign key (id_juez_estadistica) references usuarios(id_usuario),
     foreign key (id_partido_estadistica) references partidos(id_partido),
     foreign key (tipo_estadistica) references tiposEstadisticas(id_tipoEstadistica)
 );
@@ -1014,7 +1016,15 @@ values
 ("penal");
 
 
-insert into conciben (id)
+insert into conciben (id_deporte_concibe, id_tipoEstadistica_concibe)
+values
+("football","gol"),
+("football","falta"),
+("football","corner"),
+("football","lateral"),
+("football","cambio"),
+("football","tiroLibre"),
+("football","penal");
 
 
 select * from pertenecen;
