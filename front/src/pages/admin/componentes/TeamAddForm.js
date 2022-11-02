@@ -5,7 +5,7 @@ import Form from "../../../componentes/Form"
 import "./styles/TeamAddForm.css"
 import { helpHttp } from "../../../helpers/helpHttp"
 import { blobToBase64 } from "../../../helpers/blobManager"
-import { urlApi } from "../../../functions/globals"
+import { getUser, urlApi } from "../../../functions/globals"
 import CameraAltIcon from "@mui/icons-material/CameraAlt"
 import { PAlert } from "../../../componentes/PAlert"
 import LanguajeContext from "../../../contexts/LanguajeContext"
@@ -15,6 +15,7 @@ const formTeamInit = {
 	nombre_equipo: "",
 	id_deporte_equipo: null,
 	escudo_equipo: "",
+	id_usuario_equipo:""
 }
 
 const peticion = helpHttp()
@@ -27,6 +28,8 @@ const TeamAddForm = () => {
 
 	const { text } = useContext(LanguajeContext)
 	const peticion = helpHttp()
+	const user  = getUser()
+
 	useEffect(() => {
 		peticion.get(urlApi("deportes?")).then(e => {
 			if (e.status = 200) {
@@ -39,6 +42,7 @@ const TeamAddForm = () => {
 		setTeamForm({
 			...teamForm,
 			[event.target.name]: event.target.value,
+			id_usuario_equipo:user.id_usuario
 		})
 	}
 

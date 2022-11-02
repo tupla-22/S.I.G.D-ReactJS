@@ -78,7 +78,6 @@ const UserAddForm = () => {
 				if (e.status == 200) {
 					setOk(true)
 					
-					
 					setTimeout(() => {
 
 						setOk(false)
