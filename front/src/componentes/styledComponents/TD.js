@@ -3,8 +3,7 @@ import styled from "styled-components";
 export const TD = styled.td`
 
   padding: 10px;
-  border-radius: 4px;
-  box-shadow:0px 0px 5px #0005;
+  border-bottom:1px solid #0007;
   min-width: fit-content;
   background-color:#fff
 `;
