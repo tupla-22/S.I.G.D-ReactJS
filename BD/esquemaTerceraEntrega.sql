@@ -602,7 +602,7 @@ before INSERT
 ON estadisticas FOR EACH ROW
 set new.valor_estadistica =(select valor_tipoEstadistica from tiposEstadisticas where new.tipo_estadistica=id_tipoEstadistica)
 ;
-
+select * from partidos;
 /*----------------------------------------------
 views
 ----------------------------------------------*/
@@ -794,18 +794,20 @@ procedure para obtener los campeonatos en los que no participa un equipo
 
 
 delimiter //
-
+drop procedure obtenerCampeonatosDondeNoSeParticipa;
 create procedure obtenerCampeonatosDondeNoSeParticipa (in equipo int)
 begin
 
 select * 
 from campeonatos 
-where id_campeonato 
+where fechaFin_campeonato > curdate() and id_campeonato 
 not in (
 	select id_campeonato from campeonatos 
 	inner join compiten on id_campeonato=id_campeonato_compite
-	where id_equipo_compite=equipo
-	);
+	where id_equipo_compite=equipo 
+	)
+and deporte_campeonato=(select id_deporte_equipo from equipos where id_equipo=equipo)  
+    ;
     
 end //
 delimiter ;
@@ -813,7 +815,6 @@ delimiter ;
 call obtenerCampeonatosDondeNoSeParticipa (12);
 
 
-select * from campeonatos where fechaFin_campeonato < curdate();
 
 /*select id_usuario, ci_usuario, primerNombre_usuario, primerApellido_usuario, email_usuario, fechaNac_usuario, fotoPerfil_usuario, id_fichaJugador, altura_fichaJugador, peso_fichaJugador, minutosJugados_fichaJugador, lateralidad_fichaJugador, id_equipo, nombre_equipo
 from usuarios 
