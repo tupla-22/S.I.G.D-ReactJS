@@ -29,7 +29,7 @@ const ChampionshipList = ({teamId}) => {
 					<HeadChampionshipTable></HeadChampionshipTable>
 					<tbody>
 						{data.map((e, i) => (
-							<ChampionshipListRow key={"champ" + i} data={e} />
+							<ChampionshipListRow teamId={teamId} key={"champ" + i} setchamps={setData} champs={data} champ={e} />
 						))}
 					</tbody>
 				</Table>

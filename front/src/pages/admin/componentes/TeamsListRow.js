@@ -14,7 +14,7 @@ import { DivOver } from "../../../componentes/DivOver"
 import AlertSuccees from "../../../componentes/AlertSuccees"
 import BasicModal from "../../../componentes/BasicModal"
 import SquadOfTeamModal from "./SquadOfTeamModal"
-import ChampsNoSquadInModal from "./ChampsNoSquadIn"
+import ChampsNoSquadInModal from "./ChampsNoSquadInModal"
 
 const TeamsListRow = ({ data }) => {
 	const [adminTeam, setAdminTeam] = useState(false)
@@ -27,22 +27,7 @@ const TeamsListRow = ({ data }) => {
 	const handleAddToChamp = (champ) => {
 		console.log(champ, data)
 
-		const form = {
-			body: new URLSearchParams({
-				id_equipo_compite: data.id_equipo,
-				id_campeonato_compite: champ.id_campeonato,
-			}),
-		}
-		peticion.post(urlApi(`compiten?`), form).then((res) => {
-			console.log(res)
-			if ((res.status = 200)) {
-				setOk(true)
-				setTimeout(() => {
-					setOk(false)
-				}, 5000)
-				setChamps(champs.filter((el) => el.id_campeonato !== champ.id_campeonato))
-			}
-		})
+		
 	}
 
 	useEffect(() => {
