@@ -14,6 +14,7 @@ import { DivOver } from "../../../componentes/DivOver"
 import AlertSuccees from "../../../componentes/AlertSuccees"
 import BasicModal from "../../../componentes/BasicModal"
 import SquadOfTeamModal from "./SquadOfTeamModal"
+import ChampsNoSquadInModal from "./ChampsNoSquadIn"
 
 const TeamsListRow = ({ data }) => {
 	const [adminTeam, setAdminTeam] = useState(false)
@@ -58,36 +59,7 @@ const TeamsListRow = ({ data }) => {
 	useEffect(() => {
 		if (champs.length !== 0) {
 			setContenido([
-				<BasicModal textBtn={"Agregar a campeonato"}>
-					<BoxAlJusCen>
-						<h2> Agregar a campeonetato</h2>
-						<DivOver>
-							<Table>
-								<HeadChampionshipTable></HeadChampionshipTable>
-
-								{champs.map((e) => (
-									<tbody>
-										<ChampionshipListRow
-											addTd={
-												<TDF>
-													<IconButton
-														onClick={() => {
-															handleAddToChamp(e)
-														}}
-														color="secondary"
-													>
-														<AddCircleTwoToneIcon />
-													</IconButton>
-												</TDF>
-											}
-											data={e}
-										></ChampionshipListRow>{" "}
-									</tbody>
-								))}
-							</Table>
-						</DivOver>
-					</BoxAlJusCen>
-                </BasicModal>,
+				<ChampsNoSquadInModal teamId={data.id_equipo}/>,
                 <SquadOfTeamModal teamId={data.id_equipo } />
 			])
 		}

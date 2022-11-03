@@ -3,38 +3,18 @@ import React, { useState, useEffect } from 'react';
 import { helpHttp } from "../../../helpers/helpHttp";
 import { urlApi } from "../../../functions/globals";
 import { B, H3B } from "../../../componentes/styledComponents/ComponentesDeEstilos";
+import { Table } from "@mui/material";
+import UserListRow from "./UserListRow";
+import UserList from "./UserList";
 
 const peticion = helpHttp()
 
 const SquadOfTeamModal = ({ teamId }) => {
-    const [squad, setSquad] = useState([]);
-
-
-    useEffect(() => {
-        peticion.get(urlApi(`squad?teamID=${teamId}`)).then(res => {
-            console.log(res)
-            if (res.status==200) {
-                setSquad(
-                    res.result.map(el => (
-                        <B>{el.primerNombre_usuario} { el.primerApellido_usuario }</B>
-                    ))
-                )
-                
-        console.log(squad)
-            }
-        })
-        
-    }, [teamId]);
 
     return ( 
         <BasicModal textBtn={"Integrantes del equipo"}>
-            
-            <H3B>Integrantes del equipo</H3B>
-            {
-
-            
-            squad.map(e => (e))
-        }</BasicModal>
+            <UserList teamId={teamId}/>
+        </BasicModal>
      );
 }
  

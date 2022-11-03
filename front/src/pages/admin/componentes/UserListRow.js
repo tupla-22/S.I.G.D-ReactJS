@@ -1,6 +1,6 @@
 import { TD } from "../../../componentes/styledComponents/TD"
 import SettingsIcon from "@mui/icons-material/Settings"
-import { dateTradeEs, urlApi } from "../../../functions/globals"
+import { dateTradeEs, getUser, urlApi } from "../../../functions/globals"
 import { useContext } from "react"
 import LanguajeContext from "../../../contexts/LanguajeContext"
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye"
@@ -12,11 +12,12 @@ import { helpHttp } from "../../../helpers/helpHttp"
 
 const peticion = helpHttp()
 
-const UserListRow = ({ user, data, userType }) => {
+const UserListRow = ({  data, userType }) => {
 	const [state, setState] = useState(false)
 	const [peticionOj, setPeticionOj] = useState(false)
 	const { text } = useContext(LanguajeContext)
 
+	const user= getUser()
 	const handleVisualizador = () => {
 		setState(true)
 	}
