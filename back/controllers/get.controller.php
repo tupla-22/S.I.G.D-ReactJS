@@ -187,6 +187,14 @@ static function getCampeonatoDondeNoSeParticipa($idEquipo){
     $return -> fncResponse($response);
 
 }
+
+static function getStatusCampeonato($openCampeonato){
+
+    $response = GetModel::getStatusCampeonato($openCampeonato);
+    $return=new GetController();
+    $return -> fncResponse($response);
+
+}
     /**==============================respuestas del controlador====================================*/
 
     public function fncResponse($response){

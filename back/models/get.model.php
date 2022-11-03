@@ -984,6 +984,32 @@ class GetModel{
             
     }
 
+    static function getStatusCampeonato($openCampeonato){
+        
+        if ($openCampeonato==true) {
+
+            $stmt=Connection::connect()->prepare("select * from campeonatos where fechaFin_campeonato > curdate();");
+
+        }elseif ($openCampeonato==false) {
+
+            $stmt=Connection::connect()->prepare("select * from campeonatos where fechaFin_campeonato < curdate();");
+
+        }
+               
+        
+    
+        try {
+    
+            $stmt->execute();
+    
+        } catch (PDOException $Exeption) {
+            return null;
+        }
+        
+        return $stmt->fetchAll(PDO::FETCH_CLASS);
+            
+    }
+
     static public function getCountEstadisticas($userID, $tipoEstadistica, $verified, $orderBy, $orderMode, $startAt, $endAt){
 
         

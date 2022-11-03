@@ -199,6 +199,7 @@ create table corresponden(
 
 create table tiposEstadisticas(
 	id_tipoEstadistica varchar(40) primary key,
+    valor_tipoEstadistica int,
     date_created_tipoEstadistica date default current_timestamp,
     date_updated_tipoEstadistica timestamp default current_timestamp ON UPDATE CURRENT_TIMESTAMP
 );
@@ -799,6 +800,9 @@ end //
 delimiter ;
 
 call obtenerCampeonatosDondeNoSeParticipa (12);
+
+
+select * from campeonatos where fechaFin_campeonato < curdate();
 
 /*select id_usuario, ci_usuario, primerNombre_usuario, primerApellido_usuario, email_usuario, fechaNac_usuario, fotoPerfil_usuario, id_fichaJugador, altura_fichaJugador, peso_fichaJugador, minutosJugados_fichaJugador, lateralidad_fichaJugador, id_equipo, nombre_equipo
 from usuarios 
