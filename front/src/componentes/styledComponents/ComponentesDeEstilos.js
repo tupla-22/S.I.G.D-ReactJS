@@ -71,6 +71,13 @@ align-items:center;
 width:100%;
 `
 
+export const ImgTable = styled.img` 
+
+height:30px;
+object-fit:contain;
+
+
+`
 
 
 
@@ -78,8 +85,13 @@ export const TDF = styled.td`
 
 padding: 10px;
   border-radius: 2px;
-  box-shadow:0px 0px 5px #0005;
   min-width: fit-content;
-  background-color:#fff;
-  border-radius: 0px 40px 40px 0px   ;
+  background-color:inherit;
+  border-bottoml:1px solid #aaa;
+`
+
+export const IconButton = styled.button` 
+    &:hover{
+        cursor:pointer;
+    }
 `

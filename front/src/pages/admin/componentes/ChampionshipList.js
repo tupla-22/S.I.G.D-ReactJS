@@ -26,14 +26,7 @@ const ChampionshipList = () => {
 			<h3>{text.campeonatos}</h3>
 			<DivOver>
 				<Table>
-					<thead>
-						<tr>
-							<TH>{text.nombre}</TH>
-							<TH>{text.fechaDeInicio}</TH>
-							<TH>{text.fechaDeCierre}</TH>
-							<TH>ID</TH>
-						</tr>
-					</thead>
+					<HeadChampionshipTable></HeadChampionshipTable>
 					<tbody>
 						{data.map((e, i) => (
 							<ChampionshipListRow key={"champ" + i} data={e} />
@@ -46,3 +39,20 @@ const ChampionshipList = () => {
 }
 
 export default ChampionshipList
+
+export const HeadChampionshipTable = () => {
+	const { text } = useContext(LanguajeContext)
+	return (
+		<>
+			<thead>
+				<tr>
+					<TH>{text.nombre}</TH>
+					<TH>{text.fechaDeInicio}</TH>
+					<TH>{text.fechaDeCierre}</TH>
+					<TH>{text.deporte}</TH>
+					<TH>ID</TH>
+				</tr>
+			</thead>
+		</>
+	)
+}

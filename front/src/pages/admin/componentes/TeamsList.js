@@ -17,7 +17,7 @@ const TeamsList = () => {
   const user = getUser()
 
   useEffect(() => {
-        peticion.get(urlApi(`equipos?select=*&linkTo=visible_equipo${user.id_usuario==6 && ",id_usuario_equipo"}&equalTo=1¨¨${user.id_usuario==6 && user.id_usuario}`)).then((dat) => {
+        peticion.get(urlApi(`equipos?select=*&linkTo=visible_equipo${user.id_rol_usuario==6 && ",id_usuario_equipo"}&equalTo=1¨¨${user.id_rol_usuario==6 && user.id_usuario}`)).then((dat) => {
           console.log(dat)
           if(dat.status==200){
             setData(dat.result);
@@ -35,6 +35,7 @@ const TeamsList = () => {
           <thead>
             <TH>{text.escudo}</TH>
             <TH>{text.nombre}</TH>
+            <TH>{text.deporte}</TH>
             <TH>ID</TH>
           </thead>
 
