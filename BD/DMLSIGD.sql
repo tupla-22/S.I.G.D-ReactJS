@@ -249,7 +249,9 @@ select * from usuarios;
 insert into ligas
 values(null,"sub15",null,null),
 (null,"sub20",null,null),
-(null,"sub22",null,null);
+(null,"sub22",null,null),
+(null,"basketbolaPro",null,null)
+;
 
 insert into campeonatos (tipo_campeonato, nombre_campeonato,id_liga_campeonato, fechaInicio_campeonato , fechaFin_campeonato)
 values
