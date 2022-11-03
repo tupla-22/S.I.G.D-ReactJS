@@ -6,14 +6,13 @@ import { IconButton } from "@mui/material"
 import AddCircleTwoToneIcon from "@mui/icons-material/AddCircleTwoTone"
 import { helpHttp } from "../../../helpers/helpHttp"
 
-const ChampionshipListRow = ({teamId, champ, addTd , setchamps,champs}) => {
+const ChampionshipListRow = ({modificable, setOk,teamId, champ, addTd , setchamps,champs}) => {
 	const [modify, setModify] = useState(false)
-    const [ok, setOk] = useState(false);
 	const user = getUser()
     const peticion = helpHttp()
 	useEffect(() => {
-		if (user.id_rol_usuario == 1 || user.id_rol_usuario == 2 || user.id_rol_usuario == 6) {
-			setModify(true)
+		if ((user.id_rol_usuario == 1 || user.id_rol_usuario == 2 || user.id_rol_usuario == 6) && modificable==true) {
+            setModify(true)
 		}
 	}, [])
 

@@ -6,9 +6,12 @@ import ChampionshipListRow from "./ChampionshipListRow"
 import { helpHttp } from "../../../helpers/helpHttp"
 import { urlApi } from "../../../functions/globals"
 import LanguajeContext from "../../../contexts/LanguajeContext"
+import AlertSuccees from "../../../componentes/AlertSuccees"
+import { H3B } from "../../../componentes/styledComponents/ComponentesDeEstilos"
 
-const ChampionshipList = ({teamId}) => {
+const ChampionshipList = ({modificable, teamId}) => {
 	const [data, setData] = useState([])
+	const [ok, setOk] = useState(false);
 
 	const peticion = helpHttp()
 
@@ -23,13 +26,14 @@ const ChampionshipList = ({teamId}) => {
 
 	return (
 		<>
-			<h3>{text.campeonatos}</h3>
+			{ok && <AlertSuccees/>}
+			<H3B>{text.campeonatos}</H3B>
 			<DivOver>
 				<Table>
 					<HeadChampionshipTable></HeadChampionshipTable>
 					<tbody>
 						{data.map((e, i) => (
-							<ChampionshipListRow teamId={teamId} key={"champ" + i} setchamps={setData} champs={data} champ={e} />
+							<ChampionshipListRow modificable={modificable} setOk={setOk} teamId={teamId} key={"champ" + i} setchamps={setData} champs={data} champ={e} />
 						))}
 					</tbody>
 				</Table>

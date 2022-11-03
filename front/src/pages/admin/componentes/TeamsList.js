@@ -17,7 +17,16 @@ const TeamsList = () => {
   const user = getUser()
 
   useEffect(() => {
-        peticion.get(urlApi(`equipos?select=*&linkTo=visible_equipo${user.id_rol_usuario==6 && ",id_usuario_equipo"}&equalTo=1¨¨${user.id_rol_usuario==6 && user.id_usuario}`)).then((dat) => {
+    let url =""
+
+    if (user.id_rol_usuario == 6) {
+          url=`equipos?select=*&linkTo=visible_equipo${user.id_rol_usuario==6 && ",id_usuario_equipo"}&equalTo=1¨¨${user.id_rol_usuario==6 && user.id_usuario}`
+    } else{
+          url=`equipos?select=*&linkTo=visible_equipo&equalTo=1`
+        }
+
+
+        peticion.get(urlApi(url)).then((dat) => {
           console.log(dat)
           if(dat.status==200){
             setData(dat.result);

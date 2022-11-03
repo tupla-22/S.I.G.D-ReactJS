@@ -10,7 +10,7 @@ const ChampsNoSquadInModal = ({ teamId }) => {
 
     return ( 
         <BasicModal textBtn={"Añadir a campeonato"}>
-            <ChampionshipList teamId={teamId}/>
+            <ChampionshipList modificable={true} teamId={teamId}/>
         </BasicModal>
      );
 }
