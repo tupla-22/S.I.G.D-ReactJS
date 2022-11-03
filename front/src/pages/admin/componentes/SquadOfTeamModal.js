@@ -16,7 +16,7 @@ const SquadOfTeamModal = ({ teamId }) => {
             if (res.status==200) {
                 setSquad(
                     res.result.map(el => (
-                        <B>{el.primerNombre_usuario}</B>
+                        <B>{el.primerNombre_usuario} { el.primerApellido_usuario }</B>
                     ))
                 )
                 
