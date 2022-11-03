@@ -351,7 +351,13 @@ insert into pertenecen values
 ('11', '14', NULL, '2022-11-02', '2022-11-02 19:11:52')
 
 ;
-select * from fichasJugadores;
+select * from posiciones;
+
+insert into posiciones (id_posicion, id_fichaJugador_posicion)
+values
+("delantero",2),
+("delantero",3);
+
 insert into tiposEstadisticas (id_tipoEstadistica)
 values 
 ("gol"),

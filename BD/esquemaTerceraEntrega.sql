@@ -112,7 +112,7 @@ create table pertenecen(
 );
 
 create table posiciones(
-	id_posicion int auto_increment, 
+	id_posicion varchar(40), 
 	id_fichaJugador_posicion int,
     date_created_posicion date default current_timestamp,
     date_updated_posicion timestamp default current_timestamp ON UPDATE CURRENT_TIMESTAMP,

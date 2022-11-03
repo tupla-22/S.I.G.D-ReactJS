@@ -97,7 +97,11 @@ and
 5- Listar los datos estadísticos individuales de jugadores de fútbol (goles anotados, tiros al arco, etc) de los jugadores que la posición sea delantero.
 */
 
-
+select * from estadisticas
+inner join fichasJugadores on id_fichaJugador=id_fichaJugador_estadistica
+inner join posiciones on id_fichaJugador=id_fichaJugador_posicion
+where id_posicion="delantero"
+;
 
 /*
 6-	Listar todos los equipos de basketball que participaron del último campeonato, realizando un ranking de mayor a menor por tantos conseguidos. Además se debe mostrar información  acerca de la posesión del balón de cada equipo si se cuenta con esa información. 
