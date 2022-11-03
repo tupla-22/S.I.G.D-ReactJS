@@ -751,7 +751,7 @@ procedure para obtener los integrantes de un equipo con la id de cualquier usuar
 =======================================================*/
 
 
-delimiter $$
+delimiter //
 create procedure obtenerIntegrantesEquipoPorUsuarioId (in usuario int)
 begin
 select id_usuario, ci_usuario, primerNombre_usuario, primerApellido_usuario, email_usuario, fechaNac_usuario, fotoPerfil_usuario, id_fichaJugador, altura_fichaJugador, peso_fichaJugador, minutosJugados_fichaJugador, lateralidad_fichaJugador 
@@ -770,9 +770,35 @@ inner join tienen on id_usuario=id_usuario_tiene
 inner join fichasJugadores on id_fichaJugador_tiene=id_fichaJugador
 where id_usuario=usuario))));
 
-end $$
+end //
 delimiter ;
 #call obtenerIntegrantesEquipoPorUsuarioId (9);
+
+
+/*======================================================
+procedure para obtener los campeonatos en los que no participa un equipo
+=======================================================*/
+
+
+
+delimiter //
+
+create procedure obtenerCampeonatosDondeNoSeParticipa (in equipo int)
+begin
+
+select * 
+from campeonatos 
+where id_campeonato 
+not in (
+	select id_campeonato from campeonatos 
+	inner join compiten on id_campeonato=id_campeonato_compite
+	where id_equipo_compite=equipo
+	);
+    
+end //
+delimiter ;
+
+call obtenerCampeonatosDondeNoSeParticipa (12);
 
 /*select id_usuario, ci_usuario, primerNombre_usuario, primerApellido_usuario, email_usuario, fechaNac_usuario, fotoPerfil_usuario, id_fichaJugador, altura_fichaJugador, peso_fichaJugador, minutosJugados_fichaJugador, lateralidad_fichaJugador, id_equipo, nombre_equipo
 from usuarios 
