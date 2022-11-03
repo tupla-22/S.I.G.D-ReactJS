@@ -66,6 +66,8 @@ export default function PlayerCardOnly({ state, idUsuario }) {
 	const { text } = React.useContext(LanguajeContext)
 
 	useEffect(() => {
+		
+
 		peticion
 			.get(urlApi(`telefonos?select=id_telefono&linkTo=id_usuario_telefono&equalTo=${idUsuario}`))
 			.then((result) => {

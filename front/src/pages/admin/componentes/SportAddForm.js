@@ -13,7 +13,7 @@ import LanguajeContext from "../../../contexts/LanguajeContext"
 import AlertSuccees from "../../../componentes/AlertSuccees"
 import { BoxFlex } from "../../../componentes/BoxFlex"
 import { BoxAlCen } from "../../../componentes/styledComponents/ComponentesDeEstilos"
-import AddAPhotoTwoToneIcon from '@mui/icons-material/AddAPhotoTwoTone';
+import AddAPhotoTwoToneIcon from "@mui/icons-material/AddAPhotoTwoTone"
 
 const formTeamInit = {
 	id_deporte: "",
@@ -27,7 +27,7 @@ const SportAddForm = () => {
 	const [ok, setOk] = useState(false)
 	const [statsForm, setStatsForm] = useState({})
 	const [added, setAdded] = useState(false)
-	const [conciben, setconciben] = useState({});
+	const [conciben, setconciben] = useState({})
 
 	const { text } = useContext(LanguajeContext)
 
@@ -38,7 +38,6 @@ const SportAddForm = () => {
 		})
 	}
 
-
 	const handleClick = (e) => {
 		e.preventDefault()
 		const confi = {
@@ -46,9 +45,9 @@ const SportAddForm = () => {
 		}
 		console.log(sportForm)
 		peticion.post(urlApi("deportes?"), confi).then((e) => {
-			console.log(e.status,"tabla deportes")
+			console.log(e.status, "tabla deportes")
 			if (e.status == 200) {
-				setconciben({...conciben,id_deporte_concibe:sportForm.id_deporte})
+				setconciben({ ...conciben, id_deporte_concibe: sportForm.id_deporte })
 				setAdded(true)
 				setOk(true)
 				setErrors(false)
@@ -66,30 +65,37 @@ const SportAddForm = () => {
 	const handleSendStat = (event) => {
 		event.preventDefault(event)
 
-
-		peticion.post(urlApi("tiposestadisticas?"), { body: new URLSearchParams(statsForm) }).then(res => {
-			console.log(res.status,"Table estadisticas")
+		peticion.post(urlApi("tiposestadisticas?"), { body: new URLSearchParams(statsForm) }).then((res) => {
+			console.log(res.status, "Table estadisticas")
 			if (res.status == 200) {
-				peticion.post(urlApi(`conciben?`), { body: new URLSearchParams({ ...conciben, id_tipoEstadistica_concibe: statsForm.id_tipoEstadistica }) }).then(e => {
-					console.log(e.status,"Tabla concibenn")
-			  })
+				setOk(true)
+				setTimeout(() => {
+					setOk(false)
+				}, 5000)
 			}
 		})
 
-
+		peticion
+			.post(urlApi(`conciben?`), {
+				body: new URLSearchParams({
+					...conciben,
+					id_tipoEstadistica_concibe: statsForm.id_tipoEstadistica,
+				}),
+			})
+			.then((e) => {
+				console.log(e.status, "Tabla concibenn")
+			})
 	}
 
 	const handleChangeStat = (e) => {
 		e.preventDefault()
-		setStatsForm({[e.target.name]:e.target.value})
+		setStatsForm({ [e.target.name]: e.target.value })
 	}
-	
-	
+
 	const handlePhoto = (e) => {
 		blobToBase64(e.target.name, e.target.files, setsportForm, sportForm)
 	}
 
-	
 	return (
 		<>
 			{ok && <AlertSuccees />}
@@ -106,12 +112,12 @@ const SportAddForm = () => {
 						margin="normal"
 						label={text.nombreDelDeporte}
 					></TextField>
-					
-				<Button variant="contained" component="label">
-					{text.fotoDePerfil}
-					<input name="foto_deporte" onChange={handlePhoto} hidden accept="image/*" type="file" />
-					<AddAPhotoTwoToneIcon />
-				</Button>
+
+					<Button variant="contained" component="label">
+						{text.fotoDePerfil}
+						<input name="foto_deporte" onChange={handlePhoto} hidden accept="image/*" type="file" />
+						<AddAPhotoTwoToneIcon />
+					</Button>
 					<ButtonClassic type="submit" onClick={handleClick} className="Form__input">
 						{text.agregar}
 					</ButtonClassic>
@@ -130,7 +136,22 @@ const SportAddForm = () => {
 							onChange={handleChangeStat}
 							name="id_tipoEstadistica"
 						></TextField>
-						<Button onClick={handleSendStat} type="submit" variant="contained">Añadir</Button>
+
+						{/* <TextField
+							margin="normal"
+							type="number"
+							sx={{ marginRight: "20px", width: "70%" }}
+							id="margin-normal"
+							value={statsForm.id_estadistica}
+							FormControl
+							required
+							label="Nombre de la estadística"
+							onChange={handleChangeStat}
+							name="id_tipoEstadistica"
+						></TextField> */}
+						<Button onClick={handleSendStat} type="submit" variant="contained">
+							Añadir
+						</Button>
 					</BoxAlCen>
 				</Form>
 			)}
