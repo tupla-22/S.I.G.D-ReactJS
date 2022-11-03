@@ -10,8 +10,9 @@ import SettingsIcon from "@mui/icons-material/Settings"
 import { unstable_detectScrollType } from "@mui/utils"
 import LanguajeContext from "../../../contexts/LanguajeContext"
 import { Button } from "@mui/material"
+import { H3B } from "../../../componentes/styledComponents/ComponentesDeEstilos"
 
-const UserList = ({ciUsuarioEliminado}) => {
+const UserList = ({ciUsuarioEliminado,teamId}) => {
 	const [data, setData] = useState([])
 	const [status, setStatus] = useState(false)
 	const [userType, setUserType] = useState({})
@@ -21,7 +22,7 @@ const UserList = ({ciUsuarioEliminado}) => {
 
 	const user = getUser()
 	useEffect(() => {
-		peticion.get(urlApi("usuarios?select=*")).then((dat) => {
+		peticion.get(urlApi(teamId=undefined ? `usuarios?select=*` : `squad?teamID=${teamId}`)).then((dat) => {
 			if (dat.status == 200) {
 		  
 				
@@ -42,7 +43,7 @@ const UserList = ({ciUsuarioEliminado}) => {
 
 	return (
 		<>
-			<h3>{text.usuarios}</h3>
+			<H3B>{text.usuarios}</H3B>
 			<DivOver>
 				<Table>
 					<thead>

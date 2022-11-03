@@ -7,7 +7,7 @@ import { helpHttp } from "../../../helpers/helpHttp"
 import { urlApi } from "../../../functions/globals"
 import LanguajeContext from "../../../contexts/LanguajeContext"
 
-const ChampionshipList = () => {
+const ChampionshipList = ({teamId}) => {
 	const [data, setData] = useState([])
 
 	const peticion = helpHttp()
@@ -15,7 +15,7 @@ const ChampionshipList = () => {
 	const { text } = useContext(LanguajeContext)
 
 	useEffect(() => {
-		peticion.get(urlApi("campeonatos?select=*")).then((e) => {
+		peticion.get(urlApi(teamId!=undefined ? `getCampeonatoDondeNoSeParticipa?id_equipo=${teamId}` :  "campeonatos?select=*")).then((e) => {
 			console.log(e)
 			if (e.status == 200) setData(e.result)
 		})
