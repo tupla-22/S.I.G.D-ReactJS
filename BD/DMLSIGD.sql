@@ -383,20 +383,19 @@ values
 ("delantero",2),
 ("delantero",3);
 
-insert into tiposEstadisticas (id_tipoEstadistica)
+insert into tiposEstadisticas (id_tipoEstadistica, valor_tipoEstadistica)
 values 
-("gol"),
-("falta"),
-("corner"),
-("lateral"),
-("cambio"),
-("tiroLibre"),
-("penal"),
-("doble"),
-("triple"),
-("saque"),
-("pasos");
-
+("gol", 1),
+("falta",1),
+("corner",1),
+("lateral",1),
+("cambio",1),
+("tiroLibre",1),
+("penal",1),
+("doble",2),
+("triple",3),
+("saque",1),
+("pasos",1);
 
 insert into conciben (id_deporte_concibe, id_tipoEstadistica_concibe)
 values

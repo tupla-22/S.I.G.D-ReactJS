@@ -592,6 +592,17 @@ where id_deporte_equipo=new.id_deporte_equipo and deportes.id_deporte=new.id_dep
 where id_deporte=new.id_deporte_equipo ;
 #select * from cantidadEquiposDeportes;
 
+
+/*==================================
+trigger after_estadistica_insert (estadisticas)
+==================================*/
+
+create trigger before_estadistica_insert_value
+before INSERT
+ON estadisticas FOR EACH ROW
+set new.valor_estadistica =(select valor_tipoEstadistica from tiposEstadisticas where new.tipo_estadistica=id_tipoEstadistica)
+;
+
 /*----------------------------------------------
 views
 ----------------------------------------------*/
