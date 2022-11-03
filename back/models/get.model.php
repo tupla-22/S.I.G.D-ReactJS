@@ -331,7 +331,7 @@ class GetModel{
 
     }
 
-    
+
 
     /**==================peticion personalizada partidos pendientes======================= */   
     static public function getMatcheck($sport, $disputed, $orderBy, $orderMode, $startAt, $endAt, $linkTo, $equalTo){
@@ -965,6 +965,25 @@ class GetModel{
         return $stmt->fetchAll(PDO::FETCH_CLASS);
             
     }
+
+    static function getCampeonatoDondeNoSeParticipa($idEquipo){
+        
+        
+               
+        $stmt=Connection::connect()->prepare("call obtenerCampeonatosDondeNoSeParticipa ($idEquipo);");
+    
+        try {
+    
+            $stmt->execute();
+    
+        } catch (PDOException $Exeption) {
+            return null;
+        }
+        
+        return $stmt->fetchAll(PDO::FETCH_CLASS);
+            
+    }
+
     static public function getCountEstadisticas($userID, $tipoEstadistica, $verified, $orderBy, $orderMode, $startAt, $endAt){
 
         

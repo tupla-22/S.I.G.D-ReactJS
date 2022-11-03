@@ -215,7 +215,10 @@ deporte equipo
     $response->getEquipoPorIDUsuarioPerteneciente($_GET["id_usuario"]);  
     
  
-          
+}elseif ($table=="getCampeonatoDondeNoSeParticipa" && $table!="getEquipoPorIDUsuarioPerteneciente" && $table!="statistics" && $table!="matcheck" && isset($_GET["id_equipo"]) ) {
+    
+    $response->getCampeonatoDondeNoSeParticipa($_GET["id_equipo"]);
+        
 }else{
 
 

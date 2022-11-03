@@ -179,6 +179,14 @@ static function getEquipoPorIDUsuarioPerteneciente($idUsuario){
 
 }
 
+static function getCampeonatoDondeNoSeParticipa($idEquipo){
+
+
+    $response = GetModel::getCampeonatoDondeNoSeParticipa($idEquipo);
+    $return=new GetController();
+    $return -> fncResponse($response);
+
+}
     /**==============================respuestas del controlador====================================*/
 
     public function fncResponse($response){
