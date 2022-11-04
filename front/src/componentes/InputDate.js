@@ -3,10 +3,14 @@ import TextField from "@mui/material/TextField";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { useEffect } from 'react';
 
-const InputDate = ({ name, className, form, setForm,label }) => {
+const InputDate = ({ok, name, className, form, setForm,label }) => {
   const [value, setValue] = React.useState(null);
 
+  useEffect(() => {
+    setValue(null)
+  }, [ok]);
   const handleChange = (e) => {
     setValue(e);
     setForm({
@@ -21,7 +25,7 @@ const InputDate = ({ name, className, form, setForm,label }) => {
             className="Form__input"
             label={label}
             value={value}
-            name="fechaNac_usuario"
+            name={name}
             onChange={handleChange}
             renderInput={(params) => <TextField {...params} />}
           />

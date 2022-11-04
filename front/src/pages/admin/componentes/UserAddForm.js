@@ -135,6 +135,9 @@ const UserAddForm = () => {
 					setTypeUser("")
 					setCreated(true)
 					setUserForm(userFormInit)
+					setPassword("")
+					setPasswordVerified(true)
+					setErrors(false)
 				}
 			})
 		}
@@ -227,8 +230,9 @@ const UserAddForm = () => {
 				></TextField>
 				<TextField
 					defaultChecked
+					
 					error={error && "true"}
-					helperText={error && "Email requerido"}
+					helperText={error ? "Email requerido":"El corréo debe de ser único"}
 					required
 					value={userForm.email_usuario}
 					onChange={handleChange}
@@ -248,6 +252,7 @@ const UserAddForm = () => {
 					label={text.numeroTelefonico}
 				></TextField>
 				<InputDate
+					ok={ok}
 					required
 					label={text.fechaDeNacimiento}
 					name={"fechaNac_usuario"}
@@ -258,6 +263,7 @@ const UserAddForm = () => {
 				{/* <TextField onChange={handleChange} name="tel" type="number" className="Form__input" label="Telefono"></TextField> */}
 				<TextField
 					required
+					value={userForm.password_usuario}
 					onBlur={handleVerifiedPassword}
 					onChange={handleChange}
 					name="password_usuario"
@@ -268,6 +274,7 @@ const UserAddForm = () => {
 				{!passwordVerified && <PAlert>Los campos contraseña no coinciden</PAlert>}
 				<TextField
 					required
+					value={password}
 					onChange={handlePassword}
 					onBlur={handleVerifiedPassword}
 					name="password_usuario_verified"
@@ -307,6 +314,7 @@ const UserAddForm = () => {
 				/>
 
 				<InputDate
+					ok={ok}
 					label={text.carnetDeSaludValido}
 					name={"carneSalud_usuario"}
 					form={userForm}

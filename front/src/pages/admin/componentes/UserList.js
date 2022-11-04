@@ -5,11 +5,7 @@ import { TH } from "../../../componentes/styledComponents/TH"
 import { getUser, urlApi, userVerifier } from "../../../functions/globals"
 import { helpHttp } from "../../../helpers/helpHttp"
 import UserListRow from "./UserListRow"
-import SettingsIcon from "@mui/icons-material/Settings"
-
-import { unstable_detectScrollType } from "@mui/utils"
 import LanguajeContext from "../../../contexts/LanguajeContext"
-import { Button } from "@mui/material"
 import { H3B } from "../../../componentes/styledComponents/ComponentesDeEstilos"
 
 const UserList = ({ciUsuarioEliminado,teamId}) => {
