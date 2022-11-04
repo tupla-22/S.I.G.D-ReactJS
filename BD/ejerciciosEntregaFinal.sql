@@ -119,6 +119,8 @@ order by tantos desc
 7-  Listar ci, nombre y apellido de los entrenadores que dirigieron equipos que hayan ganado más de dos campeonatos en los últimos 4 años.
 */
 
+
+
 /*
 8-	Contar la cantidad de jugadores que hay por deporte y filtrar por los que tengan más de 20 jugadores.
 */
@@ -126,3 +128,21 @@ order by tantos desc
 /*
 9-	Listar nombre y apellido de los jugadores de todos los deportes, equipo al que pertenecen, partidos que disputaron, campeonato y técnico a cargo.
 */
+select * from equipos;
+select distinct primerNombre_usuario, primerApellido_usuario, nombre_equipo, id_partido, id_campeonato_compite, id_usuario_equipo as id_tecnico, id_deporte_equipo 
+from usuarios
+inner join tienen on id_usuario=id_usuario_tiene
+inner join fichasJugadores on id_fichaJugador_tiene=id_fichaJugador
+inner join pertenecen on id_fichaJugador=id_fichaJugador_pertenece
+inner join equipos on id_equipo_pertenece=id_equipo
+inner join partidos on id_equipo=id_equipoLocal_partido or id_equipo=id_equipoVisitante_partido
+inner join compiten on id_equipo=id_equipo_compite;
+
+select * from corresponden;
+
+
+'Juan', 'Calle', 'team5', '12', '7', '6', 'football'
+'Juan', 'Calle', 'team5', '20', '7', '6', 'football'
+'Juan', 'Calle', 'team5', '21', '7', '6', 'football'
+'Juan', 'Calle', 'team5', '22', '7', '6', 'football'
+'Juan', 'Calle', 'team5', '23', '7', '6', 'football'
