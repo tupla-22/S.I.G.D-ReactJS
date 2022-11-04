@@ -1,4 +1,4 @@
-import { Button, FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material"
+import { Button, Checkbox, FormControl, FormControlLabel, InputLabel, MenuItem, Select, TextField } from "@mui/material"
 import { useContext, useState } from "react"
 import { ButtonClassic } from "../../../componentes/ButtonClassic"
 import Form from "../../../componentes/Form"
@@ -6,13 +6,9 @@ import "./styles/TeamAddForm.css"
 import { helpHttp } from "../../../helpers/helpHttp"
 import { blobToBase64 } from "../../../helpers/blobManager"
 import { urlApi } from "../../../functions/globals"
-import CameraAltIcon from "@mui/icons-material/CameraAlt"
-import { PSuccess } from "../../../componentes/styledComponents/PSuccess"
 import { PAlert } from "../../../componentes/PAlert"
 import LanguajeContext from "../../../contexts/LanguajeContext"
 import AlertSuccees from "../../../componentes/AlertSuccees"
-import { BoxFlex } from "../../../componentes/BoxFlex"
-import { BoxAlCen } from "../../../componentes/styledComponents/ComponentesDeEstilos"
 import AddAPhotoTwoToneIcon from "@mui/icons-material/AddAPhotoTwoTone"
 
 const formTeamInit = {
@@ -21,14 +17,20 @@ const formTeamInit = {
 
 const peticion = helpHttp()
 
+
+const statsFormInit = {
+	id_tipoEstadistica: "",
+	valor_tipoEstadistica: 0
+}
+
 const SportAddForm = () => {
 	const [sportForm, setsportForm] = useState(formTeamInit)
 	const [errors, setErrors] = useState(null)
 	const [ok, setOk] = useState(false)
-	const [statsForm, setStatsForm] = useState({})
+	const [statsForm, setStatsForm] = useState(statsFormInit)
 	const [added, setAdded] = useState(false)
 	const [conciben, setconciben] = useState({})
-
+	const [esTanto, setEsTanto] = useState(false)
 	const { text } = useContext(LanguajeContext)
 
 	const handleChange = (event) => {
@@ -72,6 +74,7 @@ const SportAddForm = () => {
 				setTimeout(() => {
 					setOk(false)
 				}, 5000)
+				setStatsForm({})
 			}
 		})
 
@@ -114,7 +117,6 @@ const SportAddForm = () => {
 					></TextField>
 
 					<Button variant="contained" component="label">
-						{text.fotoDePerfil}
 						<input name="foto_deporte" onChange={handlePhoto} hidden accept="image/*" type="file" />
 						<AddAPhotoTwoToneIcon />
 					</Button>
@@ -124,7 +126,7 @@ const SportAddForm = () => {
 				</Form>
 			) : (
 				<Form>
-					<BoxAlCen>
+					
 						<TextField
 							margin="normal"
 							sx={{ marginRight: "20px", width: "70%" }}
@@ -136,23 +138,37 @@ const SportAddForm = () => {
 							onChange={handleChangeStat}
 							name="id_tipoEstadistica"
 						></TextField>
-
-						{/* <TextField
-							margin="normal"
-							type="number"
-							sx={{ marginRight: "20px", width: "70%" }}
-							id="margin-normal"
-							value={statsForm.id_estadistica}
-							FormControl
-							required
-							label="Nombre de la estadística"
-							onChange={handleChangeStat}
-							name="id_tipoEstadistica"
-						></TextField> */}
-						<Button onClick={handleSendStat} type="submit" variant="contained">
-							Añadir
-						</Button>
-					</BoxAlCen>
+					
+					<FormControlLabel
+						control={
+							<Checkbox
+								onClick={() => {
+									if (!esTanto) {
+										setEsTanto(true)
+									}else setEsTanto(false)
+								}}
+							/>
+						}
+						label="¿Es una estadística de tanto?"
+						/>
+						{esTanto && (
+					<TextField
+						helperText={"Ejemplo: en basketball el doble vale '2' puntos"}
+						margin="normal"
+						type="number"
+						sx={{ marginRight: "20px", width: "70%" }}
+						id="margin-normal"
+						value={statsForm.id_estadistica}
+						FormControl
+						required
+						label="Puntos por tanto"
+						onChange={handleChangeStat}
+						name="valor_tipoEstadistica"
+					></TextField>
+					)}
+					<Button onClick={handleSendStat} type="submit" variant="contained">
+						Añadir
+					</Button>
 				</Form>
 			)}
 		</>

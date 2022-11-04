@@ -9,7 +9,9 @@ import LanguajeContext from "../../../contexts/LanguajeContext"
 import AlertSuccees from "../../../componentes/AlertSuccees"
 import { H3B } from "../../../componentes/styledComponents/ComponentesDeEstilos"
 
-const ChampionshipList = ({modificable, teamId}) => {
+const user = helpHttp()
+
+const ChampionshipList = ({open, modificable, teamId}) => {
 	const [data, setData] = useState([])
 	const [ok, setOk] = useState(false);
 
@@ -18,9 +20,22 @@ const ChampionshipList = ({modificable, teamId}) => {
 	const { text } = useContext(LanguajeContext)
 
 	useEffect(() => {
-		peticion.get(urlApi(teamId!=undefined ? `getCampeonatoDondeNoSeParticipa?id_equipo=${teamId}` :  "campeonatos?select=*")).then((e) => {
+		let urlChamps;
+		if (open==true) {
+			urlChamps=`getStatusCampeonato?open_campeonato=1`
+		} else if (open ==false) {
+			urlChamps=`getStatusCampeonato?open_campeonato=0`
+		} else {
+			urlChamps = teamId != undefined ? `getCampeonatoDondeNoSeParticipa?id_equipo=${teamId}` : "campeonatos?select=*";
+		}
+
+		
+		peticion.get(urlApi(urlChamps)).then((e) => {
 			console.log(e)
-			if (e.status == 200) setData(e.result)
+			if (e.status == 200) {
+				console.log(e.result)
+				setData(e.result)
+			}
 		})
 	}, [])
 
@@ -33,7 +48,7 @@ const ChampionshipList = ({modificable, teamId}) => {
 					<HeadChampionshipTable></HeadChampionshipTable>
 					<tbody>
 						{data.map((e, i) => (
-							<ChampionshipListRow modificable={modificable} setOk={setOk} teamId={teamId} key={"champ" + i} setchamps={setData} champs={data} champ={e} />
+							<ChampionshipListRow open={open} modificable={modificable} setOk={setOk} teamId={teamId} key={"champ" + i} setchamps={setData} champs={data} champ={e} />
 						))}
 					</tbody>
 				</Table>
@@ -54,7 +69,7 @@ export const HeadChampionshipTable = () => {
 					<TH>{text.fechaDeInicio}</TH>
 					<TH>{text.fechaDeCierre}</TH>
 					<TH>{text.deporte}</TH>
-					<TH>ID</TH>
+					{user.id_rol_usuario == 1 || user.id_rol_usuario == 2 || user.id_rol_usuario == 6 && <TH>ID</TH>}
 				</tr>
 			</thead>
 		</>

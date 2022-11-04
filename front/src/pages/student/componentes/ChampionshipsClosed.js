@@ -1,5 +1,11 @@
+import ChampionshipList from "../../admin/componentes/ChampionshipList"
+
 const ChampionshipsClosed = () => {
-	return <>Closed</>
+	return (
+		<>
+			<ChampionshipList open={false}/>
+		</>
+	)
 }
 
 export default ChampionshipsClosed

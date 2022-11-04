@@ -7,13 +7,13 @@ const Stats = () => {
     <Main>
       <MyStatsTable></MyStatsTable>
       
-      <P>
+      {/* <P>
         PJ: Partidos jugados<br />
         MJ: Minutos jugados<br />
         PG: Partidos ganados<br />
         PPP:Punto por partido<br />
         PE: Partidos empatados
-      </P>
+      </P> */}
     </Main>
   );
 };

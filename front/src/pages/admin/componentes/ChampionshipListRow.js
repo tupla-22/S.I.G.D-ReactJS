@@ -5,19 +5,20 @@ import { TDF } from "../../../componentes/styledComponents/ComponentesDeEstilos"
 import { IconButton } from "@mui/material"
 import AddCircleTwoToneIcon from "@mui/icons-material/AddCircleTwoTone"
 import { helpHttp } from "../../../helpers/helpHttp"
+import BtnSettings from "../../../componentes/BtnSettings"
 
-const ChampionshipListRow = ({modificable, setOk,teamId, champ, addTd , setchamps,champs}) => {
+const ChampionshipListRow = ({ modificable, setOk, teamId, champ, addTd, open, setchamps, champs }) => {
 	const [modify, setModify] = useState(false)
 	const user = getUser()
-    const peticion = helpHttp()
+	const peticion = helpHttp()
 	useEffect(() => {
-		if ((user.id_rol_usuario == 1 || user.id_rol_usuario == 2 || user.id_rol_usuario == 6) && modificable==true) {
-            setModify(true)
+		if ((user.id_rol_usuario == 1 || user.id_rol_usuario == 2 || user.id_rol_usuario == 6) && modificable == true) {
+			setModify(true)
 		}
 	}, [])
 
-    const handleAddToChamp = () => {
-        const form = {
+	const handleAddToChamp = () => {
+		const form = {
 			body: new URLSearchParams({
 				id_equipo_compite: teamId,
 				id_campeonato_compite: champ.id_campeonato,
@@ -41,7 +42,9 @@ const ChampionshipListRow = ({modificable, setOk,teamId, champ, addTd , setchamp
 			<TD>{dateTradeEs(champ.fechaInicio_campeonato)}</TD>
 			<TD>{dateTradeEs(champ.fechaFin_campeonato)}</TD>
 			<TD>{champ.deporte_campeonato}</TD>
-			<TD>{champ.id_campeonato}</TD>
+			{user.id_rol_usuario == 1 ||
+				user.id_rol_usuario == 2 ||
+				(user.id_rol_usuario == 6 && <TD>{champ.id_campeonato}</TD>)}
 			{modify && (
 				<TDF>
 					<IconButton
@@ -52,6 +55,11 @@ const ChampionshipListRow = ({modificable, setOk,teamId, champ, addTd , setchamp
 					>
 						<AddCircleTwoToneIcon />
 					</IconButton>
+				</TDF>
+			)}
+			{!open && (
+				<TDF>
+					<BtnSettings content={["asdfasdf"]} />
 				</TDF>
 			)}
 		</tr>

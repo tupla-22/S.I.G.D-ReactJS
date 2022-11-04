@@ -57,7 +57,6 @@ const PlayerList = ({ players }) => {
 						<TH>{text.cedula}</TH>
 						<TH>{text.correoElectronico}</TH>
 						<TH>{text.fechaDeNacimiento}</TH>
-						<TH>{text.rol}</TH>
 					</thead>
 
 					<tbody>

@@ -10,7 +10,7 @@ const Championships = () => {
 
     const {text}=useContext(LanguajeContext)
 
-    const pages = [<NavLink to={"closed"} >{ text.abiertos}</NavLink>, <NavLink to={"open"} >{ text.cerrados}</NavLink>]
+    const pages = [<NavLink to={"open"} >{ text.abiertos}</NavLink>, <NavLink to={"closed"} >{ text.cerrados}</NavLink>]
 
 	return (
 		<>
