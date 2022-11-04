@@ -106,29 +106,14 @@ where id_posicion="delantero"
 /*
 6-	Listar todos los equipos de basketball que participaron del último campeonato, realizando un ranking de mayor a menor por tantos conseguidos. Además se debe mostrar información  acerca de la posesión del balón de cada equipo si se cuenta con esa información. 
 */
-select * from equipos
+select nombre_campeonato,nombre_equipo, sum(valor_estadistica) as "tantos" from equipos
 inner join compiten on id_equipo=id_equipo_compite
 inner join campeonatos on id_campeonato_compite=id_campeonato
-where id_campeonato=(select id_campeonato from campeonatos where fechaFin_campeonato<curdate() order by fechaInicio_campeonato desc limit 1) and id_deporte_equipo="basketball"
-order by punto_compite desc
+inner join estadisticas on id_equipo_estadistica=id_equipo
+where id_campeonato=(select id_campeonato from campeonatos where fechaFin_campeonato<curdate() order by fechaInicio_campeonato desc limit 1)  and id_deporte_equipo="basketball" and verificado_estadistica=1
+group by id_equipo
+order by tantos desc
 ;
-
-
-select * from equipos
-inner join compiten on id_equipo=id_equipo_compite
-inner join campeonatos on id_campeonato_compite=id_campeonato
-where id_campeonato=11;
-
-select * from compiten;
-
-select id_campeonato from campeonatos where fechaFin_campeonato<curdate() order by fechaInicio_campeonato desc limit 1;
-select curdate(), fechaFin_campeonato, date_created_campeonato from campeonatos order by fechaInicio_campeonato desc limit 1;
-select * from compiten;
-select * from equipos;
-
-select * from estadisticas where id_fichaJugador_estadistica=2;
-update estadisticas set verificado_estadistica=1 where verificado_estadistica=0;
-select * from tienen;
 
 /*
 7-  Listar ci, nombre y apellido de los entrenadores que dirigieron equipos que hayan ganado más de dos campeonatos en los últimos 4 años.
