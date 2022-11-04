@@ -5,13 +5,15 @@ import ListSubheader from "@mui/material/ListSubheader"
 import FormControl from "@mui/material/FormControl"
 import Select from "@mui/material/Select"
 
-export default function ManagerControlUserSelect({ form, setForm, locales, visitantes }) {
+export default function ManagerControlUserSelect({setEquipoDelTanto, form, setForm, locales, visitantes }) {
 	const handleChange = (jugador) => {
 		setForm({
 			...form,
 			id_fichaJugador_estadistica: jugador.id_fichaJugador,
 			id_equipo_estadistica: jugador.id_equipo,
-		})
+        })
+        
+        setEquipoDelTanto(jugador.nombre_equipo)
 	}
 
 	return (

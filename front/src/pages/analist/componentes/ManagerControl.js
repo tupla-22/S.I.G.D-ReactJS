@@ -23,15 +23,37 @@ const formInit = {
 }
 
 const ManagmentControl = ({ sport, confirm, endMatch, matchId, locales, visitantes }) => {
-	const [arePlayers, setArePlayers] = useState(false);
+	const [arePlayers, setArePlayers] = useState(false)
 	const [form, setForm] = useState(formInit)
 	const [tipo, setTipo] = useState("")
 	const [stats, setStats] = useState([])
 	const [matchForm, setMatchForm] = useState(matchFormInit)
 	const [isToPlayer, setIsToPlayer] = useState(false)
 	const [teams, setTeams] = useState([])
+	const [esTanto, setEsTanto] = useState(false)
+	const [equipoDelTanto, setEquipoDelTanto] = useState("")
+	const [valorDelTanto, setvalorDelTanto] = useState(0)
 
 	const user = getUser()
+
+	//EFFECTS
+
+	useEffect(() => {
+			if (locales.find((el) => el.nombre_equipo == equipoDelTanto)) {
+				setMatchForm({
+					...matchForm,
+					anotacionLocal_partido: (matchForm.anotacionLocal_partido += valorDelTanto),
+				})
+			} else {
+				setMatchForm({
+					...matchForm,
+					anotacionVisitante_partido: (matchForm.anotacionVisitante_partido += valorDelTanto),
+				})
+			}
+		
+		
+		console.log(matchForm)
+	}, [equipoDelTanto,valorDelTanto])
 
 	useEffect(() => {
 		let ganador
@@ -92,26 +114,17 @@ const ManagmentControl = ({ sport, confirm, endMatch, matchId, locales, visitant
 		}
 	}, [visitantes, locales])
 
+	//MANEJADORES
+
 	const handleType = (e) => {
 		setTipo(e.target.value)
 		setForm({ ...form, tipo_estadistica: e.target.value })
 	}
 
+	//SUBMIT
+
 	const handleSubmit = (e) => {
 		e.preventDefault(e)
-
-		if (tipo == "gol") {
-			// peticion.post(urlApi("partidos?"))
-			if (locales.find((el) => el.id_fichaJugador == form.id_fichaJugador_estadistica)) {
-				setMatchForm({ ...matchForm, anotacionLocal_partido: (matchForm.anotacionLocal_partido += 1) })
-				// localStorage.setItem("matchForm", JSON.stringify(matchForm))
-				// console.log(matchForm, "matchForm")
-			} else {
-				setMatchForm({ ...matchForm, anotacionVisitante_partido: (matchForm.anotacionVisitante_partido += 1) })
-				// localStorage.setItem("matchForm", JSON.stringify(matchForm))
-				// console.log(matchForm, "matchForm")
-			}
-		}
 
 		const info = {
 			body: new URLSearchParams(form),
@@ -127,7 +140,17 @@ const ManagmentControl = ({ sport, confirm, endMatch, matchId, locales, visitant
 		<>
 			<Form>
 				<h3>Control {sport}</h3>
-				<ManagerControlStatSelect form={form} setForm={setForm} stats={stats} />
+				<ManagerControlStatSelect
+					setvalorDelTanto={setvalorDelTanto}
+					matchForm={matchForm}
+					locales={locales}
+					visitantes={visitantes}
+					setMatchForm={matchForm}
+					setEsTanto={setEsTanto}
+					form={form}
+					setForm={setForm}
+					stats={stats}
+				/>
 
 				<FormGroup>
 					<FormControlLabel
@@ -143,17 +166,20 @@ const ManagmentControl = ({ sport, confirm, endMatch, matchId, locales, visitant
 						label="¿Se le asigna a un jugador?"
 					/>
 				</FormGroup>
-				{(!isToPlayer && arePlayers) && (
+				{!isToPlayer && arePlayers && (
 					<ManagerControlUserSelect
+						setEquipoDelTanto={setEquipoDelTanto}
 						form={form}
 						setForm={setForm}
 						locales={locales}
 						visitantes={visitantes}
 					/>
 				)}
-				{(isToPlayer && arePlayers) && <ManagerControlTeamSelect form={form} setForm={setForm} teams={teams} />}
+				{isToPlayer && arePlayers && <ManagerControlTeamSelect form={form} setForm={setForm} teams={teams} />}
 				{!arePlayers && <PAlert>No hay jugadores en los equipos</PAlert>}
-				<ButtonClassic type="submit" onClick={handleSubmit}>Ingresar</ButtonClassic>
+				<ButtonClassic type="submit" onClick={handleSubmit}>
+					Ingresar
+				</ButtonClassic>
 			</Form>
 		</>
 	)

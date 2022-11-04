@@ -7,11 +7,12 @@ import Select from "@mui/material/Select"
 import { IconFoto } from "../../../componentes/styledComponents/IconFoto"
 import { IconSelect } from "../../../componentes/styledComponents/ComponentesDeEstilos"
 
-export default function ManagerControlStatSelect({ form, setForm, stats }) {
+export default function ManagerControlStatSelect({matchForm,setMatchForm,setvalorDelTanto,setTanto , form, setForm, stats,locales,visitantes }) {
 	const handleChange = (element) => {
-		console.log(element)
+
 		setForm({ ...form, valor_estadistica: element.valor_tipoEstadistica, tipo_estadistica: element.id_tipoEstadistica })
-		
+		console.log(element.valor_tipoEstadistica)
+			setvalorDelTanto(element.valor_tipoEstadistica)
 	}
 
 	return (
