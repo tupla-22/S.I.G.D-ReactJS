@@ -1,4 +1,5 @@
 export const helpHttp = () => {
+  
   const customFetch = async (endpoint, options) => {
     const defaultHeader = {
       "Content-type": "application/x-www-form-urlencoded;charset-UTF-8"
@@ -18,7 +19,9 @@ export const helpHttp = () => {
 
     //console.log(options);
     setTimeout(() => controller.abort(), 3000);
-
+    console.log("test");
+    console.log(endpoint);
+    console.log(options);
     return await fetch(endpoint, options)
       .then((res) => {
       //   if (res.status) {
@@ -26,7 +29,12 @@ export const helpHttp = () => {
       //     }
       //   }
         
-        
+        console.log(res.status ? res.json()
+        : Promise.reject({
+          err: true,
+          status: res.status || "00",
+          statusText: res.statusText || "Ocurrió un error",
+        }));
         return res.status
           ? res.json()
           : Promise.reject({

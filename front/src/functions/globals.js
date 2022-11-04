@@ -1,7 +1,7 @@
 import { getToken } from "./User"
 
 export const urlApi = (url) =>{
-    
+    console.log(`http://apirest.com/${url}&token=${getToken()}`)
    return `http://apirest.com/${url}&token=${getToken()}`
 }
 
