@@ -727,7 +727,7 @@ END //
 
 DELIMITER ;
 
-call estadisticasJugador(8, false);
+call estadisticasJugador(12, 0);
 select * from fichasJugadores;
 
 /*----------------------------------------------
