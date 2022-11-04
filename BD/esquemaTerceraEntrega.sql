@@ -594,7 +594,7 @@ where id_deporte=new.id_deporte_equipo ;
 
 
 /*==================================
-trigger after_estadistica_insert (estadisticas)
+trigger before_estadistica_insert (estadisticas)
 ==================================*/
 
 create trigger before_estadistica_insert_value
@@ -602,66 +602,52 @@ before INSERT
 ON estadisticas FOR EACH ROW
 set new.valor_estadistica =(select valor_tipoEstadistica from tiposEstadisticas where new.tipo_estadistica=id_tipoEstadistica)
 ;
+
+/*==================================
+trigger before_partido_insert (estadisticas)
+==================================
+drop trigger after_partido_update_anotacionLocal;
+create trigger after_partido_update_anotacionLocal
+after update
+ON partidos FOR EACH ROW
+set anotacionVisitante_partido =(select sum(valor_estadistica) from estadisticas where id_equipo_estadistica=id_equipoVisitante_partido ) 
+;
+select sum(valor_estadistica) from estadisticas where id_equipo_estadistica=12;
+select count(id_estadistica) from estadisticas where id_equipo_estadistica=12 and tipo_estadistica="gol";
 select * from partidos;
+
+drop TRIGGER after_partido_update_anotacion;
+DELIMITER $$  
+  
+CREATE TRIGGER after_partido_update_anotacion 
+AFTER UPDATE  
+ON partidos FOR EACH ROW  
+BEGIN  
+
+    set old.anotacionVisitante_partido =(select sum(valor_estadistica) from estadisticas where id_equipo_estadistica=old.id_equipoVisitante_partido )
+    
+    ;  
+END $$  
+  
+DELIMITER ;  
+update partidos set disputado_partido=0;*/
 /*----------------------------------------------
 views
 ----------------------------------------------*/
-/*
-CREATE VIEW equiposConGolesMejorAlPromedio AS
-select * 
-from estadisticas
-inner join equipos on id_equipo=id_equipo_estadistica
-where id_deporte_equipo="football"
-and id_equipo_estadistica =
-	(
-	select id_equipo_estadistica#, count(est.tipo_estadistica) as "count"
-    from 
-		(
-		select id_equipo_estadistica, id_partido_estadistica, date_created_estadistica, tipo_estadistica 
-        from estadisticas 
-        having TIMESTAMPDIFF(YEAR,date_created_estadistica,CURDATE()) <1
-        ) est
-    inner join equipos on id_equipo=id_equipo_estadistica
-    where tipo_estadistica="gol"
-    group by id_equipo_estadistica 
-    order by count(est.tipo_estadistica) desc
-    limit 1
-    )
-and 
-	(
-    select count(est.tipo_estadistica) as "count"
-    from 
-		(
-        select id_equipo_estadistica, id_partido_estadistica, date_created_estadistica, tipo_estadistica 
-        from estadisticas 
-        having TIMESTAMPDIFF(YEAR,date_created_estadistica,CURDATE()) <1
-        ) est
-    inner join equipos on id_equipo=id_equipo_estadistica
-    where tipo_estadistica="gol"
-    group by id_equipo_estadistica 
-    order by count desc
-    limit 1
-    ) 
-    > 
-    (
-    select avg(a.count) 
-    from (
-		select date_created_estadistica,count(est.tipo_estadistica) as "count"
-		from (
-			select id_equipo_estadistica, id_partido_estadistica, date_created_estadistica, tipo_estadistica 
-            from estadisticas 
-            having TIMESTAMPDIFF(YEAR,date_created_estadistica,CURDATE()) <1
-            ) est
-		inner join equipos on id_equipo=id_equipo_estadistica
-		where tipo_estadistica="gol"
-		group by id_partido_estadistica  
-		order by id_partido_estadistica
-        ) a
-	)
+
+CREATE VIEW rankingGolesUltimoCampeonato AS
+select nombre_campeonato, nombre_equipo, sum(valor_estadistica) as "tantos" from equipos
+inner join compiten on id_equipo=id_equipo_compite
+inner join campeonatos on id_campeonato_compite=id_campeonato
+inner join estadisticas on id_equipo_estadistica=id_equipo
+where id_campeonato=(select id_campeonato from campeonatos where fechaFin_campeonato<curdate() order by fechaInicio_campeonato desc limit 1)  and id_deporte_equipo="basketball" and verificado_estadistica=1
+group by id_equipo
+order by tantos desc
 ;
 
+select * from rankingGolesUltimoCampeonato;
 
-*/
+
 
 /*----------------------------------------------
 procedure para contar estadisticas
