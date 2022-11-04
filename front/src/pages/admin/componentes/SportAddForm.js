@@ -153,7 +153,7 @@ const SportAddForm = () => {
 						/>
 						{esTanto && (
 					<TextField
-						helperText={"Si es una estadística que no equivale a tantos poner '1'"}
+						helperText={"Ejemplo: en basketball el doble vale '2' puntos"}
 						margin="normal"
 						type="number"
 						sx={{ marginRight: "20px", width: "70%" }}
@@ -161,7 +161,7 @@ const SportAddForm = () => {
 						value={statsForm.id_estadistica}
 						FormControl
 						required
-						label="Valor de la estadística"
+						label="Puntos por tanto"
 						onChange={handleChangeStat}
 						name="valor_tipoEstadistica"
 					></TextField>
