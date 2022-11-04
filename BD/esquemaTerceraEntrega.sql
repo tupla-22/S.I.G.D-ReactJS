@@ -138,6 +138,7 @@ create table partidos(
     anotacionVisitante_partido int,
     tipo_partido varchar(40),
     disputado_partido bool default 0,
+    verificado_partido bool default 0,
     ganador_partido varchar(40) default null,
     date_created_partido date default current_timestamp,
     date_updated_partido timestamp default current_timestamp ON UPDATE CURRENT_TIMESTAMP,
