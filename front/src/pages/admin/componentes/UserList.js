@@ -53,7 +53,7 @@ const UserList = ({ciUsuarioEliminado,teamId}) => {
 						<TH>{text.cedula}</TH>
 						<TH>{text.correoElectronico}</TH>
 						<TH>{text.fechaDeNacimiento}</TH>
-						<TH>{text.rol}</TH>
+						{user.id_rol_usuario == 1 || user.id_rol_usuario == 2 && <TH>{text.rol}</TH>}
 					</thead>
 
 					<tbody>

@@ -19,7 +19,7 @@ const HomeStudent = () => {
       <HomeTwoToneIcon /> { text.inicio}
     </NavLink>,
     
-    <NavLink to="fixture" classAdd="responsive">
+    <NavLink to="fixture/football" classAdd="responsive">
      <DateRangeTwoToneIcon/> Fixture
     </NavLink>,
     <NavLink classAdd="responsive" to="myStats">
@@ -31,7 +31,7 @@ const HomeStudent = () => {
     <NavLink classAdd="responsive" to="teams/myTeam">
      <GroupsTwoToneIcon/> {text.equipos}
     </NavLink>,
-    <NavLink classAdd="responsive" to="championships">
+    <NavLink classAdd="responsive" to="championships/open">
      <EmojiEventsTwoToneIcon/> {text.campeonatos}
     </NavLink>
   ];

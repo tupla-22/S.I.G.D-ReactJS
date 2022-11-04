@@ -35,7 +35,7 @@ const UserListRow = ({  data, userType }) => {
 				<TD>{data.ci_usuario}</TD>
 				<TD>{data.email_usuario}</TD>
 				<TD>{dateTradeEs(data.fechaNac_usuario)}</TD>
-				<TD>{data.id_rol_usuario}</TD>
+				{user.id_rol_usuario == 1 || user.id_rol_usuario == 12 && <TD>{data.id_rol_usuario}</TD>}
 			</tr>
 		</>
 	)
