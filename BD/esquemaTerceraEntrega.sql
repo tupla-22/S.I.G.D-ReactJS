@@ -606,13 +606,62 @@ select * from partidos;
 /*----------------------------------------------
 views
 ----------------------------------------------*/
+/*
+CREATE VIEW equiposConGolesMejorAlPromedio AS
+select * 
+from estadisticas
+inner join equipos on id_equipo=id_equipo_estadistica
+where id_deporte_equipo="football"
+and id_equipo_estadistica =
+	(
+	select id_equipo_estadistica#, count(est.tipo_estadistica) as "count"
+    from 
+		(
+		select id_equipo_estadistica, id_partido_estadistica, date_created_estadistica, tipo_estadistica 
+        from estadisticas 
+        having TIMESTAMPDIFF(YEAR,date_created_estadistica,CURDATE()) <1
+        ) est
+    inner join equipos on id_equipo=id_equipo_estadistica
+    where tipo_estadistica="gol"
+    group by id_equipo_estadistica 
+    order by count(est.tipo_estadistica) desc
+    limit 1
+    )
+and 
+	(
+    select count(est.tipo_estadistica) as "count"
+    from 
+		(
+        select id_equipo_estadistica, id_partido_estadistica, date_created_estadistica, tipo_estadistica 
+        from estadisticas 
+        having TIMESTAMPDIFF(YEAR,date_created_estadistica,CURDATE()) <1
+        ) est
+    inner join equipos on id_equipo=id_equipo_estadistica
+    where tipo_estadistica="gol"
+    group by id_equipo_estadistica 
+    order by count desc
+    limit 1
+    ) 
+    > 
+    (
+    select avg(a.count) 
+    from (
+		select date_created_estadistica,count(est.tipo_estadistica) as "count"
+		from (
+			select id_equipo_estadistica, id_partido_estadistica, date_created_estadistica, tipo_estadistica 
+            from estadisticas 
+            having TIMESTAMPDIFF(YEAR,date_created_estadistica,CURDATE()) <1
+            ) est
+		inner join equipos on id_equipo=id_equipo_estadistica
+		where tipo_estadistica="gol"
+		group by id_partido_estadistica  
+		order by id_partido_estadistica
+        ) a
+	)
+;
 
-/*CREATE VIEW cantidadEstadisticas AS
-SELECT cantidadEstadistica(3, tipo_estadistica) as cant
-FROM estadisticas where tipo_estadistica='penal';*/
 
-
-
+*/
 
 /*----------------------------------------------
 procedure para contar estadisticas
@@ -794,7 +843,6 @@ procedure para obtener los campeonatos en los que no participa un equipo
 
 
 delimiter //
-drop procedure obtenerCampeonatosDondeNoSeParticipa;
 create procedure obtenerCampeonatosDondeNoSeParticipa (in equipo int)
 begin
 
@@ -814,8 +862,167 @@ delimiter ;
 
 call obtenerCampeonatosDondeNoSeParticipa (12);
 
+/*======================================================
+procedure para obtener el equipo que tenga mas estadisticas de promedio en el ultimo año
+=======================================================*/
+#drop procedure obtenerEquipoConMasPromedioEnEstadistiacaUltimoAnio;
+delimiter //
+create procedure obtenerEquipoConMasPromedioEnEstadistiacaUltimoAnio (in depor varchar(40), in nomEst varchar(40))
+begin
+
+select * 
+from estadisticas
+inner join equipos on id_equipo=id_equipo_estadistica
+where id_deporte_equipo=depor
+and id_equipo_estadistica =
+	(
+	select id_equipo_estadistica#, count(est.tipo_estadistica) as "count"
+    from 
+		(
+		select id_equipo_estadistica, id_partido_estadistica, date_created_estadistica, tipo_estadistica 
+        from estadisticas 
+        having TIMESTAMPDIFF(YEAR,date_created_estadistica,CURDATE()) <1
+        ) est
+    inner join equipos on id_equipo=id_equipo_estadistica
+    where tipo_estadistica=nomEst and id_deporte_equipo=depor
+    group by id_equipo_estadistica 
+    order by count(est.tipo_estadistica) desc
+    limit 1
+    )
+and 
+	(
+    select count(est.tipo_estadistica) as "count"
+    from 
+		(
+        select id_equipo_estadistica, id_partido_estadistica, date_created_estadistica, tipo_estadistica 
+        from estadisticas 
+        having TIMESTAMPDIFF(YEAR,date_created_estadistica,CURDATE()) <1
+        ) est
+    inner join equipos on id_equipo=id_equipo_estadistica
+    where tipo_estadistica=nomEst and id_deporte_equipo=depor
+    group by id_equipo_estadistica 
+    order by count desc
+    limit 1
+    ) 
+    > 
+    (
+    select avg(a.count) 
+    from (
+		select date_created_estadistica,count(est.tipo_estadistica) as "count"
+		from (
+			select id_equipo_estadistica, id_partido_estadistica, date_created_estadistica, tipo_estadistica 
+            from estadisticas 
+            having TIMESTAMPDIFF(YEAR,date_created_estadistica,CURDATE()) <1
+            ) est
+		inner join equipos on id_equipo=id_equipo_estadistica
+		where tipo_estadistica=nomEst and id_deporte_equipo=depor
+		group by id_partido_estadistica  
+		order by id_partido_estadistica
+        ) a
+	)
+;
+
+end //
+delimiter ;
+
+call obtenerEquipoConMasPromedioEnEstadistiacaUltimoAnio ("basketball","triple");
+
+/*
+select * 
+from estadisticas
+inner join equipos on id_equipo=id_equipo_estadistica
+where id_deporte_equipo="basketball"
+and id_equipo_estadistica =
+	(
+	select id_equipo_estadistica#, count(est.tipo_estadistica) as "count"
+    from 
+		(
+		select id_equipo_estadistica, id_partido_estadistica, date_created_estadistica, tipo_estadistica 
+        from estadisticas 
+        having TIMESTAMPDIFF(YEAR,date_created_estadistica,CURDATE()) <10
+        ) est
+    inner join equipos on id_equipo=id_equipo_estadistica
+    where tipo_estadistica="tiroLibre" and id_deporte_equipo="basketball"
+    group by id_equipo_estadistica 
+    order by count(est.tipo_estadistica) desc
+    limit 1
+    )
+and 
+	(
+    select count(est.tipo_estadistica) as "count"
+    from 
+		(
+        select id_equipo_estadistica, id_partido_estadistica, date_created_estadistica, tipo_estadistica 
+        from estadisticas 
+        having TIMESTAMPDIFF(YEAR,date_created_estadistica,CURDATE()) <10
+        ) est
+    inner join equipos on id_equipo=id_equipo_estadistica
+    where tipo_estadistica="tiroLibre" and id_deporte_equipo="basketball"
+    group by id_equipo_estadistica 
+    order by count desc
+    limit 1
+    ) 
+    > 
+    (
+    select avg(a.count) 
+    from (
+		select date_created_estadistica,count(est.tipo_estadistica) as "count"
+		from (
+			select id_equipo_estadistica, id_partido_estadistica, date_created_estadistica, tipo_estadistica 
+            from estadisticas 
+            having TIMESTAMPDIFF(YEAR,date_created_estadistica,CURDATE()) <10
+            ) est
+		inner join equipos on id_equipo=id_equipo_estadistica
+		where tipo_estadistica="tiroLibre" and id_deporte_equipo="basketball"
+		group by id_partido_estadistica  
+		order by id_partido_estadistica
+        ) a
+	)
+;
 
 
+    select count(est.tipo_estadistica) as "count"
+    from 
+		(
+        select id_equipo_estadistica, id_partido_estadistica, date_created_estadistica, tipo_estadistica 
+        from estadisticas 
+        having TIMESTAMPDIFF(YEAR,date_created_estadistica,CURDATE()) <10
+        ) est
+    inner join equipos on id_equipo=id_equipo_estadistica
+    where tipo_estadistica="tiroLibre" and id_deporte_equipo="basketball"
+    group by id_equipo_estadistica 
+    order by count desc
+    limit 1;
+    
+    select avg(a.count) 
+    from (
+		select date_created_estadistica,count(est.tipo_estadistica) as "count"
+		from (
+			select id_equipo_estadistica, id_partido_estadistica, date_created_estadistica, tipo_estadistica 
+            from estadisticas 
+            having TIMESTAMPDIFF(YEAR,date_created_estadistica,CURDATE()) <10
+            ) est
+		inner join equipos on id_equipo=id_equipo_estadistica
+		where tipo_estadistica="tiroLibre" and id_deporte_equipo="basketball"
+		group by id_partido_estadistica  
+		order by id_partido_estadistica
+        ) a;
+    
+select id_equipo_estadistica#, count(est.tipo_estadistica) as "count"
+    from 
+		(
+		select id_equipo_estadistica, id_partido_estadistica, date_created_estadistica, tipo_estadistica 
+        from estadisticas 
+        having TIMESTAMPDIFF(YEAR,date_created_estadistica,CURDATE()) <10
+        ) est
+    inner join equipos on id_equipo=id_equipo_estadistica
+    where tipo_estadistica="tiroLibre" and id_deporte_equipo="basketball"
+    group by id_equipo_estadistica 
+    order by count(est.tipo_estadistica) desc
+    limit 1;
+    
+    select * from estadisticas;
+    
 /*select id_usuario, ci_usuario, primerNombre_usuario, primerApellido_usuario, email_usuario, fechaNac_usuario, fotoPerfil_usuario, id_fichaJugador, altura_fichaJugador, peso_fichaJugador, minutosJugados_fichaJugador, lateralidad_fichaJugador, id_equipo, nombre_equipo
 from usuarios 
 inner join tienen on id_usuario=id_usuario_tiene
