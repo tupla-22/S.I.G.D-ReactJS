@@ -22,7 +22,7 @@ const UserList = ({ciUsuarioEliminado,teamId}) => {
 
 	const user = getUser()
 	useEffect(() => {
-		peticion.get(urlApi(teamId=undefined ? `usuarios?select=*` : `squad?teamID=${teamId}`)).then((dat) => {
+		peticion.get(urlApi(teamId==undefined ? `usuarios?select=*` : `squad?teamID=${teamId}`)).then((dat) => {
 			if (dat.status == 200) {
 		  
 				

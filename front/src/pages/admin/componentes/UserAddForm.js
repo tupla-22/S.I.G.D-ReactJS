@@ -47,12 +47,10 @@ const UserAddForm = () => {
 	const [created, setCreated] = useState(false)
 	const [fichaForm, setFichaForm] = useState(fichaFormInit)
 	const [idFichaJugador, setIdFichaJugador] = useState("")
-	const [idUsuario, setIdUsuario] = useState("")
 	const peticion = helpHttp()
 	const [pertenecenForm, setPertenecenForm] = useState({})
 	const [telefonoForm, setTelefonoForm] = useState(telefonoFormInit)
 	const [ok, setOk] = useState(false)
-
 
 	const navigate = useNavigate()
 
@@ -65,7 +63,7 @@ const UserAddForm = () => {
 		if (!emailRegex.test(userForm.email_usuario)) setError(true)
 		else setError(false)
 
-
+		// SI LA CONTRASEÑA ES IGUAL AÑADO EL USUAIRIO Y TODDO EL RESTO
 
 		if (passwordVerified && !error) {
 			const data = {
@@ -74,73 +72,73 @@ const UserAddForm = () => {
 
 			peticion.post("http://apirest.com/usuarios?register=true&suffix=usuario", data).then((e) => {
 				console.log(e, "result usuario")
-
+				
 				if (e.status == 200) {
-					setOk(true)
-					
-					setTimeout(() => {
+					setPasswordVerified(false)
+					let idUsuario = e.result.lastId
 
+					// AÑADO EL TELEFONO EN SU TABLA
+					const formTelefono = {
+						body: new URLSearchParams({ ...telefonoForm, id_usuario_telefono: e.result.lastId }),
+					}
+					if (telefonoForm.id_telefono != "") {
+						peticion.post(urlApi(`telefonos?`), formTelefono).then((e) => {
+							console.log(e, "telefonos")
+							if (e.status == 200) {
+								setTelefonoForm(telefonoFormInit)
+							}
+						})
+					}
+
+					//AÑADIMOS EN LA TANBLA DE FICHAS DE JUGADOR
+
+					peticion
+						.post(urlApi(`fichasJugadores?`), {
+							body: new URLSearchParams(fichaForm),
+						})
+						.then((e) => {
+							console.log(e, "result ficha")
+							if (e.status == 200) {
+								let idUltimaFichaJugador = e.result.lastId;
+								const infoPerenecen = { body: new URLSearchParams({ ...pertenecenForm, id_fichaJugador_pertenece: idUltimaFichaJugador }) }
+								//AÑADIMOS A LA RELACION DE FIHCAS JUGADORES Y USUARIOS
+
+								const dataTienen = {
+									id_usuario_tiene: idUsuario,
+									id_fichaJugador_tiene: e.result.lastId,
+								}
+								peticion
+									.post(urlApi("tienen?"), {
+										body: new URLSearchParams(dataTienen),
+									})
+									.then((e) => {
+										console.log(e, "result tienen")
+										if (e == 200) {
+											peticion
+												.post(urlApi("pertenecen?"),infoPerenecen)
+												.then((e) => console.log(e, "result de pertenecen"))
+										}
+									})
+
+								setFichaForm(fichaFormInit)
+							}
+						})
+
+					//AÑADIMOS EN LA RELACION FICHASJUGADORES
+
+					
+					setUserForm(userFormInit)
+					setOk(true)
+					setTimeout(() => {
 						setOk(false)
-						
 					}, 4000)
 					setTypeUser("")
-					setPasswordVerified(false)
 					setCreated(true)
-					setIdUsuario(e.result.lastId)
 					setUserForm(userFormInit)
-					setTelefonoForm({ ...telefonoForm, id_usuario_telefono: e.result.lastId })
 				}
 			})
-
-			peticion
-				.post(urlApi(`fichasJugadores?`), {
-					body: new URLSearchParams(fichaForm),
-				})
-				.then((e) => {
-					setIdFichaJugador(e.result.lastId)
-					setPertenecenForm({ ...pertenecenForm, id_fichaJugador_pertenece: e.result.lastId })
-					console.log(e.status, "result ficha")
-					if (e.status == 200) {
-						setFichaForm(fichaFormInit)
-					}
-					if (!created) {
-						setCreated(true)
-						// setUserForm(userFormInit)
-					} else setCreated(false)
-				})
 		}
 	}
-
-	useEffect(() => {
-		if (telefonoForm.id_usuario_telefono != "") {
-			peticion.post(urlApi(`telefonos?`), { body: new URLSearchParams(telefonoForm) }).then((e) => {
-				console.log(e, "telefonos")
-				if (e.status == 200) {
-					setTelefonoForm(telefonoFormInit)
-				}
-			})
-		}
-	}, [telefonoForm])
-
-	// INGRESANDO TABLA TIENEN RELACIONADAS ENTRE SI
-
-	useEffect(() => {
-		const dataTienen = {
-			id_usuario_tiene: idUsuario,
-			id_fichaJugador_tiene: idFichaJugador,
-		}
-
-		peticion
-			.post(urlApi("tienen?"), {
-				body: new URLSearchParams(dataTienen),
-			})
-			.then((e) => {
-				console.log(e, "result tienen")
-				peticion
-					.post(urlApi("pertenecen?"), { body: new URLSearchParams(pertenecenForm) })
-					.then((e) => console.log(e, "result de pertenecen"))
-			})
-	}, [idFichaJugador])
 
 	// Manejadores
 
