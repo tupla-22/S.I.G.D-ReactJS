@@ -1,21 +1,13 @@
-import { FormControl, InputLabel, MenuItem, Select } from "@mui/material"
+import { Checkbox, FormControl, FormControlLabel, FormGroup, InputLabel, MenuItem, Select } from "@mui/material"
 import Form from "../../../componentes/Form"
-import SportsSoccerTwoToneIcon from "@mui/icons-material/SportsSoccerTwoTone"
-import HealingTwoToneIcon from "@mui/icons-material/HealingTwoTone"
-import RoundedCornerTwoToneIcon from "@mui/icons-material/RoundedCornerTwoTone"
-import RectangleTwoToneIcon from "@mui/icons-material/RectangleTwoTone"
-import ChangeCircleTwoToneIcon from "@mui/icons-material/ChangeCircleTwoTone"
-import MoveUpTwoToneIcon from "@mui/icons-material/MoveUpTwoTone"
-import SettingsOverscanTwoToneIcon from "@mui/icons-material/SettingsOverscanTwoTone"
 import React, { useState, useEffect } from "react"
-import { getDateTime, localGetItem, urlApi } from "../../../functions/globals"
+import { getDateTime, getUser, urlApi } from "../../../functions/globals"
 import { helpHttp } from "../../../helpers/helpHttp"
 import { ButtonClassic } from "../../../componentes/ButtonClassic"
-import { BoxAlCen, H3B } from "../../../componentes/styledComponents/ComponentesDeEstilos"
-import SportsBasketballIcon from "@mui/icons-material/SportsBasketball"
-import DirectionsWalkIcon from "@mui/icons-material/DirectionsWalk"
-import SportsVolleyball from "@mui/icons-material/SportsVolleyball"
-import StraightenIcon from "@mui/icons-material/Straighten"
+import ManagerControlUserSelect from "./ManagerControlUserSelect"
+import ManagerControlStatSelect from "./ManagerControlStatSelect"
+import ManagerControlTeamSelect from "./ManagerControlTeamSelect"
+import { PAlert } from "../../../componentes/PAlert"
 
 const peticion = helpHttp()
 
@@ -24,49 +16,37 @@ const matchFormInit = {
 	anotacionVisitante_partido: 0,
 }
 
+const formInit = {
+	id_equipo_estadistica: null,
+	id_fichaJugador_estadistica: null,
+	valor_estadistica: 0,
+}
+
 const ManagmentControl = ({ sport, confirm, endMatch, matchId, locales, visitantes }) => {
-	const [form, setForm] = useState({})
+	const [arePlayers, setArePlayers] = useState(false);
+	const [form, setForm] = useState(formInit)
 	const [tipo, setTipo] = useState("")
-	const [name, setName] = useState("")
 	const [stats, setStats] = useState([])
 	const [matchForm, setMatchForm] = useState(matchFormInit)
-	const [name2, setName2] = useState("");
-	const handleChange = (e) => {
-		setForm({
-			...form,
-			id_fichaJugador_estadistica: e.target.value.id_fichaJugador_estadistica,
-			id_usuario_estadistica: JSON.parse(localStorage.getItem("user")).id_usuario,
-			id_equipo_estadistica: e.target.value.id_equipo_estadistica,
-			fecha_estadistica: getDateTime(),
-			valor_estadistica: 1,
-			verificado_estadistica: 0,
-			id_partido_estadistica: matchId,
-		})
-		setName(`${e.target.value.nombre} ${e.target.value.apellido}`)
-	}
+	const [isToPlayer, setIsToPlayer] = useState(false)
+	const [teams, setTeams] = useState([])
 
-	
-	const handleChangeDos = (e) => {
-		setForm({
-			...form,
-			id_fichaJugador_estadistica: e.target.value.id_fichaJugador_estadistica,
-			id_usuario_estadistica: JSON.parse(localStorage.getItem("user")).id_usuario,
-			id_equipo_estadistica: e.target.value.id_equipo_estadistica,
-			fecha_estadistica: getDateTime(),
-			valor_estadistica: 1,
-			verificado_estadistica: 0,
-			id_partido_estadistica: matchId,
-		})
-		setName2(`${e.target.value.nombre} ${e.target.value.apellido}`)
-	}
+	const user = getUser()
 
 	useEffect(() => {
-		console.log(sport)
 		let ganador
 
 		// if (localGetItem("matchForm") != undefined) {
 		// 	setMatchForm(localGetItem("matchForm"))
 		// }
+
+		setForm({
+			...form,
+			id_usuario_estadistica: user.id_usuario,
+			fecha_estadistica: getDateTime(),
+			verificado_estadistica: 0,
+			id_partido_estadistica: matchId,
+		})
 
 		if (confirm == 1) {
 			if (matchForm.anotacionLocal_partido > matchForm.anotacionVisitante_partido) {
@@ -87,23 +67,30 @@ const ManagmentControl = ({ sport, confirm, endMatch, matchId, locales, visitant
 	}, [confirm])
 
 	useEffect(() => {
-		peticion.get(urlApi(`conciben?linkTo=id_deporte_concibe&equalTo=${sport}`)).then((e) => {
-			if (e.status == 200) {
-				console.log(e)
-				setStats(
-					e.result.map((e) => (
-						<MenuItem value={e.id_tipoEstadistica_concibe}>
-							<BoxAlCen>
-								{e.id_tipoEstadistica_concibe}
-								{<img style={{ height: "20px" }} src={e.icono_tipoEstadistica}></img>}
-							</BoxAlCen>
-						</MenuItem>
-					))
+		peticion
+			.get(
+				urlApi(
+					`relations?select=id_deporte_concibe,icono_tipoEstadistica,id_tipoEstadistica,valor_tipoEstadistica&rel=conciben,tiposEstadisticas&type=concibe,tipoEstadistica&equalTo=${sport}&linkTo=id_deporte_concibe`
 				)
-				console.log(stats)
-			}
-		})
+			)
+			.then((e) => {
+				if (e.status == 200) {
+					console.log(e)
+					setStats(e.result)
+					console.log(stats)
+				}
+			})
 	}, [sport])
+
+	useEffect(() => {
+		if (locales.length != 0 && visitantes != 0) {
+			setArePlayers(true)
+			setTeams([
+				{ nombre: locales[0].nombre_equipo, id: locales[0].id_equipo },
+				{ nombre: visitantes[0].nombre_equipo, id: visitantes[0].id_equipo },
+			])
+		}
+	}, [visitantes, locales])
 
 	const handleType = (e) => {
 		setTipo(e.target.value)
@@ -133,284 +120,40 @@ const ManagmentControl = ({ sport, confirm, endMatch, matchId, locales, visitant
 		peticion.post(urlApi("estadisticas?"), info).then((e) => {
 			console.log(e, "estadistica")
 		})
+		console.log(form)
 	}
 
 	return (
 		<>
 			<Form>
-				<h3>Control football</h3>
+				<h3>Control {sport}</h3>
+				<ManagerControlStatSelect form={form} setForm={setForm} stats={stats} />
 
-				<FormControl fullWidth>
-					<InputLabel id="demo-simple-select-label">Seleccionar</InputLabel>
-					<Select
-						labelId="demo-simple-select-label"
-						id="demo-simple-select"
-						value={tipo}
-						label="Seleccionar"
-						onChange={handleType}
-					>
-						{stats.map((e) => e)}
-					</Select>
-				</FormControl>
-
-				{tipo !== "cambio" && tipo !== "falta" && (
-					<>
-						<h3>Equipos</h3>
-						
-							
-						{name && <p style={{position:"relative",bottom:"-50px",right:"-10px"}}>{name}</p> }
-						<FormControl className="Form__input" fullWidth>
-							<InputLabel id="selectId">Jugador al que se le asigna</InputLabel>
-							
-							<Select
-								value={form}
-								labelId="selectId"
-								id="selectId"
-								label="Jugador al que se le asigna"
-								onChange={(e)=>{handleChange(e)} }
-							>
-								<H3B>Locales</H3B>
-								{locales.map((e) => (
-									<MenuItem
-										key={e.ci_usuario}
-										name={"sadfasd"}
-										value={{
-											id_fichaJugador_estadistica: e.id_fichaJugador,
-											id_equipo_estadistica: e.id_equipo,
-											nombre: e.primerNombre_usuario,
-											apellido: e.primerApellido_usuario,
-										}}
-									>	
-										
-										{e.primerNombre_usuario} {e.primerApellido_usuario}
-									</MenuItem>
-								))}
-								<H3B>Visitantes</H3B>
-								{visitantes.map((e) => (
-									<MenuItem
-										key={e.ci_usuario}
-										value={{
-											id_fichaJugador_estadistica: e.id_fichaJugador,
-											id_equipo_estadistica: e.id_equipo,
-											nombre: e.primerNombre_usuario,
-											apellido: e.primerApellido_usuario,
-										}}
-									>
-										{e.primerNombre_usuario} {e.primerApellido_usuario}
-									</MenuItem>
-								))}
-							</Select>
-						</FormControl>
-					</>
+				<FormGroup>
+					<FormControlLabel
+						control={
+							<Checkbox
+								defaultChecked
+								onClick={() => {
+									if (isToPlayer) setIsToPlayer(false)
+									else setIsToPlayer(true)
+								}}
+							/>
+						}
+						label="¿Se le asigna a un jugador?"
+					/>
+				</FormGroup>
+				{(!isToPlayer && arePlayers) && (
+					<ManagerControlUserSelect
+						form={form}
+						setForm={setForm}
+						locales={locales}
+						visitantes={visitantes}
+					/>
 				)}
-
-				{tipo == "falta" && (
-					<>
-						<h3>Jugador que realizo falta</h3>
-						{name && <p style={{position:"relative",bottom:"-50px",right:"-10px"}}>{name}</p> }
-						<FormControl className="Form__input" fullWidth>
-							<InputLabel id="demo-simple-select-label">Jugador al que se le asigna</InputLabel>
-							<Select
-								value={name}
-								labelId="demo-simple-select-label"
-								id="demo-simple-select"
-								label="Jugador al que se le asigna"
-								onChange={handleChange}
-							>
-								<h3>Locales</h3>
-								{locales.map((e) => (
-									<MenuItem
-										value={{
-											id_fichaJugador_estadistica: e.id_fichaJugador,
-											id_equipo_estadistica: e.id_equipo,
-											nombre: e.primerNombre_usuario,
-											apellido: e.primerApellido_usuario,
-										}}
-									>
-										{e.primerNombre_usuario} {e.primerApellido_usuario}
-									</MenuItem>
-								))}
-								<h3>Visitantes</h3>
-								{visitantes.map((e) => (
-									<MenuItem
-										value={{
-											id_fichaJugador_estadistica: e.id_fichaJugador,
-											id_equipo_estadistica: e.id_equipo,
-											nombre: e.primerNombre_usuario,
-											apellido: e.primerApellido_usuario,
-										}}
-									>
-										{e.primerNombre_usuario} {e.primerApellido_usuario}
-									</MenuItem>
-								))}
-							</Select>
-						</FormControl>
-
-						<h3>Jugador al que le hicieron falta</h3>
-						{name2 && <p style={{position:"relative",bottom:"-50px",right:"-10px"}}>{name2}</p> }
-						<FormControl className="Form__input" fullWidth>
-							<InputLabel id="demo-simple-select-label">Jugador al que se le asigna</InputLabel>
-							<Select
-								value={name}
-								labelId="demo-simple-select-label"
-								id="demo-simple-select"
-								label="Jugador al que se le asigna"
-								onChange={handleChangeDos}
-							>
-								<h3>Locales</h3>
-								{locales.map((e) => (
-									<MenuItem
-										value={{
-											id_fichaJugador_estadistica: e.id_fichaJugador,
-											id_equipo_estadistica: e.id_equipo,
-											nombre: e.primerNombre_usuario,
-											apellido: e.primerApellido_usuario,
-										}}
-									>
-										{e.primerNombre_usuario} {e.primerApellido_usuario}
-									</MenuItem>
-								))}
-								<h3>Visitantes</h3>
-								{visitantes.map((e) => (
-									<MenuItem
-										value={{
-											id_fichaJugador_estadistica: e.id_fichaJugador,
-											id_equipo_estadistica: e.id_equipo,
-											nombre: e.primerNombre_usuario,
-											apellido: e.primerApellido_usuario,
-										}}
-									>
-										{e.primerNombre_usuario} {e.primerApellido_usuario}
-									</MenuItem>
-								))}
-							</Select>
-						</FormControl>
-					</>
-				)}
-				{tipo == "cambio" && (
-					<>
-						<h3>Jugador que entra</h3>
-						{name && <p style={{position:"relative",bottom:"-50px",right:"-10px"}}>{name}</p> }
-						<FormControl className="Form__input" fullWidth>
-							<InputLabel id="demo-simple-select-label">Jugador al que se le asigna</InputLabel>
-							<Select
-								value={name}
-								labelId="demo-simple-select-label"
-								id="demo-simple-select"
-								label="Jugador al que se le asigna"
-								onChange={handleChange}
-							>
-								<h3>Locales</h3>
-								{locales.map((e) => (
-									<MenuItem
-										value={{
-											id_fichaJugador_estadistica: e.id_fichaJugador,
-											id_equipo_estadistica: e.id_equipo,
-											nombre: e.primerNombre_usuario,
-											apellido: e.primerApellido_usuario,
-										}}
-									>
-										{e.primerNombre_usuario} {e.primerApellido_usuario}
-									</MenuItem>
-								))}
-								<h3>Visitantes</h3>
-								{visitantes.map((e) => (
-									<MenuItem
-										value={{
-											id_fichaJugador_estadistica: e.id_fichaJugador,
-											id_equipo_estadistica: e.id_equipo,
-											nombre: e.primerNombre_usuario,
-											apellido: e.primerApellido_usuario,
-										}}
-									>
-										{e.primerNombre_usuario} {e.primerApellido_usuario}
-									</MenuItem>
-								))}
-							</Select>
-						</FormControl>
-
-						<h3>Jugador que sale</h3>
-						{name2 && <p style={{position:"relative",bottom:"-50px",right:"-10px"}}>{name2}</p> }
-						<FormControl className="Form__input" fullWidth>
-							<InputLabel id="demo-simple-select-label">Jugador al que se le asigna</InputLabel>
-							<Select
-								value={name}
-								labelId="demo-simple-select-label"
-								id="demo-simple-select"
-								label="Jugador al que se le asigna"
-								onChange={handleChangeDos}
-							>
-								<h3>Locales</h3>
-								{locales.map((e) => (
-									<MenuItem
-										value={{
-											id_fichaJugador_estadistica: e.id_fichaJugador,
-											id_equipo_estadistica: e.id_equipo,
-											nombre: e.primerNombre_usuario,
-											apellido: e.primerApellido_usuario,
-										}}
-									>
-										{e.primerNombre_usuario} {e.primerApellido_usuario}
-									</MenuItem>
-								))}
-								<h3>Visitantes</h3>
-								{visitantes.map((e) => (
-									<MenuItem
-										value={{
-											id_fichaJugador_estadistica: e.id_fichaJugador,
-											id_equipo_estadistica: e.id_equipo,
-											nombre: e.primerNombre_usuario,
-											apellido: e.primerApellido_usuario,
-										}}
-									>
-										{e.primerNombre_usuario} {e.primerApellido_usuario}
-									</MenuItem>
-								))}
-							</Select>
-						</FormControl>
-					</>
-				)}
-				{tipo == "falta"}
-
-				<ButtonClassic onClick={handleSubmit} type={"submit"}>
-					enviar{" "}
-				</ButtonClassic>
-				{/* <BoxFlex>
-          <UsersModal
-            name={"gol"}
-            locales={locales}
-            visitantes={visitantes}
-            form={form}
-            setForm={setForm}
-          >
-            Gol
-            <SportsSoccerTwoToneIcon />
-          </UsersModal>
-          <Button onClick={handleClick} variant="contained">
-            Falta
-            <HealingTwoToneIcon />
-          </Button>
-          <Button onClick={handleClick} variant="contained">
-            Corner
-            <RoundedCornerTwoToneIcon />
-          </Button>
-          <Button onClick={handleClick} variant="contained">
-            Lateral
-            <RectangleTwoToneIcon />
-          </Button>
-          <Button onClick={handleClick} variant="contained">
-            Cambio
-            <ChangeCircleTwoToneIcon />
-          </Button>
-          <Button onClick={handleClick} variant="contained">
-            Tiro libre
-            <MoveUpTwoToneIcon />
-          </Button>
-          <Button onClick={handleClick} variant="contained">
-            Penal
-            <SettingsOverscanTwoToneIcon />
-          </Button>
-        </BoxFlex> */}
+				{(isToPlayer && arePlayers) && <ManagerControlTeamSelect form={form} setForm={setForm} teams={teams} />}
+				{!arePlayers && <PAlert>No hay jugadores en los equipos</PAlert>}
+				<ButtonClassic type="submit" onClick={handleSubmit}>Ingresar</ButtonClassic>
 			</Form>
 		</>
 	)

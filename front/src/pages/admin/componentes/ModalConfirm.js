@@ -39,7 +39,7 @@ export default function ModalConfirm({color,name,setConfirm}) {
 
   return (
     <div>
-      <Button type="submit" onClick={handleOpen}>{name}</Button>
+      <Button variant='contained' type="submit" onClick={handleOpen}>{name}</Button>
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"

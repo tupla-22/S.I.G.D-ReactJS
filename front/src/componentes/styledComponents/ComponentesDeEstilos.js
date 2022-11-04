@@ -95,3 +95,9 @@ export const IconButton = styled.button`
         cursor:pointer;
     }
 `
+
+
+export const IconSelect = styled.img`
+height:25px;
+
+`
