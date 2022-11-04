@@ -167,7 +167,7 @@ const ManagmentControl = ({ sport, confirm, endMatch, matchId, locales, visitant
 								labelId="selectId"
 								id="selectId"
 								label="Jugador al que se le asigna"
-								onChange={handleChange}
+								onChange={(e)=>{handleChange(e)} }
 							>
 								<H3B>Locales</H3B>
 								{locales.map((e) => (

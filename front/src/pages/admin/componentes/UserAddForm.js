@@ -1,7 +1,6 @@
-import { Button, FormControl, IconButton, InputLabel, MenuItem, Select, TextField } from "@mui/material"
+import { Button, FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material"
 import { ButtonClassic } from "../../../componentes/ButtonClassic"
 import Form from "../../../componentes/Form"
-import InputFechaNacimiento from "../../../componentes/InputFechaNacimiento"
 import "./styles/UserAddForm.css"
 import UserAddTipeController from "./UserAddTipeController"
 import React, { useState, useEffect, useContext } from "react"
@@ -9,9 +8,7 @@ import PhotoCamera from "@mui/icons-material/PhotoCamera"
 import { PAlert } from "../../../componentes/PAlert"
 import { blobToBase64 } from "../../../helpers/blobManager"
 import { urlApi } from "../../../functions/globals"
-import { getToken } from "../../../functions/User"
 import { helpHttp } from "../../../helpers/helpHttp"
-import { PSuccess } from "../../../componentes/styledComponents/PSuccess"
 import InputDate from "../../../componentes/InputDate"
 import LanguajeContext from "../../../contexts/LanguajeContext"
 import AlertSuccees from "../../../componentes/AlertSuccees"
@@ -44,15 +41,12 @@ const UserAddForm = () => {
 	const [password, setPassword] = useState("")
 	const [errors, setErrors] = useState(false)
 	const [error, setError] = useState(false)
-	const [created, setCreated] = useState(false)
 	const [fichaForm, setFichaForm] = useState(fichaFormInit)
-	const [idFichaJugador, setIdFichaJugador] = useState("")
 	const peticion = helpHttp()
 	const [pertenecenForm, setPertenecenForm] = useState({})
 	const [telefonoForm, setTelefonoForm] = useState(telefonoFormInit)
 	const [ok, setOk] = useState(false)
 
-	const navigate = useNavigate()
 
 	const { text } = useContext(LanguajeContext)
 
@@ -133,7 +127,6 @@ const UserAddForm = () => {
 						setOk(false)
 					}, 4000)
 					setTypeUser("")
-					setCreated(true)
 					setUserForm(userFormInit)
 					setPassword("")
 					setPasswordVerified(true)

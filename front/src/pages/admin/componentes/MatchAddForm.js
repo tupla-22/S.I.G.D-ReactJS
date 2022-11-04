@@ -42,6 +42,8 @@ const MatchAddForm = () => {
 		peticion.get(urlApi(`equipos?select=*&linkTo=id_deporte_equipo&equalTo=${deporteElegido}`)).then((e) => {
 			if (e.status == 200) {
 				setEquipos(e.result)
+			} else {
+				setEquipos([])
 			}
 		})
 		peticion.get(urlApi("campeonatos?select=*")).then((e) => {

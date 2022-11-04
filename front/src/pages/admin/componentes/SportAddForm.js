@@ -41,6 +41,8 @@ const SportAddForm = () => {
 	}
 
 	const handleClick = (e) => {
+
+
 		e.preventDefault()
 		const confi = {
 			body: new URLSearchParams(sportForm),
@@ -53,7 +55,6 @@ const SportAddForm = () => {
 				setAdded(true)
 				setOk(true)
 				setErrors(false)
-				setsportForm(formTeamInit)
 				setTimeout(() => {
 					setOk(false)
 				}, 5000)
@@ -65,34 +66,40 @@ const SportAddForm = () => {
 	}
 
 	const handleSendStat = (event) => {
-		event.preventDefault(event)
-
-		peticion.post(urlApi("tiposestadisticas?"), { body: new URLSearchParams(statsForm) }).then((res) => {
-			console.log(res.status, "Table estadisticas")
+		event.preventDefault()
+		console.log(statsForm)
+		peticion.post(urlApi("tiposEstadisticas?"), { body: new URLSearchParams(statsForm) }).then((res) => {
+			console.log(res, "Table estadisticas")
 			if (res.status == 200) {
 				setOk(true)
 				setTimeout(() => {
 					setOk(false)
 				}, 5000)
-				setStatsForm({})
 			}
 		})
 
+		const concibenForm={
+			...conciben,
+			id_tipoEstadistica_concibe: statsForm.id_tipoEstadistica,
+		}
+		console.log(concibenForm)
+
 		peticion
 			.post(urlApi(`conciben?`), {
-				body: new URLSearchParams({
-					...conciben,
-					id_tipoEstadistica_concibe: statsForm.id_tipoEstadistica,
-				}),
+				body: new URLSearchParams(concibenForm),
 			})
 			.then((e) => {
-				console.log(e.status, "Tabla concibenn")
+				console.log(e, "Tabla concibenn")
+				setStatsForm(statsFormInit)
+				if (e.status == 200) {
+					
+				}
 			})
 	}
 
 	const handleChangeStat = (e) => {
 		e.preventDefault()
-		setStatsForm({ [e.target.name]: e.target.value })
+		setStatsForm({...statsForm, [e.target.name]: e.target.value })
 	}
 
 	const handlePhoto = (e) => {
