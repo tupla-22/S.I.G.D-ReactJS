@@ -459,11 +459,7 @@ values
 ("basketball","saque");
 
 
-select * from pertenecen;select * from usuarios;
-select * from  tienen;
-select * from  equipos;
 select * from estadisticas;
-
 
 insert into estadisticas
 values 
