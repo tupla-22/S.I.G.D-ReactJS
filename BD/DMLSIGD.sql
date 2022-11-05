@@ -726,54 +726,54 @@ insert into compiten values
 ('15', '25', 0, '2022-11-05', '2022-11-05 03:01:30'),
 ('15', '26', 1, '2022-11-05', '2022-11-05 03:01:30'),
 ('15', '27', 8, '2022-11-05', '2022-11-05 03:01:30');
+
+
+insert into partidos
+values
+#campeonato2ok
+#id_partido, id_equipoLocal_partido, id_equipoVisitante_partido, dia_partido, hora_partido, anotacionLocal_partido, anotacionVisitante_partido, tipo_partido, disputado_partido, verificado_partido, ganador_partido, date_created_partido, date_updated_partido
+(null, '5'/*1*/, '13'/*6*/, '2022-10-03', '06:29:00', '2', '0', 'campeonato', '1',1, 'Full Team FC', '2022-11-03', '2022-11-03 13:45:33'),
+(null, '5'/*1*/, '4'/*4*/, '2022-10-05', '06:29:00', '3', '2', 'campeonato', '1',1, 'Full Team FC', '2022-11-03', '2022-11-03 13:46:02'),
+(null, '5'/*1*/, '1'/*2*/, '2022-10-05', '06:29:00', '1', '0', 'campeonato', '1',1, 'Full Team FC', '2022-11-03', '2022-11-03 13:46:31'),
+(null, '1'/*2*/, '12'/*5*/, '2022-11-04', '05:00:00', '4', '3', 'campeonato', '1',1, 'Club Antartico de Football', '2022-11-03', '2022-11-03 13:54:58'),
+(null, '1'/*2*/, '2'/*4*/, '2022-10-03', '06:29:00', '2', '1', 'campeonato', '1',1, 'Club Antartico de Football', '2022-11-03', '2022-11-03 13:45:33'),
+(null, '2'/*3*/, '14'/*7*/, '2022-10-05', '06:29:00', '2', '0', 'campeonato', '1',1, 'Taurus FC', '2022-11-03', '2022-11-03 13:46:02'),
+(null, '2'/*3*/, '4'/*4*/, '2022-10-05', '06:29:00', '1', '0', 'campeonato', '1',1, 'Taurus FC', '2022-11-03', '2022-11-03 13:46:31'),
+(null, '4'/*4*/, '3'/*8*/, '2022-11-04', '05:00:00', '5', '3', 'campeonato', '1',1, 'Dream FC', '2022-11-03', '2022-11-03 13:54:58'),
+(null, '14'/*7*/, '3'/*8*/, '2022-10-03', '06:29:00', '4', '0', 'campeonato', '1',1, 'bat FC', '2022-11-03', '2022-11-03 13:45:33'),
+(null, '13'/*6*/, '3'/*8*/, '2022-10-05', '06:29:00', '3', '1', 'campeonato', '1',1, 'spoon FC', '2022-11-03', '2022-11-03 13:46:02'),
+(null, '12'/*5*/, '14'/*7*/, '2022-10-05', '06:29:00', '2', '0', 'campeonato', '1',1, 'TeamTupla FC', '2022-11-03', '2022-11-03 13:46:31'),
+(null, '12'/*5*/, '13'/*6*/, '2022-11-04', '05:00:00', '1', '0', 'campeonato', '1',1, 'TeamTupla FC', '2022-11-03', '2022-11-03 13:54:58'),
+#campeonato3ok
+#id_partido, id_equipoLocal_partido, id_equipoVisitante_partido, dia_partido, hora_partido, anotacionLocal_partido, anotacionVisitante_partido, tipo_partido, disputado_partido, verificado_partido, ganador_partido, date_created_partido, date_updated_partido
+(null, '12'/*1*/, '5'/*6*/, '2022-10-03', '06:29:00', '2', '1', 'campeonato', '1',1, 'Full Team FC', '2022-11-03', '2022-11-03 13:45:33'),
+(null, '12'/*1*/, '2'/*4*/, '2022-10-05', '06:29:00', '4', '2', 'campeonato', '1',1, 'Full Team FC', '2022-11-03', '2022-11-03 13:46:02'),
+(null, '12'/*1*/, '1'/*2*/, '2022-10-05', '06:29:00', '2', '0', 'campeonato', '1',1, 'Full Team FC', '2022-11-03', '2022-11-03 13:46:31'),
+(null, '1'/*2*/, '4'/*5*/, '2022-11-04', '05:00:00', '5', '3', 'campeonato', '1',1, 'Club Antartico de Football', '2022-11-03', '2022-11-03 13:54:58'),
+(null, '1'/*2*/, '2'/*4*/, '2022-10-03', '06:29:00', '3', '1', 'campeonato', '1',1, 'Club Antartico de Football', '2022-11-03', '2022-11-03 13:45:33'),
+(null, '3'/*3*/, '13'/*7*/, '2022-10-05', '06:29:00', '2', '1', 'campeonato', '1',1, 'Taurus FC', '2022-11-03', '2022-11-03 13:46:02'),
+(null, '3'/*3*/, '2'/*4*/, '2022-10-05', '06:29:00', '2', '0', 'campeonato', '1',1, 'Taurus FC', '2022-11-03', '2022-11-03 13:46:31'),
+(null, '4'/*4*/, '14'/*8*/, '2022-11-04', '05:00:00', '5', '3', 'campeonato', '1',1, 'Dream FC', '2022-11-03', '2022-11-03 13:54:58'),
+(null, '13'/*7*/, '14'/*8*/, '2022-10-03', '06:29:00', '4', '2', 'campeonato', '1',1, 'bat FC', '2022-11-03', '2022-11-03 13:45:33'),
+(null, '5'/*6*/, '14'/*8*/, '2022-10-05', '06:29:00', '3', '2', 'campeonato', '1',1, 'spoon FC', '2022-11-03', '2022-11-03 13:46:02'),
+(null, '4'/*5*/, '13'/*7*/, '2022-10-05', '06:29:00', '2', '1', 'campeonato', '1',1, 'TeamTupla FC', '2022-11-03', '2022-11-03 13:46:31'),
+(null, '4'/*5*/, '5'/*6*/, '2022-11-04', '05:00:00', '2', '0', 'campeonato', '1',1, 'TeamTupla FC', '2022-11-03', '2022-11-03 13:54:58'),
+
+#campeonato4ok
+#id_partido, id_equipoLocal_partido, id_equipoVisitante_partido, dia_partido, hora_partido, anotacionLocal_partido, anotacionVisitante_partido, tipo_partido, disputado_partido, verificado_partido, ganador_partido, date_created_partido, date_updated_partido
+(null, '12'/*1*/, '4'/*6*/, '2022-10-03', '06:29:00', '3', '0', 'campeonato', '1',1, 'Full Team FC', '2022-11-03', '2022-11-03 13:45:33'),
+(null, '12'/*1*/, '5'/*4*/, '2022-10-05', '06:29:00', '2', '1', 'campeonato', '1',1, 'Full Team FC', '2022-11-03', '2022-11-03 13:46:02'),
+(null, '12'/*1*/, '14'/*2*/, '2022-10-05', '06:29:00', '2', '1', 'campeonato', '1',1, 'Full Team FC', '2022-11-03', '2022-11-03 13:46:31'),
+(null, '14'/*2*/, '3'/*5*/, '2022-11-04', '05:00:00', '3', '0', 'campeonato', '1',1, 'Club Antartico de Football', '2022-11-03', '2022-11-03 13:54:58'),
+(null, '14'/*2*/, '5'/*4*/, '2022-10-03', '06:29:00', '2', '1', 'campeonato', '1',1, 'Club Antartico de Football', '2022-11-03', '2022-11-03 13:45:33'),
+(null, '13'/*3*/, '2'/*7*/, '2022-10-05', '06:29:00', '2', '0', 'campeonato', '1',1, 'Taurus FC', '2022-11-03', '2022-11-03 13:46:02'),
+(null, '13'/*3*/, '5'/*4*/, '2022-10-05', '06:29:00', '1', '0', 'campeonato', '1',1, 'Taurus FC', '2022-11-03', '2022-11-03 13:46:31'),
+(null, '5'/*4*/, '1'/*8*/, '2022-11-04', '05:00:00', '5', '4', 'campeonato', '1',1, 'Dream FC', '2022-11-03', '2022-11-03 13:54:58'),
+(null, '2'/*7*/, '1'/*8*/, '2022-10-03', '06:29:00', '4', '1', 'campeonato', '1',1, 'bat FC', '2022-11-03', '2022-11-03 13:45:33'),
+(null, '4'/*6*/, '1'/*8*/, '2022-10-05', '06:29:00', '3', '1', 'campeonato', '1',1, 'spoon FC', '2022-11-03', '2022-11-03 13:46:02'),
+(null, '3'/*5*/, '2'/*7*/, '2022-10-05', '06:29:00', '2', '1', 'campeonato', '1',1, 'TeamTupla FC', '2022-11-03', '2022-11-03 13:46:31'),
+(null, '3'/*5*/, '4'/*6*/, '2022-11-04', '05:00:00', '3', '0', 'campeonato', '1',1, 'TeamTupla FC', '2022-11-03', '2022-11-03 13:54:58');
 /*
-insert into campeonatos (tipo_campeonato, nombre_campeonato,id_liga_campeonato, fechaInicio_campeonato , fechaFin_campeonato)
-values
-("sub 20","copa america",2,"2022-01-12","2022-02-12"),
-("clasico","copa sudamericana",1,"2022-03-12","2022-04-12")
-
-
-;
-
-insert into campeonatos (tipo_campeonato, nombre_campeonato,id_liga_campeonato, fechaInicio_campeonato , fechaFin_campeonato, campeon_campeonato)
-values
-("sub 20","copa america",2,"2022-01-12","2022-02-12","TeamTupla"),
-("sub 20","copa america",2,"2018-01-12","2018-02-12","TeamTupla"),
-("sub 20","copa america",2,"2019-01-12","2019-02-12","TeamTupla"),
-("sub 20","copa america",2,"2018-03-12","2018-04-12","TeamTupla"),
-("sub 20","copa america",2,"2019-01-12","2019-02-12","team5"),
-("sub 20","copa america",2,"2018-03-12","2018-04-12","team5"),
-("clasico","copa sudamericana",1,"2022-03-12","2022-04-12","TeamTupla");
-
-
-
-insert into campeonatos
-values
-(NULL, NULL, NULL, 'campeonato intercacional de basketbola', 'basketball', '4', '2022-10-03', '2022-11-01', '2022-11-03', '2022-11-03 13:36:59'),
-(NULL, NULL, NULL, 'campeonato intercacional de basketbola', 'basketball', '4', '2022-11-03', '2022-11-12', '2022-11-03', '2022-11-03 13:53:19')
-
-;
-
-
-
-insert into compiten (id_campeonato_compite,id_equipo_compite,punto_compite)
-values 
-(3,12,100),
-(4,12,100),
-(5,12,100),
-(6,12,100),
-(7,5,100),
-(8,5,100),
-(9,2,100),
-(6,2,100),
-(7,2,100),
-(8,2,100),
-('10', '7', 2),
-('10', '11', 3),
-('11', '7', 4), 
-('11', '11', 5)
-;
-
 
 
 
