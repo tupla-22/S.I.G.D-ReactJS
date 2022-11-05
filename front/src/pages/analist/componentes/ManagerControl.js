@@ -91,6 +91,7 @@ const ManagmentControl = ({ sport, confirm, endMatch, matchId, locales, visitant
 	}, [confirm])
 
 	useEffect(() => {
+
 		peticion
 			.get(
 				urlApi(
@@ -102,10 +103,11 @@ const ManagmentControl = ({ sport, confirm, endMatch, matchId, locales, visitant
 					console.log(e)
 					setStats(e.result)
 					console.log(stats)
-					setError(false)
+					setOk(true)
 				} else {
 					setError(true)
 				}
+				setTimeout(() => { setError(false); setOk(false)},5000)
 			})
 	}, [sport])
 
@@ -155,7 +157,7 @@ const ManagmentControl = ({ sport, confirm, endMatch, matchId, locales, visitant
 
 	return (
 		<>
-			{error && <AlertSuccees severity={"error"}>Error inesperado</AlertSuccees>}
+			{error && <AlertSuccees severity={"error"}></AlertSuccees>}
 			{ok && <AlertSuccees></AlertSuccees>}
 			<Form>
 				<h3>Control {sport}</h3>

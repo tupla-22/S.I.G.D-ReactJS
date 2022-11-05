@@ -54,6 +54,11 @@ const UserAddForm = () => {
 
 	const handleClick = (e) => {
 		e.preventDefault()
+
+		let idUsuario;
+		let idUltimaFichaJugador;
+
+
 		if (!emailRegex.test(userForm.email_usuario)) setError(true)
 		else setError(false)
 
@@ -69,7 +74,7 @@ const UserAddForm = () => {
 				
 				if (e.status == 200) {
 					setPasswordVerified(false)
-					let idUsuario = e.result.lastId
+					 idUsuario = e.result.lastId
 
 					// AÑADO EL TELEFONO EN SU TABLA
 					const formTelefono = {
@@ -93,7 +98,7 @@ const UserAddForm = () => {
 						.then((e) => {
 							console.log(e, "result ficha")
 							if (e.status == 200) {
-								let idUltimaFichaJugador = e.result.lastId;
+								idUltimaFichaJugador = e.result.lastId;
 								const infoPerenecen = { body: new URLSearchParams({ ...pertenecenForm, id_fichaJugador_pertenece: idUltimaFichaJugador }) }
 								//AÑADIMOS A LA RELACION DE FIHCAS JUGADORES Y USUARIOS
 
@@ -107,7 +112,7 @@ const UserAddForm = () => {
 									})
 									.then((e) => {
 										console.log(e, "result tienen")
-										if (e == 200) {
+										if (e.status == 200) {
 											peticion
 												.post(urlApi("pertenecen?"),infoPerenecen)
 												.then((e) => console.log(e, "result de pertenecen"))
