@@ -652,7 +652,7 @@ select * from rankingGolesUltimoCampeonato;
 
 
 /*----------------------------------------------
-view campeonatos finalizados
+view ver equipos de campeonatos finalizados
 ----------------------------------------------*/
 
 create view equiposDeCampeonatosFinalizados as
@@ -664,7 +664,7 @@ where fechaFin_campeonato < curdate() #and deporte_campeonato="football"
 
 
 /*----------------------------------------------
-view campeonatos no finalizados
+view ver equipos de campeonatos no finalizados
 ----------------------------------------------*/
 
 create view equiposDeCampeonatosNoFinalizados as
