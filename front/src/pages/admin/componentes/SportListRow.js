@@ -20,7 +20,7 @@ const SportListRow = ({sports, setSports, sport,user, statsOftheSport }) => {
     
 
     const contentSettings = [
-        <ModalConfirm setConfirm={setDelConfirm} name={<DeleteForeverTwoToneIcon color="error" />}/>
+        <ModalConfirm setConfirm={setDelConfirm} name={<DeleteForeverTwoToneIcon />}/>
     ]
 
     useEffect(() => {

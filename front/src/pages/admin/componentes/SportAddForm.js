@@ -1,4 +1,4 @@
-import { Button, Checkbox, FormControl, FormControlLabel, InputLabel, MenuItem, Select, TextField } from "@mui/material"
+import { Button, Checkbox, FormControl, FormControlLabel, FormHelperText, InputLabel, MenuItem, Select, TextField } from "@mui/material"
 import { useContext, useState } from "react"
 import { ButtonClassic } from "../../../componentes/ButtonClassic"
 import Form from "../../../componentes/Form"
@@ -127,6 +127,8 @@ const SportAddForm = () => {
 						<input name="foto_deporte" onChange={handlePhoto} hidden accept="image/*" type="file" />
 						<AddAPhotoTwoToneIcon />
 					</Button>
+					
+					<FormHelperText>Agrega una imagen que se verá en la tarjeta del deporte.</FormHelperText>
 					<ButtonClassic type="submit" onClick={handleClick} className="Form__input">
 						{text.agregar}
 					</ButtonClassic>

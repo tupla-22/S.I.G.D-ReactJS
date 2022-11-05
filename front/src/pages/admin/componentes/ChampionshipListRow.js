@@ -1,11 +1,13 @@
 import { TD } from "../../../componentes/styledComponents/TD"
 import { dateTradeEs, getUser, urlApi } from "../../../functions/globals"
 import React, { useState, useEffect } from "react"
-import { TDF } from "../../../componentes/styledComponents/ComponentesDeEstilos"
+import { BoxCen, BoxColCen, TDF } from "../../../componentes/styledComponents/ComponentesDeEstilos"
 import { IconButton } from "@mui/material"
 import AddCircleTwoToneIcon from "@mui/icons-material/AddCircleTwoTone"
 import { helpHttp } from "../../../helpers/helpHttp"
 import BtnSettings from "../../../componentes/BtnSettings"
+import ModalChampionship from "./ModalChampioship"
+import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 
 const ChampionshipListRow = ({ modificable, setOk, teamId, champ, addTd, open, setchamps, champs }) => {
 	const [modify, setModify] = useState(false)
@@ -59,7 +61,15 @@ const ChampionshipListRow = ({ modificable, setOk, teamId, champ, addTd, open, s
 			)}
 			{!open && (
 				<TDF>
-					<BtnSettings content={["asdfasdf"]} />
+					<BtnSettings
+						content={[
+								<BoxColCen>
+									<ModalChampionship>
+										<BoxCen><RemoveRedEyeIcon/> Ver</BoxCen>
+									</ModalChampionship>
+								</BoxColCen>
+						]}
+					/>
 				</TDF>
 			)}
 		</tr>

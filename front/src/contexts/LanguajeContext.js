@@ -131,9 +131,15 @@ const translation = {
 		bienvenido: "Bienvenido",
 		imagen: "Imagen",
 		eliminarDeporte: "Eliminar deporte",
+		categorias: "Categorias",
+		agregarLiga: "Agrega Liga",
+		tantos:"Tantos"
+		
 		
     },
 	en: {
+		agregarLiga:"Add leage",
+		categorias:"Categories",
 		eliminarDeporte:"Delte sport",
 		imagen:"Image",
         bienvenido:"Welcome",
@@ -257,6 +263,7 @@ const translation = {
 		carnetDeSaludValido: "NHS card",
 		fotoDePerfil: "Profile picture",
 		agregar: "Add",
+		tantos:"Scores",
 	},
 }
 

@@ -87,7 +87,7 @@ const MatchList = ({ sport, disputed }) => {
 									<TH>
 										<BoxCen>
 											<SportsSoccerTwoToneIcon fontSize="large" color="secondary" />{" "}
-											{text.goles}
+											{text.tantos}
 										</BoxCen>
 									</TH>
 								</>

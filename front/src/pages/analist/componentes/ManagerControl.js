@@ -1,4 +1,4 @@
-import { Checkbox, FormControl, FormControlLabel, FormGroup, InputLabel, MenuItem, Select } from "@mui/material"
+import { Alert, Checkbox, FormControl, FormControlLabel, FormGroup, InputLabel, MenuItem, Select } from "@mui/material"
 import Form from "../../../componentes/Form"
 import React, { useState, useEffect } from "react"
 import { getDateTime, getUser, urlApi } from "../../../functions/globals"
@@ -8,6 +8,7 @@ import ManagerControlUserSelect from "./ManagerControlUserSelect"
 import ManagerControlStatSelect from "./ManagerControlStatSelect"
 import ManagerControlTeamSelect from "./ManagerControlTeamSelect"
 import { PAlert } from "../../../componentes/PAlert"
+import AlertSuccees from "../../../componentes/AlertSuccees"
 
 const peticion = helpHttp()
 
@@ -33,27 +34,28 @@ const ManagmentControl = ({ sport, confirm, endMatch, matchId, locales, visitant
 	const [esTanto, setEsTanto] = useState(false)
 	const [equipoDelTanto, setEquipoDelTanto] = useState("")
 	const [valorDelTanto, setvalorDelTanto] = useState(0)
+	const [error, setError] = useState(false)
+	const [ok, setOk] = useState(false)
 
 	const user = getUser()
 
 	//EFFECTS
 
 	useEffect(() => {
-			if (locales.find((el) => el.nombre_equipo == equipoDelTanto)) {
-				setMatchForm({
-					...matchForm,
-					anotacionLocal_partido: (matchForm.anotacionLocal_partido += valorDelTanto),
-				})
-			} else {
-				setMatchForm({
-					...matchForm,
-					anotacionVisitante_partido: (matchForm.anotacionVisitante_partido += valorDelTanto),
-				})
-			}
-		
-		
+		if (locales.find((el) => el.nombre_equipo == equipoDelTanto)) {
+			setMatchForm({
+				...matchForm,
+				anotacionLocal_partido: (matchForm.anotacionLocal_partido += valorDelTanto),
+			})
+		} else {
+			setMatchForm({
+				...matchForm,
+				anotacionVisitante_partido: (matchForm.anotacionVisitante_partido += valorDelTanto),
+			})
+		}
+
 		console.log(matchForm)
-	}, [equipoDelTanto,valorDelTanto])
+	}, [equipoDelTanto, valorDelTanto])
 
 	useEffect(() => {
 		let ganador
@@ -100,6 +102,9 @@ const ManagmentControl = ({ sport, confirm, endMatch, matchId, locales, visitant
 					console.log(e)
 					setStats(e.result)
 					console.log(stats)
+					setError(false)
+				} else {
+					setError(true)
 				}
 			})
 	}, [sport])
@@ -131,6 +136,18 @@ const ManagmentControl = ({ sport, confirm, endMatch, matchId, locales, visitant
 		}
 
 		peticion.post(urlApi("estadisticas?"), info).then((e) => {
+			if (e.status == 200) {
+				setError(false)
+				setOk(true)
+			} else {
+				setError(true)
+				setOk(false)
+			}
+
+			setTimeout(() => {
+				setError(false)
+				setOk(false)
+			}, 5000)
 			console.log(e, "estadistica")
 		})
 		console.log(form)
@@ -138,6 +155,8 @@ const ManagmentControl = ({ sport, confirm, endMatch, matchId, locales, visitant
 
 	return (
 		<>
+			{error && <AlertSuccees severity={"error"}>Error inesperado</AlertSuccees>}
+			{ok && <AlertSuccees></AlertSuccees>}
 			<Form>
 				<h3>Control {sport}</h3>
 				<ManagerControlStatSelect
@@ -175,8 +194,11 @@ const ManagmentControl = ({ sport, confirm, endMatch, matchId, locales, visitant
 						visitantes={visitantes}
 					/>
 				)}
-				{isToPlayer && arePlayers && <ManagerControlTeamSelect form={form} setForm={setForm} teams={teams} />}
+				{isToPlayer && arePlayers && (
+					<ManagerControlTeamSelect error={error} form={form} setForm={setForm} teams={teams} />
+				)}
 				{!arePlayers && <PAlert>No hay jugadores en los equipos</PAlert>}
+
 				<ButtonClassic type="submit" onClick={handleSubmit}>
 					Ingresar
 				</ButtonClassic>

@@ -2,22 +2,13 @@ import { TD } from "../../../componentes/styledComponents/TD"
 import { getUser, urlApi } from "../../../functions/globals"
 import React, { useState } from "react"
 import { useEffect } from "react"
-import { BoxAlCen, BoxAlJusCen, BoxCen, ImgTable, TDF } from "../../../componentes/styledComponents/ComponentesDeEstilos"
-import { Button, IconButton, Table } from "@mui/material"
-
+import { BoxAlJusCen, BoxCen, ImgTable, TDF } from "../../../componentes/styledComponents/ComponentesDeEstilos"
 import TeamListRowBtnSettings from "./TeamsListRowBtnSettings"
 import { helpHttp } from "../../../helpers/helpHttp"
-import ChampionshipListRow from "./ChampionshipListRow"
-import AddCircleTwoToneIcon from "@mui/icons-material/AddCircleTwoTone"
-import { HeadChampionshipTable } from "./ChampionshipList"
-import { DivOver } from "../../../componentes/DivOver"
 import AlertSuccees from "../../../componentes/AlertSuccees"
-import BasicModal from "../../../componentes/BasicModal"
-import SquadOfTeamModal from "./SquadOfTeamModal"
 import ChampsNoSquadInModal from "./ChampsNoSquadInModal"
-import LeagueListRowBtnSettings from "./LeagueListRowBtnSettings"
 
-const TeamsListRow = ({ data }) => {
+const LeagueListRow = ({ data }) => {
 	const [adminTeam, setAdminTeam] = useState(false)
 	const [contenido, setContenido] = useState([])
 	const [ok, setOk] = useState(false)
@@ -27,8 +18,6 @@ const TeamsListRow = ({ data }) => {
 
 	const handleAddToChamp = (champ) => {
 		console.log(champ, data)
-
-		
 	}
 
 	useEffect(() => {
@@ -45,8 +34,8 @@ const TeamsListRow = ({ data }) => {
 	useEffect(() => {
 		if (champs.length !== 0) {
 			setContenido([
-				<ChampsNoSquadInModal teamId={data.id_equipo}/>,
-                <SquadOfTeamModal teamId={data.id_equipo } />
+				<ChampsNoSquadInModal teamId={data.id_equipo} />,
+				<SquadOfTeamModal teamId={data.id_equipo} />,
 			])
 		}
 	}, [champs])
@@ -56,18 +45,23 @@ const TeamsListRow = ({ data }) => {
 			{ok && <AlertSuccees />}
 			<tr>
 				<TD>
-					<BoxAlJusCen>{data.nombre_liga}</BoxAlJusCen>
+					<BoxAlJusCen>
+						<ImgTable src={`${data.escudo_equipo}`}></ImgTable>
+					</BoxAlJusCen>
+				</TD>
+				<TD>
+					<BoxAlJusCen>{data.nombre_equipo}</BoxAlJusCen>
 				</TD>
 
 				<TD>
-					<BoxAlJusCen>{data.id_deporte_liga}</BoxAlJusCen>
+					<BoxAlJusCen>{data.id_deporte_equipo}</BoxAlJusCen>
 				</TD>
 				<TD>
-					<BoxAlJusCen>{data.id_liga}</BoxAlJusCen>
+					<BoxAlJusCen>{data.id_equipo}</BoxAlJusCen>
 				</TD>
 				{adminTeam && (
 					<TDF>
-						<LeagueListRowBtnSettings contenido={contenido} />
+						<TeamListRowBtnSettings contenido={contenido} />
 					</TDF>
 				)}
 			</tr>
@@ -75,4 +69,4 @@ const TeamsListRow = ({ data }) => {
 	)
 }
 
-export default TeamsListRow
+export default LeagueListRow
