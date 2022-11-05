@@ -559,17 +559,17 @@ select * from ligas;
 insert into ligas
 values
 
-(null,"FIFA","football",null,null),
-(null,"Copa Libertadores","football",null,null),
-(null,"Copa America","football",null,null),
+(null,"sub20","football",null,null),
+(null,"sub15","football",null,null),
+(null,"sub25","football",null,null),
 
-(null,"Premier Basquet League","basketball",null,null),
-(null,"NBA","basketball",null,null),
-(null,"IBL","basketball",null,null),
+(null,"sub20","basketball",null,null),
+(null,"sub15","basketball",null,null),
+(null,"sub25","basketball",null,null),
 
-(null,"EHF","handball",null,null),
-(null,"ASOBAL","handball",null,null),
-(null,"ACB","handball",null,null)
+(null,"sub20","handball",null,null),
+(null,"sub15","handball",null,null),
+(null,"sub25","handball",null,null)
 ;
 
 insert into campeonatos (tipo_campeonato, nombre_campeonato,id_liga_campeonato, fechaInicio_campeonato , fechaFin_campeonato)
