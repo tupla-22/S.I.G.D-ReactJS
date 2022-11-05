@@ -45,19 +45,21 @@ create table telefonos(
 
 );
 
-create table ligas(
-	id_liga int primary key auto_increment,
-    nombre_liga varchar(40),
-    date_created_liga date default current_timestamp,
-    date_updated_liga timestamp default current_timestamp ON UPDATE CURRENT_TIMESTAMP
-    
-);
-
 create table deportes(
 	id_deporte varchar(40) primary key,
 	foto_deporte longtext,
     date_created_deporte date default current_timestamp,
     date_updated_deporte timestamp default current_timestamp ON UPDATE CURRENT_TIMESTAMP
+    
+);
+
+create table ligas(
+	id_liga int primary key auto_increment,
+    nombre_liga varchar(40),
+    id_deporte_liga varchar(40),
+    date_created_liga date default current_timestamp,
+    date_updated_liga timestamp default current_timestamp ON UPDATE CURRENT_TIMESTAMP,
+    foreign key (id_deporte_liga) references deportes(id_deporte)
     
 );
 
