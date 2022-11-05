@@ -1,72 +1,56 @@
+import { BoxAlCen, BoxAlJusCen, TDF } from "../../../componentes/styledComponents/ComponentesDeEstilos"
 import { TD } from "../../../componentes/styledComponents/TD"
-import { getUser, urlApi } from "../../../functions/globals"
-import React, { useState } from "react"
-import { useEffect } from "react"
-import { BoxAlJusCen, BoxCen, ImgTable, TDF } from "../../../componentes/styledComponents/ComponentesDeEstilos"
-import TeamListRowBtnSettings from "./TeamsListRowBtnSettings"
+import LeagueListRowBtnSettings from "./LeagueListRowBtnSettings"
+import TouchAppTwoToneIcon from "@mui/icons-material/TouchAppTwoTone"
+import { Button } from "@mui/material"
+import InsertPhotoTwoToneIcon from "@mui/icons-material/InsertPhotoTwoTone"
+import React, { useState, useEffect } from "react"
+import BtnSettings from "../../../componentes/BtnSettings"
+import DeleteForeverTwoToneIcon from "@mui/icons-material/DeleteForeverTwoTone"
+import ModalConfirm from "./ModalConfirm"
 import { helpHttp } from "../../../helpers/helpHttp"
-import AlertSuccees from "../../../componentes/AlertSuccees"
-import ChampsNoSquadInModal from "./ChampsNoSquadInModal"
+import { urlApi } from "../../../functions/globals"
 
-const LeagueListRow = ({ data }) => {
-	const [adminTeam, setAdminTeam] = useState(false)
-	const [contenido, setContenido] = useState([])
-	const [ok, setOk] = useState(false)
+const LeagueListRow = ({ setOk,setError, leagues, setleagues, league, user, statsOftheleague }) => {
+	const [delConfirm, setDelConfirm] = useState(0)
+
 	const peticion = helpHttp()
-	const user = getUser()
-	const [champs, setChamps] = useState([])
 
-	const handleAddToChamp = (champ) => {
-		console.log(champ, data)
-	}
+	const contentSettings = [<ModalConfirm setConfirm={setDelConfirm} name={<DeleteForeverTwoToneIcon />} />]
 
 	useEffect(() => {
-		if (user.id_rol_usuario == 6 || user.id_rol_usuario == 2 || user.id_rol_usuario == 1) {
-			setAdminTeam(true)
+		if (delConfirm == 1) {
+			peticion.del(urlApi(`ligas?id=${league.id_liga}&nameID=id_liga`)).then((e) => {
+				console.log(e)
+				if (e.status == 200) {
+					setleagues(leagues.filter((e) => e.id_liga != league.id_liga))
+					setOk(true)
+				} else {
+					setError(true)
+				}
+				setTimeout(() => { setOk(false); setError(false)},5000)
+			})
 		}
-		peticion.get(urlApi("campeonatos?select=*")).then((e) => {
-			if ((e.status = 200)) {
-				setChamps(e.result)
-			}
-		})
-	}, [])
-
-	useEffect(() => {
-		if (champs.length !== 0) {
-			setContenido([
-				<ChampsNoSquadInModal teamId={data.id_equipo} />,
-				<SquadOfTeamModal teamId={data.id_equipo} />,
-			])
-		}
-	}, [champs])
+	}, [delConfirm])
 
 	return (
 		<>
-			{ok && <AlertSuccees />}
 			<tr>
-				<TD>
-					<BoxAlJusCen>
-						<ImgTable src={`${data.escudo_equipo}`}></ImgTable>
-					</BoxAlJusCen>
-				</TD>
-				<TD>
-					<BoxAlJusCen>{data.nombre_equipo}</BoxAlJusCen>
-				</TD>
-
-				<TD>
-					<BoxAlJusCen>{data.id_deporte_equipo}</BoxAlJusCen>
-				</TD>
-				<TD>
-					<BoxAlJusCen>{data.id_equipo}</BoxAlJusCen>
-				</TD>
-				{adminTeam && (
-					<TDF>
-						<TeamListRowBtnSettings contenido={contenido} />
-					</TDF>
+				{(user.id_rol_usuario == 1 || user.id_rol_usuario == 2) && (
+					<BtnSettings content={contentSettings}></BtnSettings>
 				)}
+				<TD>{league.nombre_liga}</TD>
+				<TD>{league.id_deporte_liga}</TD>
+				<TDF>
+					<leagueListRowPopStatsShower league={league.id_liga} statsOftheleague={statsOftheleague} />
+				</TDF>
 			</tr>
 		</>
 	)
+}
+
+{
+	/* <img alt="Imagen del liga" style={{height:"35px"}} src={`${league.foto_liga}`}></img> */
 }
 
 export default LeagueListRow

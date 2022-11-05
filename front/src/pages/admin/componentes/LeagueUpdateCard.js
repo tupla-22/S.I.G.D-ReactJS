@@ -1,89 +1,95 @@
 import { Button, FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material"
-import { useContext, useState } from "react"
+import { useContext, useState, useEffect } from "react"
 import { ButtonClassic } from "../../../componentes/ButtonClassic"
 import Form from "../../../componentes/Form"
-import "./styles/TeamAddForm.css"
 import { helpHttp } from "../../../helpers/helpHttp"
 import { blobToBase64 } from "../../../helpers/blobManager"
+import { getUser, urlApi } from "../../../functions/globals"
+import CameraAltIcon from "@mui/icons-material/CameraAlt"
+import { PAlert } from "../../../componentes/PAlert"
 import LanguajeContext from "../../../contexts/LanguajeContext"
-import { urlApi } from "../../../functions/globals"
 import AlertSuccees from "../../../componentes/AlertSuccees"
 
-const formTeamInit = {
-	nombre_equipo: "",
-	id_deporte_equipo: "",
-	escudo_equipo: "",
+const formleagueInit = {
+	nombre_liga: "",
+	id_deporte_liga: "",
+	id_liga:""
 }
 
-const LeagueUpdateCard = ({ setTeam, data, ok, setOk }) => {
-	const [teamForm, setTeamForm] = useState(data)
-	const [errors, setErrors] = useState(null)
+const peticion = helpHttp()
 
-	const peticion = helpHttp()
-
+const  LeagueUpdateCard = ({setError,setOk,setleague,league}) => {
+	const [leagueForm, setleagueForm] = useState(league)
+	const [sports, setSports] = useState([]);
 	const { text } = useContext(LanguajeContext)
+	const peticion = helpHttp()
+	const user  = getUser()
+
+	useEffect(() => {
+
+		console.log(leagueForm)
+		peticion.get(urlApi("deportes?")).then(e => {
+			if (e.status = 200) {
+				setSports(e.result)
+			}
+		})
+	}, []);
 
 	const handleChange = (event) => {
-		setTeamForm({
-			...teamForm,
-			[event.target.name]: event.target.value,
+		setleagueForm({
+			...leagueForm,
+			[event.target.name]: event.target.value
 		})
 	}
 
-	const handleEscudo = (e) => {
-		blobToBase64(e.target.name, e.target.files, setTeamForm, teamForm)
-	}
 
 	const handleClick = () => {
-		const confi = { body: new URLSearchParams(teamForm) }
-		peticion.put(urlApi(`equipos?id=${teamForm.id_equipo}&nameID=id_equipo`), confi).then((e) => {
-			console.log(e.status, "Actualizacion")
+		const confi = {
+			body: new URLSearchParams(leagueForm),
+		}
+		peticion.put(urlApi(`ligas?id=${leagueForm.id_liga}&nameID=id_liga`), confi).then((e) => {
+			console.log(e,"actualizacion")
 			if (e.status == 200) {
 				setOk(true)
-        setTeam(null)
-        setTimeout(() => { setOk(false) }, 5000)
+				setleagueForm(formleagueInit)
+				setleague(null)
+				
+			} else {
+				setError(true)
 			}
+			setTimeout(() => {
+				setOk(false)
+				setError(false)
+			}, 5000)
 		})
 	}
 
 	return (
 		<>
 			<Form>
-				<h3>{text.actualizarEquipos}</h3>
+				<h3>{text.agregarLiga}</h3>
 				<TextField
-					value={teamForm.nombre_equipo}
+					value={leagueForm.nombre_liga}
+					FormControl
+					required
 					onChange={handleChange}
-					name="nombre_equipo"
+					name="nombre_liga"
 					className="Form__input"
-					label={text.nombreDelEquipo}
+					label={text.nombreDeLaLiga}
 				></TextField>
-				<FormControl className="Form__input" fullWidth>
+				<FormControl required className="Form__input" fullWidth>
 					<InputLabel id="demo-simple-select-label">{text.deporte}</InputLabel>
 					<Select
 						label={text.deporte}
-						name="id_deporte_equipo"
-						value={teamForm.id_deporte}
+						name="id_deporte_liga"
+						value={leagueForm.id_deporte_liga}
 						labelId="demo-simple-select-label"
 						id="demo-simple-select"
 						onChange={handleChange}
 					>
-						<MenuItem value={"handball"}>Handball</MenuItem>
-						<MenuItem value={"football"}>football</MenuItem>
-						<MenuItem value={"basketball"}>basketball</MenuItem>
+						{sports.map(e => <MenuItem value={e.id_deporte}>{e.id_deporte }</MenuItem>)}
 					</Select>
 				</FormControl>
-
-				<Button className="Form__input" variant="contained" component="label">
-					{text.escudoDelEquipo}
-					<input
-						files={teamForm.escudo_equipo}
-						name="escudo_equipo"
-						onChange={handleEscudo}
-						hidden
-						accept="image/*"
-						type="file"
-					/>
-				</Button>
 				<ButtonClassic onClick={handleClick} className="Form__input">
 					{text.agregar}
 				</ButtonClassic>

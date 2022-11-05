@@ -9,7 +9,7 @@ import BtnSettings from "../../../componentes/BtnSettings"
 import ModalChampionship from "./ModalChampioship"
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 
-const ChampionshipListRow = ({ modificable, setOk, teamId, champ, addTd, open, setchamps, champs }) => {
+const ChampionshipListRow = ({ modificable, setOk, teamId, champ, addTd, open, setchamps, champs}) => {
 	const [modify, setModify] = useState(false)
 	const user = getUser()
 	const peticion = helpHttp()
@@ -64,7 +64,7 @@ const ChampionshipListRow = ({ modificable, setOk, teamId, champ, addTd, open, s
 					<BtnSettings
 						content={[
 								<BoxColCen>
-									<ModalChampionship>
+									<ModalChampionship idChampionship={champ.id_campeonato} >
 										<BoxCen><RemoveRedEyeIcon/> Ver</BoxCen>
 									</ModalChampionship>
 								</BoxColCen>

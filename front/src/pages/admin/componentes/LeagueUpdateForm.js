@@ -1,38 +1,52 @@
 import Form from "../../../componentes/Form"
-import React, { useState, useEffect, useContext } from 'react';
-import { Button, TextField, textFieldClasses } from "@mui/material";
-import {ButtonClassic} from "../../../componentes/ButtonClassic"
-import ModalConfirm from "./ModalConfirm";
-import { helpHttp } from "../../../helpers/helpHttp";
-import { urlApi } from "../../../functions/globals";
-import LanguajeContext from "../../../contexts/LanguajeContext";
+import React, { useState, useEffect, useContext } from "react"
+import { Button, TextField, textFieldClasses } from "@mui/material"
+import { ButtonClassic } from "../../../componentes/ButtonClassic"
+import ModalConfirm from "./ModalConfirm"
+import { helpHttp } from "../../../helpers/helpHttp"
+import { urlApi } from "../../../functions/globals"
+import LanguajeContext from "../../../contexts/LanguajeContext"
 
-const LeagueUpdateForm = ({setTeam}) => {
-    const [idTeam, setidTeam] = useState(null);
-    const [confirm, setConfirm] = useState(null);
-    const [modalConfirm, setModalConfirm] = useState(null);
+const LeagueUpdateForm = ({ setError,setOk, setleague }) => {
+	const [idleague, setidleague] = useState(null)
 
-    const peticion = helpHttp();
+	const peticion = helpHttp()
 
-    const {text} = useContext(LanguajeContext)
+	const { text } = useContext(LanguajeContext)
 
-    const handleChange = (e) => {
-        setidTeam(e.target.value)
-    }
+	const handleChange = (e) => {
+		setidleague(e.target.value)
+	}
 
-    const handleClick = (e)=>{
-        e.preventDefault();
-        peticion.get(urlApi(`equipos?select=id_equipo,escudo_equipo,id_deporte_equipo,nombre_equipo&linkTo=id_equipo&search=${idTeam}¨¨`)).then(e=>setTeam(e.result[0]));
-    }
+	const handleClick = (e) => {
+		e.preventDefault()
+        peticion.get(urlApi(`ligas?select=*&linkTo=nombre_liga&equalTo=${idleague}¨¨`)).then((e) => {
+            console.log(e)
+			if (e.status == 200) {
+                setleague(e.result[0])
+                setOk(true)
+            } else setError(true)
+            setTimeout(() => {
+                setError(false)
+                setOk(false)
+            },5000)
+		})
+	}
 
-    return ( 
-        <Form>
-
-            <h3>{text.actualizarEquipos}</h3>
-            <TextField type="number" onChange={handleChange}  label="ID" value={idTeam} className="Form__input"></TextField>
-            <ButtonClassic type="submit" onClick={handleClick}>{text.actualizar}</ButtonClassic>
-        </Form>
-     );
+	return (
+		<Form>
+            <h3>{text.actualizarLiga}</h3>
+			<TextField
+				onChange={handleChange}
+				label={text.nombreDeLaLiga}
+				value={idleague}
+				className="Form__input"
+			></TextField>
+			<ButtonClassic type="submit" onClick={handleClick}>
+				{text.actualizar}
+			</ButtonClassic>
+		</Form>
+	)
 }
- 
-export default LeagueUpdateForm;
+
+export default LeagueUpdateForm

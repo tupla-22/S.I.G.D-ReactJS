@@ -1,20 +1,26 @@
 import Main from "../../../componentes/styledComponents/Main"
 import TeamSearch from "./TeamSearch"
-import TeamUpdateForm from "./TemaUpdateForm"
+import LeagueUpdateForm from "./LeagueUpdateForm"
 import React, { useState, useEffect } from "react"
-import TeamUpdateCard from "./TeamUpdateCard"
+import LeagueUpdateCard from "./LeagueUpdateCard"
 import AlertSuccees from "../../../componentes/AlertSuccees"
+import LeagueList from "./LeagueList"
 
 const LeagueUpdate = () => {
-	const [team, setTeam] = useState(null)
-    const [ok, setOk] = useState(false);
+	const [league, setleague] = useState(null)
+	const [ok, setOk] = useState(false)
+	const [error, setError] = useState(false);
 	return (
-		<Main>
-			{ok && <AlertSuccees />}
-			{team && <TeamUpdateCard ok={ok} setOk={setOk} setTeam={setTeam} data={team} />}
-			<TeamUpdateForm setTeam={setTeam}></TeamUpdateForm>
-			<TeamSearch />
-		</Main>
+		<>
+			{error && <AlertSuccees severity={"error"}/>}
+			{ok && <AlertSuccees/>}
+			<Main>
+				{ok && <AlertSuccees />}
+				{league && <LeagueUpdateCard setError={setError} setOk={setOk} setleague={setleague} league={league} />}
+				<LeagueUpdateForm  setError={setError} setOk={setOk} setleague={setleague}></LeagueUpdateForm>
+				<LeagueList></LeagueList>
+			</Main>
+		</>
 	)
 }
 

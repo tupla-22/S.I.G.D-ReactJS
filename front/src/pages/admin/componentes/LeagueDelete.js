@@ -8,7 +8,6 @@ const LeagueDelete = () => {
 	return (
 		<>
 			<Main>
-				<LeagueDelForm />
 				<LueagueList/>
 			</Main>
 		</>

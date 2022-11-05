@@ -156,6 +156,21 @@ function App() {
 							<Route path="home" element={<HomeAdm></HomeAdm>}></Route>
 						</Route>
 						<Route path="/administrative/:userId" element={<HomeAdmin />}>
+							<Route element={<AdminCategories/>} path="categories">
+								<Route path="add" element={<CategoriesAdd />}></Route>
+								<Route path="delete" element={<CategoriesDelete />}></Route>
+								<Route path="update" element={<CategoriesUpdate />}></Route>
+							</Route>
+							<Route element={<AdminLeague/>} path="leagues">
+								<Route path="add" element={<LeagueAdd />}></Route>
+								<Route path="delete" element={<LeagueDelete />}></Route>
+								<Route path="update" element={<LeagueUpdate />}></Route>
+							</Route>
+							<Route element={<AdminSports />} path="sports">
+								<Route path="add" element={<SportAdd />}></Route>
+								<Route path="delete" element={<SportDelete />}></Route>
+								<Route path="update" element={<SportUpdate />}></Route>
+							</Route>
 							<Route element={<AdminMatch />} path="match">
 								<Route path="add" element={<MatchAdd />}></Route>
 								<Route path="delete" element={<MatchDel />}></Route>
@@ -186,34 +201,6 @@ function App() {
 							<Route path="profile" element={<Profile />}>
 								<Route path="contactInformation" element={<ChangeContactInformation />}></Route>
 								<Route path="changePassword" element={<ChangePassword />}></Route>
-							</Route>
-							<Route path="home" element={<HomeAdm></HomeAdm>}></Route>
-						</Route>
-						<Route path="/administrative/:userId" element={<HomeAdmin />}>
-							<Route path="profile" element={<Profile />}>
-								<Route path="contactInformation" element={<ChangeContactInformation />}></Route>
-								<Route path="changePassword" element={<ChangePassword />}></Route>
-							</Route>
-							<Route path="userAdd" element={<UserAdd />} />
-							<Route path="adminUsers" element={<AdminUsers />}>
-								<Route path="userAdd" element={<UserAdd />}>
-									{" "}
-								</Route>
-								<Route path="userUpdate" element={<UserUpdate />}>
-									{" "}
-								</Route>
-								<Route path="userDelete" element={<UserDelete />}>
-									{" "}
-								</Route>
-							</Route>
-							<Route path="adminTeams" element={<AdminTeams />}>
-								<Route path="teamAdd" element={<TeamAdd></TeamAdd>}></Route>
-								<Route path="teamDelete" element={<TeamDelete />}></Route>
-								<Route path="teamUpdate" element={<TeamUpdate />}></Route>
-							</Route>
-							<Route path="profile" element={<Profile />}>
-								<Route path="changePassword" element={<ChangePassword />}></Route>
-								<Route path="contactInformation" element={<ChangeContactInformation />}></Route>
 							</Route>
 							<Route path="home" element={<HomeAdm></HomeAdm>}></Route>
 						</Route>

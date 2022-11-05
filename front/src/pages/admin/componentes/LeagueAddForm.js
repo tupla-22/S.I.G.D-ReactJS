@@ -70,7 +70,7 @@ const  LueagueAddForm = () => {
 			{ok && <AlertSuccees />}
 			{errors && <AlertSuccees severity={"error"}/>}
 			<Form>
-				<h3>{text.agregarEquipo}</h3>
+				<h3>{text.agregarLiga}</h3>
 				<TextField
 					value={leagueForm.nombre_liga}
 					FormControl
@@ -78,7 +78,7 @@ const  LueagueAddForm = () => {
 					onChange={handleChange}
 					name="nombre_liga"
 					className="Form__input"
-					label={text.nombreDelEquipo}
+					label={text.nombreDeLaLiga}
 				></TextField>
 				<FormControl required className="Form__input" fullWidth>
 					<InputLabel id="demo-simple-select-label">{text.deporte}</InputLabel>

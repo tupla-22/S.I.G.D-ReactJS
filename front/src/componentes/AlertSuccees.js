@@ -30,7 +30,7 @@ export default function AlertSuccees({children,severity}) {
     <Stack spacing={2} sx={{ width: '100%' }}>
       <Snackbar open={open} autoHideDuration={5000} onClose={handleClose}>
         <Alert onClose={handleClose} severity={severity || "success"} sx={{ width: '100%' }}>
-          {severity="error" ? text.error : text.accionLograda}  
+          {severity=="error" ?( text.error) : (text.accionLograda)}  
         </Alert>
       </Snackbar>
     </Stack>

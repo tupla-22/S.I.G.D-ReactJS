@@ -133,11 +133,16 @@ const translation = {
 		eliminarDeporte: "Eliminar deporte",
 		categorias: "Categorias",
 		agregarLiga: "Agrega Liga",
-		tantos:"Tantos"
+		tantos: "Tantos",
+		nombreDeLaLiga: "Nombre de la liga",
+		actualizarLiga: "Actualizar liga",
+		
 		
 		
     },
 	en: {
+		actualizarLiga:"Update league",
+		nombreDeLaLiga:"League name",
 		agregarLiga:"Add leage",
 		categorias:"Categories",
 		eliminarDeporte:"Delte sport",

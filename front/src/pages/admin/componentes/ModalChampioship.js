@@ -20,13 +20,13 @@ const style = {
 	left: "50%",
 	borderRadius: "15px",
 	transform: "translate(-50%, -50%)",
-	width: "100%",
+	width: "98%",
 	bgcolor: "background.paper",
 	boxShadow: 24,
-	p: 4,
+	p: 1,
 }
 
-export default function ModalChampionship({ children, idChampionship, sport }) {
+export default function ModalChampionship({ children, idChampionship}) {
 	const [open, setOpen] = React.useState("")
 	const [campeonato, setCampeonato] = useState({})
 	const handleOpen = () => setOpen(true)
@@ -39,13 +39,15 @@ export default function ModalChampionship({ children, idChampionship, sport }) {
 
 	useEffect(() => {
 		peticion
-			.get(urlApi(`equiposDeCampeonatosFinalizados?select=*&linkTo=deporte_campeonato&equalTo=${sport}`))
+			.get(urlApi(`equiposDeCampeonatosFinalizados?select=*&linkTo=id_campeonato&equalTo=${idChampionship}`))
 			.then((e) => {
+				console.log(e)
 				if (e.status == 200) {
 					setCampeonato(e.result[0])
 				}
 			})
 	}, [])
+
 
 	return (
 		<div>
