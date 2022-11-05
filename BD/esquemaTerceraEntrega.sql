@@ -225,7 +225,7 @@ create table estadisticas(
     fecha_estadistica datetime,
     verificado_estadistica bool,
     descripcion_estadistica text,
-    id_fichaJugador_estadistica int,
+    id_fichaJugador_estadistica int default null,
     id_equipo_estadistica int,
     id_usuario_estadistica int,
     id_juez_estadistica int,
