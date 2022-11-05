@@ -655,7 +655,7 @@ select * from rankingGolesUltimoCampeonato;
 view campeonatos finalizados
 ----------------------------------------------*/
 
-create view campeonatosFinalizados as
+create view equiposDeCampeonatosFinalizados as
 select * from equipos 
 inner join compiten on id_equipo_compite=id_equipo 
 inner join campeonatos on id_campeonato=id_campeonato_compite
@@ -667,7 +667,7 @@ where fechaFin_campeonato < curdate() #and deporte_campeonato="football"
 view campeonatos no finalizados
 ----------------------------------------------*/
 
-create view campeonatosNoFinalizados as
+create view equiposDeCampeonatosNoFinalizados as
 select * from equipos 
 inner join compiten on id_equipo_compite=id_equipo 
 inner join campeonatos on id_campeonato=id_campeonato_compite
