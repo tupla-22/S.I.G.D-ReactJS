@@ -50,19 +50,7 @@ const TeamDelForm = () => {
         <>
             
 				{ok && <AlertSuccees/>}
-			<Form>
-				{errors && <PAlert>{text.error}</PAlert>}
-				<h3>{text.eliminarEquipo}</h3>
-				<TextField
-					type="number"
-					onChange={handleChange}
-					label="ID"
-					value={idChampionship}
-					className="Form__input"
-				></TextField>
-				<ModalConfirm name={text.eliminar} confirm={confirm} setConfirm={setConfirm} />
 				<ChampionshipList />
-			</Form>
 		</>
 	)
 }

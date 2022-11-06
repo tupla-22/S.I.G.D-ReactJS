@@ -14,7 +14,7 @@ const AdminChampionships = () => {
 
   const pages = [
     <NavLink to="add">{text.agregar}</NavLink>,
-    <NavLink to="delete">{text.eliminar }</NavLink>,
+    <NavLink to="delete">{text.lista }</NavLink>,
     <NavLink to="update">{ text.actualizar}</NavLink>,
   ];
 

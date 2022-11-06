@@ -8,6 +8,7 @@ import { helpHttp } from "../../../helpers/helpHttp"
 import BtnSettings from "../../../componentes/BtnSettings"
 import ModalChampionship from "./ModalChampioship"
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
+import BtnDel from "./BtnDel"
 
 const ChampionshipListRow = ({ modificable, setOk, teamId, champ, addTd, open, setchamps, champs}) => {
 	const [modify, setModify] = useState(false)
@@ -67,7 +68,8 @@ const ChampionshipListRow = ({ modificable, setOk, teamId, champ, addTd, open, s
 									<ModalChampionship idChampionship={champ.id_campeonato} >
 										<BoxCen><RemoveRedEyeIcon/> Ver</BoxCen>
 									</ModalChampionship>
-								</BoxColCen>
+                            </BoxColCen>,
+                            <BtnDel table={"campeonatos"} array={champs} setArray={setchamps} id={champ.id_campeonato} fieldName={ "id_campeonato"} />
 						]}
 					/>
 				</TDF>

@@ -11,7 +11,7 @@ import { urlApi } from "../../../functions/globals"
 import { useState, useEffect } from "react"
 import { H3B } from "../../../componentes/styledComponents/ComponentesDeEstilos"
 import ChampionshipTable from "../../../componentes/ChampionshipTable"
-import { IconButton } from "@mui/material"
+import { Button, IconButton } from "@mui/material"
 import HighlightOffTwoToneIcon from "@mui/icons-material/HighlightOffTwoTone"
 
 const style = {
@@ -51,7 +51,7 @@ export default function ModalChampionship({ children, idChampionship}) {
 
 	return (
 		<div>
-			<ButtonClassic onClick={handleOpen}>{children}</ButtonClassic>
+			<Button onClick={handleOpen}>{children}</Button>
 			<Modal
 				aria-labelledby="transition-modal-title"
 				aria-describedby="transition-modal-description"
