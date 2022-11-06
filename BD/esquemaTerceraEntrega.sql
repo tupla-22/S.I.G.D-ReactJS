@@ -86,7 +86,7 @@ foreign key (id_equipo_fotoEquipo) references equipos(id_equipo)
 
 create table cantidadEquiposDeportes(
 	id_deporte varchar(40) primary key,
-    cantidad_equipo int,
+    cantidad_equipo int default 0,
     foreign key (id_deporte) references deportes(id_deporte)
 );
 
@@ -674,7 +674,17 @@ inner join campeonatos on id_campeonato=id_campeonato_compite
 where fechaFin_campeonato > curdate() #and deporte_campeonato="football"
 ;
 
+/*----------------------------------------------
+view ver cantidad de jugadores por deporte
+----------------------------------------------*/
 
+create view cantidadJugadoresDeporte as
+select id_deporte, count(id_fichaJugador_pertenece) as "cantidad_jugadores"
+from deportes
+inner join equipos on id_deporte=id_deporte_equipo
+inner join pertenecen on id_equipo=id_equipo_pertenece
+group by id_deporte
+;
 /*----------------------------------------------
 procedure para contar estadisticas
 ----------------------------------------------*/
