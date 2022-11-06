@@ -10,6 +10,7 @@ import DeleteForeverTwoToneIcon from '@mui/icons-material/DeleteForeverTwoTone';
 import ModalConfirm from "./ModalConfirm"
 import { helpHttp } from "../../../helpers/helpHttp"
 import { urlApi } from "../../../functions/globals"
+import ModalConfirmNoBtn from "./ModalConfirmNoBtn"
 
 
 
@@ -20,7 +21,7 @@ const SportListRow = ({sports, setSports, sport,user, statsOftheSport }) => {
     
 
     const contentSettings = [
-        <ModalConfirm setConfirm={setDelConfirm} name={<DeleteForeverTwoToneIcon  />}/>
+        <ModalConfirmNoBtn setConfirm={setDelConfirm} ><DeleteForeverTwoToneIcon color="error" /></ModalConfirmNoBtn>
     ]
 
     useEffect(() => {

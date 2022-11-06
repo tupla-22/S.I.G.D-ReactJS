@@ -10,13 +10,19 @@ import DeleteForeverTwoToneIcon from "@mui/icons-material/DeleteForeverTwoTone"
 import ModalConfirm from "./ModalConfirm"
 import { helpHttp } from "../../../helpers/helpHttp"
 import { urlApi } from "../../../functions/globals"
+import ModalConfirmNoBtn from "./ModalConfirmNoBtn"
+import BtnUpadateRow from "./BtnUpdateRow"
 
-const LeagueListRow = ({ setOk,setError, leagues, setleagues, league, user, statsOftheleague }) => {
+const LeagueListRow = ({ setOk, setError, leagues, setleagues, league, user, statsOftheleague }) => {
 	const [delConfirm, setDelConfirm] = useState(0)
 
 	const peticion = helpHttp()
 
-	const contentSettings = [<ModalConfirm setConfirm={setDelConfirm} name={<DeleteForeverTwoToneIcon />} />]
+	const contentSettings = [
+		<ModalConfirmNoBtn setConfirm={setDelConfirm}>
+			<DeleteForeverTwoToneIcon color="error" />
+		</ModalConfirmNoBtn>,
+	]
 
 	useEffect(() => {
 		if (delConfirm == 1) {
@@ -28,7 +34,10 @@ const LeagueListRow = ({ setOk,setError, leagues, setleagues, league, user, stat
 				} else {
 					setError(true)
 				}
-				setTimeout(() => { setOk(false); setError(false)},5000)
+				setTimeout(() => {
+					setOk(false)
+					setError(false)
+				}, 5000)
 			})
 		}
 	}, [delConfirm])
