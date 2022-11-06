@@ -229,9 +229,6 @@ function App() {
 							<Route path="lookMatch/:matchId" element={<LookMatch />}></Route>
 							<Route path="matchManagment" element={<MatchManagment />}></Route>
 							<Route path=":sport" element={<SelectSportToMatch disputed={0} />}></Route>
-							{/* <Route path="basketball" element={<MatchesListButtons sport={"basketball"} />}></Route>
-							<Route path="football" element={<MatchesListButtons sport={"football"} />}></Route>
-							<Route path="handball" element={<MatchesListButtons sport={"handball"} />}></Route> */}
 							<Route path="home" element={<HomePageAnalist />}></Route>
 							<Route path="profile" element={<Profile />}>
 								<Route path="changePassword" element={<ChangePassword />}></Route>

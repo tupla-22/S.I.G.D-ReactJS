@@ -6,6 +6,8 @@ import Modal from '@mui/material/Modal';
 import { ButtonBase, TextField } from '@mui/material';
 import Form from './Form';
 import {ButtonClassic} from './ButtonClassic';
+import { useContext } from 'react';
+import LanguajeContext from '../contexts/LanguajeContext';
 const style = {
   position: 'absolute',
   top: '50%',
@@ -13,7 +15,6 @@ const style = {
   transform: 'translate(-50%, -50%)',
   width: "90vw",
   bgcolor: 'background.paper',
-  border: '1px solid #000',
   boxShadow: 24,
   borderRadius:"15px",
   p: 4,
@@ -23,6 +24,8 @@ const RecoverPassword = ({children}) => {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+  
+    const {text} = useContext(LanguajeContext)
   
     return (
       <div>
@@ -35,7 +38,7 @@ const RecoverPassword = ({children}) => {
         >
           <Box sx={style}>
             <Typography id="modal-modal-title" variant="h6" component="h2">
-              Ingresa el correo electrónico de recuperación
+              {text.ingresaemail}
             </Typography>
             <form style={{display:"flex",flexDirection:"column"}}>
             <TextField
@@ -45,7 +48,7 @@ const RecoverPassword = ({children}) => {
             />
             <ButtonClassic sx={{margin:"5px"}}
             variant="contained"
-            >Recuperar</ButtonClassic>
+            >{text.recuperar}</ButtonClassic>
                 
             </form>
           </Box>

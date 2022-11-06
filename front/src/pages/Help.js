@@ -7,9 +7,13 @@ import "./Help.css"
 import { H2 } from "../componentes/styledComponents/H2"
 import { Collapse, FormControlLabel, Switch } from "@mui/material"
 import React, { useState, useEffect } from "react"
+import { useContext } from "react"
+import LanguajeContext from "../contexts/LanguajeContext"
 
 const Help = () => {
 	const [checked, setChecked] = useState(false)
+
+	const {text} = useContext(LanguajeContext)
 
 	useEffect(() => {
 		setChecked(true)
@@ -17,18 +21,15 @@ const Help = () => {
 	return (
 		<Main>
 			<Article>
-				<H2>Sistema informático de gestión deportiva</H2>
+				<H2>{text.sigd}</H2>
 				<PW>
-					Esta aplicación fue creada para poder llevar a cabo la gestión de los deportes realizados en la
-					institución UTU. <br />y así realizar estadísticas de los jugadores y equipos que pertenezcan a
-					esta web
+					{text.WHOME}
 				</PW>
 			</Article>
 			<Article>
-				<H2>¿Problemas para iniciar sesión?</H2>
+				<H2>{text.problemasParaIniciarSesion}</H2>
 				<PW>
-					En dicho caso deberá comunicarse con su director tércnico e informarle de esa situación para poder
-					solucionarlo.
+					{text.endicho}
 				</PW>
 			</Article>
 		</Main>
