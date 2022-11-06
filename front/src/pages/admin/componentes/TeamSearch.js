@@ -42,6 +42,7 @@ const TeamSearch = () => {
         )
       )
       .then((e) => {
+        console.log(e)
         if (e.status === 200) {
           setErrors(false)
           setOk(true);
@@ -64,29 +65,7 @@ const TeamSearch = () => {
         className="Form__input"
         label={text.nombreDelEquipo}
       />
-      <ButtonClassic type="submit" onClick={handleSubmit} variant="contained">
-        {text.buscar} <SearchIcon/>
-      </ButtonClassic>
-      {loading && <Loader />}
-      {ok &&
-        <DivOver>
-          <Table>
-            <thead>
-              <TH>{text.escudo}</TH>
-              <TH>{text.nombre}</TH>
-              <TH>ID</TH>
-            </thead>
-            <tbody>
-              {usuariosBuscados.map((e) => (
-                <TeamsListRow data={e} />
-              ))}
-            </tbody>
-          </Table>
-        </DivOver>}
-      
-       {errors && <PAlert>{text.noSeEncontro}</PAlert>} 
-      
-      <TeamsList />
+      <TeamsList teamName={nombre} />
     </Form>
   );
 };

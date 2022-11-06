@@ -18,17 +18,22 @@ import ChampsNoSquadInModal from "./ChampsNoSquadInModal"
 import LeagueListRowBtnSettings from "./LeagueListRowBtnSettings"
 import { IconFoto } from "../../../componentes/styledComponents/IconFoto"
 import { EscudoList } from "../../../componentes/styledComponents/EscudoList"
+import ModalConfirm from "./ModalConfirm"
+import DeleteForeverTwoToneIcon from '@mui/icons-material/DeleteForeverTwoTone';
+import ModalConfirmNoBtn from "./ModalConfirmNoBtn"
+import BtnSettings from "./BtnSettings"
 
-const TeamsListRow = ({ data }) => {
+const TeamsListRow = ({ setEquipos,equipo,equipos}) => {
 	const [adminTeam, setAdminTeam] = useState(false)
 	const [contenido, setContenido] = useState([])
 	const [ok, setOk] = useState(false)
 	const peticion = helpHttp()
 	const user = getUser()
 	const [champs, setChamps] = useState([])
+	const [deleteConfirm, setDeleteConfirm] = useState(0);
 
 	const handleAddToChamp = (champ) => {
-		console.log(champ, data)
+		console.log(champ, equipo)
 
 		
 	}
@@ -45,10 +50,23 @@ const TeamsListRow = ({ data }) => {
 	}, [])
 
 	useEffect(() => {
+		if (deleteConfirm==1) {
+			peticion.del(urlApi(`equipos?id=${equipo.id_equipo}&nameID=id_equipo`)).then(e => {
+
+				console.log(e,"Eliminacion de equipo")
+				if (e.status==200) {
+					setEquipos(equipos.filter(e=>e.id_equipo!=equipo.id_equipo))
+				}
+			})
+		}
+	}, [deleteConfirm]);
+
+	useEffect(() => {
 		if (champs.length !== 0) {
 			setContenido([
-				<ChampsNoSquadInModal teamId={data.id_equipo}/>,
-                <SquadOfTeamModal teamId={data.id_equipo } />
+				<ChampsNoSquadInModal teamId={equipo.id_equipo}/>,
+				<SquadOfTeamModal teamId={equipo.id_equipo} />,
+				<ModalConfirmNoBtn setConfirm={setDeleteConfirm}><Button> <BoxAlCen><DeleteForeverTwoToneIcon color="error"/>Eliminar</BoxAlCen> </Button></ModalConfirmNoBtn>
 			])
 		}
 	}, [champs])
@@ -58,22 +76,22 @@ const TeamsListRow = ({ data }) => {
 			{ok && <AlertSuccees />}
 			<tr>
 				<TD>
-					<BoxAlJusCen><EscudoList src={data.escudo_equipo}/> </BoxAlJusCen>
+					<BoxAlJusCen><EscudoList src={equipo.escudo_equipo}/> </BoxAlJusCen>
 				</TD>
 
 				<TD>
-					<BoxAlJusCen>{data.nombre_equipo}</BoxAlJusCen>
+					<BoxAlJusCen>{equipo.nombre_equipo}</BoxAlJusCen>
 				</TD>
 				<TD>
-					<BoxAlJusCen>{data.id_deporte_equipo}</BoxAlJusCen>
+					<BoxAlJusCen>{equipo.id_deporte_equipo}</BoxAlJusCen>
 				</TD>
 				
 				<TD>
-					<BoxAlJusCen>{data.id_equipo}</BoxAlJusCen>
+					<BoxAlJusCen>{equipo.id_equipo}</BoxAlJusCen>
 				</TD>
 				{adminTeam && (
 					<TDF>
-						<LeagueListRowBtnSettings contenido={contenido} />
+						<BtnSettings contenido={contenido} />
 					</TDF>
 				)}
 			</tr>
