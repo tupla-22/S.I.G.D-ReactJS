@@ -26,7 +26,7 @@ const ChampionshipUpdateForm = ({setData}) => {
     return ( 
         <Form>
             <h3>{text.actualizarCampeonato}</h3>
-            <TextField type="number" onChange={handleChange}  label="ID" value={idChampionship} className="Form__input"></TextField>
+            <TextField  onChange={handleChange}  label={text.nombre} value={idChampionship} className="Form__input"></TextField>
             <ButtonClassic type="submit"  onClick={handleClick}>{text.actualizar}</ButtonClassic>
         </Form>
      );

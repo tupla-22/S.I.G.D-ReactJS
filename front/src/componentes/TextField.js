@@ -21,16 +21,20 @@ const TextFieldRex = ({
 
     const handleChange = (e) => {
         
-			setForm({ ...form, [name]: e.target.value })
+		setForm({ ...form, [name]: e.target.value })
+		
 		// onChange(e)
-		if (regex.test(e.target.value)) {
-			setError(false)
-			setErrors({ ...errors, [name]: false })
-		} else {
-			setError(true)
-			setErrors({ ...errors, [name]: true })
-        }
-        console.log(form)
+			
+		if (regex!=undefined) {
+			if (regex.test(e.target.value)) {
+				setError(false)
+				setErrors({ ...errors, [name]: false })
+			} else {
+				setError(true)
+				setErrors({ ...errors, [name]: true })
+			}
+			
+		}
 	}
 
 	return (

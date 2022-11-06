@@ -7,17 +7,39 @@ import AddCircleTwoToneIcon from "@mui/icons-material/AddCircleTwoTone"
 import { helpHttp } from "../../../helpers/helpHttp"
 import BtnSettings from "../../../componentes/BtnSettings"
 import ModalChampionship from "./ModalChampioship"
-import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
+import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye"
 import BtnDel from "./BtnDel"
+import BtnUpadateRow from "./BtnUpdateRow"
 
-const ChampionshipListRow = ({ modificable, setOk, teamId, champ, addTd, open, setchamps, champs}) => {
+const ChampionshipListRow = ({thead, modificable, teamId, champ, setOk, setchamps, champs, open }) => {
 	const [modify, setModify] = useState(false)
+	const [tableRowData, setTableRowData] = useState([]);
+	const [keys, setKeys] = useState([]);
+	const [form, setForm] = useState({});
+	const [error, setError] = useState(false);
+
 	const user = getUser()
 	const peticion = helpHttp()
 	useEffect(() => {
 		if ((user.id_rol_usuario == 1 || user.id_rol_usuario == 2 || user.id_rol_usuario == 6) && modificable == true) {
 			setModify(true)
 		}
+
+		setTableRowData([
+			champ.nombre_campeonato,
+			champ.fechaInicio_campeonato,
+			champ.fechaFin_campeonato,
+			champ.deporte_campeonato
+		])
+
+		setForm({
+			...form,
+			nombre_campeonato: champ.nombre_campeonato,
+			fechaInicio_campeonato: champ.fechaInicio_campeonato,
+			fechaFin_campeonato: champ.fechaFin_campeonato,
+			deporte_campeonato:champ.deporte_campeonato
+		})
+		setKeys(Object.keys(champ))
 	}, [])
 
 	const handleAddToChamp = () => {
@@ -64,12 +86,33 @@ const ChampionshipListRow = ({ modificable, setOk, teamId, champ, addTd, open, s
 				<TDF>
 					<BtnSettings
 						content={[
-								<BoxColCen>
-									<ModalChampionship idChampionship={champ.id_campeonato} >
-										<BoxCen><RemoveRedEyeIcon/> Ver</BoxCen>
-									</ModalChampionship>
-                            </BoxColCen>,
-                            <BtnDel table={"campeonatos"} array={champs} setArray={setchamps} id={champ.id_campeonato} fieldName={ "id_campeonato"} />
+							<BoxColCen>
+								<ModalChampionship idChampionship={champ.id_campeonato}>
+									<BoxCen>
+										<RemoveRedEyeIcon /> Ver
+									</BoxCen>
+								</ModalChampionship>
+							</BoxColCen>,
+							<BtnDel
+								table={"campeonatos"}
+								array={champs}
+								setArray={setchamps}
+								id={champ.id_campeonato}
+								fieldName={"id_campeonato"}
+							/>,
+							<BtnUpadateRow
+								keys={Object.keys(form)}
+								form={form}
+								array={champs}
+								tableRowData={tableRowData}
+								thead={thead}
+								table={"campeonatos"}
+								setArray={setchamps}
+								id={champ.id_campeonato}
+								fieldName={"id_campeonato"}
+								setOk={setOk}
+								setError={setError}
+							/>
 						]}
 					/>
 				</TDF>
