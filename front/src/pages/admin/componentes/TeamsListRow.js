@@ -16,6 +16,8 @@ import BasicModal from "../../../componentes/BasicModal"
 import SquadOfTeamModal from "./SquadOfTeamModal"
 import ChampsNoSquadInModal from "./ChampsNoSquadInModal"
 import LeagueListRowBtnSettings from "./LeagueListRowBtnSettings"
+import { IconFoto } from "../../../componentes/styledComponents/IconFoto"
+import { EscudoList } from "../../../componentes/styledComponents/EscudoList"
 
 const TeamsListRow = ({ data }) => {
 	const [adminTeam, setAdminTeam] = useState(false)
@@ -56,14 +58,18 @@ const TeamsListRow = ({ data }) => {
 			{ok && <AlertSuccees />}
 			<tr>
 				<TD>
-					<BoxAlJusCen>{data.nombre_liga}</BoxAlJusCen>
+					<BoxAlJusCen><EscudoList src={data.escudo_equipo}/> </BoxAlJusCen>
 				</TD>
 
 				<TD>
-					<BoxAlJusCen>{data.id_deporte_liga}</BoxAlJusCen>
+					<BoxAlJusCen>{data.nombre_equipo}</BoxAlJusCen>
 				</TD>
 				<TD>
-					<BoxAlJusCen>{data.id_liga}</BoxAlJusCen>
+					<BoxAlJusCen>{data.id_deporte_equipo}</BoxAlJusCen>
+				</TD>
+				
+				<TD>
+					<BoxAlJusCen>{data.id_equipo}</BoxAlJusCen>
 				</TD>
 				{adminTeam && (
 					<TDF>

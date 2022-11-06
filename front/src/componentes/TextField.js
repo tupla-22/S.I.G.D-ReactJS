@@ -47,7 +47,7 @@ const TextFieldRex = ({
 				label={label}
 				variant={variant}
 				type={type}
-				helperText={helperText}
+				helperText={error && helperText}
 			/>
 		</FormControl>
 	)
