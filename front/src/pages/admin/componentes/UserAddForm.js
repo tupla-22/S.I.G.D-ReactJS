@@ -228,7 +228,6 @@ const UserAddForm = () => {
 					setErrors={setErrors}
 					errors={errors}
 					value={userForm.segundoNombre_usuario}
-					required={true}
 				/>
 				<TextFieldRex
 					name={"primerApellido_usuario"}
