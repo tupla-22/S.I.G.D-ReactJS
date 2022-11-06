@@ -29,7 +29,7 @@ export default function BtnSettings({contenido=[]}) {
         {({ TransitionProps }) => (
           <Fade {...TransitionProps} timeout={350}>
             <Paper>
-              <Typography ><Button onClick={handleClose}>{contenido.map((e) => (e))}</Button> </Typography>
+              <Typography >{contenido.map((e) => (e))}</Typography>
               
             </Paper>
           </Fade>

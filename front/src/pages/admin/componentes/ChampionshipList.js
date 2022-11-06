@@ -41,14 +41,14 @@ const ChampionshipList = ({open, modificable, teamId}) => {
 
 	return (
 		<>
-			{ok && <AlertSuccees/>}
+			{ok && <AlertSuccees ok={ ok} setOk={setOk} />}
 			<H3B>{text.campeonatos}</H3B>
 			<DivOver>
 				<Table>
 					<HeadChampionshipTable></HeadChampionshipTable>
 					<tbody>
 						{data.map((e, i) => (
-							<ChampionshipListRow open={open} modificable={modificable} setOk={setOk} teamId={teamId} key={"champ" + i} setchamps={setData} champs={data} champ={e} />
+							<ChampionshipListRow thead={<HeadChampionshipTable/>} open={open} modificable={modificable} setOk={setOk} teamId={teamId} key={"champ" + i} setchamps={setData} champs={data} champ={e} />
 						))}
 					</tbody>
 				</Table>

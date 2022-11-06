@@ -29,6 +29,13 @@ const style = {
 export default function ModalChampionship({ children, idChampionship}) {
 	const [open, setOpen] = React.useState("")
 	const [campeonato, setCampeonato] = useState({})
+	const [cuartos, setCuartos] = useState([]);
+	const [terceros, setTerceros] = useState([]);
+	const [segundos, setSegundos] = useState([]);
+	const [primero, setPrimero] = useState([]);
+
+
+
 	const handleOpen = () => setOpen(true)
 	const handleClose = (e) => {
 		setOpen(false)
@@ -43,10 +50,26 @@ export default function ModalChampionship({ children, idChampionship}) {
 			.then((e) => {
 				console.log(e)
 				if (e.status == 200) {
-					setCampeonato(e.result[0])
+					console.log("--------------")
+					e.result.sort((a, b) => a.punto_compite - b.punto_compite).forEach(e=>console.log(e.punto_compite))
+					
+					setCuartos( e.result.filter(e=>e.punto_compite==3))
+					setTerceros( e.result.filter(e=>e.punto_compite==5))
+					setSegundos( e.result.filter(e=>e.punto_compite==7))
+					setPrimero( e.result.filter(e=>e.punto_compite==9))
+					
 				}
 			})
 	}, [])
+
+
+	useEffect(() => {
+		
+		console.log(cuartos,"cuartos")
+		console.log(terceros,"terceros")
+		console.log(segundos,"segundos")
+		console.log(primero,"primero")
+	}, [primero,segundos,terceros,cuartos]);
 
 
 	return (
