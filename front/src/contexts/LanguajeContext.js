@@ -137,11 +137,22 @@ const translation = {
 		nombreDeLaLiga: "Nombre de la liga",
 		actualizarLiga: "Actualizar liga",
 		lista: "Lista",
-		
-		
-		
+		WHOME:"Esta aplicación fue creada para poder llevar a cabo la gestión de los deportes realizados en la institución UTU. Así realizar estadísticas de los jugadores y equipos que pertenezcan a esta web.",
+		endicho:"En dicho caso deberá comunicarse con su director técnico e informarle de esa situación para poder solucionarlo.",
+		ingresaemail: "Ingresa el correo electrónico de recuperación",
+		recuperar: "Recuperar",
+		gestionarPartido: "Gestionar partido",
+		bienvenidaClasica:"Bienvenido al 'sistema informático de gestión deportiva de la institución UTU'.",
+		afffs: "Aquí tu puedes gestionar los partidos que se juegan y registrar las estadísticas de los partidos y jugadores.",
     },
 	en: {
+		afffs:"Here you can manage the games that are played and record the statistics of the matches and players.",
+		bienvenidaClasica:"Welcome to the 'sports management computer system of the UTU institution.'",
+		gestionarPartido: "Managme match",
+		recuperar:"Recovery",
+		ingresaemail:"Enter the recovery email",
+		endicho:"In this case, you must contact your technical director and inform him of this situation in order to solve it.",
+		WHOME:"This application was created to be able to carry out the management of the sports carried out in the UTU institution. And thus make statistics of the players and teams that belong to this website.",
 		lista:"List",
 		actualizarLiga:"Update league",
 		nombreDeLaLiga:"League name",
