@@ -22,7 +22,7 @@ const style = {
   p: 4,
 };
 
-export default function ModalConfirmNoBtn({color,children,setConfirm}) {
+export default function ModalConfirmNoBtn({btn,color,children,setConfirm}) {
   const [open, setOpen] = React.useState("");
   const handleOpen = (e) => {
     e.preventDefault()
@@ -40,7 +40,7 @@ export default function ModalConfirmNoBtn({color,children,setConfirm}) {
 
   return (
     <div>
-      <Button onClick={handleOpen}>{children}</Button>
+      {!btn ? <IconButton  onClick={handleOpen}>{children}</IconButton> :  <Button onClick={handleOpen}>{children}</Button>}
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"

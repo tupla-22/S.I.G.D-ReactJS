@@ -25,6 +25,7 @@ export default function SportListRowPopStatsShower({ sport }) {
 	const [stats, setStats] = useState([])
 	const [confirmDelete, setConfirmDelete] = useState(0)
 	const [statToDel, setStatToDel] = useState("")
+	const [statAddForm, setStatAddForm] = useState({});
 
 	const peticion = helpHttp()
 
@@ -43,7 +44,7 @@ export default function SportListRowPopStatsShower({ sport }) {
 	}, [sport])
 
 	useEffect(() => {
-		if (confirmDelete) {
+		if (confirmDelete == 1) {
 			console.log(statToDel)
 			peticion.del(urlApi(`tiposEstadisticas?id=${statToDel}&nameID=id_tipoEstadistica`)).then((e) => {
 				console.log(e, "estadistica eliminada")
@@ -51,10 +52,30 @@ export default function SportListRowPopStatsShower({ sport }) {
 					setStats(stats.filter((e) => e.id_tipoEstadistica_concibe != statToDel))
 				}
 
-				setConfirmDelete(false)
+				setConfirmDelete(0)
 			})
 		}
 	}, [confirmDelete])
+
+	const handleAddStat = (e) => {
+		console.log(statAddForm)
+		setStatAddForm({ ...statAddForm, [e.target.name]: e.target.value })
+		
+	}
+	const handleSendStat = (e) => {
+		peticion.post(urlApi(`tiposEstadisticas?`), { body: new URLSearchParams(statAddForm) }).then(e => {
+			console.log(e,"estadisticas add")
+			if (e.status == 200) {
+				const formConciben = {id_tipoEstadistica_concibe:statAddForm.id_tipoEstadistica,id_deporte_concibe: sport}
+				peticion.post(urlApi(`conciben?`), { body: new URLSearchParams(formConciben) }).then(e => {
+					console.log(e, "estadisticas cociben")
+					if (e.status == 200) {
+						setStats([...stats, formConciben])
+					}
+				})
+			}
+		})
+	}
 
 	return (
 		<>
@@ -62,12 +83,18 @@ export default function SportListRowPopStatsShower({ sport }) {
 				{({ TransitionProps }) => (
 					<Fade {...TransitionProps} timeout={350}>
 						<Paper>
-							<Typography sx={{ p: 2 }}>
-								<IconButton> <AddCircleTwoToneIcon color="success" /></IconButton>
+							<Typography sx={{ p: 1 }}>
+								<BoxAlCen>
+									<IconButton onClick={handleSendStat}>
+										{" "}
+										<AddCircleTwoToneIcon color="success" />
+									</IconButton>{" "}
+									<input name="id_tipoEstadistica" onChange={handleAddStat}></input>
+								</BoxAlCen>
 								{stats.map((e) => (
 									<>
 										<BoxAlCen onClick={() => setStatToDel(e.id_tipoEstadistica_concibe)}>
-											<ModalConfirmNoBtn setConfirm={setConfirmDelete}>
+											<ModalConfirmNoBtn btn={false} setConfirm={setConfirmDelete}>
 												{" "}
 												<DeleteForeverTwoToneIcon color="error" />
 											</ModalConfirmNoBtn>

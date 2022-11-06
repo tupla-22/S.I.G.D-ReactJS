@@ -91,6 +91,10 @@ padding: 10px;
 `
 
 export const IconButton = styled.div` 
+display:center;
+align-items:center;
+position:relative;
+top:4px;
     &:hover{
         cursor:pointer;
     }
