@@ -91,15 +91,15 @@ class Connection{
 
     static public function jwt($id,$ci){
         //pido el rol del usuario
-        /*$rol= GetModel::getRelDataFilter(
-            $rel="roles,usuarios", 
-            $type="rol,usuario", 
+        $rol= GetModel::getRelDataFilter(
+            $rel="usuarios,roles", 
+            $type="usuario,rol", 
             $select="id_rol", 
-            $linkTo="id_usuario_rol", 
+            $linkTo="id_usuario", 
             $equalTo=$id, $orderBy=null, 
             $orderMode=null, 
             $startAt=null, 
-            $endAt=null);*/
+            $endAt=null);
        
         $time= time();
 
@@ -109,8 +109,8 @@ class Connection{
             "exp" => $time + (60*60*24), //toempo de expiracion del token
             "data" =>[
                 "id" => $id,
-                "ci" => $ci//,
-                //"id_rol" => $rol[0]->{"id_rol"}//le pongo el rol al token
+                "ci" => $ci,
+                "id_rol" => $rol[0]->{"id_rol"}//le pongo el rol al token
                 ]
             );
 
