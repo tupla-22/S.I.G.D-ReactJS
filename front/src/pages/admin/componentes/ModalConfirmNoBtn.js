@@ -40,7 +40,7 @@ export default function ModalConfirmNoBtn({color,children,setConfirm}) {
 
   return (
     <div>
-      <IconButton onClick={handleOpen}>{children}</IconButton>
+      <Button onClick={handleOpen}>{children}</Button>
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"

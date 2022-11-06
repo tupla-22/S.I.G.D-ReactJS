@@ -136,11 +136,13 @@ const translation = {
 		tantos: "Tantos",
 		nombreDeLaLiga: "Nombre de la liga",
 		actualizarLiga: "Actualizar liga",
+		lista: "Lista",
 		
 		
 		
     },
 	en: {
+		lista:"List",
 		actualizarLiga:"Update league",
 		nombreDeLaLiga:"League name",
 		agregarLiga:"Add leage",

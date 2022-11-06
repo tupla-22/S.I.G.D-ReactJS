@@ -6,7 +6,7 @@ import Fade from '@mui/material/Fade';
 import Paper from '@mui/material/Paper';
 import React, { useState, useEffect } from 'react';
 import SettingsTwoToneIcon from '@mui/icons-material/SettingsTwoTone';
-import { IconButton } from '@mui/material';
+import { Button, IconButton } from '@mui/material';
 import { BoxAlJusCen, BoxColCen } from '../../../componentes/styledComponents/ComponentesDeEstilos';
 
 export default function BtnSettings({contenido=[]}) {
@@ -19,13 +19,17 @@ export default function BtnSettings({contenido=[]}) {
     setOpen((prev) => placement !== newPlacement || !prev);
     setPlacement(newPlacement);
   };
+
+  const handleClose = () => {
+    setOpen(false)
+  }
   return (
     <>
       <Popper open={open} anchorEl={anchorEl} placement={placement} transition>
         {({ TransitionProps }) => (
           <Fade {...TransitionProps} timeout={350}>
             <Paper>
-              <Typography >{ contenido.map((e)=>(e))}</Typography>
+              <Typography ><Button onClick={handleClose}>{contenido.map((e) => (e))}</Button> </Typography>
               
             </Paper>
           </Fade>
