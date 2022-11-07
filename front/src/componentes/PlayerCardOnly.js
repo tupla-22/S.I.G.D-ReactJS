@@ -104,7 +104,7 @@ export default function PlayerCardOnly({ state, idUsuario }) {
 					setFeatures(e.result[0])
 				}
 			})
-	}, [])
+	}, [idUsuario])
 
 	return (
 				<Container>
