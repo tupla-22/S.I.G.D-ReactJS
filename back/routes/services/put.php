@@ -87,7 +87,18 @@ if (isset($id) && isset($nameID)) {
             $tableToken= $_GET["table"] ?? "usuarios";
             $suffix= $_GET["suffix"] ?? "usuario";
 
-            $validate= Connection::tokenValidate($_GET["token"],$tableToken, $suffix);
+            $rol=Connection::tokenRol($_GET["token"]); 
+    
+            if ($rol==1 ||$rol==2 ||$rol==5 ||$rol==7 ||$rol==6  ) {
+                $validate= Connection::tokenValidate($_GET["token"],$tableToken, $suffix);
+            }else{
+                $json= array(
+                    'status' => 400,
+                    'results' => "Error: authorization required"
+                );
+                echo json_encode($json, http_response_code($json["status"]));
+                return;
+            }
 
             /**=======================
              * solicitamos respuesta del controlador para editar datos en cualquier tabla

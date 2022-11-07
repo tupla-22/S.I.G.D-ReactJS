@@ -1,13 +1,15 @@
 <?php
 
 require_once "models/deleteModel.php";
+require_once "models/connection.php";
 
 class DeleteController{
 
     /**================peticion delete para eliminar datos================== */
-
+    
    
     static public function deleteData($table, $id, $nameID){
+        
 
         if ($nameID=="ci_usuario" && $id==0 && $table=="usuarios") {
             $response="RootNo";

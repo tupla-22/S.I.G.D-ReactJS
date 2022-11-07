@@ -35,13 +35,15 @@ if (isset($id) && isset($nameID)) {
         $rol=Connection::tokenRol($_GET["token"]); 
         $suffix= $_GET["suffix"] ?? "usuario";
 
-        if ($rol==1 ||$rol==2 ) {
+        if ($rol==1 ||$rol==2 ||$rol==5 ) {
             $validate= Connection::tokenValidate($_GET["token"],$tableToken, $suffix);
         }else{
+            
             $json= array(
                 'status' => 400,
                 'results' => "Error: authorization required"
             );
+
             echo json_encode($json, http_response_code($json["status"]));
             return;
         }
@@ -53,6 +55,26 @@ if (isset($id) && isset($nameID)) {
 
         if ($validate == "ok" ) {
 
+            $rolUsuarioBorrar= GetModel::getRelDataFilter(
+                
+                $rel="usuarios,roles", 
+                $type="usuario,rol", 
+                $select="id_rol", 
+                $linkTo="ci_usuario",  
+                $equalTo=$id, 
+                $orderBy=null, 
+                $orderMode=null, 
+                $startAt=null, 
+                $endAt=null);
+
+            if ($nameID=="ci_usuario" && $rol!=1 && $table=="usuarios" && $rolUsuarioBorrar[0]->{"id_rol"}==2) {
+                $json= array(
+                    'status' => 400,
+                    'results' => "Error: no se puede eliminar administrativos"
+                );
+                echo json_encode($json, http_response_code($json["status"]));
+                return;
+            }
             $response= new DeleteController();
             $response-> deleteData($table, $id, $nameID);
 
