@@ -23,7 +23,7 @@ const formInit = {
 	valor_estadistica: 0,
 }
 
-const ManagmentControl = ({ sport, confirm, endMatch, matchId, locales, visitantes }) => {
+const ManagmentControl = ({ started,sport, confirm, endMatch, matchId, locales, visitantes }) => {
 	const [arePlayers, setArePlayers] = useState(false)
 	const [form, setForm] = useState(formInit)
 	const [tipo, setTipo] = useState("")
@@ -159,7 +159,7 @@ const ManagmentControl = ({ sport, confirm, endMatch, matchId, locales, visitant
 		<>
 			{error && <AlertSuccees severity={"error"}></AlertSuccees>}
 			{ok && <AlertSuccees></AlertSuccees>}
-			<Form>
+			{started && (<Form>
 				<h3>Control {sport}</h3>
 				<ManagerControlStatSelect
 					setvalorDelTanto={setvalorDelTanto}
@@ -204,7 +204,7 @@ const ManagmentControl = ({ sport, confirm, endMatch, matchId, locales, visitant
 				<ButtonClassic type="submit" onClick={handleSubmit}>
 					Ingresar
 				</ButtonClassic>
-			</Form>
+			</Form>)}
 		</>
 	)
 }
