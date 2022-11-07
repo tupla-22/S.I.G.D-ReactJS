@@ -685,6 +685,24 @@ inner join equipos on id_deporte=id_deporte_equipo
 inner join pertenecen on id_equipo=id_equipo_pertenece
 group by id_deporte
 ;
+
+/*----------------------------------------------
+view equipos que ganaron campeonatos en los ultimos 2 años
+----------------------------------------------*/
+
+create view equiposGanadoresCampeonatos as
+select nombre_equipo, count(campeon_campeonato) as "cantidad_victorias", fechaFin_campeonato, id_deporte_equipo
+from equipos
+inner join compiten on id_equipo=id_equipo_compite
+inner join campeonatos on id_campeonato=id_campeonato_compite
+where (campeon_campeonato=nombre_equipo and fechaFin_campeonato ) and TIMESTAMPDIFF(YEAR,fechaFin_campeonato,CURDATE()) <2
+group by nombre_equipo
+having cantidad_victorias>0
+order by cantidad_victorias desc
+;
+
+
+
 /*----------------------------------------------
 procedure para contar estadisticas
 ----------------------------------------------*/
