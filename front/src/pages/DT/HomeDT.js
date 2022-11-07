@@ -7,20 +7,25 @@ import DTBar from "./componentes/DTBar";
 import HomeTwoToneIcon from '@mui/icons-material/HomeTwoTone';
 import GroupsTwoToneIcon from '@mui/icons-material/GroupsTwoTone';
 import EmojiEventsTwoToneIcon from '@mui/icons-material/EmojiEventsTwoTone';
+import LanguajeContext from "../../contexts/LanguajeContext";
+import { useContext } from "react";
 
 const HomeDT = () => {
+
+  const { text } = useContext(LanguajeContext);
+
   const pages = [
     <NavLink to="home" classAdd="responsive">
-     <HomeTwoToneIcon/> Home
+     <HomeTwoToneIcon/> {text.inicio}
     </NavLink>,
     <NavLink to="myteams" classAdd="responsive">
-      <GroupsTwoToneIcon/>Mis equipos
+      <GroupsTwoToneIcon/>{text.misEquipos}
     </NavLink>,
     <NavLink to="adminTeams/add" classAdd="responsive">
-     <GroupsTwoToneIcon/> Equipos
+     <GroupsTwoToneIcon/> {text.equipos}
     </NavLink>,
     <NavLink to="championshipsLoad/add" classAdd="responsive">
-    <EmojiEventsTwoToneIcon/>  Campeonatos
+    <EmojiEventsTwoToneIcon/>  {text.campeonatos}
     </NavLink>,
   ];
   return (

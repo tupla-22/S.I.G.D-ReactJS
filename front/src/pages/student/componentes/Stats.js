@@ -1,6 +1,6 @@
 import Main from "../../../componentes/styledComponents/Main";
 import { P } from "../../../componentes/styledComponents/P";
-import MyStatsTable from "./MyStatsTable";
+import MyStatsTable from "./HomePageSudent";
 
 const Stats = () => {
   return (

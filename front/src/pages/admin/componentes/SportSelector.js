@@ -10,6 +10,7 @@ import imgSport from "../../../media/herramientas-deportivas_53876-138077.jpg"
 const SportSelector = ({ routeAdd }) => {
 	const [sports, setSports] = useState([])
 	const [cantidadPorEquipos, setCantidadPorEquipos] = useState([])
+	// const [cantidadDeJugadores, setCantidadDeJugadores] = useState([]);
 	const peticion = helpHttp()
 
 	useEffect(() => {
@@ -19,11 +20,11 @@ const SportSelector = ({ routeAdd }) => {
 			}
 		})
 
-		peticion.get(urlApi(`cantidadEquiposDeportes?select=*`)).then((e) => {
-			if ((e.status = 200)) {
-				setCantidadPorEquipos(e.result)
-			}
-		})
+		// peticion.get(urlApi(`cantidadEquiposDeportes?select=*`)).then((e) => {
+		// 	if ((e.status = 200)) {
+		// 		setCantidadPorEquipos(e.result)
+		// 	}
+		// })
 	}, [])
 	return (
 		<>
@@ -34,7 +35,7 @@ const SportSelector = ({ routeAdd }) => {
 							to={`../${e.id_deporte}/${routeAdd || ""}`}
 							url={e.foto_deporte || imgSport}
 							name={e.id_deporte}
-							data={"Cantida de equipos: " +cantidadPorEquipos[i].cantidad_equipo}
+							// data={"Cantida de equipos: " +cantidadPorEquipos[i].cantidad_equipo}
 						></CardA>
 					))}
 				</BoxFlex>

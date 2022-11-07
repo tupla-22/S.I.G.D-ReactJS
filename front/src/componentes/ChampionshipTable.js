@@ -70,7 +70,19 @@ const ImgTeam = styled.img`
 	}
 `
 
-const ChampionshipTable = ({ primero, segundos, terceros, cuartos }) => {
+const ChampionshipTable = ({ primero = [], segundos = [], terceros = [], cuartos = [] }) => {
+	const [primeroS, setPrimeroS] = useState([])
+	const [segundoS, setSegundoS] = useState([])
+	const [terceroS, setTerceroS] = useState([])
+	const [cuartoS, setCuartoS] = useState([])
+
+	useEffect(() => {
+		if(Array.isArray(primero))setPrimeroS(primeroS)
+		if(Array.isArray(segundos))setSegundoS(segundoS)
+		if(Array.isArray(terceros))setTerceroS(terceroS)
+		if (Array.isArray(cuartos)) setCuartoS(cuartoS)
+		
+	}, [primero,segundos,terceros,cuartos]);
 
 	return (
 		<>
@@ -78,31 +90,18 @@ const ChampionshipTable = ({ primero, segundos, terceros, cuartos }) => {
 				<Container>
 					<SubSeccion>
 						<Div>
-							<ImgTeam src={primero[0].escudo_equipo} />
-						</Div>
-					</SubSeccion>
-					<SubSeccion>
-						
-					<Div>
-							<ImgTeam src={primero[0].escudo_equipo} />
-						</Div>
-						{segundos.map((e) => (
-							<Div>
+							{primeroS.map((e) => (
 								<ImgTeam src={e.escudo_equipo} />
-							</Div>
-						))}
-
+							))}
+						</Div>
 					</SubSeccion>
 					<SubSeccion>
 						<Div>
-							<ImgTeam src={primero[0].escudo_equipo} />
-						</Div>
-						{segundos.map((e) => (
-							<Div>
+							{primeroS.map((e) => (
 								<ImgTeam src={e.escudo_equipo} />
-							</Div>
-						))}
-						{terceros.map((e) => (
+							))}
+						</Div>
+						{segundoS.map((e) => (
 							<Div>
 								<ImgTeam src={e.escudo_equipo} />
 							</Div>
@@ -110,20 +109,39 @@ const ChampionshipTable = ({ primero, segundos, terceros, cuartos }) => {
 					</SubSeccion>
 					<SubSeccion>
 						<Div>
-							<ImgTeam src={primero[0].escudo_equipo} />
+							{primeroS.map((e) => (
+								<ImgTeam src={e.escudo_equipo} />
+							))}
 						</Div>
-						{segundos.map((e) => (
+						{segundoS.map((e) => (
+							<Div>
+								<ImgTeam src={e.escudo_equipo} />
+							</Div>
+						))}
+						{terceroS.map((e) => (
+							<Div>
+								<ImgTeam src={e.escudo_equipo} />
+							</Div>
+						))}
+					</SubSeccion>
+					<SubSeccion>
+						<Div>
+							{primeroS.map((e) => (
+								<ImgTeam src={e.escudo_equipo} />
+							))}
+						</Div>
+						{segundoS.map((e) => (
 							<Div>
 								<ImgTeam src={e.escudo_equipo} />
 							</Div>
 						))}
 
-						{terceros.map((e) => (
+						{terceroS.map((e) => (
 							<Div>
 								<ImgTeam src={e.escudo_equipo} />
 							</Div>
 						))}
-						{cuartos.map((e) => (
+						{cuartoS.map((e) => (
 							<Div>
 								<ImgTeam src={e.escudo_equipo} />
 							</Div>

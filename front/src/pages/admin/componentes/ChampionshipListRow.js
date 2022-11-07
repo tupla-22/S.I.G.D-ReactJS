@@ -11,25 +11,32 @@ import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye"
 import BtnDel from "./BtnDel"
 import BtnUpadateRow from "./BtnUpdateRow"
 
-const ChampionshipListRow = ({thead, modificable, teamId, champ, setOk, setchamps, champs, open }) => {
+const ChampionshipListRow = ({ thead, modificable, teamId, champ, setOk, setchamps, champs, open }) => {
 	const [modify, setModify] = useState(false)
-	const [tableRowData, setTableRowData] = useState([]);
-	const [keys, setKeys] = useState([]);
-	const [form, setForm] = useState({});
-	const [error, setError] = useState(false);
+	const [tableRowData, setTableRowData] = useState([])
+	const [keys, setKeys] = useState([])
+	const [form, setForm] = useState({})
+	const [error, setError] = useState(false)
+	const [admin, setAdmin] = useState(false);
+	const [visor, setVisor] = useState(false);
 
 	const user = getUser()
 	const peticion = helpHttp()
 	useEffect(() => {
 		if ((user.id_rol_usuario == 1 || user.id_rol_usuario == 2 || user.id_rol_usuario == 6) && modificable == true) {
 			setModify(true)
+			
 		}
-
+		if (user.id_rol_usuario == 1 || user.id_rol_usuario == 2 || user.id_rol_usuario == 6){
+			setAdmin(true)
+		} else {
+			setVisor(true)
+		}
 		setTableRowData([
 			champ.nombre_campeonato,
 			champ.fechaInicio_campeonato,
 			champ.fechaFin_campeonato,
-			champ.deporte_campeonato
+			champ.deporte_campeonato,
 		])
 
 		setForm({
@@ -37,7 +44,7 @@ const ChampionshipListRow = ({thead, modificable, teamId, champ, setOk, setchamp
 			nombre_campeonato: champ.nombre_campeonato,
 			fechaInicio_campeonato: champ.fechaInicio_campeonato,
 			fechaFin_campeonato: champ.fechaFin_campeonato,
-			deporte_campeonato:champ.deporte_campeonato
+			deporte_campeonato: champ.deporte_campeonato,
 		})
 		setKeys(Object.keys(champ))
 	}, [])
@@ -70,6 +77,19 @@ const ChampionshipListRow = ({thead, modificable, teamId, champ, setOk, setchamp
 			{user.id_rol_usuario == 1 ||
 				user.id_rol_usuario == 2 ||
 				(user.id_rol_usuario == 6 && <TD>{champ.id_campeonato}</TD>)}
+			{visor && <TDF>
+					<BtnSettings
+						content={[
+							<BoxColCen>
+								<ModalChampionship idChampionship={champ.id_campeonato}>
+									<BoxCen>
+										<RemoveRedEyeIcon /> Ver
+									</BoxCen>
+								</ModalChampionship>
+							</BoxColCen>
+						]}
+					/>
+				</TDF>}
 			{modify && (
 				<TDF>
 					<IconButton
@@ -82,7 +102,7 @@ const ChampionshipListRow = ({thead, modificable, teamId, champ, setOk, setchamp
 					</IconButton>
 				</TDF>
 			)}
-			{!open && (
+			{admin && (
 				<TDF>
 					<BtnSettings
 						content={[
@@ -112,7 +132,7 @@ const ChampionshipListRow = ({thead, modificable, teamId, champ, setOk, setchamp
 								fieldName={"id_campeonato"}
 								setOk={setOk}
 								setError={setError}
-							/>
+							/>,
 						]}
 					/>
 				</TDF>

@@ -26,7 +26,7 @@ const BtnDel = ({ table, id ,fieldName,array,setArray }) => {
 
 
     return ( 
-        <ModalConfirmNoBtn setConfirm={setConfirm}> <DeleteForeverTwoToneIcon color="error"/> Eliminar</ModalConfirmNoBtn>
+        <ModalConfirmNoBtn btn={true} setConfirm={setConfirm}> <DeleteForeverTwoToneIcon color="error"/> Eliminar</ModalConfirmNoBtn>
      );
 }
  
