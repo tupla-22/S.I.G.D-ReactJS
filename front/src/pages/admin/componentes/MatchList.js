@@ -38,7 +38,7 @@ const MatchList = ({ sport, disputed }) => {
 					urlApi(
 						`matcheck?disputed=${disputed ? disputed : 0}&sport=${
 							sport === "all" ? "handball,football,basketball" : sport
-						}&orderBy=id_partido&orderMode=asc`
+						}&orderBy=id_partido&orderMode=desc`
 					)
 				)
 				.then((e) => {
