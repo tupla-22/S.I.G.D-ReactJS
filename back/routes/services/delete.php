@@ -35,7 +35,7 @@ if (isset($id) && isset($nameID)) {
         $rol=Connection::tokenRol($_GET["token"]); 
         $suffix= $_GET["suffix"] ?? "usuario";
 
-        if ($rol==1 ||$rol==2 ||$rol==5 ) {
+        if ($rol==1 ||$rol==2 ||$rol==5 || $rol==6) {
             $validate= Connection::tokenValidate($_GET["token"],$tableToken, $suffix);
         }else{
             
