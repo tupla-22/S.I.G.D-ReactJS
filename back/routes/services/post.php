@@ -7,6 +7,9 @@ require_once "controllers/postController.php";
 
 
 
+//$rol=Connection::tokenRol($_GET["token"]); 
+
+
 if (isset($_POST)) {
 
     /**================separar las propiedades en un arreglo===================== */
@@ -56,6 +59,7 @@ if (isset($_POST)) {
 
         /**===================peticion post para usuarios autorizados======================= */
         if(isset($_GET["token"])){
+            
 
             /**peticion put para usuarios no autorizados */
 
