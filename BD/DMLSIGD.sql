@@ -50,7 +50,7 @@ insert into usuarios (
     id_rol_usuario)
 values  ( '0', 'root', NULL, '', NULL, 'root@root.com', '0000-00-00', 'sh2H4KzFEzp4o', true , 1),
 		( '2', 'administrativo', NULL, '', NULL, 'administrativo@mail.com', '0000-00-00', 'sh2H4KzFEzp4o', true , 2),
-        ( '3', 'estudiante', NULL, '', NULL, 'estudiante@mail.com', '0000-00-00', 'sh2H4KzFEzp4o', true , 3),
+        ( '3', 'estudiante', NULL, '', NULL, 'estudiante@mail.com', '1997-05-05', 'sh2H4KzFEzp4o', true , 3),
         ( '4', 'ojeador', NULL, '', NULL, 'ojeador@mail.com', '0000-00-00', 'sh2H4KzFEzp4o', true , 4),
         ( '5', 'juez', NULL, '', NULL, 'juez@mail.com', '0000-00-00', 'sh2H4KzFEzp4o', true , 5),
         ( '6', 'directorTecnico', NULL, '', NULL, 'directorTecnico@mail.com', '0000-00-00', 'sh2H4KzFEzp4o', true , 6),
