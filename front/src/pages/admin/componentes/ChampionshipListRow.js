@@ -1,5 +1,5 @@
 import { TD } from "../../../componentes/styledComponents/TD"
-import { dateTradeEs, getUser, urlApi } from "../../../functions/globals"
+import { dateTradeEs, getDateNow, getUser, urlApi } from "../../../functions/globals"
 import React, { useState, useEffect } from "react"
 import { BoxCen, BoxColCen, TDF } from "../../../componentes/styledComponents/ComponentesDeEstilos"
 import { IconButton } from "@mui/material"
@@ -19,10 +19,20 @@ const ChampionshipListRow = ({ thead, modificable, teamId, champ, setOk, setcham
 	const [error, setError] = useState(false)
 	const [admin, setAdmin] = useState(false);
 	const [visor, setVisor] = useState(false);
-
+	const [fechaProxima, setFechaProxima] = useState(false);
 	const user = getUser()
 	const peticion = helpHttp()
-	useEffect(() => {
+	useEffect(() => { 
+
+		
+		
+	
+
+		if (champ.fechaFin_campeonato < getDateNow()) {
+			setFechaProxima(true)
+			console.log(fechaProxima)
+		}
+
 		if ((user.id_rol_usuario == 1 || user.id_rol_usuario == 2 || user.id_rol_usuario == 6) && modificable == true) {
 			setModify(true)
 			
@@ -77,7 +87,7 @@ const ChampionshipListRow = ({ thead, modificable, teamId, champ, setOk, setcham
 			{user.id_rol_usuario == 1 ||
 				user.id_rol_usuario == 2 ||
 				(user.id_rol_usuario == 6 && <TD>{champ.id_campeonato}</TD>)}
-			{visor && <TDF>
+			{(visor && fechaProxima) && <TDF>
 					<BtnSettings
 						content={[
 							<BoxColCen>

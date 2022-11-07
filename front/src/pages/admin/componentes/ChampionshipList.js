@@ -4,7 +4,7 @@ import React, { useState, useEffect, useContext } from "react"
 import { Table } from "../../../componentes/styledComponents/Table"
 import ChampionshipListRow from "./ChampionshipListRow"
 import { helpHttp } from "../../../helpers/helpHttp"
-import { urlApi } from "../../../functions/globals"
+import { getDateNow, urlApi } from "../../../functions/globals"
 import LanguajeContext from "../../../contexts/LanguajeContext"
 import AlertSuccees from "../../../componentes/AlertSuccees"
 import { H3B } from "../../../componentes/styledComponents/ComponentesDeEstilos"
@@ -20,6 +20,8 @@ const ChampionshipList = ({open, modificable, teamId}) => {
 	const { text } = useContext(LanguajeContext)
 
 	useEffect(() => {
+
+
 		let urlChamps;
 		if (open==true) {
 			urlChamps=`getStatusCampeonato?open_campeonato=1`
@@ -33,11 +35,11 @@ const ChampionshipList = ({open, modificable, teamId}) => {
 		peticion.get(urlApi(urlChamps)).then((e) => {
 			console.log(e)
 			if (e.status == 200) {
-				console.log(e.result)
 				setData(e.result)
 			}
 		})
 	}, [])
+
 
 	return (
 		<>

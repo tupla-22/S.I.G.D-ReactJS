@@ -81,6 +81,8 @@ const ChampionshipTable = ({ primero = [], segundos = [], terceros = [], cuartos
 		// if(Array.isArray(segundos))setPrimeroS(segundoS)
 		// if(Array.isArray(terceros))setPrimeroS(terceroS)
 		// if (Array.isArray(cuartos)) setPrimeroS(cuartoS)
+
+
 		
 	}, [primero,segundos,terceros,cuartos]);
 

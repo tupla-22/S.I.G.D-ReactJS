@@ -51,8 +51,14 @@ export default function ModalChampionship({ children, idChampionship }) {
 			.then((e) => {
 				console.log(e,"EQUIPOS")
 				if (e.status == 200) {
+					console.log(e.result.filter(e => {
+						return e.punto_compite != 0
+					}))
 
-					setCuartos(e.result.filter((e) => e.punto_compite == 0))
+					setCuartos(
+						e.result.filter((e) => e.punto_compite == 0
+						
+						))
 					setTerceros(e.result.filter((e) => e.punto_compite == 4))
 					setSegundos(e.result.filter((e) => e.punto_compite == 7))
 					setPrimero(e.result.filter((e) => e.punto_compite == 9))
@@ -72,17 +78,6 @@ export default function ModalChampionship({ children, idChampionship }) {
 			})
 	}, [])
 
-	useEffect(() => {
-
-
-
-
-		console.log(primero)
-		
-		console.log(segundos)
-		console.log(terceros)
-		console.log(cuartos)
-	}, [primero, segundos, terceros, cuartos])
 
 	return (
 		<div>
