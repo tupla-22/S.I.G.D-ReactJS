@@ -77,10 +77,10 @@ const ChampionshipTable = ({ primero = [], segundos = [], terceros = [], cuartos
 	const [cuartoS, setCuartoS] = useState([])
 
 	useEffect(() => {
-		if(Array.isArray(primero))setPrimeroS(primeroS)
-		if(Array.isArray(segundos))setSegundoS(segundoS)
-		if(Array.isArray(terceros))setTerceroS(terceroS)
-		if (Array.isArray(cuartos)) setCuartoS(cuartoS)
+		// if(Array.isArray(primero))setPrimeroS(primero)
+		// if(Array.isArray(segundos))setPrimeroS(segundoS)
+		// if(Array.isArray(terceros))setPrimeroS(terceroS)
+		// if (Array.isArray(cuartos)) setPrimeroS(cuartoS)
 		
 	}, [primero,segundos,terceros,cuartos]);
 
@@ -90,18 +90,18 @@ const ChampionshipTable = ({ primero = [], segundos = [], terceros = [], cuartos
 				<Container>
 					<SubSeccion>
 						<Div>
-							{primeroS.map((e) => (
+							{primero.map((e) => (
 								<ImgTeam src={e.escudo_equipo} />
 							))}
 						</Div>
 					</SubSeccion>
 					<SubSeccion>
 						<Div>
-							{primeroS.map((e) => (
+							{segundos.map((e) => (
 								<ImgTeam src={e.escudo_equipo} />
 							))}
 						</Div>
-						{segundoS.map((e) => (
+						{segundos.map((e) => (
 							<Div>
 								<ImgTeam src={e.escudo_equipo} />
 							</Div>
@@ -109,16 +109,14 @@ const ChampionshipTable = ({ primero = [], segundos = [], terceros = [], cuartos
 					</SubSeccion>
 					<SubSeccion>
 						<Div>
-							{primeroS.map((e) => (
-								<ImgTeam src={e.escudo_equipo} />
-							))}
+							<ImgTeam src={primero[0].escudo_equipo} />
 						</Div>
-						{segundoS.map((e) => (
+						{segundos.map((e) => (
 							<Div>
 								<ImgTeam src={e.escudo_equipo} />
 							</Div>
 						))}
-						{terceroS.map((e) => (
+						{terceros.map((e) => (
 							<Div>
 								<ImgTeam src={e.escudo_equipo} />
 							</Div>
@@ -126,22 +124,20 @@ const ChampionshipTable = ({ primero = [], segundos = [], terceros = [], cuartos
 					</SubSeccion>
 					<SubSeccion>
 						<Div>
-							{primeroS.map((e) => (
-								<ImgTeam src={e.escudo_equipo} />
-							))}
+							<ImgTeam src={primero[0].escudo_equipo} />
 						</Div>
-						{segundoS.map((e) => (
+						{segundos.map((e) => (
 							<Div>
 								<ImgTeam src={e.escudo_equipo} />
 							</Div>
 						))}
 
-						{terceroS.map((e) => (
+						{terceros.map((e) => (
 							<Div>
 								<ImgTeam src={e.escudo_equipo} />
 							</Div>
 						))}
-						{cuartoS.map((e) => (
+						{cuartos.map((e) => (
 							<Div>
 								<ImgTeam src={e.escudo_equipo} />
 							</Div>
