@@ -61,12 +61,9 @@ const MatchListRow = ({ data, disputed, sport }) => {
 				{data.tipo_partido === "campeonato" ? (
 					<TD>
 						<BoxColCen>
-							<ModalChampionship idChampionship={idChamp}>
 								<BoxColCen>
-									<VisibilityIcon />
 									{data.tipo_partido}
 								</BoxColCen>
-							</ModalChampionship>
 						</BoxColCen>
 					</TD>
 				) : (
