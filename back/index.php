@@ -18,6 +18,7 @@ ini_set("error_log","c:/xampp/httdocs/apirest-dinamica/php_error_log");
  * requerimientos
  */
 
+
 require_once "models/connection.php";
 
 

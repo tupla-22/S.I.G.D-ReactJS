@@ -9,8 +9,9 @@ use Firebase\JWT\JWT; //componente jwt que instale con composer
 
 require_once "models/putModel.php";
 
-
 class PostController{
+
+
 
     /**================peticion post para crear datos================== */
     static public function postData($table, $data){
@@ -26,9 +27,10 @@ class PostController{
      static public function postRegister($table, $data, $suffix){
         //$dataSuffix=$data["password_".$suffix];
 
+
         if (isset($data["password_".$suffix]) && $data["password_".$suffix]!= null) {
 
-            $crypt = crypt($data["password_".$suffix], 'sha512'); 
+            $crypt = crypt($data["password_".$suffix], 'RS256'); 
             $data["password_".$suffix]= $crypt;
             $data=array_unique($data);
             $response= PostModel::postData($table, $data);
@@ -48,7 +50,8 @@ class PostController{
 
                 if (!empty($response)) {
                     $token= Connection::jwt($response[0]->{"id_".$suffix},$response[0]->{"ci_".$suffix}, );
-                    $jwt = JWT::encode($token,"qxewcr",'HS512');
+                    $privateKey= Connection::tokenPrivateKey();
+                    $jwt = JWT::encode($token,$privateKey,'RS256');
                 
 
                     //------actualizar bd con el token del usuario-------
@@ -101,9 +104,13 @@ class PostController{
                     //$rol= ;
 
                     $token= Connection::jwt($response[0]->{"id_".$suffix},$response[0]->{"ci_".$suffix} );
-                    $jwt = JWT::encode($token,"qxewcr",'HS512');
-                
-
+                    $privateKey= Connection::tokenPrivateKey();
+                    $jwt = JWT::encode($token,$privateKey,'RS256');
+                    
+                    /*$publicKey= Connection::tokenPublicKey();
+                    $decoded = JWT::decode($jwt, new Key($publicKey, 'RS256'));
+                    $decoded_array = (array) $decoded;*/
+                    
                     //------actualizar bd con el token del usuario-------
 
                     $data = array(
@@ -133,7 +140,8 @@ class PostController{
                 //------actualizar el token para usuarios logueados por las redes-------
 
                 $token= Connection::jwt($response[0]->{"id_".$suffix},$response[0]->{"ci_".$suffix}, );
-                $jwt = JWT::encode($token,"qxewcr",'HS512');
+                $privateKey= Connection::tokenPrivateKey();
+                $jwt = JWT::encode($token,$privateKey,'HS512');
             
 
                 
