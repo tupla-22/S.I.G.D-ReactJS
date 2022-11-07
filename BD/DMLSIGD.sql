@@ -54,7 +54,7 @@ values  ( '0', 'root', NULL, '', NULL, 'root@root.com', '0000-00-00', 'sh2H4KzFE
         ( '4', 'ojeador', NULL, '', NULL, 'ojeador@mail.com', '0000-00-00', 'sh2H4KzFEzp4o', true , 4),
         ( '5', 'juez', NULL, '', NULL, 'juez@mail.com', '0000-00-00', 'sh2H4KzFEzp4o', true , 5),
         ( '6', 'directorTecnico', NULL, '', NULL, 'directorTecnico@mail.com', '0000-00-00', 'sh2H4KzFEzp4o', true , 6),
-	    ('7','analista',NULL, '', NULL, 'analista@mail.com', '0000-00-00', 'shaXiUqr8pMhk', true , 7);
+	    ('7','analista',NULL, '', NULL, 'analista@mail.com', '0000-00-00', 'sh2H4KzFEzp4o', true , 7);
 
 
 insert into usuarios values
