@@ -1431,3 +1431,7 @@ select id_partido,dia_partido,hora_partido,tipo_partido,disputado_partido,
         and (e.id_equipo=p.id_equipoLocal_partido or e.id_equipo=p.id_equipoVisitante_partido)
         group by p.id_partido
                 ORDER BY id_partido asc;
+                
+                
+
+*/
