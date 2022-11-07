@@ -1,3 +1,1520 @@
+commit 9cf80c5b171119d155ca795249b0767ac891c4eb
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Sun Nov 6 23:57:08 2022 -0300
+
+    ultimos retoques
+
+commit a85e6f76b80a277cb1bbdb869f28744828fc894e
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Sun Nov 6 23:32:26 2022 -0300
+
+    controles de seguridad
+
+commit d727de0d6eda959cd0fc354644abab1ed784d26f
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Sun Nov 6 22:03:25 2022 -0300
+
+    se acrega contro de roles en delete
+
+commit 5a158e1fac42da0d5ea1c6429b15e877745b2ae2
+Merge: 7678d1925 2251ecd99
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Sun Nov 6 20:01:04 2022 -0300
+
+    Merge branch 'main' of https://github.com/tupla-22/S.I.G.D-ReactJS
+
+commit 7678d19255c0fb43fe5c6bbcda3538a44fa44d1a
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Sun Nov 6 19:58:35 2022 -0300
+
+    cantidad jugadores por deporte
+
+commit 2251ecd9957f620a95347392f8e4730b32e41222
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Sun Nov 6 19:52:06 2022 -0300
+
+    Cantidad de quipos por deporte
+
+commit 60ae5b3670e64f82a3da6907673dfd0b8b99fe89
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Sun Nov 6 18:06:05 2022 -0300
+
+    galeria de login
+
+commit eabc3b47db5e646c9319cb78cc890659755ea02f
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Sun Nov 6 17:56:42 2022 -0300
+
+    .
+
+commit c382497743f2d7c82ad9e7e133b7a8330c4d4629
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Sun Nov 6 17:44:58 2022 -0300
+
+    .
+
+commit 6eb9910b950142893087832ea0d1152993ea1640
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Sun Nov 6 17:21:42 2022 -0300
+
+    Se pueden ingresar y eliminar estadisticas
+
+commit b6b217d651588e1fd7f4d1dd0c2d34b23475990b
+Merge: 7f089caef a27c4a11f
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Sun Nov 6 15:14:27 2022 -0300
+
+    Merge branch 'main' of https://github.com/tupla-22/S.I.G.D-ReactJS
+
+commit 7f089caefab2ace0d0f30ef4cb666fb6ac01d7ac
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Sun Nov 6 15:14:24 2022 -0300
+
+    Update connection.php
+
+commit a27c4a11f98c76b57b5b09581a1ea7e8e6b2e61f
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Sun Nov 6 13:50:53 2022 -0300
+
+     arreglando acualizaciones de campeonatos
+
+commit 456e7ed3ab317aff875982d3746686f2a8ceb912
+Merge: b913a6eed 2f4663800
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Sun Nov 6 13:49:22 2022 -0300
+
+    Merge branch 'main' of https://github.com/tupla-22/S.I.G.D-ReactJS
+
+commit b913a6eed03bed1c1b19afc2d745d65d654bcb10
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Sun Nov 6 13:49:19 2022 -0300
+
+    Ejercicios
+
+commit 2f4663800d6547c3329d8f62684ffc7fcd35ff8d
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Sun Nov 6 07:21:51 2022 -0300
+
+    Carecteristica para elminar campeonatos sencilla
+
+commit 2f5219e86ac60b3fc484c1ff0f82a0c4e2fbd4ca
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Sun Nov 6 01:26:10 2022 -0300
+
+    agreagando mejora en la busqueda de equipos
+
+commit c5ea7df0b8ce15526402ebd51186ccd18e5e6ee1
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Sun Nov 6 00:27:05 2022 -0300
+
+    arreglando bug
+
+commit b8cea4a8d4c29b185ed4b42e636c10f2cb2d06cc
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Sat Nov 5 23:07:21 2022 -0300
+
+    VALIDACON de formularios
+
+commit 78afa4105822c326308ca323deb90dff80559d98
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Sat Nov 5 18:37:37 2022 -0300
+
+    arreglando creacion de usuario
+
+commit faed8286ef13cbc44facaf3c2c6aa1f254c7f58d
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Sat Nov 5 18:19:12 2022 -0300
+
+    Se agrego elminincion a deportes
+
+commit 862a0d1bf015fc7c06dbcb4cdbb635edf7195ff2
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Sat Nov 5 17:27:44 2022 -0300
+
+    datos de prueba
+
+commit 3d8e17216f08070e35fbe8718714fe7b22e45bf0
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Sat Nov 5 14:49:03 2022 -0300
+
+    agregando ligas
+
+commit cc2abb7b02b00830e675f424fb9640deb4183bac
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Sat Nov 5 07:28:07 2022 -0300
+
+    Update esquemaTerceraEntrega.sql
+
+commit fa839fffc6f1b3f90ae3bf1e999f78f32b98fc25
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Sat Nov 5 07:23:41 2022 -0300
+
+    Update esquemaTerceraEntrega.sql
+
+commit 9cac8df4ba092f824e3525eb8ca8cc40a2d2994d
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Sat Nov 5 07:19:44 2022 -0300
+
+    view para campeonatos no finalizados
+
+commit e6e8584182ee7a18639895edd6281f1e468c0133
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Sat Nov 5 02:45:18 2022 -0300
+
+    datos de prueba
+
+commit 25bf0d3f1b00e8a72d5fa0499028b6e00f2e1c01
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Fri Nov 4 22:30:47 2022 -0300
+
+    Update esquemaTerceraEntrega.sql
+
+commit 13da3fd8ecb766d923d086ba5f4757fcc9f2005a
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Fri Nov 4 22:14:14 2022 -0300
+
+    Update DMLSIGD.sql
+
+commit 5c486d496d088aef4b7dca908d32ad96d6044342
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Fri Nov 4 21:57:14 2022 -0300
+
+    datos de prueba
+
+commit a551ea1be87d546e1cf7aeab46259e2ded069e3d
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Fri Nov 4 21:57:05 2022 -0300
+
+    clave foranea de deportes a ligas
+
+commit 54d3ec60d5c7eb848a4c32ea8bc528d2d0711e07
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Fri Nov 4 18:53:42 2022 -0300
+
+    Ahora el historial de partidos se muesta por deporte
+
+commit 20663fed24ff7fc7e01ec74921b475c28038af70
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Fri Nov 4 17:55:22 2022 -0300
+
+    datos de prueba
+
+commit 9ee31b54cecd98cdd79d2008cc5f013ad908fdf3
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Fri Nov 4 17:05:08 2022 -0300
+
+    Update DMLSIGD.sql
+
+commit c512b0163d752c09d30250c0c582febb9d700006
+Merge: 407fbaba9 002cdddb1
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Fri Nov 4 17:04:40 2022 -0300
+
+    Merge branch 'main' of https://github.com/tupla-22/S.I.G.D-ReactJS
+
+commit 407fbaba937667533697351c46ff58b1a52d2897
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Fri Nov 4 17:04:24 2022 -0300
+
+    Update esquemaTerceraEntrega.sql
+
+commit 002cdddb1b9f10a0115a791d93b58e9c382a47e6
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Fri Nov 4 16:57:38 2022 -0300
+
+    Ahora se puede añadir estadisticas dinamicamente dependiendo del deporte
+
+commit 66c26c1128976226106740baf60e71b355c81cbc
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Fri Nov 4 11:47:28 2022 -0300
+
+    commit
+    
+    Arreglando bug en deportes elegidos al crear partido
+
+commit 717c2751f841296cafb01b8f91203eef955e1763
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Fri Nov 4 09:18:36 2022 -0300
+
+    Soluciones en ingreso de usuarios
+
+commit 7eabba918abe4d5546d45f7164fb6458208e47f5
+Merge: 445786dbd da93dae8f
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Fri Nov 4 08:57:12 2022 -0300
+
+    arreglando bugs en adduserform
+
+commit 445786dbd7e32ff619b8c3ea4144553b878e9715
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Fri Nov 4 08:15:45 2022 -0300
+
+    Arreglado bugs
+
+commit da93dae8f7cbc168bf2aec0200a79ddb5247bd5e
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Fri Nov 4 06:39:52 2022 -0300
+
+    ni me acuerdo que hice
+
+commit 02874637ab7c76b4cb704efc79e804a006dc7364
+Merge: e0a2d4edd dbad75afe
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Fri Nov 4 02:44:31 2022 -0300
+
+    Merge branch 'main' of https://github.com/tupla-22/S.I.G.D-ReactJS
+
+commit e0a2d4edd336a3c920fda6c20edb79729c6a4bd2
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Fri Nov 4 02:44:28 2022 -0300
+
+    Update esquemaTerceraEntrega.sql
+
+commit f5c24b34a0bc3ce61a3bfb0e2ed595d8ed380477
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Fri Nov 4 01:52:06 2022 -0300
+
+    view para ranking Goles Ultimo Campeonato
+
+commit dd4047efabcd56e2ce7604ffef4275d394569abc
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Fri Nov 4 01:50:36 2022 -0300
+
+    ejercicio 6
+
+commit deb53491a7b98328e470516ba04ab54382e6e21c
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Fri Nov 4 01:50:08 2022 -0300
+
+    registros de prueba corresponden
+
+commit dbad75afe030f2a3cc41aca2ffa6dcc65e4b51ca
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Thu Nov 3 22:16:03 2022 -0300
+
+    mejorando
+
+commit 40361dc363daf0020e5bad495ad19475f6b9f32b
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Thu Nov 3 22:12:11 2022 -0300
+
+    Se añaden estadisticas con su valor si es un tanto
+
+commit 928d4cde5dffd682b19545ed2f4f6b8978eca6f0
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Thu Nov 3 22:00:07 2022 -0300
+
+    trigger obtenerEquipoConMasPromedioEnEstadistiacaUltimoAnio
+
+commit 78c34842c7d4c604bb0191a4a45f5d371dce4377
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Thu Nov 3 21:58:25 2022 -0300
+
+    Update DMLSIGD.sql
+
+commit 645dde903d3d3cafa7c4ba428139180bc7720129
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Thu Nov 3 20:03:11 2022 -0300
+
+    correccion de trigger obtenerCampeonatosDondeNoSeParticipa
+
+commit d2ec2510bc05400fd1a9a7bbec8fea9864596796
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Thu Nov 3 19:43:21 2022 -0300
+
+    se añade trigger para corregir estadisticas
+
+commit e7a9dea463d70c104c57de17a7e7a5f17fbfaaf3
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Thu Nov 3 19:18:06 2022 -0300
+
+    arregalando bus
+
+commit 972380dcf725bcfa86eaf1086d3e73f406bbda7c
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Thu Nov 3 18:51:47 2022 -0300
+
+    getStatusCampeonato y valor a tipo estadistica
+
+commit 219e01677dbd83621d427a3350f9635d55ac865b
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Thu Nov 3 18:27:42 2022 -0300
+
+    se alñaden registros de prueba y ejercicio 6 de la entrega final
+
+commit cc34f9416d39926bba5217e2de8d015f4c20b417
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Thu Nov 3 16:13:31 2022 -0300
+
+    agregando condicional a greagar tabla campeonato
+
+commit 37a9afaa1d775e9d81b8abc59e0d9435001d1946
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Thu Nov 3 15:49:10 2022 -0300
+
+    Ahora se puede añardir un equipo a un deporte
+
+commit 94c16a9c0a91ca88313604af2073d2af414a6be1
+Merge: 8af821ac5 d613da516
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Thu Nov 3 15:21:30 2022 -0300
+
+    Merge branch 'main' of https://github.com/tupla-22/S.I.G.D-ReactJS
+
+commit 8af821ac5565c1802e56c74c1bdd0a9427b2a820
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Thu Nov 3 15:21:18 2022 -0300
+
+    Update get.model.php
+
+commit d613da516a76df4c2e542177212e6400e864b5d8
+Merge: 980c8fc69 cd39f297f
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Thu Nov 3 15:16:40 2022 -0300
+
+    .
+
+commit 980c8fc69bd71021de9496aadf12d52072638307
+Merge: e576e5d08 9c3ab0c09
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Thu Nov 3 15:16:09 2022 -0300
+
+    arreglos en equipos
+
+commit cd39f297fe923df1f42185e5218b7f1ac7aa6050
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Thu Nov 3 15:15:42 2022 -0300
+
+    nuevo procedure para obtener campeonatos en los que no se participa
+
+commit 9c3ab0c09243f50d8ad6ca838ea67efa904bccea
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Thu Nov 3 14:36:40 2022 -0300
+
+    se añade funcion para seleccionar Campeonato Donde No Se Participa
+
+commit e576e5d08beb56903ad29f5a31d6ad03f483fbb1
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Thu Nov 3 13:41:04 2022 -0300
+
+    Estilos de las tablas
+
+commit ed0c740a3817aef0f24e4754c333e9857e4d0147
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Thu Nov 3 13:32:44 2022 -0300
+
+    Arreglo simple
+
+commit 4b1f7dd5151e7b7db3aa2735e796f309f04bf3ee
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Thu Nov 3 13:29:26 2022 -0300
+
+    ahora el usuario dt puede ver los integrantes de un equipo
+
+commit b8887d340cdc4d2fc96ad6d4709dcddd8bb31cec
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Thu Nov 3 02:00:19 2022 -0300
+
+    actualizacion de tabla y ejercicio 5 entrega final
+
+commit 857e6f8e313c81b2ade96adae2d2da420e114d01
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Thu Nov 3 01:46:27 2022 -0300
+
+    ejercicio 4 de la entrega final y se añaden registros a estadisiticas
+
+commit c834c927689b45d64797544b54255a5bb5f0dae1
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Wed Nov 2 20:14:59 2022 -0300
+
+    Ahora el usuario puede ver sus equipos creados
+
+commit c712bf3c665a47a8961399bffebbe0da6c31ba5d
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Wed Nov 2 19:51:30 2022 -0300
+
+    Bug
+
+commit a9327410e2c99183a3887c764baf02d3b102e4b2
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Wed Nov 2 19:28:41 2022 -0300
+
+    buf
+
+commit d4f64d166c9bc69ea6591a3ce23f828301be46d2
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Wed Nov 2 19:21:07 2022 -0300
+
+    arreglando bug
+
+commit 4c1b091508d8411a0a04e24382cbd211dfb2318a
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Wed Nov 2 19:19:14 2022 -0300
+
+    Arreglando bug
+
+commit d9219c610093e5799983797cf0b4821e539665a8
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Wed Nov 2 19:15:21 2022 -0300
+
+    Se arreglo bug en control de analist
+
+commit 440b12b0d7784bc09c8cfbda8292f45a77f3f8c3
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Wed Nov 2 16:28:34 2022 -0300
+
+    se cargan los fixtures dinamicamente con los deportes que existen
+
+commit be1adedc0982b48b1a15239486b70e18ac24ee09
+Merge: be6c5978b f0cc4dc4c
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Wed Nov 2 15:55:44 2022 -0300
+
+    caracteristicas de deportes dinamicos
+
+commit be6c5978bac974000253560947b6b69d81e6b06e
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Wed Nov 2 15:54:56 2022 -0300
+
+    Controlar los deportes pero estos ahroa se ven dinamicamente segun el deporte
+
+commit f0cc4dc4c35966b1e7e07cd153fa32037eb4c053
+Merge: 442d4a524 6b4e0f890
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Wed Nov 2 15:40:32 2022 -0300
+
+    Merge branch 'main' of https://github.com/tupla-22/S.I.G.D-ReactJS
+
+commit 442d4a5249d10493dbb5b12c9fe971c6cfeffe20
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Wed Nov 2 15:40:28 2022 -0300
+
+    datos de prueba para equipos que compiten en campeonatos
+
+commit 6b4e0f890642974f5777a7c4d013b563f5e2ee83
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Wed Nov 2 14:44:52 2022 -0300
+
+    estilos de tablas
+
+commit 661ce41ac883b81906da1cfde595ce273bc3c3cf
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Wed Nov 2 14:40:22 2022 -0300
+
+    mejorando tabla de deportes
+
+commit 28a3227177dd5459088ff1cf00be3cb8ba36051a
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Wed Nov 2 14:22:41 2022 -0300
+
+    primer ejercicio de la entrega final
+
+commit ed8697b4454a39ece0c26b6516d2f96394051246
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Wed Nov 2 13:55:32 2022 -0300
+
+    se añaden registros de prueba a campeonatos
+
+commit f89877ba66c572741d6d2bdc8e4e37f5da1cc889
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Wed Nov 2 13:44:52 2022 -0300
+
+    se añadentriggers para poder eliminar registros sin que se vean afectados por las FK
+
+commit 7e4ade8d7486de628cdd933faf7db93ed530d97d
+Merge: 4098fa2e4 59631685a
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Wed Nov 2 12:47:10 2022 -0300
+
+    Merge branch 'main' of https://github.com/tupla-22/S.I.G.D-ReactJS
+
+commit 4098fa2e41cf9c29f2880fc77dad88a9db7b8129
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Wed Nov 2 12:46:58 2022 -0300
+
+    correccion de icono para estadisticas y se añaden registros de prueba
+
+commit 59631685a8e5a8bfecfa64c6a19649a5ec38beb6
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Wed Nov 2 12:43:05 2022 -0300
+
+    Se puede añadir tipos de estadisticas a deportes
+
+commit 51438ccf508bce1dffc8c3ca992f046abd8148dd
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Wed Nov 2 12:40:59 2022 -0300
+
+    se añade icono al tipo de estadistica
+
+commit 9b8090c8cc094ab95ee131a1ec505703ac0c1134
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Wed Nov 2 11:47:14 2022 -0300
+
+    se añade fotos a deporte
+
+commit c234b145158576d4381283fd43cbdb996d40be99
+Merge: 9b6d53cc2 3ca63ba0a
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Wed Nov 2 10:47:41 2022 -0300
+
+    Merge branch 'main' of https://github.com/tupla-22/S.I.G.D-ReactJS
+
+commit 9b6d53cc2afba8d8ab4934e58b505f8082c2c0bf
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Wed Nov 2 10:47:37 2022 -0300
+
+    modificadion de puntos de campeonato y correccion de errores
+
+commit 5f0e26c2afb1f76f461b7edec089542b9c00a39e
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Wed Nov 2 10:12:44 2022 -0300
+
+    se añaden tablas en la base de deatos y se organiza el codigo
+
+commit 3ca63ba0ad6bcbfbc1feb7725671bd62ea443173
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Wed Nov 2 09:56:25 2022 -0300
+
+    Ahora pestaña lee los deportes de forma dinamica
+
+commit 5d4360939dbf8b88c7238b544dccbf7007ee4cfc
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Tue Nov 1 23:32:25 2022 -0300
+
+    se añaden triggers para errores de eliminar datos por las fk
+
+commit 303404bca7ba8e96f1e7c32b615d36c1186b4849
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Tue Nov 1 23:28:47 2022 -0300
+
+    .
+
+commit 278859371b463ae2f2bed9631e9988e197b41fdb
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Tue Nov 1 13:56:18 2022 -0300
+
+    arreglado que los partidos tengan un ganador y goles de los equipos, tambien se redirige el home al usuario logeado a su home correspondiente
+
+commit 701457befb4c170e07c3441e5d5077a013790a8c
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Tue Nov 1 02:15:18 2022 -0300
+
+    Update esquemaTerceraEntrega.sql
+
+commit 968521509e368d2dc1096f92fd45099184184bfd
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Tue Nov 1 02:00:21 2022 -0300
+
+    Agregando ganador y puntos de equipos
+
+commit 6bd1b8605489406f6da22ff383a9c5bd6f696761
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Tue Nov 1 01:53:58 2022 -0300
+
+    Update esquemaTerceraEntrega.sql
+
+commit ee0f11f04cee3b2c80376b6c88ff55ae67e4e7aa
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Tue Nov 1 01:45:39 2022 -0300
+
+    actualizacion en partidos
+
+commit 0f2ad0069d03e22b7bd5063452d6e793ec7fdd91
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Tue Nov 1 01:42:38 2022 -0300
+
+    Update get.model.php
+
+commit de4d8de986f411e993655ce699931502489d31c6
+Merge: 0de84a7eb 18b48b7b0
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Tue Nov 1 00:47:34 2022 -0300
+
+    Ahora el usuario estudiante puede ver su equipo e integrantes
+
+commit 18b48b7b0a98ebb21234065a4c5ca82fa5562677
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Tue Nov 1 00:02:41 2022 -0300
+
+    obtener integrantes del equipo y equipo por la id del usuario estudiante perteneciente al mismo
+
+commit 0de84a7eb07c2bb5923896ec863cac9b2970fea8
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Mon Oct 31 23:38:42 2022 -0300
+
+    Usuario eliminado ahora no aparece en lista de usuarios
+
+commit c61acab71e267fb0e9e8df714edeeb246f16048d
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Mon Oct 31 23:26:51 2022 -0300
+
+    se añade procedure para obtener jugadores pertenecientes al equipo de un jugador
+
+commit 9eae8263b587db6a09b62c0d42523ea3d9fbc169
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Mon Oct 31 22:42:53 2022 -0300
+
+    Bug en boton confimar eliminacion
+
+commit 9e950ccd44dbcc9c8ecf81a21c8d03fd55870829
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Mon Oct 31 15:11:10 2022 -0300
+
+    Arreglando perfil de estudiante
+
+commit 0c2ec5ee8495e77893a5d3c7f2be74d476a62291
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Sun Oct 30 22:18:19 2022 -0300
+
+    bug en foto de perfil
+
+commit 52598c1d5c8699d6c58ba70faff0f61776969502
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Sun Oct 30 21:12:21 2022 -0300
+
+    Bug
+
+commit 53169c5aaaa2a42418d07de29aa7c1b179c98ef6
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Sun Oct 30 20:58:50 2022 -0300
+
+    bug
+
+commit d57c249358cff533394939727c3d462da659aceb
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Sun Oct 30 20:50:12 2022 -0300
+
+    .
+
+commit 141782dc8a59f203d2765d9cd396bf9b8cfb66d7
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Sun Oct 30 18:09:41 2022 -0300
+
+    Agregando actualizar numeros telefonicos en perfil
+
+commit a0dfb3e4316c773e384ee94575fbf03baff23b9a
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Sun Oct 30 08:55:44 2022 -0300
+
+    Traducioendo y arreglando algunos bugs
+
+commit dad95ced0184ec375ee4abf548b2c88d967c6f0b
+Merge: cf0204da3 442b4df5a
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Sat Oct 29 20:10:25 2022 -0300
+
+    Merge branch 'main' of https://github.com/tupla-22/S.I.G.D-ReactJS
+
+commit cf0204da3cdde1c92c8880a10e9410844d30b431
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Sat Oct 29 20:10:14 2022 -0300
+
+    Update esquemaTerceraEntrega.sql
+
+commit 442b4df5a93f206f16564e3c641ee71ba3943b78
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Sat Oct 29 19:47:55 2022 -0300
+
+    reparacion de bug en actualizacion de equipos
+
+commit cec261626c986589d6e354ade46039de03662479
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Sat Oct 29 18:44:17 2022 -0300
+
+    Update esquemaTerceraEntrega.sql
+
+commit 2f548e293bcfe9079845d8dfa448ad068bcce125
+Merge: a3e2634ec bd0678279
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Sat Oct 29 18:42:00 2022 -0300
+
+    Merge branch 'main' of https://github.com/tupla-22/S.I.G.D-ReactJS
+
+commit a3e2634ec0445487ae2c4040440b3ce9c99719d1
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Sat Oct 29 18:40:59 2022 -0300
+
+    Update get.model.php
+
+commit bd06782791449b18b3b540e3eb63b2358c306b29
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Sat Oct 29 18:18:38 2022 -0300
+
+    Idioma con localstorage
+
+commit f7ecac4969615bb3f646eda079bcb020952c9ab3
+Merge: 592a368ce dfb40c6a3
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Sat Oct 29 17:41:21 2022 -0300
+
+    Ocultando root
+
+commit 592a368ce6c876163b25f65b33a46c2d10e853da
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Sat Oct 29 17:40:29 2022 -0300
+
+    Ocultando usuario root
+
+commit dfb40c6a3504518f2ac5c262c84cc8d324d37669
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Sat Oct 29 17:40:10 2022 -0300
+
+    Update deleteController.php
+
+commit cece034d45f994f611d5375c6359cc6e32baf241
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Sat Oct 29 17:37:05 2022 -0300
+
+    Update deleteController.php
+
+commit 62693d8f30340aa4c41d40a03f0c8c48927b92d8
+Merge: 1e9aeda30 c179b2807
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Sat Oct 29 17:34:55 2022 -0300
+
+    Merge branch 'main' of https://github.com/tupla-22/S.I.G.D-ReactJS
+
+commit 1e9aeda30e7257fc8175c3833411c67c659acb5b
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Sat Oct 29 17:34:30 2022 -0300
+
+    medida de seguridad para no eliminar al root
+
+commit c179b2807d2dcb5625db2aa771fa2c8597b1c60d
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Sat Oct 29 16:30:47 2022 -0300
+
+    ingresando todas las caracteristicas del usuario reclutador
+
+commit 593efb0ad78155a923e6d00ead5f8674ec372070
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Sat Oct 29 15:49:49 2022 -0300
+
+    Update get.model.php
+
+commit 78f9ff0ed9fab7bfc8680b458e7a4d1c2cb8df35
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Sat Oct 29 15:39:46 2022 -0300
+
+    Update esquemaTerceraEntrega.sql
+
+commit dbfce42066c3400a6373213cb8bc59dc585c7082
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Sat Oct 29 13:36:21 2022 -0300
+
+    Update esquemaTerceraEntrega.sql
+
+commit d860ed6db0acdb30a12cd89965d17e8953220d39
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Sat Oct 29 13:17:24 2022 -0300
+
+    Update esquemaTerceraEntrega.sql
+
+commit 46ce4d0a7c3b00b635c50e6b0aa9c914f870859c
+Merge: 8f0a0e215 d0438125d
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Sat Oct 29 11:41:58 2022 -0300
+
+    Merge branch 'main' of https://github.com/tupla-22/S.I.G.D-ReactJS
+
+commit 8f0a0e215ab1241ccd0bc6df5d4ebbe171f45eba
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Sat Oct 29 11:41:53 2022 -0300
+
+    Update esquemaTerceraEntrega.sql
+
+commit d0438125d1c60ab225fcb440daf1897065ec821f
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Sat Oct 29 10:35:26 2022 -0300
+
+    Agregando tablas de atributos multivaluados y reparando pestaña del reclutador
+
+commit 2123bbe2214172b7572e14547b7ca863991e6e0e
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Fri Oct 28 15:48:15 2022 -0300
+
+    Eliminando node modules
+
+commit 55cfb88729743796fc6c1e1827e97549482056d5
+Merge: b0a9c6f50 d5a53d343
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Fri Oct 28 15:46:59 2022 -0300
+
+    .
+
+commit b0a9c6f50dc27929545e4a5afd73b4c8898bc0de
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Fri Oct 28 15:45:04 2022 -0300
+
+    gitignore
+
+commit d5a53d343e3f200a2d42b2e51b6298682bdc5adf
+Merge: b68d5662f c8fdd47b1
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Fri Oct 28 15:42:21 2022 -0300
+
+    Merge branch 'main' of https://github.com/tupla-22/S.I.G.D-ReactJS
+
+commit b68d5662fef2ea1f7146bf8f3926c61956bda8a4
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Fri Oct 28 15:41:57 2022 -0300
+
+    Update .gitignore
+
+commit c8fdd47b170a8097332049e96b4cf9b457d5fff7
+Merge: 447bac1f8 4b522f89c
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Fri Oct 28 15:34:21 2022 -0300
+
+    .
+
+commit 447bac1f8a2d4cd8220c82ec930356aed6286bb6
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Fri Oct 28 15:31:54 2022 -0300
+
+    .
+
+commit 4b522f89c13fee1e18579b0eb569fcc4a8aa54c8
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Fri Oct 28 15:28:39 2022 -0300
+
+    Creacion de rama
+
+commit 766fd8f8cf520dfed22de780e941733633ff239b
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Fri Oct 28 15:27:19 2022 -0300
+
+    Creando tarjeta de jugador
+
+commit ee4526dd6cf6c646cf7d00b8a209fcb6a6f59452
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Fri Oct 28 13:59:35 2022 -0300
+
+    se añade funcion para seleccionar multiples estadisticas y su conteo
+
+commit ef799e76a8de9e962ec552064a56056ce029a2ce
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Fri Oct 28 11:23:37 2022 -0300
+
+    deshago cambio en bd
+
+commit 00312bee0ce8783c441443860b1e2f05ce873b01
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Thu Oct 27 17:16:56 2022 -0300
+
+    Agregado multi idioma en vista de adminidtrador
+
+commit 4acec32f34d98177268f99a3926367f3da287eec
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Thu Oct 27 12:28:42 2022 -0300
+
+    Update esquemaTerceraEntrega.sql
+
+commit 16ce15e24fc2a24c9f6f52f96efbdc15984b90e1
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Wed Oct 26 18:35:32 2022 -0300
+
+    Animaciones
+
+commit bbd51209fe4bbf3a6fb937b6daa980396aedb20f
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Wed Oct 26 17:50:09 2022 -0300
+
+    He añadido animaciones en primer pestaña
+
+commit 2988280914ca91ad41b09aa971d80c2f2fc22347
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Tue Oct 25 23:07:15 2022 -0300
+
+    Cambiando logotipo y caracteristicas en barra home
+
+commit f796710c14b2f538258b8598354361519acd4256
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Tue Oct 25 19:38:49 2022 -0300
+
+    barra de navegacion del home general y menu multi idioma
+
+commit 60c91b7463f7246ff653cd7f181eec72078e4e9d
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Tue Oct 25 17:17:18 2022 -0300
+
+    Bug
+
+commit e3e16b2f7b983316b6eac0b304f28d172da6f5a3
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Tue Oct 25 17:09:47 2022 -0300
+
+    Estadisticas a verificar se le agrego modal de notificacion
+
+commit b0b29b04d67964d3472658926b019c264b4b9c5d
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Tue Oct 25 16:34:28 2022 -0300
+
+    Footer y estadisticas verificables
+
+commit 96a0401235ac7d65b1fea30a2b54f56952086b64
+Merge: e2e4c01d2 088d31f34
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Tue Oct 25 14:57:59 2022 -0300
+
+    Multi idioma
+
+commit e2e4c01d2b7f5785238f149082365e5771599f93
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Tue Oct 25 14:57:18 2022 -0300
+
+    Realizando multi idioma
+
+commit 088d31f34850cf3b9054bca01319ffbcab7ade2d
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Tue Oct 25 01:25:16 2022 +0200
+
+    Update esquemaTerceraEntrega.sql
+
+commit fd626a3eaac1f44d8fd87c457cbb44ea6777035e
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Mon Oct 24 22:45:20 2022 +0200
+
+    se annade el filtro de verificado en el buscador de estadisticas
+
+commit 8f8f46997241a4c82b8fc1b2577a670d018ef01b
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Mon Oct 24 22:07:58 2022 +0200
+
+    Update esquemaTerceraEntrega.sql
+
+commit 20e0e28e70ac224e7169ba9deebc35722558c46b
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Mon Oct 24 21:46:23 2022 +0200
+
+    Update esquemaTerceraEntrega.sql
+
+commit 6e6d4967616739d46007902877d72941a8a0d22d
+Merge: 4bd0dcf09 3260f483b
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Mon Oct 24 10:54:31 2022 -0300
+
+    agregando caracteristicas
+
+commit 4bd0dcf098c969193ead8052ccff1f75e37d3128
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Mon Oct 24 10:53:24 2022 -0300
+
+    Mejoras
+
+commit 3260f483ba2c835a34f8029af90b03fefcfc6889
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Sun Oct 23 23:24:45 2022 -0300
+
+    Update esquemaTerceraEntrega.sql
+
+commit 8413a44d7284ef5d70a74fe123bc871a0c2db100
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Sun Oct 23 23:10:24 2022 -0300
+
+    implemantacion de estadisticas filtradas
+
+commit 2e68a27d38f2eccdd8f88af896898cf28c02d5fa
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Sun Oct 23 21:58:40 2022 -0300
+
+    Realizando jugadores que jugaran en pestaña del analista
+
+commit 1973d9e345cccf0a4a867ae9cecbcc0012b64428
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Sun Oct 23 21:42:26 2022 -0300
+
+    procedures para estadisticas
+
+commit 36e7744fc05fda7645607731597dd696b3d5bf44
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Sun Oct 23 20:39:31 2022 -0300
+
+    Update esquemaTerceraEntrega.sql
+
+commit 4254254bfab826e8789e3be7e7ae52d91034dded
+Merge: 8045ab467 3d312b7fc
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Mon Oct 24 01:30:50 2022 +0200
+
+    Merge branch 'main' of https://github.com/tupla-22/S.I.G.D-ReactJS
+
+commit 8045ab46787b1d0a5cb6acbfed37da9d1af9b910
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Mon Oct 24 01:30:46 2022 +0200
+
+    Update esquemaTerceraEntrega.sql
+
+commit 3d312b7fc504e22494882c1c2927eb6f3d520b59
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Sun Oct 23 19:26:53 2022 -0300
+
+    Agregando titulares al partido
+
+commit 8ced46f5d79f145af84246112f8926adcd7f8d11
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Sun Oct 23 12:46:07 2022 -0300
+
+    Retoque en varios sectores
+
+commit 941082d03fa1c00690e731a14bc6ccddbdebbdc8
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Sun Oct 23 11:01:30 2022 -0300
+
+    Update esquemaTerceraEntrega.sql
+
+commit c2e24ed00f4b15262a9fedaeeeac4b7360739b5a
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Sat Oct 22 20:37:38 2022 -0300
+
+    Update esquemaTerceraEntrega.sql
+
+commit 1b6c78b8e13acb602ecb4867eaac80840ca866d1
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Sat Oct 22 20:29:21 2022 -0300
+
+    Update esquemaTerceraEntrega.sql
+
+commit 40121b680fdede769b8a1dee39ec66f687aa3d8e
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Sat Oct 22 16:03:14 2022 -0300
+
+    actualizo bd
+
+commit 7fc5ecb6c72d3dae23ed43baee7f75cafa58af18
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Fri Oct 21 17:18:21 2022 -0300
+
+    Update esquemaTerceraEntrega.sql
+
+commit f76556faa29dbf05d17dd8ca36db56cef95045ff
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Fri Oct 21 17:17:54 2022 -0300
+
+    verificado a estadisticas
+
+commit 3981ca3c6f76efa37fd21e52824e54305c78330e
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Fri Oct 21 16:48:34 2022 -0300
+
+    Update esquemaTerceraEntrega.sql
+
+commit d9b0f18f0a4ef107dd413826e5165a89a3e6201f
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Fri Oct 21 16:46:57 2022 -0300
+
+    Update esquemaTerceraEntrega.sql
+
+commit e681ef354698793e1fd4b312efbd8c4a3e765737
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Fri Oct 21 16:45:50 2022 -0300
+
+    contador estadisticas
+
+commit 71e9fe0d74dfd32a4ba40f62cd3e8c6ab76d10c3
+Merge: 4c17589ae 96dc4f504
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Fri Oct 21 20:30:41 2022 +0200
+
+    Merge branch 'main' of https://github.com/tupla-22/S.I.G.D-ReactJS
+
+commit 4c17589aed05d534f52a2fa0aaafb917ad963102
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Fri Oct 21 20:30:30 2022 +0200
+
+    estadisticas (incompleto)
+
+commit 96dc4f50472625c30f9aab3ea9c952a9e8a3a8cd
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Fri Oct 21 11:11:15 2022 -0300
+
+    Retoques en pestaña profile
+
+commit caa8af7bd58f3e526912d2c85c0f78db772bf96e
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Wed Oct 19 16:14:44 2022 -0300
+
+    Create esquemaTerceraEntrega.sql
+
+commit 5c36c03ac043f45d0b5df66c3987f9ae86bdd7be
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Wed Oct 19 15:33:20 2022 -0300
+
+    reparacion de actualizacion de usuarios
+
+commit 7680fd676e497144e2453b562fa0188fa4882641
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Mon Oct 17 16:50:38 2022 -0300
+
+    reparacion de eliminacion de equipos
+
+commit a0723b2a53489515565e9a8a041584ba95ada27d
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Mon Oct 17 15:17:21 2022 -0300
+
+    Se hicieron cambios en agregar partidos
+
+commit f7f3ea16aca39fb3ff765d80a3a89ccf2212f2ad
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Sun Oct 16 15:22:10 2022 -0300
+
+    Realizacion de cambio de foto de perfil
+
+commit 5aef97f635fa4eea2f8409214596c2eda915b880
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Sat Oct 15 17:07:27 2022 -0300
+
+    Update get.model.php
+
+commit 8cbc6f1258cf7ffc6d460046d28b0fcc7b1228ae
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Sat Oct 15 17:00:26 2022 -0300
+
+    Update get.model.php
+
+commit 0848fd5daf6d3108cf36880d70162a50602c5acc
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Sat Oct 15 16:23:23 2022 -0300
+
+    link to e id_usuario para getsquad(no funciona)
+
+commit e696a22bb3cfe43a503f9ddb7abce571f6f806b9
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Tue Oct 11 20:29:44 2022 -0300
+
+    realizando modificaciones en el formulario de ingresos de usuario
+
+commit 53054b1d6d845fba4da581f621ec59e200e115af
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Mon Oct 10 20:47:11 2022 -0300
+
+    Create .gitignore
+
+commit 19fe4853162920445caf1b8e265a94e45761e4a0
+Merge: d0c73e998 d6d73b354
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Mon Oct 10 20:44:41 2022 -0300
+
+    Merge branch 'main' of https://github.com/tupla-22/S.I.G.D-ReactJS
+
+commit d0c73e9981a48ffb0617688a936f14485d40b700
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Mon Oct 10 20:44:39 2022 -0300
+
+    Update get.model.php
+
+commit d6d73b35409e9edee00e81721e4ddd56ef395790
+Merge: 0adaf6e42 7d021d85e
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Mon Oct 10 20:13:53 2022 -0300
+
+    .
+
+commit 0adaf6e42055ab5eabdfd44ee5dc7ea1b48f2d0c
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Mon Oct 10 20:13:22 2022 -0300
+
+    Login
+
+commit 7d021d85e45978d05b79c5543e120be8d92bc3aa
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Mon Oct 10 19:56:32 2022 -0300
+
+    solicitud get para ver jugadores de equipos
+
+commit 688bb6c2b5c49b9cf6c2a5564c58699b90b9547d
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Mon Oct 10 18:37:31 2022 -0300
+
+    gestion de partidos en pestaña de analista
+
+commit 0dcd6fcf0361499b43ca2505f1f0c630a2ef9acb
+Merge: 3f46e9e46 14db3c3d3
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Mon Oct 10 15:57:26 2022 -0300
+
+    Merge branch 'main' of https://github.com/tupla-22/S.I.G.D-ReactJS
+
+commit 3f46e9e469f8460971c026da563a05f3a6e07136
+Merge: 857465374 0e24a8692
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Mon Oct 10 15:54:03 2022 -0300
+
+    Merge branch 'main' of https://github.com/tupla-22/S.I.G.D-ReactJS
+
+commit 14db3c3d3f67574dda789418563cfdba66411634
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Thu Oct 6 22:16:32 2022 -0300
+
+    formulario
+
+commit 8574653741bcbd1ed035914b22ebbffd31ce5a95
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Thu Oct 6 18:14:08 2022 -0300
+
+    Update .eslintcache
+
+commit 0e24a8692aed4a2c0f1db550d2ac2fc51152e534
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Thu Oct 6 17:55:14 2022 -0300
+
+    partidos
+
+commit 7d602fd35d1ac85ecac317a15b8728d5851e322a
+Merge: cb48ca4d3 96bbfc2ab
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Thu Oct 6 17:48:20 2022 -0300
+
+    Merge branch 'main' of https://github.com/tupla-22/S.I.G.D-ReactJS
+
+commit cb48ca4d31db32bdad9ce38879a1503b34c90abc
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Thu Oct 6 17:46:57 2022 -0300
+
+    arreglando cuentiones de partidos
+
+commit 96bbfc2ab72b89aee305adc825aa6fe833115e33
+Merge: 9bec72187 0d5e1c809
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Thu Oct 6 17:31:50 2022 -0300
+
+    Merge branch 'main' of https://github.com/tupla-22/S.I.G.D-ReactJS
+
+commit 9bec721870d6571549690c7a517ffb965fda5a91
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Thu Oct 6 17:31:47 2022 -0300
+
+    encriptar contraseña al cambiarla
+
+commit 0d5e1c809e55c263395d08a1a075d46217d95a11
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Thu Oct 6 16:58:48 2022 -0300
+
+    Arreglando formulario de creacion de usuarios
+
+commit 541323796a45e4df3e225083f3516b484574a4de
+Merge: 1d9c72bde 594b207ea
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Thu Oct 6 16:18:38 2022 -0300
+
+    Merge branch 'main' of https://github.com/tupla-22/S.I.G.D-ReactJS
+
+commit 1d9c72bde69a03525cca739d31b8e46b776451a4
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Thu Oct 6 16:18:26 2022 -0300
+
+    Agregando actualizacion de partidos
+
+commit 594b207ea683b613ee9f13f58af7988a13e8b72b
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Thu Oct 6 16:16:57 2022 -0300
+
+    modifico tiempo de expiracion del token
+
+commit edd0e3be538a1568c876880d2be940d8fd5039d9
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Wed Oct 5 19:50:26 2022 -0300
+
+    Se agregaron caracteristicas de agregar y eliminar partidos
+
+commit 65c5e03dbf1cf8f0ef83d0d3cfbbb17d48144815
+Merge: 1e595f2f9 a3497f965
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Wed Oct 5 17:52:34 2022 -0300
+
+    areglando partidos
+
+commit 1e595f2f9c67d5f5fc01a8223946f4c9ba201c20
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Tue Oct 4 19:51:15 2022 -0300
+
+    actualizando partidos y campeonatos
+
+commit a3497f965c3055500ba0f71c60a55510f653ee64
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Tue Oct 4 16:59:05 2022 -0300
+
+    apikey(disabled)
+
+commit 293eb38ca5e96584269dd530beedd916a50a8a06
+Merge: cb4becc18 89a474322
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Mon Oct 3 16:55:05 2022 -0300
+
+    Merge branch 'main' of https://github.com/tupla-22/S.I.G.D-ReactJS
+
+commit cb4becc18af3cc726736e532d1401126eaf25c88
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Mon Oct 3 16:54:11 2022 -0300
+
+    exepciones
+
+commit 89a47432261e32f602c6f0bb4e40e33efb537473
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Sun Oct 2 13:29:59 2022 -0300
+
+    actualizacion de usuarios
+
+commit 56117879173824bb6c3fe6bfb56e76286083a92d
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Sun Oct 2 11:21:29 2022 -0300
+
+    Eliminacion de usuarios y creacion de los mismos fueron modificados
+
+commit 5274e935e237856ff075ed4c5546a21fd4a08ce0
+Merge: b43733c4a 23a20e2ea
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Thu Sep 29 16:12:20 2022 -0300
+
+    .
+
+commit b43733c4a9c02b1f587f2ab65807d324d6ee5389
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Thu Sep 29 15:55:12 2022 -0300
+
+    Arreglo de formlogin
+
+commit 23a20e2ead425c3055682b4aa069e47e7f50351c
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Thu Sep 29 15:25:00 2022 -0300
+
+    Update .eslintcache
+
+commit 3a6da60a02878ee026c142d0df7d218252f01577
+Merge: 8f55bf5a7 2a451e2ad
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Tue Sep 27 20:00:08 2022 -0300
+
+    Merge branch 'main' of https://github.com/tupla-22/S.I.G.D-ReactJS
+
+commit 8f55bf5a7598d987e708034ac57e4e83a9a9aee6
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Tue Sep 27 19:54:28 2022 -0300
+
+    validacion de token para solicitudes put post y delete
+
+commit 2a451e2ade915de095411b6cc2fea5dbd7411c94
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Tue Sep 27 19:42:50 2022 -0300
+
+    .
+
+commit 223f545734cf111219bbbad788e4641e4aaea473
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Tue Sep 27 17:30:01 2022 -0300
+
+    .
+
+commit bb40cd2e3d19843c014c05141bf801dc48a0b6a6
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Tue Sep 27 17:23:03 2022 -0300
+
+    actualizo getmodel
+
+commit dbf6bf39337dd92706748268a0e5c136ac08ad11
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Tue Sep 27 15:52:05 2022 -0300
+
+    Update get.model.php
+
+commit 1dc4cb72b9fd17e2f8913f82451a6b89ebad2312
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Tue Sep 27 15:51:05 2022 -0300
+
+    Update get.model.php
+
+commit ee86fbb1a521dc5cd43092abc0c23e02a9aa881c
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Tue Sep 27 14:54:24 2022 -0300
+
+    matcheck de 1 deporte
+
+commit 99873e5151974261fc523646afec5885930770f5
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Tue Sep 27 03:00:47 2022 -0300
+
+    fixture(incompleto)
+
+commit 2f2e458653db91bf2cd1eabd0ccb922234341466
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Wed Sep 21 11:37:11 2022 -0300
+
+    agregando caracteristicas de agregar campeonatos y partidos
+
+commit 55ce5729ea6c8885192f5ac98d17f6eb9e63f7ec
+Merge: 2338f57b6 2a311b496
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Wed Sep 14 13:39:14 2022 -0300
+
+    Merge branch 'main' of https://github.com/tupla-22/S.I.G.D-ReactJS
+
+commit 2338f57b6e168256362fb812358e43f01d90d2de
+Merge: 1a2b7db74 11ea85f00
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Wed Sep 14 13:38:41 2022 -0300
+
+    Merge branch 'main' of https://github.com/tupla-22/S.I.G.D-ReactJS
+
+commit 2a311b496e9bd9bc6204945a034f41895d9564bd
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Mon Sep 12 21:02:30 2022 -0300
+
+    Arreglando bar
+
+commit 2b068ff499305e29b07fb61f91625a7399621fc9
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Mon Sep 12 19:58:59 2022 -0300
+
+    navbar
+
+commit ce47b0e4f0e9cb997b281b8c041b4d73256e348d
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Sun Sep 11 08:26:38 2022 -0300
+
+    actualizando articulos de login
+
+commit d20fed93fda6581abb04e5321154dfd1b7a451ca
+Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
+Date:   Fri Sep 9 16:45:03 2022 -0300
+
+    mejorando login y formulario
+
+commit 1a2b7db748626b39172d4037a7d097274cf3e713
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Thu Sep 8 19:14:34 2022 -0300
+
+    correccion
+
+commit 11ea85f007926400e71b982380138bcbe2f61d94
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Mon Sep 5 20:08:50 2022 -0300
+
+    Update index.html
+
+commit 816d08893b65fb474b835f43dfb170f8c5ca744b
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Mon Sep 5 20:08:00 2022 -0300
+
+    build
+
+commit 2fc649395a92162665ae23bf072c6d6d5aff91ff
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Mon Sep 5 20:01:32 2022 -0300
+
+    actualiz
+
+commit 24263602eeff6b34d3cf226f837f16e1661379d9
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Mon Sep 5 20:00:18 2022 -0300
+
+    build
+
+commit 54a78998f023538de3485e36e32a0109c2118919
+Author: Ivan-FF <forteferraroivan@gmail.com>
+Date:   Mon Sep 5 19:25:06 2022 -0300
+
+    Update log.txt
+
 commit c667b4364db2b35ccacc183d56c3d52ce6581206
 Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
 Date:   Mon Sep 5 17:59:27 2022 -0300
@@ -23,7 +1540,7 @@ Date:   Mon Sep 5 15:59:36 2022 -0300
     Create seed.php
 
 commit 3193e392f5eb2875540ce1e7f0113e999afedd5f
-Merge: 39d0877 f3c9a04
+Merge: 39d0877a6 f3c9a04e0
 Author: Ivan-FF <forteferraroivan@gmail.com>
 Date:   Mon Sep 5 15:25:56 2022 -0300
 
@@ -66,7 +1583,7 @@ Date:   Sun Sep 4 20:28:36 2022 -0300
     test
 
 commit 74f627ca7fb2a57b4205c50ca0a73fa25561c8f2
-Merge: 2a3ab8a 5d5af33
+Merge: 2a3ab8ac8 5d5af33d4
 Author: Ivan-FF <forteferraroivan@gmail.com>
 Date:   Sun Sep 4 19:52:41 2022 -0300
 
@@ -193,7 +1710,7 @@ Date:   Sun Aug 28 13:33:47 2022 -0300
     se cambia la base de datos
 
 commit edd8c34eb05ae5f60d5f959726553316a5d25f8b
-Merge: c48e869 8e2942e
+Merge: c48e869c1 8e2942e4a
 Author: Ivan-FF <forteferraroivan@gmail.com>
 Date:   Sun Aug 28 13:27:07 2022 -0300
 
@@ -238,7 +1755,7 @@ Date:   Thu Aug 11 09:37:00 2022 -0300
     Reparando cuestiones de test en pestaña 'agregar usuarios'
 
 commit 19dd55573a5268bce5e4072d2cd8428b84fa6915
-Merge: d50f305 ecec4cd
+Merge: d50f30544 ecec4cd7f
 Author: Ivan-FF <forteferraroivan@gmail.com>
 Date:   Mon Aug 8 20:19:14 2022 -0300
 
@@ -431,7 +1948,7 @@ Date:   Wed Jul 13 18:53:15 2022 -0300
     .
 
 commit 4f0870dd019a69c41afcde0a4a879028bdf4c7fe
-Merge: 9be18f8 55f2ec0
+Merge: 9be18f857 55f2ec0ad
 Author: Lucas Pérez <86010222+ElCoda33@users.noreply.github.com>
 Date:   Wed Jul 13 18:32:36 2022 -0300
 
