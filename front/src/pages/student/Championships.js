@@ -4,7 +4,6 @@ import NavLink from "../../componentes/NavLink"
 import Main from "../../componentes/styledComponents/Main"
 import LanguajeContext from "../../contexts/LanguajeContext"
 import AdminNav from "../admin/componentes/AdminNav"
-import ChampionshipList from "../admin/componentes/ChampionshipList"
 
 const Championships = () => {
 

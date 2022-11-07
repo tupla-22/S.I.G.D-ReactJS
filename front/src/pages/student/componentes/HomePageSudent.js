@@ -1,10 +1,7 @@
-import { DivOver } from "../../../componentes/DivOver"
-import { Table } from "../../../componentes/styledComponents/Table"
-import { TH } from "../../../componentes/styledComponents/TH"
+
 import React, { useState, useEffect } from "react"
 import { helpHttp } from "../../../helpers/helpHttp"
 import { getUser, urlApi } from "../../../functions/globals"
-import PlayerCard from "../../../componentes/PlayerModal.js"
 import { H3B } from "../../../componentes/styledComponents/ComponentesDeEstilos"
 import PlayerCardOnly from "../../../componentes/PlayerCardOnly"
 import { useContext } from "react"
