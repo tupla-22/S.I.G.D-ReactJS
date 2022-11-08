@@ -1,17 +1,22 @@
 {
   "files": {
-    "main.css": "/static/css/main.a9e99eba.css",
-    "main.js": "/static/js/main.6f261c1b.js",
+    "main.css": "/static/css/main.76436238.css",
+    "main.js": "/static/js/main.623c83b6.js",
     "static/js/787.a40a19f2.chunk.js": "/static/js/787.a40a19f2.chunk.js",
     "static/media/FondoLogin.jpg": "/static/media/FondoLogin.ce5ef30dbd383808d01e.jpg",
-    "static/media/logo_small.png": "/static/media/logo_small.4a6f0e1df52c776b5e77.png",
+    "static/media/soccer-gb7b8634d7_640.jpg": "/static/media/soccer-gb7b8634d7_640.e40a7d2583c2d325d2c3.jpg",
+    "static/media/logo.png": "/static/media/logo.edc6f166de0ad9924d42.png",
+    "static/media/herramientas-deportivas_53876-138077.jpg": "/static/media/herramientas-deportivas_53876-138077.89dcde69a8126d32334b.jpg",
+    "static/media/logo_small.png": "/static/media/logo_small.1684995f4ef7daf0f295.png",
+    "static/media/reino-unido.png": "/static/media/reino-unido.b9a2ba74e5f8a55977e7.png",
+    "static/media/espana.png": "/static/media/espana.7ab20088ad372c62ab72.png",
     "index.html": "/index.html",
-    "main.a9e99eba.css.map": "/static/css/main.a9e99eba.css.map",
-    "main.6f261c1b.js.map": "/static/js/main.6f261c1b.js.map",
+    "main.76436238.css.map": "/static/css/main.76436238.css.map",
+    "main.623c83b6.js.map": "/static/js/main.623c83b6.js.map",
     "787.a40a19f2.chunk.js.map": "/static/js/787.a40a19f2.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.a9e99eba.css",
-    "static/js/main.6f261c1b.js"
+    "static/css/main.76436238.css",
+    "static/js/main.623c83b6.js"
   ]
 }
