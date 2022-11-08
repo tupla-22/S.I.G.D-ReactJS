@@ -2,8 +2,16 @@ import { getToken } from "./User"
 
 export const urlApi = (url) =>{
     
-   return `http://apirest.com/${url}&token=${getToken()}`
+   return `192.168.2.111/${url}&token=${getToken()}`
 }
+
+
+export const urlApiSinToken = (url) =>{
+    
+   return `192.168.2.111/${url}`
+}
+
+
 
 
 export const dateTradeEs = (fecha) =>{

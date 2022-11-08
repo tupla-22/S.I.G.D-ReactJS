@@ -10,6 +10,7 @@ import Form from "./Form"
 import PasswordInput from "./PasswordInput"
 import LanguajeContext from "../contexts/LanguajeContext"
 import TextFieldRex from "./TextField"
+import { urlApiSinToken } from "../functions/globals"
 
 const FormLogin = () => {
 	const [errors, setErrors] = useState({ errors: false, correct: false })
@@ -33,7 +34,7 @@ const FormLogin = () => {
 		}
 		if (!errors.errors) {
 			const getUser = async () => {
-				const resp = await fetch("http://apirest.com/usuarios?login=true&suffix=usuario", options)
+				const resp = await fetch(urlApiSinToken(`usuarios?login=true&suffix=usuario`), options)
 					.then((e) => e.json())
 					.then((e) => {
 						if (e.status == 200) {
