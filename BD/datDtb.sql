@@ -1154,7 +1154,7 @@ values
 ("basketball","pasos"),
 ("basketball","saque");*/
 
-insert into tiposestadisticas(id_tipoestadistica,valor_tipoestadistica) 
+insert into tiposEstadisticas(id_tipoestadistica,valor_tipoestadistica) 
 values 
 ("gol",1),
 ("falta",0),
@@ -1163,7 +1163,7 @@ values
 ("lateral",0),
 ("corner",0),
 ("offside",0);
-select * from tiposestadisticas;
+select * from tiposEstadisticas;
 insert into conciben(id_tipoestadistica_concibe,id_deporte_concibe) 
 values 
 ("gol","football"),
@@ -1174,7 +1174,7 @@ values
 ("corner","football"),
 ("offside","football");
 select * from conciben;
-insert into tiposestadisticas(id_tipoestadistica,valor_tipoestadistica) 
+insert into tiposEstadisticas(id_tipoestadistica,valor_tipoestadistica) 
 values 
 ("doble",2),
 ("triple",3),
@@ -1199,7 +1199,7 @@ values
 ("rebote defensivo","basketball"),
 ("doble dribling","basketball");
 
-insert into tiposestadisticas(id_tipoestadistica,valor_tipoestadistica) 
+insert into tiposEstadisticas(id_tipoestadistica,valor_tipoestadistica) 
 values 
 ("golpe franco",0),
 ("siete metros",0);
