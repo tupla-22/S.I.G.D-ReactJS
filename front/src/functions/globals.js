@@ -2,13 +2,21 @@ import { getToken } from "./User"
 
 export const urlApi = (url) =>{
     
+<<<<<<< HEAD
    return `http://apirest.com/${url}&token=${getToken()}`
+=======
+   return `http://192.168.2.111/S.I.G.D-ReactJS/back/${url}&token=${getToken()}`
+>>>>>>> 3dcb9f8246e8334b024cd9b2b3d854de4a59b615
 }
 
 
 export const urlApiSinToken = (url) =>{
     
+<<<<<<< HEAD
    return `http://apirest.com/${url}`
+=======
+   return `http://192.168.2.111/S.I.G.D-ReactJS/back/${url}`
+>>>>>>> 3dcb9f8246e8334b024cd9b2b3d854de4a59b615
 }
 
 
