@@ -2,13 +2,13 @@ import { getToken } from "./User"
 
 export const urlApi = (url) =>{
     
-   return `192.168.2.111/${url}&token=${getToken()}`
+   return `http://192.168.2.111/${url}&token=${getToken()}`
 }
 
 
 export const urlApiSinToken = (url) =>{
     
-   return `192.168.2.111/${url}`
+   return `http://192.168.2.111/${url}`
 }
 
 
