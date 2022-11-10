@@ -1,6 +1,6 @@
 import { EscudoList } from "../../../componentes/styledComponents/EscudoList"
 import { TD } from "../../../componentes/styledComponents/TD"
-import { dateTradeEs, getUser } from "../../../functions/globals"
+import { dateTradeEs, getUser, urlApi } from "../../../functions/globals"
 import React, { useState, useEffect } from "react"
 import { B, BoxCen, BoxColCen, TR } from "../../../componentes/styledComponents/ComponentesDeEstilos"
 import { Button } from "@mui/material"
@@ -13,7 +13,7 @@ import FactCheckTwoToneIcon from '@mui/icons-material/FactCheckTwoTone';
 
 const MatchListRow = ({ data, disputed, sport }) => {
 	const [admin, setAdmin] = useState(false)
-
+	const [idChamp, setIdChamp] = useState({});
 	const peticion = helpHttp()
 	const user = getUser()
 	const navigate = useNavigate()
@@ -22,7 +22,19 @@ const MatchListRow = ({ data, disputed, sport }) => {
 		if (user.id_rol_usuario == 1 || user.id_rol_usuario == 2) {
 			setAdmin(true)
 		}
+		peticion.get( urlApi(`corresponden?select=id_campeonato_corresponde&linkTo=id_partido_corresponde&equalTo=${data.id_partido}`)).then(e=>{
+			console.log(e,"consiguiendo champs")
+			if (e.status == 200) {
+				setIdChamp(e.result[0])
+			}
+		}
+		)
 	}, [])
+
+	useEffect(() => {
+		console.log(data.id_partido)
+		console.log(idChamp)
+	}, [idChamp]);
 
 	const handleSeeTorneo = () => {}
 
@@ -49,12 +61,9 @@ const MatchListRow = ({ data, disputed, sport }) => {
 				{data.tipo_partido === "campeonato" ? (
 					<TD>
 						<BoxColCen>
-							<ModalChampionship>
 								<BoxColCen>
-									<VisibilityIcon />
 									{data.tipo_partido}
 								</BoxColCen>
-							</ModalChampionship>
 						</BoxColCen>
 					</TD>
 				) : (

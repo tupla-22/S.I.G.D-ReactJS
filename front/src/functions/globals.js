@@ -6,6 +6,14 @@ export const urlApi = (url) =>{
 }
 
 
+export const urlApiSinToken = (url) =>{
+    
+   return `http://apirest.com/${url}`
+}
+
+
+
+
 export const dateTradeEs = (fecha) =>{
    try{
       let arrFecha = fecha.split("-")
@@ -36,7 +44,10 @@ export const getDateTime = ()=>{
    let e = new Date()
    return `${e.getFullYear()}-${e.getMonth() + 1}-${e.getDate()} ${e.getHours()}:${e.getMinutes()}:${e.getSeconds()}`
 }
-
+export const getDateNow = ()=>{
+   let e = new Date()
+   return `${e.getFullYear()}-${e.getMonth() + 1}-${e.getDate()}`
+}
 
 export const getProp =(e) =>{
   return e.target.__reactProps$c4sn3kvq0ie

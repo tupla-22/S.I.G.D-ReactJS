@@ -63,6 +63,14 @@ import MatchesListButtonsJudge from "./pages/judge/componentes/MatchesListButton
 import HomePage from "./pages/student/HomePage"
 import SportUpdate from "./pages/admin/componentes/SportUpdate"
 import SelectSportToMatch from "./pages/analist/componentes/SelectMatchToWatch"
+import AdminCategories from "./pages/admin/AdminCategories"
+import CategoriesAdd from "./pages/admin/componentes/CategoriesAdd"
+import CategoriesDelete from "./pages/admin/componentes/CategoriesDelete"
+import CategoriesUpdate from "./pages/admin/componentes/CategoriesUpdate"
+import AdminLeague from "./pages/admin/AdminLeague"
+import LeagueAdd from "./pages/admin/componentes/LeagueAdd"
+import LeagueDelete from "./pages/admin/componentes/LeagueDelete"
+import LeagueUpdate from "./pages/admin/componentes/LeagueUpdate"
 
 function App() {
 	return (
@@ -81,9 +89,6 @@ function App() {
 							<Route path="Home" element={<HomePage />}></Route>
 							<Route path="Fixture" element={<Fixture />}>
 								<Route path=":sport" element={<SelectSportToMatch disputed={0} />}></Route>
-								{/* <Route path="fixtureFB" element={<MatchList sport={"football"} />} />
-								<Route path="fixtureBB" element={<MatchList sport={"basketball"} />} />
-								<Route path="fixtureHB" element={<MatchList sport={"handball"} />} /> */}
 							</Route>
 
 							<Route path="teams" element={<Teams />}>
@@ -102,6 +107,16 @@ function App() {
 						</Route>
 
 						<Route path="/admin/:userId" element={<HomeAdmin />}>
+							<Route element={<AdminCategories/>} path="categories">
+								<Route path="add" element={<CategoriesAdd />}></Route>
+								<Route path="delete" element={<CategoriesDelete />}></Route>
+								<Route path="update" element={<CategoriesUpdate />}></Route>
+							</Route>
+							<Route element={<AdminLeague/>} path="leagues">
+								<Route path="add" element={<LeagueAdd />}></Route>
+								<Route path="delete" element={<LeagueDelete />}></Route>
+								<Route path="update" element={<LeagueUpdate />}></Route>
+							</Route>
 							<Route element={<AdminSports />} path="sports">
 								<Route path="add" element={<SportAdd />}></Route>
 								<Route path="delete" element={<SportDelete />}></Route>
@@ -141,6 +156,21 @@ function App() {
 							<Route path="home" element={<HomeAdm></HomeAdm>}></Route>
 						</Route>
 						<Route path="/administrative/:userId" element={<HomeAdmin />}>
+							<Route element={<AdminCategories/>} path="categories">
+								<Route path="add" element={<CategoriesAdd />}></Route>
+								<Route path="delete" element={<CategoriesDelete />}></Route>
+								<Route path="update" element={<CategoriesUpdate />}></Route>
+							</Route>
+							<Route element={<AdminLeague/>} path="leagues">
+								<Route path="add" element={<LeagueAdd />}></Route>
+								<Route path="delete" element={<LeagueDelete />}></Route>
+								<Route path="update" element={<LeagueUpdate />}></Route>
+							</Route>
+							<Route element={<AdminSports />} path="sports">
+								<Route path="add" element={<SportAdd />}></Route>
+								<Route path="delete" element={<SportDelete />}></Route>
+								<Route path="update" element={<SportUpdate />}></Route>
+							</Route>
 							<Route element={<AdminMatch />} path="match">
 								<Route path="add" element={<MatchAdd />}></Route>
 								<Route path="delete" element={<MatchDel />}></Route>
@@ -174,34 +204,6 @@ function App() {
 							</Route>
 							<Route path="home" element={<HomeAdm></HomeAdm>}></Route>
 						</Route>
-						<Route path="/administrative/:userId" element={<HomeAdmin />}>
-							<Route path="profile" element={<Profile />}>
-								<Route path="contactInformation" element={<ChangeContactInformation />}></Route>
-								<Route path="changePassword" element={<ChangePassword />}></Route>
-							</Route>
-							<Route path="userAdd" element={<UserAdd />} />
-							<Route path="adminUsers" element={<AdminUsers />}>
-								<Route path="userAdd" element={<UserAdd />}>
-									{" "}
-								</Route>
-								<Route path="userUpdate" element={<UserUpdate />}>
-									{" "}
-								</Route>
-								<Route path="userDelete" element={<UserDelete />}>
-									{" "}
-								</Route>
-							</Route>
-							<Route path="adminTeams" element={<AdminTeams />}>
-								<Route path="teamAdd" element={<TeamAdd></TeamAdd>}></Route>
-								<Route path="teamDelete" element={<TeamDelete />}></Route>
-								<Route path="teamUpdate" element={<TeamUpdate />}></Route>
-							</Route>
-							<Route path="profile" element={<Profile />}>
-								<Route path="changePassword" element={<ChangePassword />}></Route>
-								<Route path="contactInformation" element={<ChangeContactInformation />}></Route>
-							</Route>
-							<Route path="home" element={<HomeAdm></HomeAdm>}></Route>
-						</Route>
 
 						<Route path="/dt/:userId" element={<HomeDT />}>
 							<Route path="profile" element={<Profile />}>
@@ -227,9 +229,6 @@ function App() {
 							<Route path="lookMatch/:matchId" element={<LookMatch />}></Route>
 							<Route path="matchManagment" element={<MatchManagment />}></Route>
 							<Route path=":sport" element={<SelectSportToMatch disputed={0} />}></Route>
-							{/* <Route path="basketball" element={<MatchesListButtons sport={"basketball"} />}></Route>
-							<Route path="football" element={<MatchesListButtons sport={"football"} />}></Route>
-							<Route path="handball" element={<MatchesListButtons sport={"handball"} />}></Route> */}
 							<Route path="home" element={<HomePageAnalist />}></Route>
 							<Route path="profile" element={<Profile />}>
 								<Route path="changePassword" element={<ChangePassword />}></Route>

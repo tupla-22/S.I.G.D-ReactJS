@@ -38,7 +38,7 @@ const MatchList = ({ sport, disputed }) => {
 					urlApi(
 						`matcheck?disputed=${disputed ? disputed : 0}&sport=${
 							sport === "all" ? "handball,football,basketball" : sport
-						}&orderBy=id_partido&orderMode=asc`
+						}&orderBy=id_partido&orderMode=desc`
 					)
 				)
 				.then((e) => {
@@ -87,7 +87,7 @@ const MatchList = ({ sport, disputed }) => {
 									<TH>
 										<BoxCen>
 											<SportsSoccerTwoToneIcon fontSize="large" color="secondary" />{" "}
-											{text.goles}
+											{text.tantos}
 										</BoxCen>
 									</TH>
 								</>

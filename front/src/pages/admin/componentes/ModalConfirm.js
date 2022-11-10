@@ -21,7 +21,7 @@ const style = {
   p: 4,
 };
 
-export default function ModalConfirm({name,setConfirm}) {
+export default function ModalConfirm({color,name,setConfirm}) {
   const [open, setOpen] = React.useState("");
   const handleOpen = (e) => {
     e.preventDefault()
@@ -39,7 +39,7 @@ export default function ModalConfirm({name,setConfirm}) {
 
   return (
     <div>
-      <ButtonClassic type="submit" onClick={handleOpen}>{name}</ButtonClassic>
+      <Button variant='contained' type="submit" onClick={handleOpen}>{name}</Button>
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"

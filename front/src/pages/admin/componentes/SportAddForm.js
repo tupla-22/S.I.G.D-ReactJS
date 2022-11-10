@@ -1,4 +1,4 @@
-import { Button, FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material"
+import { Button, Checkbox, FormControl, FormControlLabel, FormHelperText, InputLabel, MenuItem, Select, TextField } from "@mui/material"
 import { useContext, useState } from "react"
 import { ButtonClassic } from "../../../componentes/ButtonClassic"
 import Form from "../../../componentes/Form"
@@ -6,14 +6,10 @@ import "./styles/TeamAddForm.css"
 import { helpHttp } from "../../../helpers/helpHttp"
 import { blobToBase64 } from "../../../helpers/blobManager"
 import { urlApi } from "../../../functions/globals"
-import CameraAltIcon from "@mui/icons-material/CameraAlt"
-import { PSuccess } from "../../../componentes/styledComponents/PSuccess"
 import { PAlert } from "../../../componentes/PAlert"
 import LanguajeContext from "../../../contexts/LanguajeContext"
 import AlertSuccees from "../../../componentes/AlertSuccees"
-import { BoxFlex } from "../../../componentes/BoxFlex"
-import { BoxAlCen } from "../../../componentes/styledComponents/ComponentesDeEstilos"
-import AddAPhotoTwoToneIcon from '@mui/icons-material/AddAPhotoTwoTone';
+import AddAPhotoTwoToneIcon from "@mui/icons-material/AddAPhotoTwoTone"
 
 const formTeamInit = {
 	id_deporte: "",
@@ -21,14 +17,20 @@ const formTeamInit = {
 
 const peticion = helpHttp()
 
+
+const statsFormInit = {
+	id_tipoEstadistica: "",
+	valor_tipoEstadistica: 0
+}
+
 const SportAddForm = () => {
 	const [sportForm, setsportForm] = useState(formTeamInit)
 	const [errors, setErrors] = useState(null)
 	const [ok, setOk] = useState(false)
-	const [statsForm, setStatsForm] = useState({})
+	const [statsForm, setStatsForm] = useState(statsFormInit)
 	const [added, setAdded] = useState(false)
-	const [conciben, setconciben] = useState({});
-
+	const [conciben, setconciben] = useState({})
+	const [esTanto, setEsTanto] = useState(false)
 	const { text } = useContext(LanguajeContext)
 
 	const handleChange = (event) => {
@@ -38,21 +40,21 @@ const SportAddForm = () => {
 		})
 	}
 
-
 	const handleClick = (e) => {
+
+
 		e.preventDefault()
 		const confi = {
 			body: new URLSearchParams(sportForm),
 		}
 		console.log(sportForm)
 		peticion.post(urlApi("deportes?"), confi).then((e) => {
-			console.log(e.status,"tabla deportes")
+			console.log(e.status, "tabla deportes")
 			if (e.status == 200) {
-				setconciben({...conciben,id_deporte_concibe:sportForm.id_deporte})
+				setconciben({ ...conciben, id_deporte_concibe: sportForm.id_deporte })
 				setAdded(true)
 				setOk(true)
 				setErrors(false)
-				setsportForm(formTeamInit)
 				setTimeout(() => {
 					setOk(false)
 				}, 5000)
@@ -64,32 +66,46 @@ const SportAddForm = () => {
 	}
 
 	const handleSendStat = (event) => {
-		event.preventDefault(event)
-
-
-		peticion.post(urlApi("tiposestadisticas?"), { body: new URLSearchParams(statsForm) }).then(res => {
-			console.log(res.status,"Table estadisticas")
+		event.preventDefault()
+		console.log(statsForm)
+		peticion.post(urlApi("tiposEstadisticas?"), { body: new URLSearchParams(statsForm) }).then((res) => {
+			console.log(res, "Table estadisticas")
 			if (res.status == 200) {
-				peticion.post(urlApi(`conciben?`), { body: new URLSearchParams({ ...conciben, id_tipoEstadistica_concibe: statsForm.id_tipoEstadistica }) }).then(e => {
-					console.log(e.status,"Tabla concibenn")
-			  })
+				setOk(true)
+				setTimeout(() => {
+					setOk(false)
+				}, 5000)
 			}
 		})
 
+		const concibenForm={
+			...conciben,
+			id_tipoEstadistica_concibe: statsForm.id_tipoEstadistica,
+		}
+		console.log(concibenForm)
 
+		peticion
+			.post(urlApi(`conciben?`), {
+				body: new URLSearchParams(concibenForm),
+			})
+			.then((e) => {
+				console.log(e, "Tabla concibenn")
+				setStatsForm(statsFormInit)
+				if (e.status == 200) {
+					
+				}
+			})
 	}
 
 	const handleChangeStat = (e) => {
 		e.preventDefault()
-		setStatsForm({[e.target.name]:e.target.value})
+		setStatsForm({...statsForm, [e.target.name]: e.target.value })
 	}
-	
-	
+
 	const handlePhoto = (e) => {
 		blobToBase64(e.target.name, e.target.files, setsportForm, sportForm)
 	}
 
-	
 	return (
 		<>
 			{ok && <AlertSuccees />}
@@ -106,19 +122,20 @@ const SportAddForm = () => {
 						margin="normal"
 						label={text.nombreDelDeporte}
 					></TextField>
+
+					<Button variant="contained" component="label">
+						<input name="foto_deporte" onChange={handlePhoto} hidden accept="image/*" type="file" />
+						<AddAPhotoTwoToneIcon />
+					</Button>
 					
-				<Button variant="contained" component="label">
-					{text.fotoDePerfil}
-					<input name="foto_deporte" onChange={handlePhoto} hidden accept="image/*" type="file" />
-					<AddAPhotoTwoToneIcon />
-				</Button>
+					<FormHelperText>Agrega una imagen que se verá en la tarjeta del deporte.</FormHelperText>
 					<ButtonClassic type="submit" onClick={handleClick} className="Form__input">
 						{text.agregar}
 					</ButtonClassic>
 				</Form>
 			) : (
 				<Form>
-					<BoxAlCen>
+					
 						<TextField
 							margin="normal"
 							sx={{ marginRight: "20px", width: "70%" }}
@@ -130,8 +147,37 @@ const SportAddForm = () => {
 							onChange={handleChangeStat}
 							name="id_tipoEstadistica"
 						></TextField>
-						<Button onClick={handleSendStat} type="submit" variant="contained">Añadir</Button>
-					</BoxAlCen>
+					
+					<FormControlLabel
+						control={
+							<Checkbox
+								onClick={() => {
+									if (!esTanto) {
+										setEsTanto(true)
+									}else setEsTanto(false)
+								}}
+							/>
+						}
+						label="¿Es una estadística de tanto?"
+						/>
+						{esTanto && (
+					<TextField
+						helperText={"Ejemplo: en basketball el doble vale '2' puntos"}
+						margin="normal"
+						type="number"
+						sx={{ marginRight: "20px", width: "70%" }}
+						id="margin-normal"
+						value={statsForm.id_estadistica}
+						FormControl
+						required
+						label="Puntos por tanto"
+						onChange={handleChangeStat}
+						name="valor_tipoEstadistica"
+					></TextField>
+					)}
+					<Button onClick={handleSendStat} type="submit" variant="contained">
+						Añadir
+					</Button>
 				</Form>
 			)}
 		</>

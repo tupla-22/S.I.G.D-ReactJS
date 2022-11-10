@@ -128,7 +128,7 @@ const LookMatch = () => {
 				/>
 
 				<h3>Ingresar las estadisticas del partido</h3>
-				<ManagerControl confirm={confirm} endMatch={endMatch} matchId={matchId} visitantes={visitantes} locales={locales} sport={deporte} />
+				<ManagerControl started={started} confirm={confirm} endMatch={endMatch} matchId={matchId} visitantes={visitantes} locales={locales} sport={deporte} />
 
 				<Clock
 					minutos={minutos}

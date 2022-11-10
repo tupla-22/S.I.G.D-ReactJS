@@ -10,7 +10,6 @@ const TeamDelete = () => {
 	return (
 		<>
 			<Main>
-				<TeamDelForm></TeamDelForm>
 				<TeamSearch></TeamSearch>
 			</Main>
 		</>

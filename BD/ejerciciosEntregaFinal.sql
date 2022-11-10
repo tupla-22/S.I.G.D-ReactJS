@@ -8,9 +8,9 @@
     from equipos
     inner join compiten on id_equipo=id_equipo_compite
     inner join campeonatos on id_campeonato=id_campeonato_compite
-    where (id_deporte_equipo="football" and campeon_campeonato=nombre_equipo and fechaFin_campeonato between "2019-01-01" and "2020-01-01" ) 
+    where (id_deporte_equipo="football" and campeon_campeonato=nombre_equipo and fechaFin_campeonato between "2019-01-01" and "2020-01-01" ) and nombre_equipo like "t%"
     group by nombre_equipo
-    having cantidad_victorias>2
+    having cantidad_victorias>3
     ;
 
 /*
@@ -106,15 +106,57 @@ where id_posicion="delantero"
 /*
 6-	Listar todos los equipos de basketball que participaron del último campeonato, realizando un ranking de mayor a menor por tantos conseguidos. Además se debe mostrar información  acerca de la posesión del balón de cada equipo si se cuenta con esa información. 
 */
+select nombre_campeonato,nombre_equipo, sum(valor_estadistica) as "tantos" from equipos
+inner join compiten on id_equipo=id_equipo_compite
+inner join campeonatos on id_campeonato_compite=id_campeonato
+inner join estadisticas on id_equipo_estadistica=id_equipo
+where id_campeonato=(select id_campeonato from campeonatos where fechaFin_campeonato<curdate() order by fechaInicio_campeonato desc limit 1)  and id_deporte_equipo="basketball" and verificado_estadistica=1
+group by id_equipo
+order by tantos desc
+;
 
 /*
 7-  Listar ci, nombre y apellido de los entrenadores que dirigieron equipos que hayan ganado más de dos campeonatos en los últimos 4 años.
 */
 
+select ci_usuario, primerNombre_usuario, primerApellido_usuario,count(campeon_campeonato) as "cantidad_victorias"
+from usuarios
+inner join equipos on id_usuario_equipo=id_usuario
+inner join compiten on id_equipo=id_equipo_compite 
+inner join campeonatos on id_campeonato_compite=id_campeonato
+where campeon_campeonato=nombre_equipo and TIMESTAMPDIFF(YEAR,fechaFin_campeonato,CURDATE()) <=4
+group by campeon_campeonato
+having cantidad_victorias>2
+
+
+;
+
 /*
 8-	Contar la cantidad de jugadores que hay por deporte y filtrar por los que tengan más de 20 jugadores.
 */
 
+select id_deporte, count(id_fichaJugador_pertenece) as "cantidad_jugadores"
+from deportes
+inner join equipos on id_deporte=id_deporte_equipo
+inner join pertenecen on id_equipo=id_equipo_pertenece
+group by id_deporte
+having cantidad_jugadores>20
+;
 /*
 9-	Listar nombre y apellido de los jugadores de todos los deportes, equipo al que pertenecen, partidos que disputaron, campeonato y técnico a cargo.
 */
+select * from equipos;
+select distinct primerNombre_usuario, primerApellido_usuario, nombre_equipo, id_partido, id_campeonato_corresponde, nombre_campeonato, id_usuario_equipo as id_tecnico, id_deporte_equipo 
+from usuarios
+inner join tienen on id_usuario=id_usuario_tiene
+inner join fichasJugadores on id_fichaJugador_tiene=id_fichaJugador
+inner join pertenecen on id_fichaJugador=id_fichaJugador_pertenece
+inner join equipos on id_equipo_pertenece=id_equipo
+inner join partidos on id_equipo=id_equipoLocal_partido or id_equipo=id_equipoVisitante_partido
+inner join corresponden on id_partido_corresponde=id_partido
+inner join campeonatos on id_campeonato_corresponde=id_campeonato
+;
+
+
+
+

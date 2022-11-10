@@ -9,6 +9,7 @@ import JoinInnerTwoToneIcon from '@mui/icons-material/JoinInnerTwoTone';
 import { useContext } from "react"
 import LanguajeContext from "../../contexts/LanguajeContext"
 import SportsVolleyballTwoToneIcon from '@mui/icons-material/SportsVolleyballTwoTone';
+import BubbleChartTwoToneIcon from '@mui/icons-material/BubbleChartTwoTone';
 
 const HomeAdmin = () => {
   const {text} = useContext(LanguajeContext)
@@ -32,6 +33,9 @@ const HomeAdmin = () => {
 		</NavLink>,
 		<NavLink to="sports/add" classAdd="responsive">
 			<SportsVolleyballTwoToneIcon/> {text.deportes}
+		</NavLink>,
+		<NavLink to="leagues/add" classAdd="responsive">
+			<BubbleChartTwoToneIcon/> {text.liga}
 		</NavLink>,
 	]
 	return (

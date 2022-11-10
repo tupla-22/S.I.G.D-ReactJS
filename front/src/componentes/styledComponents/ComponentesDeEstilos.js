@@ -90,8 +90,22 @@ padding: 10px;
   border-bottoml:1px solid #aaa;
 `
 
-export const IconButton = styled.button` 
+export const IconButton = styled.div` 
+display:center;
+align-items:center;
+position:relative;
+top:4px;
     &:hover{
         cursor:pointer;
     }
 `
+
+
+export const IconSelect = styled.img`
+height:25px;
+
+`
+
+
+
+

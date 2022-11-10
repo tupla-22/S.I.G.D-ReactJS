@@ -7,6 +7,9 @@ require_once "controllers/postController.php";
 
 
 
+//$rol=Connection::tokenRol($_GET["token"]); 
+
+
 if (isset($_POST)) {
 
     /**================separar las propiedades en un arreglo===================== */
@@ -56,6 +59,7 @@ if (isset($_POST)) {
 
         /**===================peticion post para usuarios autorizados======================= */
         if(isset($_GET["token"])){
+            
 
             /**peticion put para usuarios no autorizados */
 
@@ -95,7 +99,18 @@ if (isset($_POST)) {
                 $tableToken= $_GET["table"] ?? "usuarios";
                 $suffix= $_GET["suffix"] ?? "usuario";
 
-                $validate= Connection::tokenValidate($_GET["token"],$tableToken, $suffix);
+                $rol=Connection::tokenRol($_GET["token"]); 
+        
+                if ($rol==1 ||$rol==2 ||$rol==7  ) {
+                    $validate= Connection::tokenValidate($_GET["token"],$tableToken, $suffix);
+                }else{
+                    $json= array(
+                        'status' => 400,
+                        'results' => "Error: authorization required"
+                    );
+                    echo json_encode($json, http_response_code($json["status"]));
+                    return;
+                }
 
                 /**=======================
                  * solicitamos respuesta del controlador para crear datos en cualquier tabla

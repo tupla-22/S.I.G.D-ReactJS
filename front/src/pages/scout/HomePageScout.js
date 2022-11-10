@@ -1,15 +1,19 @@
+import { useContext } from "react"
 import { Outlet } from "react-router-dom"
 import Main from "../../componentes/styledComponents/Main"
 import { PW } from "../../componentes/styledComponents/PW"
 import Welcome from "../../componentes/Welcome"
+import LanguajeContext from "../../contexts/LanguajeContext"
 
 const HomePageScout = () => {
+
+	const {text} = useContext(LanguajeContext)
+
 	return (
 		<>
 			<Main>
                 <Welcome >
-                    Tu siendo el reclutador puedes observar las estadísticas de todos los juugadores.<br></br>
-                    Intentalo!!
+                    {text.bienvenidaReclutador}
                 </Welcome>
 				<Outlet />
 			</Main>

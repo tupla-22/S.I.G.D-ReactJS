@@ -18,7 +18,7 @@ const peticion = helpHttp()
 const Container = styled.div`
 	width: 95%;
 	height: fit-content;
-	border-bottom:1px solid #bbb;
+	border-bottom: 1px solid #bbb;
 	display: flex;
 	flex-wrap: wrap;
 	align-items: center;
@@ -74,19 +74,16 @@ const Div = styled.div`
 	}
 `
 
-
-
 const MatchCheckes = () => {
 	const [partidos, setPartidos] = useState()
 	const [estadisticas, setEstadisticas] = useState([])
 	const { idMatchCheck } = useParams()
-	const [estadistica, setestadistica] = useState({});
-	const [estadisticaAEliminar, setEstadisticaAEliminar] = useState({});
-	const [done, setDone] = useState(false);
-	const [textNotification, setTextNotification] = useState("");
+	const [estadistica, setestadistica] = useState({})
+	const [estadisticaAEliminar, setEstadisticaAEliminar] = useState({})
+	const [done, setDone] = useState(false)
+	const [textNotification, setTextNotification] = useState("")
 
-
-	const { text} = useContext(LanguajeContext)
+	const { text } = useContext(LanguajeContext)
 
 	useEffect(() => {
 		peticion.get(urlApi(`statistics?verificado=0&id_partido=${idMatchCheck}`)).then((e) => {
@@ -94,50 +91,64 @@ const MatchCheckes = () => {
 				setEstadisticas(e.result)
 			}
 		})
+
+		const verificado = {
+			body: new URLSearchParams({
+				verificado_partido: 1,
+			}),
+		}
+
+		peticion.put(urlApi(`partidos?id=${idMatchCheck}&nameID=id_partido`), verificado).then((e) => {
+			console.log(e, "partido chekeado")
+		})
 	}, [])
 
 	useEffect(() => {
 		const data = {
-			body: new URLSearchParams({ verificado_estadistica: 1 })
+			body: new URLSearchParams({ verificado_estadistica: 1 }),
 		}
 		console.log(estadistica)
-		peticion.put(urlApi(`estadisticas?id=${estadistica.id_estadistica}&nameID=id_estadistica`), data).then(result => {
-			if (result.status == 200) {
-				setEstadisticas(estadisticas.filter(el => el.id_estadistica !== estadistica.id_estadistica))
-				setTextNotification("Estadistica verificada correctamente")
-				setDone(true)
-				setTimeout(()=>setDone(false),3000)
-			}
-			
-		})
-	}, [estadistica]);
-
+		peticion
+			.put(urlApi(`estadisticas?id=${estadistica.id_estadistica}&nameID=id_estadistica`), data)
+			.then((result) => {
+				if (result.status == 200) {
+					setEstadisticas(estadisticas.filter((el) => el.id_estadistica !== estadistica.id_estadistica))
+					setTextNotification("Estadistica verificada correctamente")
+					setDone(true)
+					setTimeout(() => setDone(false), 3000)
+		
+					
+				}
+			})
+	}, [estadistica])
 
 	useEffect(() => {
-		peticion.del(urlApi(`estadisticas?id=${estadisticaAEliminar.id_estadistica}&nameID=id_estadistica`)).then(result => {
-			console.log(result)
-			if (result.status == 200) {
-				setEstadisticas(estadisticas.filter(el => el.id_estadistica !== estadisticaAEliminar.id_estadistica))
-				setTextNotification("Estadistica eliminada correctamente")
-				setDone(true)
-				setTimeout(()=>setDone(false),3000)
+		peticion
+			.del(urlApi(`estadisticas?id=${estadisticaAEliminar.id_estadistica}&nameID=id_estadistica`))
+			.then((result) => {
+				console.log(result)
+				if (result.status == 200) {
+					setEstadisticas(
+						estadisticas.filter((el) => el.id_estadistica !== estadisticaAEliminar.id_estadistica)
+					)
+					setTextNotification("Estadistica eliminada correctamente")
+					setDone(true)
+					setTimeout(() => setDone(false), 3000)
+				}
+			})
+	}, [estadisticaAEliminar])
 
-			}
-			
-		})
-	}, [estadisticaAEliminar]);
 
-	const handleSubmit = (e) => {
-		
-	}
+	const handleSubmit = (e) => {}
 
 	return (
 		<>
-			{estadisticas.length == 0 && <Main>
-			
-				<H2>{text.noSeEncontraroEstadisticas}</H2>
-			</Main>}
-			{done &&  <AlertiSuccees severity="success">This is a success message!</AlertiSuccees>}
+			{estadisticas.length == 0 && (
+				<Main>
+					<H2>{text.noSeEncontraroEstadisticas}</H2>
+				</Main>
+			)}
+			{done && <AlertiSuccees severity="success">This is a success message!</AlertiSuccees>}
 			{estadisticas.map((estadistica) => (
 				<Container>
 					<Card>
@@ -145,7 +156,8 @@ const MatchCheckes = () => {
 							<B>Analista</B>
 							<IconFoto src={estadistica.fotoPerfil_analista} />
 							<B>
-								{estadistica.primerApellido_usuario_analista} {estadistica.primerNombre_usuario_analista}
+								{estadistica.primerApellido_usuario_analista}{" "}
+								{estadistica.primerNombre_usuario_analista}
 							</B>
 						</Div>
 						<Div></Div>
@@ -155,7 +167,8 @@ const MatchCheckes = () => {
 							<h4>Jugador</h4>
 							<IconFoto src={estadistica.fotoPerfil_jugador} />
 							<B>
-								{estadistica.primerNombre_usuario_fichaJugador} {estadistica.primerApellido_usuario_fichaJugador}
+								{estadistica.primerNombre_usuario_fichaJugador}{" "}
+								{estadistica.primerApellido_usuario_fichaJugador}
 							</B>
 						</Div>
 						<Div>
@@ -163,8 +176,12 @@ const MatchCheckes = () => {
 							<B>Fecha y hora: {estadistica.fecha_estadistica}</B>
 						</Div>
 					</Card>
-					<ButtonClassic onClick={()=>setestadistica(estadistica)} sx={{ margin: "10px" }}>Confirmar estadistica</ButtonClassic>
-					<ButtonClassic onClick={()=>setEstadisticaAEliminar(estadistica)} sx={{ margin: "10px" }}>Eliminar estadistica</ButtonClassic>
+					<ButtonClassic onClick={() => setestadistica(estadistica)} sx={{ margin: "10px" }}>
+						Confirmar estadistica
+					</ButtonClassic>
+					<ButtonClassic onClick={() => setEstadisticaAEliminar(estadistica)} sx={{ margin: "10px" }}>
+						Eliminar estadistica
+					</ButtonClassic>
 				</Container>
 			))}
 		</>

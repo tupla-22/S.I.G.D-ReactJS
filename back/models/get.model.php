@@ -401,6 +401,7 @@ class GetModel{
         $innerJoinText="INNER join equipos e on p.id_partido";
         $where="(e.$idSportTeamArray[0]='$sportArray[0]' $linkText)
         and disputado_partido=$disputed 
+        and verificado_partido=0
         and (e.id_equipo=p.id_equipoLocal_partido or e.id_equipo=p.id_equipoVisitante_partido) $linkToText
         group by p.id_partido";
 
@@ -971,6 +972,32 @@ class GetModel{
         
                
         $stmt=Connection::connect()->prepare("call obtenerCampeonatosDondeNoSeParticipa ($idEquipo);");
+    
+        try {
+    
+            $stmt->execute();
+    
+        } catch (PDOException $Exeption) {
+            return null;
+        }
+        
+        return $stmt->fetchAll(PDO::FETCH_CLASS);
+            
+    }
+
+    static function getStatusCampeonato($openCampeonato){
+        
+        if ($openCampeonato==true) {
+
+            $stmt=Connection::connect()->prepare("select * from campeonatos where fechaFin_campeonato > curdate();");
+
+        }elseif ($openCampeonato==false) {
+
+            $stmt=Connection::connect()->prepare("select * from campeonatos where fechaFin_campeonato < curdate();");
+
+        }
+               
+        
     
         try {
     

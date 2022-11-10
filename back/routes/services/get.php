@@ -218,7 +218,10 @@ deporte equipo
 }elseif ($table=="getCampeonatoDondeNoSeParticipa" && $table!="getEquipoPorIDUsuarioPerteneciente" && $table!="statistics" && $table!="matcheck" && isset($_GET["id_equipo"]) ) {
     
     $response->getCampeonatoDondeNoSeParticipa($_GET["id_equipo"]);
-        
+ 
+}elseif ($table=="getStatusCampeonato" && $table!="getCampeonatoDondeNoSeParticipa" && $table!="getEquipoPorIDUsuarioPerteneciente" && $table!="statistics" && $table!="matcheck" && isset($_GET["open_campeonato"]) ) {
+    $response->getStatusCampeonato($_GET["open_campeonato"]);
+    
 }else{
 
 

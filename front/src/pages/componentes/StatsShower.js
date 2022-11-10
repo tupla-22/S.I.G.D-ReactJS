@@ -9,7 +9,7 @@ import galeryLogin from "../../media/galeryLogin.jpg"
 import { helpHttp } from "../../helpers/helpHttp"
 import { useState, useEffect } from "react"
 import { urlApi } from "../../functions/globals"
-
+import imgLog from "../../media/soccer-gb7b8634d7_640.jpg"
 const Container = styled.div`
 	width: 100%;
 	height: 100%;
@@ -22,10 +22,11 @@ const Icon = styled.section`
 	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 	grid-auto-rows: minmax(200px, auto);
 	padding: 50px;
-  grid-gap:3px;
+	grid-gap: 3px;
 `
 
 const GaleriLogin = styled.img`
+	border-radius: 15px;
 	width: 100%;
 	object-fit: cover;
 	object-position: center;
@@ -33,11 +34,11 @@ const GaleriLogin = styled.img`
 
 const Div = styled.div`
 	overflow: hidden;
-  transition: transform 0.1s;
-  border-radius: 15px;
+	transition: transform 0.1s;
+	border-radius: 15px;
 	&:hover {
-    cursor: pointer;
-    transform: rotate(10deg) scale(1.2, 1.2);
+		cursor: pointer;
+		transform: rotate(10deg) scale(1.2, 1.2);
 	}
 `
 
@@ -49,7 +50,7 @@ export default function StatsShower() {
 
 	useEffect(() => {
 		peticion.get(urlApi("usuarios?select=fotoPerfil_usuario")).then((e) => {
-			console.log(e.status,"Fotos Login")
+			console.log(e.status, "Fotos Login")
 			if (e.status == 200) setFotos(e.result)
 		})
 	}, [])
@@ -63,9 +64,9 @@ export default function StatsShower() {
 			<Grow in={true} style={{ transformOrigin: "0 0 0" }} {...(checked ? { timeout: 1000 } : {})}>
 				{
 					<Icon>
-						{fotos.map((e,i) => (
+						{fotos.map((e, i) => (
 							<Div key={`fotoLogin${i}`}>
-								<GaleriLogin src={e.fotoPerfil_usuario} />
+								<GaleriLogin src={imgLog} />
 							</Div>
 						))}
 					</Icon>

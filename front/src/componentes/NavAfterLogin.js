@@ -23,6 +23,7 @@ import LogoutTwoToneIcon from "@mui/icons-material/LogoutTwoTone"
 import EngOrSpan from "./EngOrSpan"
 import LanguajeContext from "../contexts/LanguajeContext"
 import styled from "styled-components"
+import fotoPerfilDefault from "../media/fotoPerfilDefault.png"
 
 const Div = styled.div`
 	display: flex;
@@ -140,7 +141,7 @@ const NavAfterLogin = ({ pages = [] }) => {
 						<Div>
 							<Tooltip title="Open settings">
 								<IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-									<ImgProfil src={usuario.fotoPerfil_usuario}></ImgProfil>
+									<ImgProfil src={usuario.fotoPerfil_usuario || fotoPerfilDefault}></ImgProfil>
 								</IconButton>
 							</Tooltip>
 							<EngOrSpan />

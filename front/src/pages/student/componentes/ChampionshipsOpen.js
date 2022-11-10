@@ -1,9 +1,16 @@
+import ChampionshipList from "../../admin/componentes/ChampionshipList";
 
 
 
 const ChampionshipsOpen = () => {
+
+
+
+    
+
+
     return ( 
-        <>open</>
+        <ChampionshipList open={true} />
      );
 }
  

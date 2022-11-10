@@ -4,13 +4,12 @@ import NavLink from "../../componentes/NavLink"
 import Main from "../../componentes/styledComponents/Main"
 import LanguajeContext from "../../contexts/LanguajeContext"
 import AdminNav from "../admin/componentes/AdminNav"
-import ChampionshipList from "../admin/componentes/ChampionshipList"
 
 const Championships = () => {
 
     const {text}=useContext(LanguajeContext)
 
-    const pages = [<NavLink to={"closed"} >{ text.abiertos}</NavLink>, <NavLink to={"open"} >{ text.cerrados}</NavLink>]
+    const pages = [<NavLink to={"open"} >{ text.abiertos}</NavLink>, <NavLink to={"closed"} >{ text.cerrados}</NavLink>]
 
 	return (
 		<>

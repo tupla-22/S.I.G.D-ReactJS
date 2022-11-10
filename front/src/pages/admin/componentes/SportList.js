@@ -3,7 +3,7 @@ import { TH } from "../../../componentes/styledComponents/TH"
 import TeamsListRow from "./TeamsListRow"
 import React, { useState, useEffect, useContext } from "react"
 import { Table } from "../../../componentes/styledComponents/Table"
-import { urlApi } from "../../../functions/globals"
+import { getUser, urlApi } from "../../../functions/globals"
 import { helpHttp } from "../../../helpers/helpHttp"
 import LanguajeContext from "../../../contexts/LanguajeContext"
 import SportListRow from "./SportListRow"
@@ -11,24 +11,26 @@ import SportListRow from "./SportListRow"
 const peticion = helpHttp()
 
 const SportList = ({idEliminado}) => {
-	const [data, setData] = useState([])
+	const [sports, setsports] = useState([])
 	const [status, setStatus] = useState(false)
   const [sport, setSport] = useState("");
-
+  const [user, setUser] = useState({});
 	const { text } = useContext(LanguajeContext)
+ 
 
 	useEffect(() => {
 		peticion.get(urlApi(`deportes?select=*`)).then((dat) => {
 			if (dat.status == 200) {
-				setData(dat.result)
+				setsports(dat.result)
 				setStatus(true)
 			}
-		})
-
+    })
+    setUser(getUser())
+    
   }, [])
 
   useEffect(() => {
-    setData(data.filter((e)=>e.id_deporte!=idEliminado))
+    setsports(sports.filter((e)=>e.id_deporte!=idEliminado))
   }, [idEliminado]);
   
 
@@ -37,18 +39,21 @@ const SportList = ({idEliminado}) => {
 			<h3>{text.deportes}</h3>
 			<DivOver>
 				<Table>
-					<thead>
+          <thead>
+            { (user.id_rol_usuario == 1 || user.id_rol_usuario == 2) && <th></th>}
 						<TH>{text.imagen}</TH>
 						<TH>{text.nombre}</TH>
 					</thead>
 
 					<tbody>
 						{status &&
-							data.map((e) => (
+							sports.map((el) => (
                 <SportListRow
-                  sport={e.id_deporte}
-									key={e.id_deporte + "equipo"}
-									data={e}
+                  sports={sports}
+                  setSports={setsports }
+                  user={user}
+									key={el.id_deporte + "equipo"}
+									sport={el}
 								/>
 							))}
 					</tbody>
