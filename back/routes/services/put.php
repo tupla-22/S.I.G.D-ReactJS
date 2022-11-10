@@ -89,7 +89,7 @@ if (isset($id) && isset($nameID)) {
 
             $rol=Connection::tokenRol($_GET["token"]); 
     
-            if ($rol==1 ||$rol==2 ||$rol==5 ||$rol==7 ||$rol==6  ) {
+            if ($rol==1 ||$rol==2 ||$rol==3 ||$rol==4  ||$rol==5 ||$rol==7 ||$rol==6    ) {
                 $validate= Connection::tokenValidate($_GET["token"],$tableToken, $suffix);
             }else{
                 $json= array(
