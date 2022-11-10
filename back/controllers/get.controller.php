@@ -41,9 +41,9 @@ class GetController{
 
     /**======================peticion personalizada partidos pendientes============================== */
 
-    static function getMatcheck($sport, $disputed,  $orderBy, $orderMode, $startAt, $endAt, $linkTo, $equalTo ){
+    static function getMatcheck($verified,$sport, $disputed,  $orderBy, $orderMode, $startAt, $endAt, $linkTo, $equalTo ){
         
-        $response = GetModel::getMatcheck($sport, $disputed,  $orderBy, $orderMode, $startAt, $endAt, $linkTo, $equalTo );
+        $response = GetModel::getMatcheck($verified,$sport, $disputed,  $orderBy, $orderMode, $startAt, $endAt, $linkTo, $equalTo );
         
         $return=new GetController();
         
