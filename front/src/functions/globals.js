@@ -2,13 +2,13 @@ import { getToken } from "./User"
 
 export const urlApi = (url) =>{
     
-   return `http://apirest.com/${url}&token=${getToken()}`
+   return `http://192.168.1.3/S.I.G.D-ReactJS/back/${url}&token=${getToken()}`
 }
 
 
 export const urlApiSinToken = (url) =>{
     
-   return `http://apirest.com/${url}`
+   return `http://192.168.1.3/S.I.G.D-ReactJS/back/${url}`
 }
 
 
