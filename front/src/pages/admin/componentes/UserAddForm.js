@@ -62,16 +62,14 @@ const UserAddForm = () => {
 	}, [errors])
 	const handleClick = (e) => {
 		e.preventDefault()
+		console.log(Object.values(errors).find(e=>e==true))
 		let idUsuario
 		let idUltimaFichaJugador
-
-		if (!emailRegex.test(userForm.email_usuario)) setError(true)
-		else setError(false)
 
 		// SI LA CONTRASEÑA ES IGUAL AÑADO EL USUAIRIO Y TODDO EL RESTO
 
 		if (!Object.values(errors).find(e=>e==true)) {
-			if (passwordVerified && !error) {
+			if (passwordVerified) {
 				const data = {
 					body: new URLSearchParams(userForm),
 				}
@@ -150,8 +148,9 @@ const UserAddForm = () => {
 					}
 				})
 			}
-		}
-	}
+		} else {
+			console.log(errors)
+	}}
 
 	// Manejadores
 
