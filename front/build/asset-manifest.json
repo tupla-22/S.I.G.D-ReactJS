@@ -1,7 +1,12 @@
 {
   "files": {
+<<<<<<< HEAD
     "main.css": "./static/css/main.f921df4d.css",
     "main.js": "./static/js/main.093d1200.js",
+=======
+    "main.css": "./static/css/main.b49f1a9b.css",
+    "main.js": "./static/js/main.8c976303.js",
+>>>>>>> aa428abae733cdbe98daf39ff02de1952c20abd6
     "static/js/787.a40a19f2.chunk.js": "./static/js/787.a40a19f2.chunk.js",
     "static/media/FondoLogin.jpg": "./static/media/FondoLogin.ce5ef30dbd383808d01e.jpg",
     "static/media/soccer-gb7b8634d7_640.jpg": "./static/media/soccer-gb7b8634d7_640.e40a7d2583c2d325d2c3.jpg",
@@ -12,6 +17,7 @@
     "static/media/reino-unido.png": "./static/media/reino-unido.b9a2ba74e5f8a55977e7.png",
     "static/media/espana.png": "./static/media/espana.7ab20088ad372c62ab72.png",
     "index.html": "./index.html",
+<<<<<<< HEAD
     "main.f921df4d.css.map": "./static/css/main.f921df4d.css.map",
     "main.093d1200.js.map": "./static/js/main.093d1200.js.map",
     "787.a40a19f2.chunk.js.map": "./static/js/787.a40a19f2.chunk.js.map"
@@ -19,5 +25,14 @@
   "entrypoints": [
     "static/css/main.f921df4d.css",
     "static/js/main.093d1200.js"
+=======
+    "main.b49f1a9b.css.map": "./static/css/main.b49f1a9b.css.map",
+    "main.8c976303.js.map": "./static/js/main.8c976303.js.map",
+    "787.a40a19f2.chunk.js.map": "./static/js/787.a40a19f2.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b49f1a9b.css",
+    "static/js/main.8c976303.js"
+>>>>>>> aa428abae733cdbe98daf39ff02de1952c20abd6
   ]
 }

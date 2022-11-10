@@ -26,7 +26,7 @@ const MatchesListButtonsJudge = () => {
 	return (
 		<Main>
 			<Outlet/>
-			<MatchList disputed={1} sport={sport} />
+			<MatchList verified={0} disputed={1} sport={sport} />
 		</Main>
 	)
 }
