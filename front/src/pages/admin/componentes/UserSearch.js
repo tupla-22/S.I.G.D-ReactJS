@@ -11,7 +11,7 @@ import { DivOver } from "../../../componentes/DivOver"
 import { Table } from "../../../componentes/styledComponents/Table"
 import { PAlert } from "../../../componentes/PAlert"
 import LanguajeContext from "../../../contexts/LanguajeContext"
-import { getUser } from "../../../functions/globals"
+import { getUser, urlApi } from "../../../functions/globals"
 import SearchIcon from '@mui/icons-material/Search';
 
 
@@ -35,7 +35,7 @@ const UserSearch = ({ciUsuarioEliminado}) => {
 		e.preventDefault()
 		setLoading(true)
 		solicitud
-			.get(`http://apirest.com/usuarios?select=*&linkTo=primerApellido_usuario&search=${apellido}¨¨`)
+			.get(urlApi(`usuarios?select=*&linkTo=primerApellido_usuario&search=${apellido}¨¨`))
       .then((e) => {
         console.log(e)
 				setUsuariosBuscados(e.result)
