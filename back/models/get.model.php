@@ -448,6 +448,7 @@ class GetModel{
             }
 
             $stmt=Connection::connect()->prepare($sql);
+            echo '<pre>'; print_r($sql); echo '</pre>';
             
             
             
