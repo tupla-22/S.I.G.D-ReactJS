@@ -341,6 +341,7 @@ class GetModel{
         
         $equalToArray= explode("¨¨",$equalTo);
         $linkToText="";
+        echo '<pre>'; print_r("test"); echo '</pre>';
 
         if(count($linkToArray)>1){
 
