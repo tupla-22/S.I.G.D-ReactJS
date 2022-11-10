@@ -20,7 +20,7 @@ const MatchesListButtons = ({ sport }) => {
 
 	useEffect(() => {
 		peticion
-			.get(urlApi(`matcheck?disputed=1&sport=handball,basketball,football&orderBy=id_partido&orderMode=asc&startAt=0`))
+			.get(urlApi(`matcheck?disputed=1&verificado=0&sport=handball,basketball,football&orderBy=id_partido&orderMode=asc&startAt=0`))
 			.then((e) => {
 				if (!e.status == 200) setErrors(true)
 				setMatches(e.result)

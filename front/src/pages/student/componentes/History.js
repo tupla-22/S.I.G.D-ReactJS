@@ -23,7 +23,7 @@ const History = () => {
 			{sports.map((e) => (
 				<>
 					<H3B>Historial de {e.id_deporte}</H3B>
-					<MatchList sport={e.id_deporte} disputed={1}></MatchList>
+					<MatchList verified={1} sport={e.id_deporte} disputed={1}></MatchList>
 				</>
 			))}
 		</Main>
