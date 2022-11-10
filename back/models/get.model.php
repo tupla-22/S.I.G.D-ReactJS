@@ -341,7 +341,6 @@ class GetModel{
         
         $equalToArray= explode("¨¨",$equalTo);
         $linkToText="";
-        echo '<pre>'; print_r("test"); echo '</pre>';
 
         if(count($linkToArray)>1){
 
@@ -448,7 +447,7 @@ class GetModel{
             }
 
             $stmt=Connection::connect()->prepare($sql);
-            echo '<pre>'; print_r($sql); echo '</pre>';
+            
             
             
             
