@@ -9,7 +9,7 @@ class DeleteController{
     
    
     static public function deleteData($table, $id, $nameID){
-        
+        #
 
         if ($nameID=="ci_usuario" && $id==0 && $table=="usuarios") {
             $response="RootNo";
