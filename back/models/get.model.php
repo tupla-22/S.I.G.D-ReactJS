@@ -334,7 +334,7 @@ class GetModel{
 
 
     /**==================peticion personalizada partidos pendientes======================= */   
-    static public function getMatcheck($sport, $disputed, $orderBy, $orderMode, $startAt, $endAt, $linkTo, $equalTo){
+    static public function getMatcheck($verified,$sport, $disputed, $orderBy, $orderMode, $startAt, $endAt, $linkTo, $equalTo){
 
         /**=====================organizamos filtros ============================ */
         $linkToArray= explode(",",$linkTo);
@@ -401,7 +401,7 @@ class GetModel{
         $innerJoinText="INNER join equipos e on p.id_partido";
         $where="(e.$idSportTeamArray[0]='$sportArray[0]' $linkText)
         and disputado_partido=$disputed 
-        and verificado_partido=0
+        and verificado_partido=$verified
         and (e.id_equipo=p.id_equipoLocal_partido or e.id_equipo=p.id_equipoVisitante_partido) $linkToText
         group by p.id_partido";
 
