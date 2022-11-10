@@ -19,7 +19,7 @@ import MilitaryTechTwoToneIcon from "@mui/icons-material/MilitaryTechTwoTone"
 import SportsSoccerTwoToneIcon from "@mui/icons-material/SportsSoccerTwoTone"
 import { Outlet } from "react-router-dom"
 
-const MatchList = ({ sport, disputed }) => {
+const MatchList = ({verified,  sport, disputed }) => {
 	// POR PARAMETRO SE LE TRASMITE EL DEPORTE DESEADO Y SI FUE DISPUTADO
 
 	const peticion = helpHttp()
@@ -36,7 +36,7 @@ const MatchList = ({ sport, disputed }) => {
 			peticion
 				.get(
 					urlApi(
-						`matcheck?disputed=${disputed ? disputed : 0}&sport=${
+						`matcheck?disputed=${disputed ? disputed : 0}&verificado=${verified ? verified : 0}&sport=${
 							sport === "all" ? "handball,football,basketball" : sport
 						}&orderBy=id_partido&orderMode=desc`
 					)
