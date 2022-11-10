@@ -87,7 +87,7 @@ const MatchListRow = ({ data, disputed, sport }) => {
 								<BoxColCen>
 									{data.nombre_equipoLocal} <B>{data.anotacion_equipoLocal}</B>
 								</BoxColCen>
-								<b>-----</b>
+								<b style={{minWidth:"fit-content"}}>-----</b>
 								<BoxColCen>
 									{data.nombre_equipoVisitante} <B>{data.anotacion_equipoVisitante}</B>
 								</BoxColCen>

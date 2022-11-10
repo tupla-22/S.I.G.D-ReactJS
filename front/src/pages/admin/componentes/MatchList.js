@@ -59,34 +59,34 @@ const MatchList = ({verified,  sport, disputed }) => {
 					<thead>
 						<TR>
 							<TH>
-								<DateRangeIcon fontSize="large" color="secondary" />
+								<DateRangeIcon fontSize="medium" color="secondary" />
 							</TH>
 							<TH>
-								<AccessTimeFilledIcon fontSize="large" color="secondary" />
+								<AccessTimeFilledIcon fontSize="medium" color="secondary" />
 							</TH>
 							<TH>
-								<ShieldIcon fontSize="large" color="secondary"></ShieldIcon>
+								<ShieldIcon fontSize="medium" color="secondary"></ShieldIcon>
 							</TH>
 							<TH>VS</TH>
 							<TH>
-								<ShieldIcon fontSize="large" color="secondary"></ShieldIcon>
+								<ShieldIcon fontSize="medium" color="secondary"></ShieldIcon>
 							</TH>
 							<TH>
-								<HelpCenterIcon fontSize="large" color="secondary" />
+								<HelpCenterIcon fontSize="medium" color="secondary" />
 							</TH>
 
 							{disputed == 1 && (
 								<>
 									<TH>
 										<BoxCen>
-											<MilitaryTechTwoToneIcon fontSize="large" color="secondary" />{" "}
+											<MilitaryTechTwoToneIcon fontSize="medium" color="secondary" />{" "}
 											{text.ganador}
 										</BoxCen>
 									</TH>
 
 									<TH>
 										<BoxCen>
-											<SportsSoccerTwoToneIcon fontSize="large" color="secondary" />{" "}
+											<SportsSoccerTwoToneIcon fontSize="medium" color="secondary" />{" "}
 											{text.tantos}
 										</BoxCen>
 									</TH>
