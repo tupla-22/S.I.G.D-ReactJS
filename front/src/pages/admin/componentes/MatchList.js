@@ -19,11 +19,11 @@ import MilitaryTechTwoToneIcon from "@mui/icons-material/MilitaryTechTwoTone"
 import SportsSoccerTwoToneIcon from "@mui/icons-material/SportsSoccerTwoTone"
 import { Outlet } from "react-router-dom"
 
-const MatchList = ({verified,  sport, disputed }) => {
+const MatchList = ({verified,  sport, disputed,partidosBuscados }) => {
 	// POR PARAMETRO SE LE TRASMITE EL DEPORTE DESEADO Y SI FUE DISPUTADO
 
 	const peticion = helpHttp()
-	const [data, setData] = useState([])
+	const [data, setData] = useState(partidosBuscados ? partidosBuscados : [])
 	const [status, setStatus] = useState(false)
 	const [loading, setLoading] = useState(false)
   const { text } = useContext(LanguajeContext)

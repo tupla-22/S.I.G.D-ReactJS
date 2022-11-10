@@ -58,7 +58,7 @@ const MatchDelForm = () => {
 				<ModalConfirm name={text.eliminar} confirm={confirm} setConfirm={setConfirm} />
 			</Form>
 
-			<MatchList sport={"all"} />
+			
 		</>
 	)
 }
