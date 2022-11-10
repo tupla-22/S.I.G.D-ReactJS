@@ -41,21 +41,21 @@ const ManagmentControl = ({ started,sport, confirm, endMatch, matchId, locales, 
 
 	//EFFECTS
 
-	useEffect(() => {
-		if (locales.find((el) => el.nombre_equipo == equipoDelTanto)) {
-			setMatchForm({
-				...matchForm,
-				anotacionLocal_partido: (matchForm.anotacionLocal_partido += valorDelTanto),
-			})
-		} else {
-			setMatchForm({
-				...matchForm,
-				anotacionVisitante_partido: (matchForm.anotacionVisitante_partido += valorDelTanto),
-			})
-		}
+	// useEffect(() => {
+	// 	if (locales.find((el) => el.nombre_equipo == equipoDelTanto)) {
+	// 		setMatchForm({
+	// 			...matchForm,
+	// 			anotacionLocal_partido: (matchForm.anotacionLocal_partido += valorDelTanto),
+	// 		})
+	// 	} else {
+	// 		setMatchForm({
+	// 			...matchForm,
+	// 			anotacionVisitante_partido: (matchForm.anotacionVisitante_partido += valorDelTanto),
+	// 		})
+	// 	}
 
-		console.log(matchForm)
-	}, [equipoDelTanto, valorDelTanto])
+	// 	console.log(matchForm)
+	// }, [equipoDelTanto, valorDelTanto])
 
 	useEffect(() => {
 		let ganador
@@ -132,6 +132,19 @@ const ManagmentControl = ({ started,sport, confirm, endMatch, matchId, locales, 
 
 	const handleSubmit = (e) => {
 		e.preventDefault(e)
+
+		if (locales.find((el) => el.nombre_equipo == equipoDelTanto)) {
+			setMatchForm({
+				...matchForm,
+				anotacionLocal_partido: (matchForm.anotacionLocal_partido += valorDelTanto),
+			})
+		} else {
+			setMatchForm({
+				...matchForm,
+				anotacionVisitante_partido: (matchForm.anotacionVisitante_partido += valorDelTanto),
+			})
+		}
+		console.log(matchForm,"PARTIDO")
 
 		const info = {
 			body: new URLSearchParams(form),
