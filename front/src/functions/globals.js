@@ -5,6 +5,7 @@ export const urlApi = (url) =>{
    return `http://192.168.0.12/S.I.G.D-ReactJS/back/${url}&token=${getToken()}`
 }
 
+//dfsgsdfg
 
 export const urlApiSinToken = (url) =>{
     
