@@ -2,14 +2,14 @@ import { getToken } from "./User"
 
 export const urlApi = (url) =>{
     
-   return `http://mipaginaweb.ddns.net/S.I.G.D-ReactJS/back/${url}&token=${getToken()}`
+   return `http://mipaginaweb.ddns.net:7777/S.I.G.D-ReactJS/back/${url}&token=${getToken()}`
 }
 
 //dfsgsdfg
 
 export const urlApiSinToken = (url) =>{
     
-   return `http://mipaginaweb.ddns.net/S.I.G.D-ReactJS/back/${url}`
+   return `http://mipaginaweb.ddns.net:7777/S.I.G.D-ReactJS/back/${url}`
 }
 
 
